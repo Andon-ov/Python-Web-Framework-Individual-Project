@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block page_content %}
+    <div class="container">
+        <div class="items-container mb-5">
+            <div class="item">
+                <div class="form-h1">
+                    <h1>Are you sure you want to delete your profile?</h1>
+                </div>
+                <div class="row mb-4 mb-4 ">
+                    <div>
+                        <form method="post" action="{% url 'delete user' pk=request.user.pk %}">
+                            {{ form }}
+                            {% csrf_token %}
+                            <a class="btn btn-outline-black btn-block mb-2 " href="javascript:history.back()">Go Back</a>
+                            <button type="submit" class="btn btn-dark btn-block mb-2 ">Yes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

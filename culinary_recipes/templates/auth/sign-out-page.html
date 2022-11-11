@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <div class="container">
+        <div class="items-container mb-5">
+            <div class="item">
+                <div class="form-h1">
+                    <h1>Login</h1>
+                </div>
+                <form method="post" action="{% url 'sign out' %}">
+                    {{ form }}
+                    <button>Logout</button>
+                    {% csrf_token %}
+                </form>
+                <form action="{% url 'sign in' %}" method="post" enctype="multipart/form-data" class="mb-5">
+                    <hr class="my-4"/>
+                    {% for field in form %}
+                        <p>
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% for error in field.errors %}
+                                <p style="color: red">{{ error }}</p>
+                            {% endfor %}
+                        </p>
+                    {% endfor %}
+                    {% csrf_token %}
+                    <!-- 2 column grid layout for inline styling -->
+                    <div class="row mb-4 mb-6 ">
+                        {#                        <div class="col d-flex justify-content-center">#}
+                        {#                            <!-- Checkbox -->#}
+                        {#                            <div class="form-check">#}
+                        {#                                <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked/>#}
+                        {#                                <label class="form-check-label" for="form1Example3"> Remember me </label>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+
+                        <div class="col">
+                            <button type="submit" class="btn btn-dark btn-block mb-2 ">Sign in</button>
+
+                            <a class="text-danger" href="#!">Forgot password?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% load static %}
+{#<div class="container">#}
+{#    <nav class="navbar navbar-expand-lg bg-light rounded" aria-label="Eleventh navbar">#}
+{#        <div class="container-fluid">#}
+{##}
+{#            <a class="navbar-brand" href="https://www.pizza-romance.com/">Romance</a>#}
+{#            <div class="vr"></div>#}
+{#            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09"#}
+{#                    aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">#}
+{#                <span class="navbar-toggler-icon"></span>#}
+{#            </button>#}
+{##}
+{#            <div class="collapse navbar-collapse" id="navbarsExample09">#}
+{#                <ul class="navbar-nav me-auto mb-2 mb-lg-0">#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>#}
+{#                    </li>#}
+{##}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url "all category" %}">All Categories</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url "index" %}">Home</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item dropdown">#}
+{#                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li><a class="dropdown-item" href="{% url 'base recipe' %}">Base</a></li>#}
+{#                            <li><a class="dropdown-item" href="#">Another action</a></li>#}
+{#                            <li><a class="dropdown-item" href="#">Something else here</a></li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{#                    <div class="vr"></div>#}
+{#                </ul>#}
+{##}
+{#                <form role="search" action="{% url 'search' %}" method="get">#}
+{#                    <input name="pattern" class="form-control" type="search" placeholder="Search" aria-label="Search">#}
+{#                </form>#}
+{#                {% csrf_token %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </nav>#}
+{#</div>#}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+                class="navbar-toggler text-white"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+{#            <i class="fas fa-bars"></i>#}
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="https://www.pizza-romance.com/">
+
+{#                <i class="fas fa-pizza-slice fa-2x"></i>#}
+            </a>
+            <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
+
+            <!-- Left links -->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'index' %}#menu">Актуално меню</a>
+                </li>
+                <li class="nav-item">
+                    {#                        <a class="nav-link text-white" href="{% url 'base recipe' %}">Base</a>#}
+                </li>
+                {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'sign in' %}">Sing in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'sign up' %}">Sing up</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+            <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Right elements -->
+
+
+        {#            <div class="d-flex align-items-center text-white">#}
+        {#                <!-- Icon -->#}
+        {#                <a class="text-reset me-3" href="#">#}
+        {#                    <i class="fas fa-shopping-cart"></i>#}
+        {#                </a>#}
+        {##}
+        {#                <!-- Notifications -->#}
+        {#                <div class="dropdown">#}
+        {#                    <a#}
+        {#                            class="text-reset me-3 dropdown-toggle hidden-arrow"#}
+        {#                            href="#"#}
+        {#                            id="navbarDropdownMenuLink"#}
+        {#                            role="button"#}
+        {#                            data-mdb-toggle="dropdown"#}
+        {#                            aria-expanded="false"#}
+        {#                    >#}
+        {#                        <i class="fas fa-bell"></i>#}
+        {#                        <span class="badge rounded-pill badge-notification bg-danger">1</span>#}
+        {#                    </a>#}
+        {#                    <ul#}
+        {#                            class="dropdown-menu dropdown-menu-end "#}
+        {#                            aria-labelledby="navbarDropdownMenuLink"#}
+        {#                    >#}
+        {#                        <li>#}
+        {#                            <a class="dropdown-item" href="#">Some news</a>#}
+        {#                        </li>#}
+        {#                        <li>#}
+        {#                            <a class="dropdown-item" href="#">Another news</a>#}
+        {#                        </li>#}
+        {#                        <li>#}
+        {#                            <a class="dropdown-item" href="#">Something else here</a>#}
+        {#                        </li>#}
+        {#                    </ul>#}
+        {#                </div>#}
+
+
+        <!-- Avatar -->
+        {% if request.user.is_authenticated %}
+
+            <div class="dropdown">
+                <a      class="navbar-brand mt-2 mt-lg-0"
+{#                        class="dropdown-toggle d-flex align-items-center hidden-arrow"#}
+                        href="#"
+                        id="navbarDropdownMenuAvatar"
+                        role="button"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                ><i class="fas fa-pizza-slice"></i>
+
+                </a>
+                <ul
+                        class="dropdown-menu dropdown-menu-end"
+                        aria-labelledby="navbarDropdownMenuAvatar"
+                >
+                    <li>
+                        <p class="dropdown-item">{{ user.profile.full_name }}</p>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'details user' pk=request.user.pk %}">My profile</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'edit user' pk=request.user.pk %}">Edit profile</a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="{% url 'sign out' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+    <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->

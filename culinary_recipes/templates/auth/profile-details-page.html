@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <!-- Start Profile Details Section -->
+    <div class="container">
+        <div class="items-container mb-5">
+            <div class="item">
+                <div class="form-h1">
+                    <h1>Profile Info</h1>
+                </div>
+                <div class="position-relative position-relative-example m-2">
+                    <div class="position-absolute top-50 start-50 translate-middle">
+                        <a class="btn btn-primary text-black  btn-floating m-0" style="background-color: #ffffff"
+                           href="{% url 'delete user' pk=request.user.pk %}"
+                           role="button"><i class="fas fa-trash"></i></a>
+                        <a class="btn btn-primary text-black btn-floating m-0" style="background-color: #ffffff"
+                           href="{% url 'edit user' pk=request.user.pk %}"
+                           role="button"><i class="fas fa-user-edit"></i></a>
+                    </div>
+                </div>
+                <ul>
+                    <li>
+                        Email: {{ object.email }}
+                    </li>
+                    <li>
+                        Last Login: {{ object.last_login }}
+                    </li>
+                    <li>
+                        Full Name: {{ object.profile.full_name }}
+                    </li>
+                    <li>
+                        Job Title: {{ object.profile.job_title }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

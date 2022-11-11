@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+
+/*form{*/
+/*    border: 1px solid black;*/
+/*    width: 50%;*/
+/*    margin: auto;*/
+/*}*/
+
+/*input{*/
+/*    width: 60%;*/
+/*    margin: auto;*/
+
+/*}*/
+
+h1, h2, h3, h4 {
+    text-align: center;
+
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+div.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 40px;
+    color: #000000;
+}
+
+div.item {
+    width: 50%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    -webkit-box-shadow: -1px 29px 73px 18px rgba(174, 181, 175, 1);
+    -moz-box-shadow: -1px 29px 73px 18px rgba(174, 181, 175, 1);
+    box-shadow: -1px 29px 73px 18px rgba(174, 181, 175, 1);
+}
+
+div.item img.rounded-circle {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.item div.time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.item li {
+    align-items: center;
+    text-align: left;
+}
+
+div.item div.time img {
+    width: 32px;
+    height: auto;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+
+/*div.recipe-info {*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    padding: 5px;*/
+/*    display: -webkit-box;*/
+/*    -webkit-line-clamp: 2;*/
+/*    -webkit-box-orient: vertical;*/
+/*}*/
+
+
+/*div.buttons-container .button,*/
+/*input[type="submit"] {*/
+
+
+/*    padding: 10px;*/
+/*    width: 100px;*/
+/*    font-size: 14px;*/
+/*    border-radius: 5px;*/
+/*    font-family: 'Open Sans', sans-serif;*/
+/*    color: white;*/
+/*}*/
+
+/*img {*/
+/*    width: 400px;*/
+/*    height: 100px;*/
+/*    max-width: 80%;*/
+/*    max-height: 30%;*/
+/*}*/
+
+
+form {
+    /*margin-block: 10%;*/
+    margin-left: 25%;
+    margin-right: 25%;
+    /*padding: 10px;*/
+    width: 50%;
+    height: auto;
+}
+
+.form-h1 h1 {
+    margin-top: 20px;
+}
+
+form input {
+    writing-mode: horizontal-tb !important;
+
+    text-rendering: auto;
+
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+
+    margin: 0em;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+
+    border-image: initial;
+}
+
+form label {
+    /*font-size: 18px;*/
+    /*text-align: center;*/
+    margin: 15px;
+    /*justify-content: center;*/
+    /*display: inline-block;*/
+
+    line-height: 0.5em;
+    letter-spacing: normal;
+    /*font-family: FuturaPT, helvetica, sans-serif;*/
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    text-transform: none;
+    grid-column: 1/-1;
+    color: #000;
+
+
+}
+
+form input,
+textarea {
+    padding: 15px;
+    border: 2px solid #f1f1e8;
+    border-radius: 2px;
+    width: 100%;
+    display: -o-flex;
+    margin: auto;
+    justify-content: center;
+}
+
+form input[type="submit"] {
+    margin-top: 15px;
+    width: 25%;
+}
+
+.goBack-home {
+    justify-content: center;
+}
+
+/*form select select {*/
+/*    font-size: 18px;*/
+/*    padding: 10px;*/
+/*    border: 2px solid #f1f1e8;*/
+/*    border-radius: 2px;*/
+/*    width: 50%;*/
+/*    display: block;*/
+/*    margin: 0 auto;*/
+/*    justify-content: center;*/
+/*}*/
+
+
+.pagination {
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination a {
+    text-decoration: none;
+}
+
+.pagination-number {
+    padding: 12px 17px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #6D85C7;
+}
+
+.pagination-number:hover,
+.pagination-current {
+    background-color: #3354AA;
+}
+
+.pagination-action {
+    margin: 0 2px;
+    display: flex;
+    padding: 1px 2px;
+    color: #fff;
+    font-size: 1.3em;
+    align-items: center;
+}
+
+.pagination-action:hover,
+.pagination-previous,
+.pagination-next {
+    color: #3354AA;
+}
+

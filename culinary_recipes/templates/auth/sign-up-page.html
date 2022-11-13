@@ -1,3 +1,63 @@
+{% extends 'base/base.html' %}
+{% load placeholders %}
+{% load static %}
+{% block page_content %}
+    <!-- container -->
+    <div class="container h-75">
+    <!-- item container -->
+        <div class="items-container">
+        <!-- item -->
+            <div class="item">
+            <!-- h1 -->
+                <div class="form-h1">
+                    <h1>Create an account</h1>
+                </div>
+                <form action="{% url 'sign up' %}" method="post" enctype="multipart/form-data">
+                    <hr class="my-4"/>
+                    <label for="email">Email</label>
+                    {{ form.email|placeholder:'Enter your email' }}
+                    <label for="password1">Password</label>
+                    {{ form.password1|placeholder:'Password' }}
+                    <label for="password2">Password</label>
+                    {{ form.password2|placeholder:'Confirm your password' }}
+                    <label for="first_name">First Name</label>
+                    {{ form.first_name|placeholder:'Enter your first name' }}
+                    <label for="last_name">Last Name</label>
+                    {{ form.last_name|placeholder:'Enter your last name' }}
+                    <label for="job_title">Job</label>
+                    {{ form.job_title }}
+
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% csrf_token %}
+                   <div class="buttons mb-5">
+                        <button type="submit" class="btn btn-dark btn-block">Sign in</button>
+                        <div class="second-option">
+                            <p>Have an account? <a class="text-danger" href="{% url 'sign in' %}">Log in</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
 {#{% extends 'base/base.html' %}#}
 {#{% block page_content %}#}
 {#<div class="panel panel-default">#}
@@ -41,53 +101,6 @@
 {#{% endblock %}#}
 
 
-{% extends 'base/base.html' %}
-{% load placeholders %}
-{% load static %}
-{% block page_content %}
-    {#    <main>#}
-    {#        <h1 class="title">recipe-details.html</h1>#}
-    {#        <h3>http://127.0.0.1:8001/detail/1/</h3>#}
-    {#        <h3>path('detail/pk/', RecipeDetailsView.as_view(), name='recipe detail'),</h3>#}
-    {##}
-    {#    </main>#}
-    <div class="container">
-        <div class="items-container mb-5">
-            <div class="item">
-                <div class="form-h1">
-                    <h1>Create an account</h1>
-                </div>
-                <form action="{% url 'sign up' %}" method="post" enctype="multipart/form-data" class="mb-5">
-                    <hr class="my-4"/>
-                    <label for="email">Email</label>
-                    {{ form.email|placeholder:'Enter your email' }}
-                    <label for="password1">Password</label>
-                    {{ form.password1|placeholder:'Password' }}
-                    <label for="password2">Password</label>
-                    {{ form.password2|placeholder:'Confirm your password' }}
-                    <label for="first_name">First Name</label>
-                    {{ form.first_name|placeholder:'Enter your first name' }}
-                    <label for="last_name">Last Name</label>
-                    {{ form.last_name|placeholder:'Enter your last name' }}
-                    <label for="job_title">Job</label>
-                    {{ form.job_title }}
-
-                    {% if form.errors %}
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <div class="alert alert-danger">
-                                    <strong>{{ error|escape }}</strong>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    {% csrf_token %}
-                    <div class="row mb-4 mb-6 ">
                         {#                        <div class="col d-flex justify-content-center">#}
                         {#                            <!-- Checkbox -->#}
                         {#                            <div class="form-check">#}
@@ -95,13 +108,3 @@
                         {#                                <label class="form-check-label" for="form1Example3"> Remember me </label>#}
                         {#                            </div>#}
                         {#                        </div>#}
-                        <button type="submit" class="btn btn-dark btn-block mb-2 ">Sign in</button>
-                        <div class="second-option">
-                            <p>Have an account? <a class="text-danger" href="{% url 'sign in' %}">Log in</a></p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-{% endblock %}

@@ -1,30 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
 
-
-/*form{*/
-/*    border: 1px solid black;*/
-/*    width: 50%;*/
-/*    margin: auto;*/
-/*}*/
-
-/*input{*/
-/*    width: 60%;*/
-/*    margin: auto;*/
-
-/*}*/
 
 h1, h2, h3, h4 {
     text-align: center;
-
     display: block;
     font-size: 2em;
     margin-block-start: 0.67em;
     margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
     font-weight: bold;
 }
-
 
 a {
     text-decoration: none;
@@ -73,6 +58,24 @@ div.item div.time img {
     margin-right: 10px;
 }
 
+div.buttons {
+    padding-top: 18px;
+    font-family: FuturaPT, helvetica, sans-serif;
+
+}
+
+/*Button Text not to be uppercase*/
+/*.btn {*/
+/*  text-transform: unset !important;*/
+/*}*/
+
+#id_job_title {
+    width: 100%;
+    text-align: center;
+    align-self: center;
+    /*padding-top: 18px;*/
+    font-family: Dosis, FuturaPT, helvetica, sans-serif;
+}
 
 /*div.recipe-info {*/
 /*    overflow: hidden;*/
@@ -84,18 +87,6 @@ div.item div.time img {
 /*}*/
 
 
-/*div.buttons-container .button,*/
-/*input[type="submit"] {*/
-
-
-/*    padding: 10px;*/
-/*    width: 100px;*/
-/*    font-size: 14px;*/
-/*    border-radius: 5px;*/
-/*    font-family: 'Open Sans', sans-serif;*/
-/*    color: white;*/
-/*}*/
-
 /*img {*/
 /*    width: 400px;*/
 /*    height: 100px;*/
@@ -104,96 +95,41 @@ div.item div.time img {
 /*}*/
 
 
+/*FORM*/
 form {
     /*margin-block: 10%;*/
+    /*padding: 10px;*/
     margin-left: 25%;
     margin-right: 25%;
-    /*padding: 10px;*/
     width: 50%;
     height: auto;
 }
 
 .form-h1 h1 {
     margin-top: 20px;
-}
-
-form input {
-    writing-mode: horizontal-tb !important;
-
-    text-rendering: auto;
-
-    letter-spacing: normal;
-    word-spacing: normal;
-    line-height: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: start;
-    appearance: auto;
-    -webkit-rtl-ordering: logical;
-    cursor: text;
-
-    margin: 0em;
-    padding: 1px 2px;
-    border-width: 2px;
-    border-style: inset;
-
-    border-image: initial;
+    font-family: Dosis, FuturaPT, helvetica, sans-serif;
 }
 
 form label {
-    /*font-size: 18px;*/
-    /*text-align: center;*/
-    margin: 15px;
-    /*justify-content: center;*/
-    /*display: inline-block;*/
-
-    line-height: 0.5em;
-    letter-spacing: normal;
-    /*font-family: FuturaPT, helvetica, sans-serif;*/
+    /*padding: .875rem .75rem;*/
+    font-family: FuturaPT, helvetica, sans-serif;
+    margin: 12px;
+    line-height: 0.2em;
     font-size: 16px;
-    font-weight: 600;
-    font-style: normal;
-    text-transform: none;
-    grid-column: 1/-1;
+    font-weight: 400;
     color: #000;
-
-
 }
 
 form input,
 textarea {
-    padding: 15px;
-    border: 2px solid #f1f1e8;
-    border-radius: 2px;
+    font-family: Dosis, FuturaPT, helvetica, sans-serif;
+    padding: 6px;
     width: 100%;
-    display: -o-flex;
-    margin: auto;
-    justify-content: center;
+    border: 1px solid #f1f1e8;
+    /*border-radius: 0px;*/
 }
 
-form input[type="submit"] {
-    margin-top: 15px;
-    width: 25%;
-}
-
-.goBack-home {
-    justify-content: center;
-}
-
-/*form select select {*/
-/*    font-size: 18px;*/
-/*    padding: 10px;*/
-/*    border: 2px solid #f1f1e8;*/
-/*    border-radius: 2px;*/
-/*    width: 50%;*/
-/*    display: block;*/
-/*    margin: 0 auto;*/
-/*    justify-content: center;*/
-/*}*/
-
-
+/*PAGINATION*/
 .pagination {
     display: flex;
     margin-top: 15px;
@@ -232,3 +168,23 @@ form input[type="submit"] {
     color: #3354AA;
 }
 
+/*for profile details */
+.info {
+    font-family: Dosis, FuturaPT, helvetica, sans-serif;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    height: auto;
+}
+
+nav {
+    font-family: futura-pt, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+footer {
+    font-family: futura-pt, Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+}

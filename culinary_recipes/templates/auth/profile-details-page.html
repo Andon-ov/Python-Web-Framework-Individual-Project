@@ -1,38 +1,51 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <!-- Start Profile Details Section -->
-    <div class="container">
-        <div class="items-container mb-5">
+    <!-- container -->
+    <div class="container h-75">
+        <!-- item container -->
+        <div class="items-container">
+            <!-- item -->
             <div class="item">
+                <!-- h1 -->
                 <div class="form-h1">
-                    <h1>Profile Info</h1>
+                    <h1 class="text">Profile Info</h1>
                 </div>
-                <div class="position-relative position-relative-example m-2">
-                    <div class="position-absolute top-50 start-50 translate-middle">
-                        <a class="btn btn-primary text-black  btn-floating m-0" style="background-color: #ffffff"
-                           href="{% url 'delete user' pk=request.user.pk %}"
-                           role="button"><i class="fas fa-trash"></i></a>
-                        <a class="btn btn-primary text-black btn-floating m-0" style="background-color: #ffffff"
-                           href="{% url 'edit user' pk=request.user.pk %}"
-                           role="button"><i class="fas fa-user-edit"></i></a>
+
+                <div class="col-6 info">
+                    <hr class="my-4 "/>
+
+
+                    Email: {{ object.email }}<br>
+                    Last Login: {{ object.last_login }}<br>
+                    Full Name: {{ object.profile.full_name }}<br>
+                    Job Title: {{ object.profile.job_title }}<br>
+
+                    <div class="buttons mb-5">
+                        {#                        <br>#}
+                        <a class="btn btn-black btn-block" href="{% url 'edit user' pk=request.user.pk %}">Profile
+                            edit</a>
+
+                        <a class="btn btn-danger btn-block" href="{% url 'delete user' pk=request.user.pk %}">Profile
+                            delete</a>
+                        <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
+                            Back</a>
                     </div>
                 </div>
-                <ul>
-                    <li>
-                        Email: {{ object.email }}
-                    </li>
-                    <li>
-                        Last Login: {{ object.last_login }}
-                    </li>
-                    <li>
-                        Full Name: {{ object.profile.full_name }}
-                    </li>
-                    <li>
-                        Job Title: {{ object.profile.job_title }}
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
 {% endblock %}
+
+
+
+{#<div class="position-relative position-relative-example m-2 ">#}
+{#    <div class="position-absolute top-50 start-50 translate-middle">#}
+{#        <a class="btn btn-primary text-danger  btn-floating m-0" style="background-color: #ffffff"#}
+{#           href="{% url 'delete user' pk=request.user.pk %}"#}
+{#           role="button"><i class="fas fa-trash"></i></a>#}
+{#        <a class="btn btn-primary text-danger btn-floating m-0" style="background-color: #ffffff"#}
+{#           href="{% url 'edit user' pk=request.user.pk %}"#}
+{#           role="button"><i class="fas fa-user-edit"></i></a>#}
+{#    </div>#}
+{#</div>#}

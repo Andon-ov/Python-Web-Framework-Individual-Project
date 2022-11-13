@@ -71,6 +71,13 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
+    }
+}
+
 if DEBUG:
     AUTH_PASSWORD_VALIDATORS = []
 else:
@@ -149,3 +156,6 @@ AUTH_USER_MODEL = 'auth_app.AppUser'
 #         }
 #     }
 # }
+
+
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True

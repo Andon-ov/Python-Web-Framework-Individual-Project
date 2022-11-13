@@ -8,6 +8,7 @@ from culinary_recipes.auth_app.managers import AppUserManager
 
 
 class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
+
     email = models.EmailField(
         unique=True,
         null=False,

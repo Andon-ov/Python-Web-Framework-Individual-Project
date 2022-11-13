@@ -1,20 +1,18 @@
 {% extends 'base/base.html' %}
 {% load placeholders %}
-
 {% load static %}
 {% block page_content %}
-    {#    <main>#}
-    {#        <h1 class="title">recipe-details.html</h1>#}
-    {#        <h3>http://127.0.0.1:8001/detail/1/</h3>#}
-    {#        <h3>path('detail/pk/', RecipeDetailsView.as_view(), name='recipe detail'),</h3>#}
-    {#    </main>#}
-    <div class="container">
-        <div class="items-container mb-5">
+    <!-- container -->
+    <div class="container h-75">
+        <!-- item container -->
+        <div class="items-container">
+            <!-- item -->
             <div class="item">
+                <!-- h1 -->
                 <div class="form-h1">
                     <h1>Login</h1>
                 </div>
-                <form action="{% url 'sign in' %}" method="post" enctype="multipart/form-data" class="mb-5">
+                <form action="{% url 'sign in' %}" method="post" enctype="multipart/form-data">
                     <hr class="my-4"/>
                     <label for="email">Email</label>
 
@@ -37,16 +35,12 @@
                             </div>
                         {% endfor %}
                     {% endif %}
-                    <div class="row mb-4 mb-6 ">
-                        <div class="second-option">
-                            <p>Don't have account? <a href="{% url 'sign up' %}" class="text-danger">Create an
-                                account</a></p>
-                        </div>
-                        <div class="col">
-                            <button type="submit" class="btn btn-dark btn-block mb-2 ">Sign in</button>
-                            <!-- Simple link -->
-                            <a class="text-danger" href="#!">Forgot password?</a>
-                        </div>
+                    <div class="buttons mb-5">
+                        <button type="submit" class="btn btn-dark btn-block">Sign in</button>
+                        <p>Don't have account? <a href="{% url 'sign up' %}" class="text-danger">Create an
+                            account</a></p>
+                        {# <a class="text-danger" href="#!">Forgot password?</a> #}
+
                     </div>
                 </form>
             </div>

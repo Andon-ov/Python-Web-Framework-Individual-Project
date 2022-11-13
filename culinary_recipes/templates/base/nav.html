@@ -56,7 +56,7 @@
                 aria-expanded="false"
                 aria-label="Toggle navigation"
         >
-{#            <i class="fas fa-bars"></i>#}
+            {#            <i class="fas fa-bars"></i>#}
         </button>
 
         <!-- Collapsible wrapper -->
@@ -64,7 +64,7 @@
             <!-- Navbar brand -->
             <a class="navbar-brand mt-2 mt-lg-0" href="https://www.pizza-romance.com/">
 
-{#                <i class="fas fa-pizza-slice fa-2x"></i>#}
+                {#                <i class="fas fa-pizza-slice fa-2x"></i>#}
             </a>
             <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
 
@@ -133,13 +133,13 @@
         {% if request.user.is_authenticated %}
 
             <div class="dropdown">
-                <a      class="navbar-brand mt-2 mt-lg-0"
-{#                        class="dropdown-toggle d-flex align-items-center hidden-arrow"#}
-                        href="#"
-                        id="navbarDropdownMenuAvatar"
-                        role="button"
-                        data-mdb-toggle="dropdown"
-                        aria-expanded="false"
+                <a class="navbar-brand mt-2 mt-lg-0"
+                        {#                        class="dropdown-toggle d-flex align-items-center hidden-arrow"#}
+                   href="#"
+                   id="navbarDropdownMenuAvatar"
+                   role="button"
+                   data-mdb-toggle="dropdown"
+                   aria-expanded="false"
                 ><i class="fas fa-pizza-slice"></i>
 
                 </a>
@@ -147,14 +147,10 @@
                         class="dropdown-menu dropdown-menu-end"
                         aria-labelledby="navbarDropdownMenuAvatar"
                 >
+
                     <li>
-                        <p class="dropdown-item">{{ user.profile.full_name }}</p>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{% url 'details user' pk=request.user.pk %}">My profile</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{% url 'edit user' pk=request.user.pk %}">Edit profile</a>
+                        <a class="dropdown-item text-danger"
+                           href="{% url 'details user' pk=request.user.pk %}">{{ user.profile.full_name }}</a>
                     </li>
 
                     <li>

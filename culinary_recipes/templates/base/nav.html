@@ -149,8 +149,16 @@
                 >
 
                     <li>
-                        <a class="dropdown-item text-danger"
-                           href="{% url 'details user' pk=request.user.pk %}">{{ user.profile.full_name }}</a>
+                        {% if user.profile.full_name %}
+
+
+                            <a class="dropdown-item text-danger"
+                               href="{% url 'details user' pk=request.user.pk %}">{{ user.profile.full_name }}</a>
+                        {% else %}
+                            <a class="dropdown-item text-danger"
+
+                               href="{% url 'details user' pk=request.user.pk %}">Admin: {{ user.email }}</a>
+                        {% endif %}
                     </li>
 
                     <li>

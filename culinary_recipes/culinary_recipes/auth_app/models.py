@@ -1,31 +1,11 @@
 from enum import Enum
 
 from django.contrib.auth import models as auth_models
+from django.contrib.auth.models import AbstractBaseUser
 from django.core.validators import MinLengthValidator
 from django.db import models
 
 from culinary_recipes.auth_app.managers import AppUserManager
-
-
-class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
-
-    email = models.EmailField(
-        unique=True,
-        null=False,
-        blank=False,
-    )
-    date_joined = models.DateTimeField(
-        auto_now_add=True,
-    )
-    is_staff = models.BooleanField(
-        default=False,
-        null=False,
-        blank=False,
-    )
-
-    USERNAME_FIELD = 'email'
-
-    objects = AppUserManager()
 
 
 class ChoicesEnumMixin:
@@ -86,3 +66,42 @@ class Profile(models.Model):
     @property
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
+
+    def __str__(self):
+        return self.user.email
+
+
+class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
+    email = models.EmailField(
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
+    )
+    # date_of_birth = models.DateField()
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
+    objects = AppUserManager()
+
+    USERNAME_FIELD = 'email'
+
+    # REQUIRED_FIELDS = ['date_of_birth']
+
+    def __str__(self):
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin

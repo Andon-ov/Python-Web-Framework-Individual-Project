@@ -1,38 +1,47 @@
 from django.contrib import admin
-# from django.contrib.auth import admin as auth_admin, get_user_model
-#
-# from culinary_recipes.auth_app.forms import SignUpForm
-#
-# UserModel = get_user_model()
-#
-#
-# @admin.register(UserModel)
-# class AppUserAdmin(auth_admin.UserAdmin):
-#     ordering = ('email',)
-#     list_display = ['email', 'last_login']
-#     exclude = ['date_joined', ]
-#     list_filter = ()
-#     add_form = SignUpForm
-#     add_fieldsets = (
-#         (
-#             None,
-#             {
-#                 "classes": ("wide",),
-#                 "fields": ("email", "password1", "password2"),
-#             },
-#         ),
-#         (
-#             None,
-#             {
-#                 "classes": ("wide",),
-#                 "fields": ("first_name", "last_name", "job_title"),
-#             },
-#         ),
-#     )
+from django.contrib.auth import models as auth_models, get_user_model
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+
+from culinary_recipes.auth_app import forms as auth_forms
 from culinary_recipes.auth_app.models import Profile
+
+UserModel = get_user_model()
+
+
+class UserAdmin(BaseUserAdmin):
+    # The forms to add and change user instances
+    form = auth_forms.UserChangeForm
+    add_form = auth_forms.UserCreationForm
+
+    # The fields to be used in displaying the User model.
+    # These override the definitions on the base UserAdmin
+    # that reference specific fields on auth.User.
+    list_display = ('email', 'is_admin',)
+    list_filter = ('is_admin',)
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Permissions', {'fields': ('is_admin',)}),
+    )
+    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
+    # overrides get_fieldsets to use this attribute when creating a user.
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2'),
+        }),
+    )
+    search_fields = ('email',)
+    ordering = ('email',)
+    filter_horizontal = ()
+
+
+# Now register the new UserAdmin...
+admin.site.register(UserModel, UserAdmin)
+# ... and, since we're not using Django's built-in permissions,
+# unregister the Group model from admin.
+admin.site.unregister(auth_models.Group)
 
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    # inlines = (PetInlineAdmin,)
     list_display = ('first_name', 'last_name')

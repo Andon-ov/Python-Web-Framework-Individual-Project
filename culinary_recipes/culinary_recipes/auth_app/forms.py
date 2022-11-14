@@ -1,17 +1,15 @@
 from django.contrib.auth import forms as auth_forms, get_user_model
 from django import forms
 
-from culinary_recipes.auth_app.models import Profile
+from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model
+
+from culinary_recipes.auth_app.models import Profile, JobTitle
 
 UserModel = get_user_model()
 
 
 class SignUpForm(auth_forms.UserCreationForm):
-    WAITER = 'Waiter'
-    COOK = 'Cook'
-    MANAGER = 'Manager'
-    JOB_TITLE_CHOICES = [(x, x) for x in (WAITER, COOK, MANAGER)]
-
     FIRST_NAME_MIN_LENGTH = 3
     FIRST_NAME_MAX_LENGTH = 30
 
@@ -27,7 +25,7 @@ class SignUpForm(auth_forms.UserCreationForm):
         max_length=LAST_NAME_MAX_LENGTH
     )
     job_title = forms.ChoiceField(
-        choices=JOB_TITLE_CHOICES,
+        choices=JobTitle.choices(),
     )
 
     class Meta:
@@ -47,3 +45,45 @@ class SignUpForm(auth_forms.UserCreationForm):
             profile.save()
 
         return user
+
+
+# AppUser Forms
+
+
+class UserCreationForm(forms.ModelForm):
+    """A form for creating new users. Includes all the required
+    fields, plus a repeated password."""
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+
+    class Meta:
+        model = UserModel
+        fields = ('email',)
+
+    def clean_password2(self):
+        # Check that the two password entries match
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("Passwords don't match")
+        return password2
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
+
+
+class UserChangeForm(forms.ModelForm):
+    """A form for updating users. Includes all the fields on
+    the user, but replaces the password field with admin's
+    disabled password hash display field.
+    """
+    password = auth_forms.ReadOnlyPasswordHashField()
+
+    class Meta:
+        model = UserModel
+        fields = ('email', 'password', 'is_active', 'is_admin')

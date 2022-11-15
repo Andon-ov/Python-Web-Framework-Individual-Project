@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+
+    <div class="container-fluid">
+        <h1 class="title">menu-categories-list.html</h1>
+        <h3>http://127.0.0.1:8001/menu/1/</h3>
+        <h3>path('menu/pk', menu_list_view, name='menu list'),</h3>
+    </div>
+
+    <div class="container">
+
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">{{ menu }}</h3>
+            </div>
+        </div>
+
+        <div class="row row-cols-5 row-cols-md-4 g-3">
+            <!-- For Recipes-->
+            {% for category in categories %}
+                <div class="col mb-0">
+                    <!-- card start -->
+                    <div class="card mb-0 h-100" style="max-width: 19.5rem;">
+                    <h5 class="card-title text-center">{{ category.name }}</h5>
+                        <img class="rounded-circle" src="{{ category.image_category.image.url }}" alt="...">
+                        <div class="card-body mb-0">
+
+                            {% if category.note %}
+                                <p class="card-text"><i>{{ category.note }}</i></p>
+                            {% endif %}
+
+
+
+                        </div>
+                        <div class="card-footer mb-0 text-center">
+                            <a href="{% url 'category detail'  pk=category.pk %}"
+                               class="btn btn-outline-dark">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- card end -->
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+

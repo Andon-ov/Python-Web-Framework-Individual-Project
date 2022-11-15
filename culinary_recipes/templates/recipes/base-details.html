@@ -1,0 +1,96 @@
+{% extends 'base/base.html' %}
+{% load embed_video_tags %}
+{% load tags %}
+{% load static %}
+{% block page_content %}
+    <!-- main container -->
+    <div class="container h-auto min-vh-100">
+        <!-- Work title -->
+
+        <h1 class="title">base-details.html</h1>
+        <h3>http://127.0.0.1:8001/base/6/</h3>
+        <h3>path('base/pk', BaseRecipeDetailsView.as_view(), name='base_recipe detail'),</h3>
+
+
+        <div class="items-container">
+            <!-- recipe info container -->
+            <div class="item bg-light">
+                <!-- category link -->
+                <a href="{% url 'base recipe' %}"
+                   class="link-danger">
+                    <h5>Всички базови рецепти</h5></a>
+                <!-- title -->
+                <h3>{{ object.title }}</h3>
+                <!-- type -->
+                {% if object.base_type %}
+                    <p>Тип: {{ object.base_type }}</p>
+                {% endif %}
+                <!-- ingredient -->
+                {% if object.get_ingredients %}
+                    <!-- table ingredient -->
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Съставки:</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for ingredient in object.get_ingredients|split:', ' %}
+                            <tr>
+                                <td>{{ ingredient|cut:'None' }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                <div>
+                    <div>
+                        <!-- preparation method -->
+                        {% if prep_method %}
+                            {% for method in prep_method %}
+                                <h3>Метод за приготвяне:</h3>
+                                <div class="text align-content-center">
+                                    <p class="text mb-0">{{ method.name|cut:'None' }}</p>
+                                    {% if method.minute %}
+                                        <p class="text mb-0"> за {{ method.minute|cut:'None' }} минути </p>
+                                    {% endif %}
+                                    {% if method.degree %}
+                                        <p class="text mb-0"> на {{ method.degree }} градуса.</p>
+                                    {% endif %}
+                                </div>
+
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <!-- portions -->
+                    {% if  object.base_recipe_portions %}
+                        <p>Порций: {{ object.base_recipe_portions }} </p>
+                    {% endif %}
+                    <!-- note -->
+                    {% if object.note %}
+                        <p>Бележка: {{ object.note }}</p>
+                    {% endif %}
+                    <!-- preparation -->
+                    {% if object.preparation %}
+                        <p class="text-center">Приготвяне: <i>{{ object.preparation }}</i></p>
+                    {% endif %}
+                    <!-- yield -->
+                    {% if object.base_yield %}
+                        <p>Готово количество: {{ object.base_yield }}</p>
+                    {% endif %}
+                    <!-- allergen -->
+                    {% if object.allergen %}
+                        {% for allergen in object.get_allergens %}
+                            <p>Алергени {{ get_allergens }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    <!-- buttons  container-->
+                    <div class="buttons-container">
+                        <a type="button" class="btn btn-outline-dark" href="{% url 'index' %}">Home</a>
+                        <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

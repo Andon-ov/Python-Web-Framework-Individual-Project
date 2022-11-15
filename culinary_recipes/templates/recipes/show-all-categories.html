@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <!-- Work title -->
+    <div class="container-fluid">
+        <h1 class="title">show-all-categories.html</h1>
+        <h3>http://127.0.0.1:8001/category/</h3>
+        <h3>path('category/', AllCategoryListView.as_view(), name='all category'),</h3>
+
+    </div>
+    <!-- main container -->
+    <div class="container">
+        <!-- card block title -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Всички Категории</h3>
+            </div>
+        </div>
+        <!-- Cards row -->
+        <div class="row row-cols-2 row-cols-md-4 g-4">
+            <!-- For Recipes-->
+            {% for category in category_list %}
+                <!-- Cards col -->
+                <div class="col">
+                    <!-- card start -->
+                    <div class="card mb-4 h-100" style="max-width: 19.5rem;">
+                        <img class="rounded-circle" src="{{ category.image_category.image.url }}"
+                             alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ category.name }}</h5>
+                            <p class="card-text text-center">{{ category.menu }}</p>
+
+                            {% if category.note %}
+                                <p class="card-text">{{ category.note }}</p>
+                            {% endif %}
+
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{% url 'category detail'  pk=category.pk %}"
+                               class="btn btn-outline-dark">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- card end -->
+            {% endfor %}
+            <!-- back button-->
+            <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
+        </div>
+    </div>
+{% endblock %}
+

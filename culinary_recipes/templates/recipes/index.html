@@ -1,9 +1,8 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-    <!-- start -->
     <header class="mb-5 bg-black">
-        <!-- Navbar -->
+
 
         <!-- Carousel wrapper -->
         <div id="carouselBasicExample" class="carousel slide carousel-fade shadow-5-strong" data-mdb-ride="carousel">
@@ -38,7 +37,7 @@
                     <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                         <div class="d-flex justify-content-center align-items-center h-100">
                             <div class="text-center text-white">
-                                <h1 class="mb-4 index-h1">НОМЕР 1 ВЕРИГА ПИЦАРИИ В БУРГАС!</h1>
+                                <h1 class="mb-4">НОМЕР 1 ВЕРИГА ПИЦАРИИ В БУРГАС!</h1>
                                 <h1 class="mb-4">ROMANCE</h1>
                                 <a href="{% url 'all category' %}"
                                    class="btn btn-outline-light btn-lg" data-mdb-ripple-color="light">Влез</a>
@@ -91,8 +90,10 @@
             </button>
         </div>
         <!-- Carousel wrapper -->
+
     </header>
     <main class="mb-5">
+
         <div class="container">
             <div class="container">
                 <div class="row">
@@ -115,34 +116,46 @@
                             Blanditiis deserunt alias nihil doloremque odit tempora.</p>
                     </div>
                 </div>
+
+
                 <hr class="my-5"/>
-                <h4 id = 'menu' class="mb-5 text-center">НАШЕТО АКТУАЛНО МЕНЮ</h4>
+
+                <h4 id='menu' class="mb-5 text-center">НАШЕТО АКТУАЛНО МЕНЮ</h4>
+
+
                 <div class="row gx-lg-5 text-center ">
-                    <!-- Menu start here -->
-                    {% for menu in menus %}
-                        <div class="col-md-6">
-                            <div class="card">
-                                {#                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">#}
-                                {#                                <img src="http://www.pizza-romance.com/upload/userfiles/images/MENU/Autumn/BG.jpg" class="img-fluid"#}
-                                {#                                     alt=""/>#}
-                                {#                                <a href="#!">#}
-                                {#                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>#}
-                                {#                                </a>#}
-                                {#                            </div>#}
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ menu.title }}</h5>
-                                    <p class="card-text">{{ menu.summary }}</p>
-                                    <p class="card-text">{{ menu.year }}</p>
-                                    <a href="{% url 'menu list' pk=menu.pk %}"
-                                       class="btn btn-outline-dark">Details</a>
+                    {% if menus %}
+
+                        <!-- Menu start here -->
+                        {% for menu in menus %}
+                            <div class="col-md-6">
+
+                                <div class="card">
+                                    {#                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">#}
+                                    {#                                <img src="http://www.pizza-romance.com/upload/userfiles/images/MENU/Autumn/BG.jpg" class="img-fluid"#}
+                                    {#                                     alt=""/>#}
+                                    {#                                <a href="#!">#}
+                                    {#                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>#}
+                                    {#                                </a>#}
+                                    {#                            </div>#}
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ menu.title }}</h5>
+                                        <p class="card-text">{{ menu.summary }}</p>
+                                        <p class="card-text">{{ menu.year }}</p>
+                                        <a href="{% url 'menu list' pk=menu.pk %}"
+                                           class="btn btn-outline-dark">Details</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Menu end here -->
-                    {% endfor %}
+
+                            <!-- Menu start here -->
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
             <hr class="my-5"/>
         </div>
+
     </main>
+
 {% endblock %}

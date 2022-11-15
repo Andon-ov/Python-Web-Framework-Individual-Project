@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <div class="container-fluid">
+        <h1 class="title"></h1>
+    </div>
+
+
+
+    {% if not object_list %}
+        <div class="container"> <!-- style="border :1px solid #000000;" -->
+        <div class="card mb-2">
+            <div class="card-body">
+                <h1 class="card-title">Няма намерен резултат</h1>
+            </div>
+        </div>
+    {% else %}
+        <div class="container"> <!-- style="border :1px solid #000000;" -->
+        <div class="card mb-2">
+            <div class="card-body">
+                <h1 class="card-title">Резултати</h1>
+            </div>
+        </div>
+
+        <div class="row row-cols-5 row-cols-md-4 g-3">
+            {% for search in object_list %}
+
+
+                <div class="col">
+                    <!-- card start -->
+                    <div class="card mb-3 h-100" style="max-width: 19.5rem;">
+
+                        <img class="rounded-circle" src="{{ search.image_recipe.image.url }}"
+                             alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ search.title }}</h5>
+                            <p class="card-text">{{ search.food_type }}</p>
+
+
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'recipe detail' pk=search.pk %}" class="btn btn-outline-dark">Details</a>
+                        </div>
+                    </div>
+                    <!-- card end -->
+                </div>
+            {% endfor %}
+            <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
+        </div>
+        <div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}
+

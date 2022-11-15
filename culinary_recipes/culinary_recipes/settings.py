@@ -27,6 +27,10 @@ INSTALLED_APPS = [
 
     'culinary_recipes.recipes_app',
     'culinary_recipes.auth_app',
+    'culinary_recipes.common',
+
+    'embed_video',
+
 ]
 
 MIDDLEWARE = [

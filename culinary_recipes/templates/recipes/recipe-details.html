@@ -1,0 +1,201 @@
+{% extends 'base/base.html' %}
+{% load embed_video_tags %}
+{% load tags %}
+{% load static %}
+{% block page_content %}
+    <main>
+        <h1 class="title">recipe-details.html</h1>
+        <h3>http://127.0.0.1:8001/detail/1/</h3>
+        <h3>path('detail/pk/', RecipeDetailsView.as_view(), name='recipe detail'),</h3>
+
+    </main>
+    <div class="container">
+        <div class="items-container">
+            <div class="item">
+                <div>
+                    <!-- category -->
+                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="link-danger">
+                        <h5>{{ recipe.category }}</h5></a>
+                    <!-- title -->
+                    <h2><b>{{ recipe.title }}</b></h2>
+                    <!-- image -->
+                    <img class="rounded-circle" src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">
+                    <!-- release time -->
+                    <div class="time">
+                        <p>Време за реализация: </p>
+                        <img src="{% static 'images/clock.svg' %}" alt="clock.png">
+                        <p>{{ recipe.release_time }} Мин.</p>
+                    </div>
+                </div>
+                <!-- ingredients -->
+
+                <div class="container badge-secondary">
+                    <h2>Съставки</h2>
+                    {% for ingredient in recipe_ingredients %}
+                        {% if not ingredient.base %}
+                            <div class="row">
+                                <div class="col col-8-sm-4">
+                                    <ul>
+                                        <li>{{ ingredient|cut:'None' }}
+                                            - {{ ingredient.amount_number }} {{ ingredient.unit }} </li>
+                                    </ul>
+                                </div>
+                                {% if ingredient.preparation_method %}
+                                    <div class="col col-4-sm-1">
+                                        подготовка: {{ ingredient.preparation_method|cut:'None' }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <!-- base -->
+                            <div class="row">
+                                <div class="col col-12-sm-4">
+                                    <ul>
+                                        <li><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
+                                               class="link-danger">{{ ingredient|cut:'None' }}
+                                            - {{ ingredient.amount_number }} {{ ingredient.unit }}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="container-sm badge-success">
+                    <!-- finish -->
+                    {% if recipe.finish %}
+                        <h6><i>Завършваме: {{ recipe.finish }}</i></h6>
+                    {% endif %}
+                    <!-- serving value -->
+                    <h6><i>Общо количество: {{ recipe.serving_value }} гр.</i></h6>
+                    <!-- food plate -->
+                    <h6><i>Издаваме в: {{ recipe.food_plate }}</i></h6>
+
+                    <!-- preparation method -->
+                    {% if recipe.preparation_method %}
+                        Обработка:
+                        {{ recipe.preparation_method.name }}
+                        {% if recipe.preparation_method.minute %}
+                            за  {{ recipe.preparation_method.minute }} минути
+                        {% endif %}
+                        {% if  recipe.preparation_method.degree %}
+                            на  {{ recipe.preparation_method.degree }} градуса
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <!-- description -->
+
+                <div class="badge-danger">
+                    {% if recipe.description %}
+                        <h2>Приготвяне</h2>
+
+                        <p>{{ recipe.description }}</p>
+                    {% endif %}
+                </div>
+
+
+                <!-- allergens -->
+                {#                {% if recipe.get_allergens %}#}
+                {#                    <div>#}
+                {#                        <h2>Алергени</h2>#}
+                {#                        <ul>#}
+                {#                            {% for name in recipe.get_allergens|split:', ' %}#}
+                {#                                <li><i>{{ name }}</i></li>#}
+                {#                            {% endfor %}#}
+                {#                        </ul>#}
+                {#                    </div>#}
+                {#                {% endif %}#}
+                <!-- video -->
+                {% if recipe.video_recipe %}
+                    <div class="col-md-8 offset-md-2">
+                        {% video recipe.video_recipe.video as my_video %}
+                            <h2>Видео</h2>
+
+                            <a href="{{ my_video.url }}" title="Video"> <img class="rounded-circle"
+                                                                             src="{{ my_video.thumbnail }}"
+                                                                             alt="{{ recipe.video_recipe.name }}"></a>
+                            {# {% video my_video 'small' %} #}
+                        {% endvideo %}
+                    </div>
+                {% endif %}
+                <!-- buttons -->
+
+                <div class="buttons-container">
+                    <button class="btn btn-outline-dark left" onclick="history.back()">Go Back</button>
+                    <a class="btn btn-outline-dark  position-relative " href="{% url 'index' %}">Home</a>
+
+                    {# <a class="button edit" href="{% url 'edit recipe' recipe.pk %}">Edit</a> #}
+                    {# <a class="button delete" href="{% url 'delete recipe' recipe.pk %}">Delete</a> #}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#    ot tuk    #}
+
+    <div class="container col-2">
+        {% for all_comment in  recipe.recipecomment_set.all %}
+            {{ all_comment.user.profile.full_name }} - {{ all_comment.publication_date_and_time }} <br>
+            {{ all_comment }}<br>  <br>
+
+        {% endfor %}
+    </div>
+
+    <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <button>input</button>
+    </form>
+
+
+    <!-- Start Comments Section -->
+    <div class="comments">
+        <div class="top">
+            <div class="userDetails">
+                <div class="comment-data">
+                    <div class="profilepic">
+                        <div class="profile_img">
+                            <div class="image">
+                                <!-- User Profile Image -->
+                                {#                                                <img src="{% static 'images/person.png' %}" alt="img8">#}
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        <!-- Link to User Profile Details Page-->
+                        <!-- User First and/or Last Name or username-->
+                        {#                        <a href="">Steven Ivanov</a>#}
+                        {#                        <!-- User Comment -->#}
+                        {#                        - OMG where can i get one#}
+                    </p>
+                </div>
+                {#                <span>Sept. 20, 2022, 5:02 p.m.</span>#}
+            </div>
+        </div>
+    </div>
+    <!-- End Comments Section -->
+    </div>
+
+    <!-- Start Add Comments Section -->
+    <div class="addComments">
+        <div class="reaction">
+            <h3>
+                <i class="far fa-smile"></i>
+            </h3>
+        </div>
+
+        <!-- Start Add Comments Form -->
+        {#        <form method="post" action="#">#}
+        {#            <label for="id_body">Body:</label>#}
+        {#            <textarea name="body" cols="40" rows="10" placeholder="Add comment..." maxlength="300"#}
+        {#                      required="" id="id_body"></textarea>#}
+        {#            <!-- Post Comments Button -->#}
+        {#            <button type="submit">Post</button>#}
+        {#        </form>#}
+        <!-- End Add Comments Form -->
+
+    </div>
+    <!-- End Add Comments Section -->
+
+    {#    </div>#}
+{% endblock %}

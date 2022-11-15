@@ -1,0 +1,86 @@
+{% extends 'base/base.html' %}
+{% load tags %}
+{% block page_content %}
+    <!-- Work title -->
+    <div class="container-fluid">
+        <h1 class="title">show-category-details.html</h1>
+        <h3>http://127.0.0.1:8001/category/3/</h3>
+        <h3>path('category/pk/', category_list_view, name='category detail'),</h3>
+    </div>
+    <!-- main container -->
+    <div class="container">
+        <!-- card block title -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">{{ category.name }}</h3>
+            </div>
+        </div>
+        <!-- Cards row -->
+        <div class="row row-cols-2 row-cols-md-4 g-4">
+            <!-- For Recipes-->
+            {% for recipe in recipes %}
+                <!-- Cards col -->
+                <div class="col">
+                    <!-- card start -->
+                    <div class="card mb-0 h-100 " style="max-width: 19.5rem;">
+
+
+                        <h5 class="card-title text-center  mb-0">{{ recipe.title }}</h5>
+
+                        <p class="card-text text-center mb-0 text-success"><i>{{ recipe.serving_value }} гр.</i></p>
+
+                        <img class="rounded-circle mb-0 " src="{{ recipe.image_recipe.image.url }}"
+                             alt="...">
+                        <div class="card-body">
+
+                            <p class="card-text mb-0">{{ recipe.food_type }}</p>
+                            <p class="card-text mb-0 text-success "><i>Време за реализация {{ recipe.release_time }}
+                                мин.</i></p>
+                            <p class="card-text mb-0"><i>Сервираме в: {{ recipe.food_plate }}</i></p>
+
+                            <div>
+                                {% if recipe.preparation_method %}
+                                    <p class="card-text mb-0"><i>Метод на приготвяне:</i></p>
+                                    <p class="card-text text-success mb-0 "><i>{{ recipe.preparation_method.name }}</i>
+                                    </p>
+                                {% endif %}
+
+
+                                <p class="card-text mb-0 "><i>Съставки:</i></p>
+                                {% if recipe.get_ingredients %}
+                                    <ul>
+                                        {% for ingredient in recipe.get_ingredients|split:', ' %}
+                                            <li>{{ ingredient }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            {% if recipe.finish %}
+                                <p class="card-text mb-0"><i>{{ recipe.finish }}</i></p>
+
+                            {% endif %}
+                        </div>
+
+                        {% if recipe.get_allergens %}
+                            <div class="card-footer text-danger ">
+                                <p class="text-danger mb-0"><i>Алергени:</i></p>
+                                <p><i>{{ recipe.get_allergens }}</i></p>
+                            </div>
+                        {% endif %}
+                        <div class="card-footer text-center">
+                            <a href="{% url 'recipe detail' pk=recipe.pk %}"
+                               class="btn btn-outline-dark ">Details</a>
+                        </div>
+                    </div>
+                    <!-- card end -->
+                </div>
+            {% endfor %}
+            <!-- back button-->
+            <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
+        </div>
+    </div>
+
+    {#    test#}
+
+{% endblock %}
+

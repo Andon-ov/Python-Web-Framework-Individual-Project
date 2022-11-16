@@ -97,6 +97,8 @@ class RecipeDetailsView(auth_mixin.LoginRequiredMixin, view.DetailView, FormMixi
         return context
 
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
         if request.user.profile.job_title == 'waiter':
             recipe = kwargs.get('pk')
             return redirect('recipe detail waiters', pk=recipe)

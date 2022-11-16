@@ -259,6 +259,9 @@ class Allergen(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ('title',)
+
 
 class Photo(models.Model):
     NAME_MAX_LENGTH = 200
@@ -351,7 +354,7 @@ class Ingredient(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['order_index', 'id','title']
+        ordering = ['order_index', 'id', 'title']
 
 
 class BaseRecipe(models.Model):
@@ -431,5 +434,6 @@ class Amount(models.Model):
 
     def __str__(self):
         return f'{self.number}'
+
     class Meta:
-        ordering=['number']
+        ordering = ['number']

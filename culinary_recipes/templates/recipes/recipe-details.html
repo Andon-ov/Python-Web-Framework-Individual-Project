@@ -129,73 +129,45 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    {#    ot tuk    #}
-
-    <div class="container col-2">
-        {% for all_comment in  recipe.recipecomment_set.all %}
-            {{ all_comment.user.profile.full_name }} - {{ all_comment.publication_date_and_time }} <br>
-            {{ all_comment }}<br>  <br>
-
-        {% endfor %}
-    </div>
-
-    <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post">
-        {{ form }}
-        {% csrf_token %}
-        <button>input</button>
-    </form>
+        <!-- comments -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-4 col-lg-6">
+                <div class="card" style="background-color: #f0f2f5;">
+                    <div class="comments card-body p-4">
 
 
-    <!-- Start Comments Section -->
-    <div class="comments">
-        <div class="top">
-            <div class="userDetails">
-                <div class="comment-data">
-                    <div class="profilepic">
-                        <div class="profile_img">
-                            <div class="image">
-                                <!-- User Profile Image -->
-                                {#                                                <img src="{% static 'images/person.png' %}" alt="img8">#}
+                            <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post">
+                                {{ form }}
+                                {% csrf_token %}
+                                <button class="btn btn-outline-dark">input</button>
+                            </form>
+
+                        {% for comment in  recipe.recipecomment_set.all %}
+
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <p>{{ comment }}</p>
+
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row align-items-center">
+
+                                            <p class="small mb-0 ms-2">{{ comment.user.profile.full_name }}</p>
+                                            <p class="small mb-0 ms-2">{{ comment.publication_date_and_time }}</p>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center">
+                                            {#                                        <p class="small text-muted mb-0">Upvote?</p>#}
+                                            {#                                        <i class="far fa-thumbs-up mx-2 fa-xs text-black"#}
+                                            {#                                           style="margin-top: -0.16rem;"></i>#}
+                                            {#                                        <p class="small text-muted mb-0">3</p>#}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                    <p>
-                        <!-- Link to User Profile Details Page-->
-                        <!-- User First and/or Last Name or username-->
-                        {#                        <a href="">Steven Ivanov</a>#}
-                        {#                        <!-- User Comment -->#}
-                        {#                        - OMG where can i get one#}
-                    </p>
                 </div>
-                {#                <span>Sept. 20, 2022, 5:02 p.m.</span>#}
             </div>
         </div>
     </div>
-    <!-- End Comments Section -->
-    </div>
 
-    <!-- Start Add Comments Section -->
-    <div class="addComments">
-        <div class="reaction">
-            <h3>
-                <i class="far fa-smile"></i>
-            </h3>
-        </div>
-
-        <!-- Start Add Comments Form -->
-        {#        <form method="post" action="#">#}
-        {#            <label for="id_body">Body:</label>#}
-        {#            <textarea name="body" cols="40" rows="10" placeholder="Add comment..." maxlength="300"#}
-        {#                      required="" id="id_body"></textarea>#}
-        {#            <!-- Post Comments Button -->#}
-        {#            <button type="submit">Post</button>#}
-        {#        </form>#}
-        <!-- End Add Comments Form -->
-
-    </div>
-    <!-- End Add Comments Section -->
-
-    {#    </div>#}
 {% endblock %}

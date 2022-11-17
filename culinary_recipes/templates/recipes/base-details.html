@@ -26,18 +26,16 @@
                     <p>Тип: {{ object.base_type }}</p>
                 {% endif %}
                 <!-- ingredient -->
-                {% if baserecipe.ingredient.exists %}
+                {% if object.baseingredient_set %}
                     <!-- table ingredient -->
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">Съставки:</th>
-                            {#                            <th scope="col"></th>#}
                         </tr>
                         </thead>
                         <tbody>
-                        {% for ingredient in baserecipe.ingredient.all %}
-                            {% if not ingredient.base %}
+                        {% for ingredient in object.baseingredient_set.all %}
                                 <tr>
                                     <td>{{ ingredient.food }}
                                         - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
@@ -45,7 +43,7 @@
                                         <td>{{ ingredient.preparation_method }}</td>
                                     {% endif %}
                                 </tr>
-                            {% endif %}
+
                         {% endfor %}
                         </tbody>
                     </table>
@@ -55,8 +53,9 @@
                     <div>
                         <!-- preparation method -->
                         {% if prep_method %}
-                            <p>{{ prep_method.get }}</p>
-
+                            {% for method in prep_method %}
+                                <p>{{ method }}</p>
+                            {% endfor %}
                         {% endif %}
                     </div>
                     <!-- portions -->

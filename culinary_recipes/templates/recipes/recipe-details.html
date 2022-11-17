@@ -30,23 +30,20 @@
                 <!-- ingredients -->
 
                 <div class="container badge-secondary">
-                    <div class="row">
-                        <div class="col-6"><h4>Съставки:</h4></div>
-                        <div class="col-6"><h4>Обработка:</h4></div>
-                    </div>
 
+                   <h4 class="col-6">Съставки:</h4>
                     {% for ingredient in recipe_ingredients %}
                         {% if not ingredient.base %}
                             <div class="row">
                                 <div class="col col-8-sm-4">
-                                    <ul>
-                                        <li>{{ ingredient.food }}
-                                            - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }} </li>
-                                    </ul>
+                                    <dl>
+                                        <dt>{{ ingredient.food }}
+                                            - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }} </dt>
+                                    </dl>
                                 </div>
                                 {% if ingredient.preparation_method %}
                                     <div class="col col-4-sm-1">
-                                        <p>{{ ingredient.preparation_method }}</p>
+                                        <i class="float-end">{{ ingredient.preparation_method }}</i>
                                     </div>
                                 {% endif %}
                             </div>
@@ -54,16 +51,16 @@
                             <!-- base -->
                             <div class="row">
                                 <div class="col col-12-sm-4">
-                                    <ul>
-                                        <li><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
+                                    <dl>
+                                        <dt><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
                                                class="link-danger">{{ ingredient.food }}
                                             - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</a>
-                                        </li>
-                                    </ul>
+                                        </dt>
+                                    </dl>
                                 </div>
                                 {% if ingredient.preparation_method %}
                                     <div class="col col-4-sm-1">
-                                        <p>{{ ingredient.preparation_method }}</p>
+                                        <i class="float-end">{{ ingredient.preparation_method }}</i>
                                     </div>
                                 {% endif %}
                             </div>
@@ -73,23 +70,19 @@
                 <div class="container-sm badge-success">
                     <!-- finish -->
                     {% if recipe.finish %}
-                        <h6><i>Завършваме: {{ recipe.finish }}</i></h6>
+                        <h6><i>Завършваме:</i> <b class="float-end">{{ recipe.finish }}</b></h6>
                     {% endif %}
                     <!-- serving value -->
-                    <h6><i>Общо количество: {{ recipe.serving_value }} гр.</i></h6>
+                    <h6><i>Общо количество:</i> <b class="float-end">{{ recipe.serving_value }} гр.</b></h6>
                     <!-- food plate -->
-                    <h6><i>Издаваме в: {{ recipe.food_plate }}</i></h6>
+                    <h6><i>Издаваме в:</i> <b class="float-end">{{ recipe.food_plate }}</b></h6>
 
                     <!-- preparation method -->
                     {% if recipe.preparation_method %}
-                        Обработка:
-                        {{ recipe.preparation_method.name }}
-                        {% if recipe.preparation_method.minute %}
-                            за  {{ recipe.preparation_method.minute }} минути
-                        {% endif %}
-                        {% if  recipe.preparation_method.degree %}
-                            на  {{ recipe.preparation_method.degree }} градуса
-                        {% endif %}
+                        <b><i>Обработка:</i></b>
+
+                        <b class="float-end">{{ recipe.preparation_method }}</b>
+
                     {% endif %}
                 </div>
                 <!-- description -->
@@ -97,7 +90,6 @@
                 <div class="badge-danger">
                     {% if recipe.description %}
                         <h2>Приготвяне</h2>
-
                         <p>{{ recipe.description }}</p>
                     {% endif %}
                 </div>
@@ -128,7 +120,7 @@
                     </div>
                 {% endif %}
                 <!-- buttons -->
-                <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
+                <button class="btn btn-outline-dark" onclick="history.back()">Back</button>
                 <a class="btn btn-outline-dark  float-end" href="{% url 'index' %}">Home</a>
 
 

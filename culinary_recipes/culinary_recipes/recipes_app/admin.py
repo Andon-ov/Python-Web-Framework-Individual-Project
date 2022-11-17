@@ -5,7 +5,7 @@ from django.contrib import admin
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'order_index')
 
 
 @admin.register(PreparationMethod)
@@ -50,25 +50,33 @@ class RecipeAdmin(admin.ModelAdmin):
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
     list_display = (
-        'recipe', 'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'base', 'order_index')
+        'recipe', 'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'base',
+        'order_index')
     fields = (
-        'recipe', 'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'base', 'order_index',
+        'recipe', 'last_recipe_edit', 'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'base',
+        'order_index',
         'last_order_index')
-    readonly_fields = ('last_order_index',)
+    readonly_fields = ('last_order_index', 'last_recipe_edit')
 
     @staticmethod
     def last_order_index(obj):
         latest_object = Ingredient.objects.values('order_index').last().get('order_index')
         return latest_object
 
+    @staticmethod
+    def last_recipe_edit(obj):
+        latest_object = Ingredient.objects.values('recipe__title').last().get('recipe__title')
+        return latest_object
+
 
 @admin.register(BaseRecipe)
 class BaseRecipeAdmin(admin.ModelAdmin):
+    list_display = ('title', 'base_type',)
     fieldsets = (
         (
             'First',
             {
-                'fields': ('title', 'base_type', 'ingredient', 'base_yield')
+                'fields': ('title', 'base_type', 'base_yield')
             }
         ),
         (
@@ -112,13 +120,20 @@ class UnitAdmin(admin.ModelAdmin):
 
 @admin.register(BaseIngredient)
 class BaseIngredientAdmin(admin.ModelAdmin):
+    ordering = ('base', 'order_index')
     list_display = (
-        'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'order_index','last_order_index')
+        'base', 'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'order_index',)
     fields = (
-        'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'order_index','last_order_index')
-    readonly_fields = ('last_order_index',)
+        'base', 'last_base_edit', 'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'order_index',
+        'last_order_index')
+    readonly_fields = ('last_order_index', 'last_base_edit',)
 
     @staticmethod
     def last_order_index(obj):
         latest_object = BaseIngredient.objects.values('order_index').last().get('order_index')
+        return latest_object
+
+    @staticmethod
+    def last_base_edit(obj):
+        latest_object = BaseIngredient.objects.values('base__title').last().get('base__title')
         return latest_object

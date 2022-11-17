@@ -324,6 +324,7 @@ class Ingredient(models.Model):
         blank=True,
     )
     # Many-to-one
+
     recipe = models.ForeignKey(
         to='Recipe',
         on_delete=models.CASCADE,
@@ -411,10 +412,6 @@ class BaseRecipe(models.Model):
         to='PreparationMethod',
         blank=True
     )
-    ingredient = models.ManyToManyField(
-        to='BaseIngredient',
-        blank=True
-    )
     allergen = models.ManyToManyField(
         to='Allergen',
         blank=True,
@@ -423,10 +420,7 @@ class BaseRecipe(models.Model):
     # photo
     # video
     def __str__(self):
-        return f'{self.id} {self.title}'
-
-    def get_ingredients(self):
-        return ", ".join([f'{i.food} {i.amount_number} {i.unit}' for i in self.ingredient.all()])
+        return f'{self.title}'
 
     def get_allergens(self):
         return ", ".join([str(i) for i in self.allergen.all()])
@@ -495,6 +489,13 @@ class BaseIngredient(models.Model):
         null=True,
         blank=True
     )
+    base = models.ForeignKey(
+        to='BaseRecipe',
+        # related_name='base',
+        on_delete=models.DO_NOTHING,
+        blank=False,
+        null=False
+    )
     food = models.ForeignKey(
         to='Food',
         on_delete=models.PROTECT,
@@ -519,4 +520,4 @@ class BaseIngredient(models.Model):
         return f'{self.food} {self.amount_number} {self.unit}'
 
     class Meta:
-        ordering = ('food',)
+        ordering = ('order_index', 'food',)

@@ -321,7 +321,7 @@ class Ingredient(models.Model):
     )
     order_index = models.PositiveIntegerField(
         null=True,
-        blank=True
+        blank=True,
     )
     # Many-to-one
     recipe = models.ForeignKey(
@@ -376,6 +376,7 @@ class BaseRecipe(models.Model):
         max_length=TITLE_MAX_LENGTH,
         blank=False,
         null=False,
+        unique=True,
     )
     base_yield = models.CharField(
         max_length=BASE_YIELD_MAX_LENGTH,
@@ -464,6 +465,7 @@ class Food(models.Model):
         max_length=NAME_MAX_LENGTH,
         blank=False,
         null=False,
+        unique=True,
     )
     detail = models.TextField(
         blank=True,
@@ -493,11 +495,25 @@ class BaseIngredient(models.Model):
         null=True,
         blank=True
     )
+    food = models.ForeignKey(
+        to='Food',
+        on_delete=models.PROTECT,
+        null=False,
+        blank=False
+    )
+    unit = models.ForeignKey(
+        to='Unit',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+    )
 
-    food = models.ForeignKey('Food', on_delete=models.PROTECT)
-    unit = models.ForeignKey('Unit', null=True, blank=True, on_delete=models.PROTECT)
-
-    preparation_method = models.ForeignKey(to='PreparationMethod', null=True, blank=True, on_delete=models.PROTECT)
+    preparation_method = models.ForeignKey(
+        to='PreparationMethod',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
         return f'{self.food} {self.amount_number} {self.unit}'

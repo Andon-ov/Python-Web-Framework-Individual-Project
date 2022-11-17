@@ -20,7 +20,7 @@ class PhotoAdmin(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', ) #'get_ingredients',
+    list_display = ('title', 'category',)  # 'get_ingredients',
     list_filter = ('title',)
     search_fields = ('title',)
     fieldsets = (
@@ -49,7 +49,17 @@ class RecipeAdmin(admin.ModelAdmin):
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        'recipe', 'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'base', 'order_index')
+    fields = (
+        'recipe', 'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'base', 'order_index',
+        'last_order_index')
+    readonly_fields = ('last_order_index',)
+
+    @staticmethod
+    def last_order_index(obj):
+        latest_object = Ingredient.objects.values('order_index').last().get('order_index')
+        return latest_object
 
 
 @admin.register(BaseRecipe)
@@ -92,12 +102,23 @@ class VideoAdmin(admin.ModelAdmin):
 
 @admin.register(Food)
 class FoodAdmin(admin.ModelAdmin):
-    pass
+    ordering = ('name',)
+
 
 @admin.register(Unit)
 class UnitAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(BaseIngredient)
 class BaseIngredientAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'order_index','last_order_index')
+    fields = (
+        'food', 'amount_number', 'unit', 'quantity', 'preparation_method', 'order_index','last_order_index')
+    readonly_fields = ('last_order_index',)
+
+    @staticmethod
+    def last_order_index(obj):
+        latest_object = BaseIngredient.objects.values('order_index').last().get('order_index')
+        return latest_object

@@ -26,41 +26,37 @@
                     <p>Тип: {{ object.base_type }}</p>
                 {% endif %}
                 <!-- ingredient -->
-                {% if object.get_ingredients %}
+                {% if baserecipe.ingredient.exists %}
                     <!-- table ingredient -->
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">Съставки:</th>
+                            {#                            <th scope="col"></th>#}
                         </tr>
                         </thead>
                         <tbody>
-                        {% for ingredient in object.get_ingredients|split:', ' %}
-                            <tr>
-                                <td>{{ ingredient }}</td>
-                            </tr>
+                        {% for ingredient in baserecipe.ingredient.all %}
+                            {% if not ingredient.base %}
+                                <tr>
+                                    <td>{{ ingredient.food }}
+                                        - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
+                                    {% if ingredient.preparation_method %}
+                                        <td>{{ ingredient.preparation_method }}</td>
+                                    {% endif %}
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                         </tbody>
                     </table>
+                    <!-- table ingredient end  -->
                 {% endif %}
                 <div>
                     <div>
                         <!-- preparation method -->
                         {% if prep_method %}
-                            {{ prep_method.get }}
-{#                            {% for method in prep_method %}#}
-{#                                <h3>Метод за приготвяне:</h3>#}
-{#                                <div class="text align-content-center">#}
-{#                                    <p class="text mb-0">{{ method.name|cut:'None' }}</p>#}
-{#                                    {% if method.minute %}#}
-{#                                        <p class="text mb-0"> за {{ method.minute|cut:'None' }} минути </p>#}
-{#                                    {% endif %}#}
-{#                                    {% if method.degree %}#}
-{#                                        <p class="text mb-0"> на {{ method.degree }} градуса.</p>#}
-{#                                    {% endif %}#}
-{#                                </div>#}
+                            <p>{{ prep_method.get }}</p>
 
-{#                            {% endfor %}#}
                         {% endif %}
                     </div>
                     <!-- portions -->
@@ -85,11 +81,10 @@
                             <p>Алергени {{ get_allergens }}</p>
                         {% endfor %}
                     {% endif %}
-                    <!-- buttons  container-->
-                    <div class="buttons-container">
-                        <a type="button" class="btn btn-outline-dark" href="{% url 'index' %}">Home</a>
-                        <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
-                    </div>
+                    <!-- buttons -->
+                    <a type="button" class="btn btn-outline-dark float-end" href="{% url 'index' %}">Home</a>
+                    <button class="btn btn-outline-dark float-none" onclick="history.back()">Go Back</button>
+
                 </div>
             </div>
         </div>

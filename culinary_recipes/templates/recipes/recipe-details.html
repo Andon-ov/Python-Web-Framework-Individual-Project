@@ -30,21 +30,23 @@
                 <!-- ingredients -->
 
                 <div class="container badge-secondary">
-                    <h2>Съставки</h2>
+                    <div class="row">
+                        <div class="col-6"><h4>Съставки:</h4></div>
+                        <div class="col-6"><h4>Обработка:</h4></div>
+                    </div>
+
                     {% for ingredient in recipe_ingredients %}
                         {% if not ingredient.base %}
                             <div class="row">
                                 <div class="col col-8-sm-4">
                                     <ul>
-                                        <li>{{ ingredient }}
+                                        <li>{{ ingredient.food }}
                                             - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }} </li>
                                     </ul>
                                 </div>
                                 {% if ingredient.preparation_method %}
                                     <div class="col col-4-sm-1">
-
                                         <p>{{ ingredient.preparation_method }}</p>
-
                                     </div>
                                 {% endif %}
                             </div>
@@ -54,16 +56,20 @@
                                 <div class="col col-12-sm-4">
                                     <ul>
                                         <li><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
-                                               class="link-danger">{{ ingredient|cut:'None' }}
+                                               class="link-danger">{{ ingredient.food }}
                                             - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</a>
                                         </li>
                                     </ul>
                                 </div>
+                                {% if ingredient.preparation_method %}
+                                    <div class="col col-4-sm-1">
+                                        <p>{{ ingredient.preparation_method }}</p>
+                                    </div>
+                                {% endif %}
                             </div>
                         {% endif %}
                     {% endfor %}
                 </div>
-
                 <div class="container-sm badge-success">
                     <!-- finish -->
                     {% if recipe.finish %}
@@ -122,14 +128,13 @@
                     </div>
                 {% endif %}
                 <!-- buttons -->
+                <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
+                <a class="btn btn-outline-dark  float-end" href="{% url 'index' %}">Home</a>
 
-                <div class="buttons-container">
-                    <button class="btn btn-outline-dark left" onclick="history.back()">Go Back</button>
-                    <a class="btn btn-outline-dark  position-relative " href="{% url 'index' %}">Home</a>
 
-                    {# <a class="button edit" href="{% url 'edit recipe' recipe.pk %}">Edit</a> #}
-                    {# <a class="button delete" href="{% url 'delete recipe' recipe.pk %}">Delete</a> #}
-                </div>
+                {# <a class="button edit" href="{% url 'edit recipe' recipe.pk %}">Edit</a> #}
+                {# <a class="button delete" href="{% url 'delete recipe' recipe.pk %}">Delete</a> #}
+
             </div>
         </div>
         <!-- comments -->

@@ -14,8 +14,7 @@ class Menu(models.Model):
         blank=True,
         null=True
     )
-    summary = models.CharField(
-        max_length=200,
+    summary = models.TextField(
         blank=True,
         null=True
     )
@@ -23,8 +22,6 @@ class Menu(models.Model):
         null=True,
         blank=True
     )
-
-    # sort by custom index
 
     def __str__(self):
         return self.title
@@ -56,7 +53,7 @@ class Category(models.Model):
     # Many-to-one
     menu = models.ForeignKey(
         to='Menu',
-        on_delete=models.DO_NOTHING
+        on_delete=models.CASCADE
     )
     image_category = models.ForeignKey(
         to='Photo',
@@ -110,6 +107,7 @@ class Recipe(models.Model):
     description = models.TextField(
         blank=True,
         null=True,
+        help_text='How to prepare this recipe:'
     )
     finish = models.CharField(
         max_length=FINISH_MAX_LENGTH,
@@ -139,7 +137,7 @@ class Recipe(models.Model):
     serving_value = models.IntegerField(
         null=True,
         blank=True,
-        help_text='Serving size from menu'
+        help_text='Serving size from menu:'
     )
 
     create_time = models.DateTimeField(
@@ -167,7 +165,7 @@ class Recipe(models.Model):
     )
     category = models.ForeignKey(
         to=Category,
-        on_delete=models.PROTECT
+        on_delete=models.CASCADE
     )
 
     preparation_method = models.ForeignKey(
@@ -181,23 +179,19 @@ class Recipe(models.Model):
         related_name='image_recipe',
         on_delete=models.DO_NOTHING
     )
-    #  Many-to-many
-    ingredient = models.ManyToManyField(
-        to='Ingredient',
-        blank=True
-    )
+
     allergen = models.ManyToManyField(
         to='Allergen',
         blank=True)
 
     def get_ingredients(self):
-        return ", ".join(sorted([str(i.title) for i in self.ingredient.all()]))
+        return ", ".join(sorted([str(i.food) for i in self.ingredient_set.all()]))
 
     def get_allergens(self):
         return ", ".join([str(i) for i in self.allergen.all()])
 
     def __str__(self):
-        return f"{self.title} {self.get_ingredients()}"
+        return f"{self.title}"
 
     class Meta:
         ordering = ['order_index', ]
@@ -221,27 +215,31 @@ class FoodPlate(models.Model):
 
 class PreparationMethod(models.Model):
     NAME_MAX_LENGTH = 100
-    DEGREE_MAX_LENGTH = 100
-    MINUTE_MAX_LENGTH = 100
 
     name = models.CharField(
         max_length=NAME_MAX_LENGTH,
         blank=True,
         null=True
     )
-    degree = models.CharField(
-        max_length=DEGREE_MAX_LENGTH,
+    degree = models.IntegerField(
         blank=True,
         null=True
     )
-    minute = models.CharField(
-        max_length=MINUTE_MAX_LENGTH,
+    minute = models.IntegerField(
         blank=True,
         null=True
     )
 
     def __str__(self):
-        return f'{self.name} {self.degree} {self.minute}'
+        if self.degree and self.minute:
+            return f'{self.name} на {self.degree}°C за {self.minute} минути'
+        if self.degree:
+            return f'{self.name} на {self.degree}°C'
+        if self.minute:
+            return f'{self.name} за {self.minute} минути'
+
+        else:
+            return f'{self.name}'
 
     class Meta:
         ordering = ['name']
@@ -306,33 +304,43 @@ class Ingredient(models.Model):
     QUANTITY_MAX_LENGTH = 50
     UNIT_MAX_LENGTH = 20
 
-    title = models.CharField(
-        max_length=TITLE_MAX_LENGTH,
-        blank=False,
-        null=False,
+    amount_number = models.FloatField(
+        null=True,
+        blank=True,
+        verbose_name='amount',
+        help_text='What is the amount in "unit"?'
+
     )
+
     quantity = models.CharField(
         max_length=QUANTITY_MAX_LENGTH,
         null=True,
-        blank=True
+        blank=True,
+        help_text='How many are there? If there are more than one, write it down:'
+
     )
     order_index = models.PositiveIntegerField(
         null=True,
         blank=True
     )
-    unit = models.CharField(
-        max_length=UNIT_MAX_LENGTH,
-        default='грама',
-        null=True,
-        blank=True
-    )
     # Many-to-one
-    amount_number = models.ForeignKey(
-        to='Amount',
-        blank=True,
+    recipe = models.ForeignKey(
+        to='Recipe',
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+    )
+    food = models.ForeignKey(
+        to='Food',
+        on_delete=models.PROTECT,
+        null=False,
+        blank=False,
+    )
+    unit = models.ForeignKey(
+        to='Unit',
+        on_delete=models.PROTECT,
         null=True,
-        on_delete=models.RESTRICT,
-        related_name='amount_number'
+        blank=True,
     )
 
     base = models.ForeignKey(
@@ -345,16 +353,16 @@ class Ingredient(models.Model):
     )
     preparation_method = models.ForeignKey(
         to='PreparationMethod',
+        on_delete=models.PROTECT,
         null=True,
         blank=True,
-        on_delete=models.PROTECT
     )
 
     def __str__(self):
-        return self.title
+        return f'{self.food}'
 
     class Meta:
-        ordering = ['order_index', 'id', 'title']
+        ordering = ['id', 'order_index', ]
 
 
 class BaseRecipe(models.Model):
@@ -403,12 +411,12 @@ class BaseRecipe(models.Model):
         blank=True
     )
     ingredient = models.ManyToManyField(
-        to='Ingredient',
+        to='BaseIngredient',
         blank=True
     )
     allergen = models.ManyToManyField(
         to='Allergen',
-        blank=True
+        blank=True,
     )
 
     # photo
@@ -417,7 +425,7 @@ class BaseRecipe(models.Model):
         return f'{self.id} {self.title}'
 
     def get_ingredients(self):
-        return ", ".join([f'{i.title} {i.amount_number} {i.unit}' for i in self.ingredient.all()])
+        return ", ".join([f'{i.food} {i.amount_number} {i.unit}' for i in self.ingredient.all()])
 
     def get_allergens(self):
         return ", ".join([str(i) for i in self.allergen.all()])
@@ -426,14 +434,73 @@ class BaseRecipe(models.Model):
         ordering = ['title']
 
 
-class Amount(models.Model):
-    number = models.PositiveIntegerField(
+class Unit(models.Model):
+    NAME_MAX_LENGTH = 60
+    NAME_ABBREV_MAX_LENGTH = 60
+
+    name = models.CharField(
+        max_length=NAME_MAX_LENGTH,
+        unique=True,
+        null=False,
+        blank=False,
+    )
+    name_abbrev = models.CharField(
+        max_length=NAME_ABBREV_MAX_LENGTH,
+        null=False,
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+
+
+class Food(models.Model):
+    NAME_MAX_LENGTH = 60
+
+    name = models.CharField(
+        max_length=NAME_MAX_LENGTH,
+        blank=False,
+        null=False,
+    )
+    detail = models.TextField(
         blank=True,
         null=True,
     )
 
     def __str__(self):
-        return f'{self.number}'
+        return self.name
+
+
+class BaseIngredient(models.Model):
+    TITLE_MAX_LENGTH = 250
+    QUANTITY_MAX_LENGTH = 50
+    UNIT_MAX_LENGTH = 20
+
+    amount_number = models.FloatField(
+        null=True,
+        blank=True
+    )
+
+    quantity = models.CharField(
+        max_length=QUANTITY_MAX_LENGTH,
+        null=True,
+        blank=True
+    )
+    order_index = models.PositiveIntegerField(
+        null=True,
+        blank=True
+    )
+
+    food = models.ForeignKey('Food', on_delete=models.PROTECT)
+    unit = models.ForeignKey('Unit', null=True, blank=True, on_delete=models.PROTECT)
+
+    preparation_method = models.ForeignKey(to='PreparationMethod', null=True, blank=True, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return f'{self.food} {self.amount_number} {self.unit}'
 
     class Meta:
-        ordering = ['number']
+        ordering = ('food',)

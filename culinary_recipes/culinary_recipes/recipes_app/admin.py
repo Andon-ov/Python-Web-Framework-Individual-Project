@@ -1,5 +1,5 @@
 from culinary_recipes.recipes_app.models import Category, PreparationMethod, Photo, Recipe, Ingredient, BaseRecipe, \
-    Allergen, Menu, FoodPlate, Video, Amount
+    Allergen, Menu, FoodPlate, Video, Food, Unit, BaseIngredient
 from django.contrib import admin
 
 
@@ -20,7 +20,7 @@ class PhotoAdmin(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'get_ingredients',)
+    list_display = ('title', 'category', ) #'get_ingredients',
     list_filter = ('title',)
     search_fields = ('title',)
     fieldsets = (
@@ -28,7 +28,7 @@ class RecipeAdmin(admin.ModelAdmin):
             'Main',
             {
                 'fields': (
-                    'title', 'category', 'image_recipe', 'ingredient', 'food_plate', 'description', 'finish',
+                    'title', 'category', 'image_recipe', 'food_plate', 'description', 'finish',
                     'preparation_method', 'preparation_time')
             }
         ),
@@ -90,6 +90,14 @@ class VideoAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Amount)
-class AmountAdmin(admin.ModelAdmin):
+@admin.register(Food)
+class FoodAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Unit)
+class UnitAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(BaseIngredient)
+class BaseIngredientAdmin(admin.ModelAdmin):
     pass

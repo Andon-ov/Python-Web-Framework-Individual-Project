@@ -20,7 +20,7 @@ class RecipeComment(models.Model):
 
     recipe = models.ForeignKey(
         Recipe,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         null=False,
         blank=True,
     )

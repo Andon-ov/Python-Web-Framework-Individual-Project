@@ -36,13 +36,15 @@
                             <div class="row">
                                 <div class="col col-8-sm-4">
                                     <ul>
-                                        <li>{{ ingredient|cut:'None' }}
-                                            - {{ ingredient.amount_number }} {{ ingredient.unit }} </li>
+                                        <li>{{ ingredient }}
+                                            - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }} </li>
                                     </ul>
                                 </div>
                                 {% if ingredient.preparation_method %}
                                     <div class="col col-4-sm-1">
-                                        подготовка: {{ ingredient.preparation_method|cut:'None' }}
+
+                                        <p>{{ ingredient.preparation_method }}</p>
+
                                     </div>
                                 {% endif %}
                             </div>
@@ -53,7 +55,8 @@
                                     <ul>
                                         <li><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
                                                class="link-danger">{{ ingredient|cut:'None' }}
-                                            - {{ ingredient.amount_number }} {{ ingredient.unit }}</a></li>
+                                            - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -136,11 +139,11 @@
                     <div class="comments card-body p-4">
 
 
-                            <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post">
-                                {{ form }}
-                                {% csrf_token %}
-                                <button class="btn btn-outline-dark">input</button>
-                            </form>
+                        <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post">
+                            {{ form }}
+                            {% csrf_token %}
+                            <button class="btn btn-outline-dark">input</button>
+                        </form>
 
                         {% for comment in  recipe.recipecomment_set.all %}
 

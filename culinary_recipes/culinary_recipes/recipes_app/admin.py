@@ -135,5 +135,7 @@ class BaseIngredientAdmin(admin.ModelAdmin):
 
     @staticmethod
     def last_base_edit(obj):
-        latest_object = BaseIngredient.objects.values('base__title').last().get('base__title')
+        # latest_object = BaseIngredient.objects.values('base__base').last()
+        latest_object = BaseIngredient.objects.last()
+        # latest_object = BaseIngredient.objects.prefetch_related().last()
         return latest_object

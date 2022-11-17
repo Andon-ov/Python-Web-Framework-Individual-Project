@@ -184,11 +184,11 @@ class Recipe(models.Model):
         to='Allergen',
         blank=True)
 
-    def get_ingredients(self):
-        return ", ".join(sorted([str(i.food) for i in self.ingredient_set.all()]))
-
-    def get_allergens(self):
-        return ", ".join([str(i) for i in self.allergen.all()])
+    # def get_ingredients(self):
+    #     return ", ".join(sorted([str(i.food) for i in self.ingredient_set.all()]))
+    #
+    # def get_allergens(self):
+    #     return ", ".join([str(i) for i in self.allergen.all()])
 
     def __str__(self):
         return f"{self.title}"
@@ -420,10 +420,10 @@ class BaseRecipe(models.Model):
     # photo
     # video
     def __str__(self):
-        return f'{self.title}'
-
-    def get_allergens(self):
-        return ", ".join([str(i) for i in self.allergen.all()])
+        return f'{self.title} {self.id}'
+    #
+    # def get_allergens(self):
+    #     return ", ".join([str(i) for i in self.allergen.all()])
 
     class Meta:
         ordering = ['title']
@@ -491,7 +491,6 @@ class BaseIngredient(models.Model):
     )
     base = models.ForeignKey(
         to='BaseRecipe',
-        # related_name='base',
         on_delete=models.DO_NOTHING,
         blank=False,
         null=False

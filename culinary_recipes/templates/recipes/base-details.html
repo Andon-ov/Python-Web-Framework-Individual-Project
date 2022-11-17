@@ -36,13 +36,13 @@
                         </thead>
                         <tbody>
                         {% for ingredient in object.baseingredient_set.all %}
-                                <tr>
-                                    <td>{{ ingredient.food }}
-                                        - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
-                                    {% if ingredient.preparation_method %}
-                                        <td>{{ ingredient.preparation_method }}</td>
-                                    {% endif %}
-                                </tr>
+                            <tr>
+                                <td>{{ ingredient.food }}
+                                    - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
+                                {% if ingredient.preparation_method %}
+                                    <td>{{ ingredient.preparation_method }}</td>
+                                {% endif %}
+                            </tr>
 
                         {% endfor %}
                         </tbody>
@@ -75,11 +75,16 @@
                         <p>Готово количество: {{ object.base_yield }}</p>
                     {% endif %}
                     <!-- allergen -->
-                    {% if object.allergen %}
-                        {% for allergen in object.get_allergens %}
-                            <p>Алергени {{ get_allergens }}</p>
-                        {% endfor %}
+                    {% if object.allergen.exists %}
+                        <div >
+                            <h6>Алергени:</h6>
+                            {% for allergen in object.allergen.all %}
+                                {{ allergen }}<br>
+
+                            {% endfor %}
+                        </div>
                     {% endif %}
+
                     <!-- buttons -->
                     <a type="button" class="btn btn-outline-dark float-end" href="{% url 'index' %}">Home</a>
                     <button class="btn btn-outline-dark float-none" onclick="history.back()">Go Back</button>

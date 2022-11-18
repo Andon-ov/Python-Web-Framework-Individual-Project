@@ -113,42 +113,34 @@ textarea {
 }
 
 /*PAGINATION*/
+
 .pagination {
     display: flex;
-    margin-top: 15px;
-    align-items: center;
+    align-items: center ;
     justify-content: center;
+    height: 80px;
+}
+a.text-pagination{
+    font-weight: bold;
+    margin: 20px;
+    color: #000000;
 }
 
-.pagination a {
-    text-decoration: none;
+a.text-pagination-here {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+
+    background: #fff;
+    border: 2px solid #f30b0b;
+    color: #000000;
+    text-align: center;
+
 }
 
-.pagination-number {
-    padding: 12px 17px;
-    border-radius: 2px;
-    color: #fff;
-    background-color: #6D85C7;
-}
-
-.pagination-number:hover,
-.pagination-current {
-    background-color: #3354AA;
-}
-
-.pagination-action {
-    margin: 0 2px;
-    display: flex;
-    padding: 1px 2px;
-    color: #fff;
-    font-size: 1.3em;
-    align-items: center;
-}
-
-.pagination-action:hover,
-.pagination-previous,
-.pagination-next {
-    color: #3354AA;
+a.text-pagination:hover{
+    color: #f30b0b;
 }
 
 /*for profile details */
@@ -176,3 +168,4 @@ footer {
     height: 60px;
     width: available;
 }
+

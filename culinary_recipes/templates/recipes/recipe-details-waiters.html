@@ -31,7 +31,8 @@
                                 <h3>Съставки</h3>
                                 <ul>
                                     <!-- ingredients -->
-                                    {% for ingredient in recipe.get_ingredients|split:', ' %}
+
+                                    {% for ingredient in object.ingredient_set.all %}
                                         <!-- base -->
                                         <li>{{ ingredient }}</li>
                                     {% endfor %}
@@ -59,11 +60,11 @@
                     {% endif %}
                 </div>
                 <!-- allergens -->
-                {% if recipe.get_allergens %}
+                {% if object.allergen %}
                     <div class="container text-center">
                         <h3>Алергени</h3>
                         <ul>
-                            {% for name in recipe.get_allergens|split:', ' %}
+                            {% for name in object.allergen.all %}
                                 <li><i>{{ name }}</i></li>
                             {% endfor %}
                         </ul>

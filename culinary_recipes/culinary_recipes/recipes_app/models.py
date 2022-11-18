@@ -184,12 +184,6 @@ class Recipe(models.Model):
         to='Allergen',
         blank=True)
 
-    # def get_ingredients(self):
-    #     return ", ".join(sorted([str(i.food) for i in self.ingredient_set.all()]))
-    #
-    # def get_allergens(self):
-    #     return ", ".join([str(i) for i in self.allergen.all()])
-
     def __str__(self):
         return f"{self.title}"
 
@@ -421,9 +415,6 @@ class BaseRecipe(models.Model):
     # video
     def __str__(self):
         return f'{self.title} {self.id}'
-    #
-    # def get_allergens(self):
-    #     return ", ".join([str(i) for i in self.allergen.all()])
 
     class Meta:
         ordering = ['title']

@@ -11,6 +11,7 @@ from django.views import generic as view
 
 # show all categories
 class AllCategoryListView(view.ListView):
+    paginate_by = 3
     template_name = 'recipes/show-all-categories.html'
     model = Category
 
@@ -18,7 +19,7 @@ class AllCategoryListView(view.ListView):
 # show all base recipe
 
 class BaseRecipeListView(auth_mixin.LoginRequiredMixin, view.ListView):
-    paginate_by = 12
+    paginate_by = 6
 
     template_name = 'recipes/show-all-base-recipes.html'
     model = BaseRecipe

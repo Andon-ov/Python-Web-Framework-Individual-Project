@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+  <!-- container -->
+<div class="container h-75">
+    <!-- item container -->
+    <div class="items-container">
+        <!-- item -->
+        <div class="item">
+            <!-- h1 -->
+            <div class="content">
+                <h4>{{ comment.user.profile.full_name }} <br>do you really want to delete your comment? <br></h4>
+            </div>
+
+            <form method="post" action="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}" enctype="multipart/form-data">
+                <hr class="my-4"/>
+                <div class="accordion-flush">
+                </div>
+                {{ form }}
+                {% csrf_token %}
+                <div class="buttons mb-5">
+                    <button type="submit" class="btn btn-danger btn-block">Yes</button>
+                    <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
+                        Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

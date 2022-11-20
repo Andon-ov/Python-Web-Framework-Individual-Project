@@ -10,9 +10,24 @@ class RecipeCommentForm(forms.ModelForm):
         widgets = {
             'text': forms.Textarea(
                 attrs={
-                    'cols': 40,
-                    'rows': 10,
                     'placeholder': 'Add comment...'
                 },
             ),
         }
+
+
+class RecipeCommentDeleteForm(forms.ModelForm):
+    class Meta:
+        model = RecipeComment
+        fields = ()
+
+    def save(self, commit=True):
+        if commit:
+            self.instance.delete()
+            return self.instance
+
+
+class RecipeCommentEditForm(forms.ModelForm):
+    class Meta:
+        model = RecipeComment
+        fields = ('text',)

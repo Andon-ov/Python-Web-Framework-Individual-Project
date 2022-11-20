@@ -10,6 +10,7 @@ class RecipeComment(models.Model):
     text = models.TextField(
         null=False,
         blank=False,
+        verbose_name='Comment:'
     )
 
     publication_date_and_time = models.DateTimeField(
@@ -34,3 +35,6 @@ class RecipeComment(models.Model):
 
     def __str__(self):
         return self.text
+
+    class Meta:
+        ordering = ('-id',)

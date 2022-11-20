@@ -27,7 +27,7 @@ class Menu(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['order_index']
+        ordering = ['order_index', 'id']
 
 
 class Category(models.Model):
@@ -67,7 +67,7 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['order_index', ]
+        ordering = ['order_index', 'id']
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
@@ -121,7 +121,6 @@ class Recipe(models.Model):
         blank=True,
         null=True,
     )
-
     preparation_time = models.CharField(
         max_length=PREPARATION_TIME_MAX_LENGTH,
         blank=True,
@@ -150,7 +149,6 @@ class Recipe(models.Model):
         null=True,
         blank=True
     )
-
     # Many-to-one
     video_recipe = models.ForeignKey(
         to='Video',
@@ -188,7 +186,7 @@ class Recipe(models.Model):
         return f"{self.title}"
 
     class Meta:
-        ordering = ['order_index', ]
+        ordering = ['order_index', 'id']
 
 
 class FoodPlate(models.Model):
@@ -264,7 +262,9 @@ class Photo(models.Model):
         null=False,
     )
     image = models.ImageField(
-        upload_to='images'
+        upload_to='images',
+        blank=False,
+        null=False,
     )
 
     # image = models.URLField()
@@ -303,7 +303,6 @@ class Ingredient(models.Model):
         blank=True,
         verbose_name='amount',
         help_text='What is the amount in "unit"?'
-
     )
 
     quantity = models.CharField(
@@ -337,7 +336,6 @@ class Ingredient(models.Model):
         null=True,
         blank=True,
     )
-
     base = models.ForeignKey(
         to='BaseRecipe',
         related_name='base',
@@ -357,7 +355,7 @@ class Ingredient(models.Model):
         return f'{self.food}'
 
     class Meta:
-        ordering = ['id', 'order_index', ]
+        ordering = ['order_index', 'id', ]
 
 
 class BaseRecipe(models.Model):
@@ -460,6 +458,9 @@ class Food(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ["name"]
+
 
 class BaseIngredient(models.Model):
     TITLE_MAX_LENGTH = 250
@@ -510,4 +511,4 @@ class BaseIngredient(models.Model):
         return f'{self.food} {self.amount_number} {self.unit}'
 
     class Meta:
-        ordering = ('order_index', 'food',)
+        ordering = ('order_index', 'id',)

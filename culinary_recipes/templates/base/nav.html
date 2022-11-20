@@ -43,7 +43,7 @@
 {#</div>#}
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black ">
     <!-- Container wrapper -->
     <div class="container-fluid">
         <!-- Toggle button -->
@@ -63,29 +63,35 @@
 
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Navbar brand -->
-            <a class="navbar-brand mt-2 mt-lg-0" href="https://www.pizza-romance.com/">
 
-                {#                <i class="fas fa-pizza-slice fa-2x"></i>#}
-            </a>
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="https://www.pizza-romance.com/"> <i
+                    class="fas fa-pizza-slice fa-2x"></i></a>
+
             <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
-{#            <form class="d-flex input-group w-auto">#}
-                 <form role="search" action="{% url 'search' %}" method="get" class="d-flex input-group w-auto">
-                    <input name="pattern" class="form-control" type="search" placeholder="Search" aria-label="Search">
-                </form>
-                {% csrf_token %}
-{#                <input#}
-{#                        type="search"#}
-{#                        class="form-control rounded"#}
-{#                        placeholder="Search"#}
-{#                        id="pattern"#}
-{#                        aria-label="Search"#}
-{#                        aria-describedby="search-addon"#}
-{#                />#}
-{#                <span class="input-group-text text-white border-0" id="search-addon">#}
-{#        <i class="fas fa-search"></i>#}
-{#      </span>#}
-{#            </form>#}
+            {#        proba     #}
+            <!-- Search form -->
+            <form class="d-none d-md-flex input-group w-auto my-auto" action="{% url 'search' %}" method="get">
+                <input name="pattern" id="search" class="form-control" type="search" placeholder="Search"
+                       aria-label="Search">
+                <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+            </form>
+            {#        proba     #}
+            {#            <form class="d-flex input-group w-auto">#}
+
+            {% csrf_token %}
+            {#                <input#}
+            {#                        type="search"#}
+            {#                        class="form-control rounded"#}
+            {#                        placeholder="Search"#}
+            {#                        id="pattern"#}
+            {#                        aria-label="Search"#}
+            {#                        aria-describedby="search-addon"#}
+            {#                />#}
+            {#                <span class="input-group-text text-white border-0" id="search-addon">#}
+            {#        <i class="fas fa-search"></i>#}
+            {#      </span>#}
+            {#            </form>#}
 
             <!-- Left links -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -159,14 +165,14 @@
                    role="button"
                    data-mdb-toggle="dropdown"
                    aria-expanded="false"
-                ><i class="fas fa-pizza-slice"></i>
+                ><i class="fas fa-pizza-slice fa-2x"></i>
 
                 </a>
                 <ul
                         class="dropdown-menu dropdown-menu-end"
                         aria-labelledby="navbarDropdownMenuAvatar"
 
-{#                        class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"#}
+                        {#                        class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"#}
                 >
 
                     <li>

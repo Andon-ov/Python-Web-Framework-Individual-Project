@@ -1,11 +1,11 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-    <div class="container-fluid">
-        <h1 class="title">culinary-search.html</h1>
-        <h3 class="title">http://127.0.0.1:8000/recipes/search/?pattern=%D0%AF%D0%93%D0%9E%D0%94%D0%9E%D0%92</h3>
-        <h3 class="title"> path("search/", SearchResultsView.as_view(), name="search")</h3>
-    </div>
+{#    <div class="container-fluid">#}
+{#        <h1 class="title">culinary-search.html</h1>#}
+{#        <h3 class="title">http://127.0.0.1:8000/recipes/search/?pattern=%D0%AF%D0%93%D0%9E%D0%94%D0%9E%D0%92</h3>#}
+{#        <h3 class="title"> path("search/", SearchResultsView.as_view(), name="search")</h3>#}
+{#    </div>#}
 
     {% if not object_list %}
         <!-- main container -->
@@ -54,7 +54,7 @@
                     {% endfor %}
                     <!-- back button-->
                 </div>
-                <div class="card mb-4">
+                <div class="card mb-4 my-3">
                     <div class="card-body">
                         <a class="btn btn-outline-dark  position-relative " href="{% url 'index' %}">Home</a>
                         <button class="btn btn-outline-dark float-end" onclick="history.back()">Go Back</button>

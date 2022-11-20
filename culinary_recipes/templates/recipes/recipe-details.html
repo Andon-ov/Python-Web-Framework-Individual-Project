@@ -3,12 +3,12 @@
 {% load tags %}
 {% load static %}
 {% block page_content %}
-    <main>
-        <h1 class="title">recipe-details.html</h1>
-        <h3>http://127.0.0.1:8001/detail/1/</h3>
-        <h3>path('detail/pk/', RecipeDetailsView.as_view(), name='recipe detail'),</h3>
-
-    </main>
+    {#    <main>#}
+    {#        <h1 class="title">recipe-details.html</h1>#}
+    {#        <h3>http://127.0.0.1:8001/detail/1/</h3>#}
+    {#        <h3>path('detail/pk/', RecipeDetailsView.as_view(), name='recipe detail'),</h3>#}
+    {##}
+    {#    </main>#}
     <div class="container">
         <div class="items-container">
             <div class="item">
@@ -31,7 +31,7 @@
 
                 <div class="container badge-secondary">
 
-                   <h4 class="col-6">Съставки:</h4>
+                    <h4 class="col-6">Съставки:</h4>
                     {% for ingredient in recipe_ingredients %}
                         {% if not ingredient.base %}
                             <div class="row">
@@ -114,6 +114,7 @@
 
                             <a href="{{ my_video.url }}" title="Video"> <img class="rounded-circle"
                                                                              src="{{ my_video.thumbnail }}"
+{#                                                                             src="{{ my_video}}"#}
                                                                              alt="{{ recipe.video_recipe.name }}"></a>
                             {# {% video my_video 'small' %} #}
                         {% endvideo %}
@@ -128,39 +129,48 @@
                 {# <a class="button delete" href="{% url 'delete recipe' recipe.pk %}">Delete</a> #}
 
             </div>
-        </div>
-        <!-- comments -->
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-4 col-lg-6">
+            <!-- comments -->
+            {#        <div class="row d-flex justify-content-center">#}
+            <div class="item justify-content-center">
+                {#                <div class="col-md-2 col-lg-6">#}
                 <div class="card" style="background-color: #f0f2f5;">
                     <div class="comments card-body p-4">
 
 
-                        <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post">
+                        <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post"
+                              class="comment-form">
                             {{ form }}
                             {% csrf_token %}
-                            <button class="btn btn-outline-dark">input</button>
+                            <div class="text-center my-4">
+                                <button class="btn comment-button btn-outline-dark">Comment</button>
+                            </div>
                         </form>
-
                         {% for comment in  recipe.recipecomment_set.all %}
-
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <p>{{ comment }}</p>
-
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex flex-row align-items-center">
-
                                             <p class="small mb-0 ms-2">{{ comment.user.profile.full_name }}</p>
                                             <p class="small mb-0 ms-2">{{ comment.publication_date_and_time }}</p>
                                         </div>
-                                        <div class="d-flex flex-row align-items-center">
-                                            {#                                        <p class="small text-muted mb-0">Upvote?</p>#}
-                                            {#                                        <i class="far fa-thumbs-up mx-2 fa-xs text-black"#}
-                                            {#                                           style="margin-top: -0.16rem;"></i>#}
-                                            {#                                        <p class="small text-muted mb-0">3</p>#}
-                                        </div>
+                                         {# ot tuk #}
+                                <div class="text-center">
+                                    {% if request.user == comment.user %}
+                                        <a class="btn btn-primary text-danger  btn-floating m-0"
+                                           style="background-color: #ffffff"
+                                           href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
+                                           role="button"><i class="fas fa-trash"></i></a>
+                                        <a class="btn btn-primary text-danger btn-floating m-0"
+                                           style="background-color: #ffffff"
+                                           href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}"
+                                           role="button"><i class="fas fa-edit"></i></a>
+                                    {% endif %}
+                                    {# do tuk #}
                                     </div>
+
+                                </div>
+
                                 </div>
                             </div>
                         {% endfor %}

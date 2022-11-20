@@ -77,15 +77,13 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         max_length=255,
         unique=True,
     )
-    # date_of_birth = models.DateField()
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = AppUserManager()
 
     USERNAME_FIELD = 'email'
-
-    # REQUIRED_FIELDS = ['date_of_birth']
 
     def __str__(self):
         return self.email

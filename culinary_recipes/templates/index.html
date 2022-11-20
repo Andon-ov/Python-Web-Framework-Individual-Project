@@ -37,11 +37,11 @@
                 <div class="carousel-item active">
                     <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                         <div class="d-flex justify-content-center align-items-center h-100">
-                            <div class="text-center text-white">
-                                <h1 class="mb-4 index-h1">НОМЕР 1 ВЕРИГА ПИЦАРИИ В БУРГАС!</h1>
-                                <h1 class="mb-4">ROMANCE</h1>
+                            <div class="text-center text-white form-h1">
+                                <h1 class="mb-4 ">НОМЕР 1 ВЕРИГА ПИЦАРИИ В БУРГАС! <br>ROMANCE</h1>
+
                                 <a href="{% url 'all category' %}"
-                                   class="btn btn-outline-light btn-lg" data-mdb-ripple-color="light">Влез</a>
+                                   class="btn btn-outline-light btn" data-mdb-ripple-color="light">Enter</a>
                             </div>
                         </div>
                     </div>
@@ -51,12 +51,11 @@
                 <div class="carousel-item">
                     <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                         <div class="d-flex justify-content-center align-items-center h-100">
-                            <div class="text-center text-white">
-                                <h1 class="mb-4">НОМЕР 1 ВЕРИГА ПИЦАРИИ В БУРГАС!</h1>
-                                <h1 class="mb-4">ROMANCE</h1>
+                            <div class="text-center text-white form-h1">
+                                <h1 class="mb-4 ">НОМЕР 1 ВЕРИГА ПИЦАРИИ В БУРГАС! <br>ROMANCE</h1>
 
                                 <a href="{% url 'all category' %}"
-                                   class="btn btn-outline-light btn-lg" data-mdb-ripple-color="light">Влез</a>
+                                   class="btn btn-outline-light btn" data-mdb-ripple-color="light">Enter</a>
                             </div>
                         </div>
                     </div>
@@ -66,11 +65,10 @@
                 <div class="carousel-item">
                     <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                         <div class="d-flex justify-content-center align-items-center h-100">
-                            <div class="text-center text-white">
-                                <h1 class="mb-4">НОМЕР 1 ВЕРИГА ПИЦАРИИ В БУРГАС!</h1>
-                                <h1 class="mb-4">ROMANCE</h1>
+                            <div class="text-center text-white form-h1">
+                                <h1 class="mb-4 ">НОМЕР 1 ВЕРИГА ПИЦАРИИ В БУРГАС! <br>ROMANCE</h1>
                                 <a href="{% url 'all category' %}"
-                                   class="btn btn-outline-light btn-lg" data-mdb-ripple-color="light">Влез</a>
+                                   class="btn btn-outline-light btn" data-mdb-ripple-color="light">Enter</a>
                             </div>
                         </div>
                     </div>
@@ -130,7 +128,7 @@
                                 {#                                </a>#}
                                 {#                            </div>#}
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ menu.title }}</h5>
+                                    <h5 class="card-title">{{ menu.title.upper }}</h5>
                                     <p class="card-text">{{ menu.summary }}</p>
                                     <p class="card-text">{{ menu.year }}</p>
                                     <a href="{% url 'menu list' pk=menu.pk %}"

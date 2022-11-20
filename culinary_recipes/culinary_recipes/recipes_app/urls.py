@@ -2,8 +2,8 @@ from django.urls import path, include
 
 from culinary_recipes.recipes_app.views import create_recipe_view, CreateIngredientView, \
     RecipeDetailsView, BaseRecipeDetailsView, AllCategoryListView, \
-    BaseRecipeListView, SearchResultsView, RecipeDetailsWaitersView, category_list_view, CategoryListView
-
+    BaseRecipeListView, SearchResultsView, RecipeDetailsWaitersView, CategoryListView, \
+    category_list_view
 urlpatterns = (
 
     # path('menu/<int:pk>/', menu_list_view, name='menu list'),  # Show categories in selected menu
@@ -12,7 +12,7 @@ urlpatterns = (
     path('category/', AllCategoryListView.as_view(), name='all category'),  # Show all categories
 
     path('category/<int:pk>/', category_list_view, name='category detail'),  # Show all recipes in selected category
-    # path('category/<int:pk>/', CategoryListView.as_view(), name='category detail'),
+    # path('category/<int:pk>/', CategoryRecipesView.as_view(), name='category detail'),
     # Show all recipes in selected category
 
     path('base/', BaseRecipeListView.as_view(), name='base recipe'),  # Show all base recipes

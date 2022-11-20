@@ -10,9 +10,9 @@
     <!-- main container -->
     <div class="container">
         <!-- card block title -->
-        <div class="card mb-4 my-4 ">
+        <div class="card shadow-none mb-4 my-4 ">
             <div class="card-body form-h1">
-                <h1 class="card-title">Всички Категории</h1>
+                <h1 class="card-title text-black ">всички категории</h1>
             </div>
         </div>
         <!-- Cards row -->
@@ -22,12 +22,12 @@
                 <!-- Cards col -->
                 <div class="col">
                     <!-- card start -->
-                    <div class="card mb-4 h-100" style="max-width: 19.5rem;">
+                    <div class="card hover-shadow mb-0 h-100">
                         <img class="rounded-circle" src="{{ category.image_category.image.url }}"
                              alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ category.name }}</h5>
-                            <p class="card-text text-center">{{ category.menu }}</p>
+                            <p class="card-text text-center">{{ category.menu|upper }}</p>
 
                             {% if category.note %}
                                 <p class="card-text">{{ category.note }}</p>
@@ -45,9 +45,9 @@
             <!-- back button-->
             <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
         </div>
-        <div class="pagination-circle text-center my-4">
-            <div class="card mb-2">
-                <div class="card-body pagination mb-2">
+        <div class="pagination-circle text-center  my-4">
+            <div class="card shadow-none mb-2">
+                <div class="card-body pagination  mb-2">
                     {% if page_obj.has_previous %}
                         <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous page</a>
                         {% if page_obj.number > 3 %}

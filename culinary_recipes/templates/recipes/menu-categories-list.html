@@ -1,39 +1,30 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-    {#            <div class="container-fluid">#}
-    {#                <h1 class="title">menu-categories-list.html</h1>#}
-    {#                <h3>http://127.0.0.1:8001/menu/1/</h3>#}
-    {#                <h3>path('menu/pk', menu_list_view, name='menu list'),</h3>#}
-    {#            </div>#}
+    {#                <div class="container-fluid">#}
+    {#                    <h1 class="title">menu-categories-list.html</h1>#}
+    {#                    <h3>http://127.0.0.1:8001/menu/1/</h3>#}
+    {#                    <h3>path('menu/pk', menu_list_view, name='menu list'),</h3>#}
+    {#                </div>#}
 
     <div class="container">
-
-        <div class="form-h1 my-3 mb-8">
+        <div class="form-h1 my-3 mb-8 text-black">
             <h1>{{ menu.get }}</h1>
         </div>
-        {#        <div class="card mb-4 my-3">#}
-        {#            <div class="card-body">#}
-{#        <h3 class="card-title">{{ menu.get }}</h3>#}
-
-        {#            </div>#}
-        {#        </div>#}
-
-        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-3 ">
+        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-3 mb-10">
             <!-- For category-->
             {% for category in category_list %}
                 <div class="col  mb-0">
                     <!-- card start -->
-                    <div class="card mb-0 h-100 shadow-6-strong" >
-                        <h5 class="card-title text-center">{{ category.name }}</h5>
+                    <div class="card hover-shadow mb-0 h-100">
                         <img class="rounded-circle" src="{{ category.image_category.image.url }}" alt="...">
                         <div class="card-body mb-0">
-
                             {% if category.note %}
                                 <p class="card-text"><i>{{ category.note }}</i></p>
                             {% endif %}
-
-
+                        </div>
+                        <div class="card-footer mb-0 text-center">
+                            <h5 class="card-title text-center">{{ category.name }}</h5>
                         </div>
                         <div class="card-footer mb-0 text-center">
                             <a href="{% url 'category detail'  pk=category.pk %}"
@@ -43,46 +34,40 @@
                 </div>
                 <!-- card end -->
             {% endfor %}
-            <!-- back button-->
-            <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
+
         </div>
-        {#    ot tuk    #}
-{#        <div class="pagination-circle text-center my-4">#}
-{#            <div class="card mb-2">#}
-                <div class="card-body pagination mb-2">
-                    {% if page_obj.has_previous %}
-                        <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous page</a>
-                        {% if page_obj.number > 3 %}
-                            <a class="text-pagination" href="?page=1">1</a>
-                            {% if page_obj.number > 4 %}
-                                <span class="text-pagination">...</span>
-                            {% endif %}
-                        {% endif %}
-                    {% endif %}
-                    {% for num in page_obj.paginator.page_range %}
-                        {% if page_obj.number == num %}
-                            <a class="text-pagination-here" href="?page={{ num }}">{{ num }}</a>
-                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                            <a class="text-pagination" href="?page={{ num }}">{{ num }}</a>
-                        {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                        {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
-                            <span>...</span>
-                            <a class="text-pagination"
-                               href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
-                        {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
-                            <a class="text-pagination"
-                               href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
-                        {% endif %}
-                        <a class="text-pagination" href="?page={{ page_obj.next_page_number }}">Next Page »</a>
-                    {% endif %}
-                </div>
-            </div>
-{#        </div>#}
-{#    </div>#}
-    {#    do tuk    #}
+        <!-- back button-->
+{#        <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>#}
 
-
+        <div class="card-body pagination mb-2">
+            {% if page_obj.has_previous %}
+                <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous page</a>
+                {% if page_obj.number > 3 %}
+                    <a class="text-pagination" href="?page=1">1</a>
+                    {% if page_obj.number > 4 %}
+                        <span class="text-pagination">...</span>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="text-pagination-here" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="text-pagination" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+                    <span>...</span>
+                    <a class="text-pagination"
+                       href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+                    <a class="text-pagination"
+                       href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                {% endif %}
+                <a class="text-pagination" href="?page={{ page_obj.next_page_number }}">Next Page »</a>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
 

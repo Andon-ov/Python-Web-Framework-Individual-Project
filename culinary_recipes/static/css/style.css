@@ -12,6 +12,14 @@ h1, h2, h3, h4 {
     font-weight: bold;
 }
 
+.menu h1 {
+    /*margin-top: 20px;*/
+    font-family: Rubik Distressed, Dosis, FuturaPT, helvetica, sans-serif;
+    /*font-size: 8vw;*/
+    font-size: 5rem;
+    font-weight: 500;
+}
+
 a {
     text-decoration: none;
 }
@@ -90,11 +98,11 @@ form {
 }
 
 .form-h1 h1 {
-    margin-top: 20px;
-    font-family: Rubik Distressed, Dosis, FuturaPT, helvetica, sans-serif;
+    /*margin-top: 20px;*/
+    font-family: FuturaPT, helvetica, sans-serif;
     /*font-size: 8vw;*/
-    font-size: 4.5rem;
-    font-weight: 500;
+    font-size: 3rem;
+    font-weight: 600;
 }
 
 form label {
@@ -206,14 +214,23 @@ footer {
 
 }
 
-/*.card {*/
-    /*filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0));*/
-    /*box-shadow: none;*/
-/*}*/
+.section-category-details {
+    min-height: 400px;
+    /*background-color: red;*/
+    /*height: 500px;*/
+    /*background-color: red;*/
+}
+
+.section-menu-details {
+    min-height: 400px;
+    /*background-color: red;*/
+    /*height: 500px;*/
+    /*background-color: red;*/
+}
 
 /*.card:hover {*/
-    /*box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);*/
-    /*-moz-box-shadow: black;*/
-    /*transform: translateY(5px);*/
+/*box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);*/
+/*-moz-box-shadow: black;*/
+/*transform: translateY(5px);*/
 /*}*/
 

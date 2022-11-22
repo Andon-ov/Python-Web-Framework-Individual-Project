@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik Distressed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura&display=swap');
 
 
 h1, h2, h3, h4 {
@@ -14,10 +15,10 @@ h1, h2, h3, h4 {
 
 .menu h1 {
     /*margin-top: 20px;*/
-    font-family: Rubik Distressed, Dosis, FuturaPT, helvetica, sans-serif;
+    font-family: Jura, Rubik Distressed, Dosis, FuturaPT, helvetica, sans-serif;
     /*font-size: 8vw;*/
-    font-size: 5rem;
-    font-weight: 500;
+    font-size: 3rem;
+    font-weight: 800;
 }
 
 a {
@@ -98,8 +99,8 @@ div.buttons {
 
 /*FORM*/
 form {
-    /*margin-block: 10%;*/
-    /*padding: 10px;*/
+    margin-block: 10%;
+    padding: 10px;
     margin-left: 25%;
     margin-right: 25%;
     width: 50%;
@@ -117,7 +118,7 @@ form {
 form label {
     /*padding: .875rem .75rem;*/
     font-family: FuturaPT, helvetica, sans-serif;
-    margin: 12px;
+    margin: 20px;
     line-height: 0.2em;
     font-size: 16px;
     font-weight: 400;
@@ -126,6 +127,7 @@ form label {
 
 form input,
 textarea {
+    font-size: 12px;
     font-family: Dosis, FuturaPT, helvetica, sans-serif;
     padding: 6px;
     width: 100%;
@@ -232,6 +234,12 @@ footer {
 
 .section-menu-details {
     min-height: 400px;
+    /*background-color: red;*/
+    /*height: 500px;*/
+    /*background-color: red;*/
+}
+.section-all-base {
+    min-height: 600px;
     /*background-color: red;*/
     /*height: 500px;*/
     /*background-color: red;*/

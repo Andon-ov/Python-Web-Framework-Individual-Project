@@ -1,45 +1,44 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-{#    <div class="container-fluid">#}
-{#        <h1 class="title">show-all-base-recipes.html</h1>#}
-{#        <h3>http://127.0.0.1:8001/base/</h3>#}
-{#        <h3> path('base/', BaseRecipeListView.as_view(), name='base recipe'), </h3>#}
-{#    </div>#}
-    <div class="container">
-        <div class="card mb-2">
-            <div class="card-body">
-                <h3 class="card-title">Всички Базови Рецепти</h3>
+
+    <div class="container min-vh-75">
+        <div class="card mb-2 shadow-none text-black">
+            <div class="card-body ">
+                <h1 class="card-title">Всички Базови Рецепти</h1>
             </div>
         </div>
-        <div class="row row row-cols-2 row-cols-md-4 g-4">
-            <!-- For Recipes-->
-            {% for base in object_list %}
-                <div class="col mb-2">
-                    <!-- card start -->
-                    <div class="card mb-2 h-100" style="max-width: 19.5rem;">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">{{ base.title.upper }}</h5>
-                            {% if base.base_type %}
-                                <p class="card-text">{{ base.base_type }}</p>
-                            {% endif %}
+        <section class="section-all-base">
+            <div class="row row row-cols-2 row-cols-md-4">
+                <!-- For Recipes-->
+                {% for base in object_list %}
+                    <div class="col shadow-none mb-2 g-2">
+                        <!-- card start -->
+                        <div class="card mb-2 h-100 shadow-6-strong hover-shadow" style="max-width: 19.5rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-success text-center">{{ base.title.upper }}</h5>
+                                {% if base.base_type %}
+                                    <p class="card-text">{{ base.base_type }}</p>
+                                {% endif %}
 
-                            <div class="fixed-bottom">
+                                <div class="fixed-bottom">
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <a href="{% url 'base_recipe detail' pk=base.pk %}"
+                                   class="btn btn-outline-dark">Details</a>
                             </div>
                         </div>
-                        <div class="card-footer text-center">
-                            <a href="{% url 'base_recipe detail' pk=base.pk %}"
-                               class="btn btn-outline-dark">Details</a>
-                        </div>
+                        <!-- card end -->
                     </div>
-                    <!-- card end -->
-                </div>
-            {% endfor %}
-        </div>
-        <div class="pagination-circle text-center mb-2">
-            <div class="card mb-2">
+                {% endfor %}
+            </div>
+        </section>
+        <div class="pagination-circle text-center">
+            <div class="card shadow-none mb-2">
                 <div class="card-body pagination mb-2">
                     {% if page_obj.has_previous %}
-                        <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous page</a>
+                        <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous
+                            page</a>
                         {% if page_obj.number > 3 %}
                             <a class="text-pagination" href="?page=1">1</a>
                             {% if page_obj.number > 4 %}

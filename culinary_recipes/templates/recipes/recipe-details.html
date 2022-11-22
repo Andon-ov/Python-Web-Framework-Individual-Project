@@ -3,140 +3,129 @@
 {% load tags %}
 {% load static %}
 {% block page_content %}
-    {#    <main>#}
-    {#        <h1 class="title">recipe-details.html</h1>#}
-    {#        <h3>http://127.0.0.1:8001/detail/1/</h3>#}
-    {#        <h3>path('detail/pk/', RecipeDetailsView.as_view(), name='recipe detail'),</h3>#}
-    {##}
-    {#    </main>#}
+
     <div class="container">
-        <div class="items-container">
-            <div class="item">
-                <div>
-                    <!-- category -->
-                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="link-danger">
-                        <h5>{{ recipe.category }}</h5></a>
-                    <!-- title -->
-                    <h2><b>{{ recipe.title }}</b></h2>
-                    <!-- image -->
-                    <img class="rounded-circle" src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">
-                    <!-- release time -->
-                    <div class="time">
-                        <p>Време за реализация: </p>
-                        <img src="{% static 'images/clock.svg' %}" alt="clock.png">
-                        <p>{{ recipe.release_time }} Мин.</p>
-                    </div>
-                </div>
-                <!-- ingredients -->
 
-                <div class="container badge-secondary">
+        <div class="menu my-3 mb-8 text-black">
+            <!-- category -->
+            <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-center link-danger">
+                <h5>Back to {{ recipe.category }}</h5></a>
+            <!-- title -->
+            <h1 class="card-title text-black ">{{ recipe.title }}</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-1"></div>
+            <div class="col-lg-6 col-sm-2">
+                <div class="card hover-shadow ">
+                <img class="rounded-circle my-2" src="{{ recipe.image_recipe.image.url }}"
+                             alt="{{ recipe.title }}">
+                    <div class="card-body col-12">
+                        <!-- image -->
 
-                    <h4 class="col-6">Съставки:</h4>
-                    {% for ingredient in recipe_ingredients %}
-                        {% if not ingredient.base %}
-                            <div class="row">
-                                <div class="col col-8-sm-4">
-                                    <dl>
-                                        <dt>{{ ingredient.food }}
-                                            - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }} </dt>
-                                    </dl>
-                                </div>
-                                {% if ingredient.preparation_method %}
-                                    <div class="col col-4-sm-1">
-                                        <i class="float-end">{{ ingredient.preparation_method }}</i>
-                                    </div>
+                        <div class="text-center">
+                            <p>Време за реализация: <br>
+                                <img src="{% static 'images/clock.svg' %}" alt="clock.png">
+                                <b>{{ recipe.release_time }}</b> Мин.</p>
+                        </div>
+                        <!-- release time -->
+                        <!-- ingredients -->
+
+                            <div class="container badge-secondary col-12">
+                                <h4 class="col-6">Съставки:</h4>
+                                {% for ingredient in recipe_ingredients %}
+                                    {% if not ingredient.base %}
+                                        <div class="row">
+                                            <div class="col col-8-sm-4">
+                                                <dl>
+                                                    <dt>{{ ingredient.food }}
+                                                        - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }} </dt>
+                                                </dl>
+                                            </div>
+                                            {% if ingredient.preparation_method %}
+                                                <div class="col col-4-sm-1">
+                                                    <i class="float-end">{{ ingredient.preparation_method }}</i>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <!-- base -->
+                                        <div class="row">
+                                            <div class="col col-12-sm-4">
+                                                <dl>
+                                                    <dt><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
+                                                           class="link-danger">{{ ingredient.food }}
+                                                        - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</a>
+                                                    </dt>
+                                                </dl>
+                                            </div>
+                                            {% if ingredient.preparation_method %}
+                                                <div class="col col-4-sm-1">
+                                                    <i class="float-end">{{ ingredient.preparation_method }}</i>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+
+
+                            <div class="container-sm badge-success col-12">
+                                <!-- finish -->
+                                {% if recipe.finish %}
+                                    <h6><i>Завършваме:</i> <b class="float-end">{{ recipe.finish }}</b></h6>
+                                {% endif %}
+                                <!-- serving value -->
+                                <h6><i>Общо количество:</i> <b class="float-end">{{ recipe.serving_value }} гр.</b></h6>
+                                <!-- food plate -->
+                                <h6><i>Издаваме в:</i> <b class="float-end">{{ recipe.food_plate }}</b></h6>
+
+                                <!-- preparation method -->
+                                {% if recipe.preparation_method %}
+                                    <h6><i>Обработка:</i> <b class="float-end ">{{ recipe.preparation_method }}</b></h6>
                                 {% endif %}
                             </div>
-                        {% else %}
-                            <!-- base -->
-                            <div class="row">
-                                <div class="col col-12-sm-4">
-                                    <dl>
-                                        <dt><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
-                                               class="link-danger">{{ ingredient.food }}
-                                            - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</a>
-                                        </dt>
-                                    </dl>
-                                </div>
-                                {% if ingredient.preparation_method %}
-                                    <div class="col col-4-sm-1">
-                                        <i class="float-end">{{ ingredient.preparation_method }}</i>
-                                    </div>
+
+                        <!-- description -->
+
+                            <div class="badge-danger col-12">
+                                {% if recipe.description %}
+                                    <h2>Приготвяне</h2>
+
+                                    <p>{{ recipe.description }}</p>
+
                                 {% endif %}
                             </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="container-sm badge-success">
-                    <!-- finish -->
-                    {% if recipe.finish %}
-                        <h6><i>Завършваме:</i> <b class="float-end">{{ recipe.finish }}</b></h6>
-                    {% endif %}
-                    <!-- serving value -->
-                    <h6><i>Общо количество:</i> <b class="float-end">{{ recipe.serving_value }} гр.</b></h6>
-                    <!-- food plate -->
-                    <h6><i>Издаваме в:</i> <b class="float-end">{{ recipe.food_plate }}</b></h6>
-
-                    <!-- preparation method -->
-                    {% if recipe.preparation_method %}
-                        <b><i>Обработка:</i></b>
-
-                        <b class="float-end">{{ recipe.preparation_method }}</b>
-
-                    {% endif %}
-                </div>
-                <!-- description -->
-
-                <div class="badge-danger">
-                    {% if recipe.description %}
-                        <h2>Приготвяне</h2>
-                        <p>{{ recipe.description }}</p>
-                    {% endif %}
-                </div>
 
 
-                <!-- allergens -->
-                {#                {% if recipe.get_allergens %}#}
-                {#                    <div>#}
-                {#                        <h2>Алергени</h2>#}
-                {#                        <ul>#}
-                {#                            {% for name in recipe.get_allergens|split:', ' %}#}
-                {#                                <li><i>{{ name }}</i></li>#}
-                {#                            {% endfor %}#}
-                {#                        </ul>#}
-                {#                    </div>#}
-                {#                {% endif %}#}
-                <!-- video -->
-                {% if recipe.video_recipe %}
-                    <div class="col-md-8 offset-md-2">
-                        {% video recipe.video_recipe.video as my_video %}
-                            <h2>Видео</h2>
+                            <div class="col-12">
+                                <!-- video -->
+                                {% if recipe.video_recipe %}
+                                    <h2>Видео</h2>
+                                    {% video recipe.video_recipe.video as my_video %}
 
-                            <a href="{{ my_video.url }}" title="Video"> <img class="rounded-circle"
-                                                                             src="{{ my_video.thumbnail }}"
-{#                                                                             src="{{ my_video}}"#}
-                                                                             alt="{{ recipe.video_recipe.name }}"></a>
-                            {# {% video my_video 'small' %} #}
-                        {% endvideo %}
+                                        <a href="{{ my_video.url }}"><img class="rounded-circle img-thumbnail"
+                                                                          src="{{ my_video.thumbnail }}"
+                                                                          alt="{{ my_video.url }}"></a>
+                                    {% endvideo %}
+                                {% endif %}
+                            </div>
+
+                        <div class="card-body ">
+                            <!-- buttons -->
+                            <button class="btn btn-outline-dark my-2" onclick="history.back()">Back</button>
+                            <a class="btn btn-outline-dark  float-end my-2" href="{% url 'index' %}">Home</a>
+                        </div>
                     </div>
-                {% endif %}
-                <!-- buttons -->
-                <button class="btn btn-outline-dark" onclick="history.back()">Back</button>
-                <a class="btn btn-outline-dark  float-end" href="{% url 'index' %}">Home</a>
-
-
-                {# <a class="button edit" href="{% url 'edit recipe' recipe.pk %}">Edit</a> #}
-                {# <a class="button delete" href="{% url 'delete recipe' recipe.pk %}">Delete</a> #}
-
+                </div>
             </div>
-            <!-- comments -->
-            {#        <div class="row d-flex justify-content-center">#}
-            <div class="item justify-content-center">
-                {#                <div class="col-md-2 col-lg-6">#}
-                <div class="card" style="background-color: #f0f2f5;">
+            <div class="col-lg-3  col-sm-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3  col-sm-1"></div>
+            <div class="col-lg-6  col-sm-2">
+                <!-- comments -->
+                <div class="card my-5" style="background-color: #f0f2f5;">
                     <div class="comments card-body p-4">
-
-
                         <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post"
                               class="comment-form">
                             {{ form }}
@@ -154,29 +143,28 @@
                                             <p class="small mb-0 ms-2">{{ comment.user.profile.full_name }}</p>
                                             <p class="small mb-0 ms-2">{{ comment.publication_date_and_time }}</p>
                                         </div>
-                                         {# ot tuk #}
-                                <div class="text-center">
-                                    {% if request.user == comment.user %}
-                                        <a class="btn btn-primary text-danger  btn-floating m-0"
-                                           style="background-color: #ffffff"
-                                           href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
-                                           role="button"><i class="fas fa-trash"></i></a>
-                                        <a class="btn btn-primary text-danger btn-floating m-0"
-                                           style="background-color: #ffffff"
-                                           href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}"
-                                           role="button"><i class="fas fa-edit"></i></a>
-                                    {% endif %}
-                                    {# do tuk #}
+
+                                        <div class="text-center">
+                                            {% if request.user == comment.user %}
+                                                <a class="btn btn-primary text-danger  btn-floating m-0"
+                                                   style="background-color: #ffffff"
+                                                   href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
+                                                   role="button"><i class="fas fa-trash"></i></a>
+                                                <a class="btn btn-primary text-danger btn-floating m-0"
+                                                   style="background-color: #ffffff"
+                                                   href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}"
+                                                   role="button"><i class="fas fa-edit"></i></a>
+                                            {% endif %}
+                                        </div>
                                     </div>
-
-                                </div>
-
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
+                <!-- end comments -->
             </div>
+            <div class="col-lg-3  col-sm-1"></div>
         </div>
     </div>
 

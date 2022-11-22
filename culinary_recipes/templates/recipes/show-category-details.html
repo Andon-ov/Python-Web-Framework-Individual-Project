@@ -11,43 +11,43 @@
         <!-- card block title -->
         <div class="card shadow-none ">
             <div class="card-body menu">
-                <h1 class="card-title">{{ category.name.lower }}</h1>
+                <h1 class="card-title text-black    ">{{ category.name.upper }}</h1>
                 {#            ot tuk#}
-                <div class="pagination-circle text-center  my-4">
-                    <div class="card shadow-none mb-2">
-                        <div class="card-body pagination  mb-2">
-                            {% if page_obj.has_previous %}
-                                <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous
-                                    page</a>
-                                {% if page_obj.number > 3 %}
-                                    <a class="text-pagination" href="?page=1">1</a>
-                                    {% if page_obj.number > 4 %}
-                                        <span class="text-pagination">...</span>
-                                    {% endif %}
-                                {% endif %}
-                            {% endif %}
-                            {% for num in page_obj.paginator.page_range %}
-                                {% if page_obj.number == num %}
-                                    <a class="text-pagination-here" href="?page={{ num }}">{{ num }}</a>
-                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                                    <a class="text-pagination" href="?page={{ num }}">{{ num }}</a>
-                                {% endif %}
-                            {% endfor %}
-                            {% if page_obj.has_next %}
-                                {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
-                                    <span>...</span>
-                                    <a class="text-pagination"
-                                       href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
-                                {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
-                                    <a class="text-pagination"
-                                       href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
-                                {% endif %}
-                                <a class="text-pagination" href="?page={{ page_obj.next_page_number }}">Next Page »</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-
+                {#                <div class="pagination-circle text-center  my-4">#}
+                {#                    <div class="card shadow-none mb-2">#}
+                {#                        <div class="card-body pagination  mb-2">#}
+                {#                            {% if page_obj.has_previous %}#}
+                {#                                <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous#}
+                {#                                    page</a>#}
+                {#                                {% if page_obj.number > 3 %}#}
+                {#                                    <a class="text-pagination" href="?page=1">1</a>#}
+                {#                                    {% if page_obj.number > 4 %}#}
+                {#                                        <span class="text-pagination">...</span>#}
+                {#                                    {% endif %}#}
+                {#                                {% endif %}#}
+                {#                            {% endif %}#}
+                {#                            {% for num in page_obj.paginator.page_range %}#}
+                {#                                {% if page_obj.number == num %}#}
+                {#                                    <a class="text-pagination-here" href="?page={{ num }}">{{ num }}</a>#}
+                {#                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}#}
+                {#                                    <a class="text-pagination" href="?page={{ num }}">{{ num }}</a>#}
+                {#                                {% endif %}#}
+                {#                            {% endfor %}#}
+                {#                            {% if page_obj.has_next %}#}
+                {#                                {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}#}
+                {#                                    <span>...</span>#}
+                {#                                    <a class="text-pagination"#}
+                {#                                       href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>#}
+                {#                                {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}#}
+                {#                                    <a class="text-pagination"#}
+                {#                                       href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>#}
+                {#                                {% endif %}#}
+                {#                                <a class="text-pagination" href="?page={{ page_obj.next_page_number }}">Next Page »</a>#}
+                {#                            {% endif %}#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
+                {##}
                 {#            do tuk#}
 
             </div>
@@ -55,20 +55,25 @@
         <!-- section -->
         <section class="section-category-details">
             <!-- Cards row -->
-            <div class="row row-cols-2 row-cols-md-4 g-5">
+{#            <div class="row row-cols-2 row-cols-md-4 g-5">#}
+            <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-5 mb-10">
                 <!-- For Recipes-->
-                {% for recipe in page_obj %}
+                {#                {% for recipe in page_obj %}#}
+                {% for recipe in recipes %}
                     <!-- Cards col -->
-                    <div class="col">
+                    <div class="col mb-0 g-5">
                         <!-- card start -->
                         <div class="card hover-shadow mb-0 h-100">
 
-                            <img class="rounded-circle " src="{{ recipe.image_recipe.image.url }}"
+                            <img class="rounded-circle my-4" src="{{ recipe.image_recipe.image.url }}"
                                  alt="...">
                             <div class="card-body">
-                                <h5 class="card-title text-center">{{ recipe.title }}</h5>
+{#                                <h5 class="card-title text-center">{{ recipe.title }}</h5>#}
                             </div>
                             <div class="card-footer text-center">
+                                <h5 class="card-title text-center">{{ recipe.title }}</h5>
+                            </div>
+                            <div class="card-footer text-center mb-4">
                                 <a href="{% url 'recipe detail' pk=recipe.pk %}"
                                    class="btn btn-outline-dark">Details</a>
                             </div>
@@ -81,41 +86,42 @@
         </section>
 
 
-        <div class="pagination-circle text-center  my-4">
-            <div class="card shadow-none h-25 mb-2">
-                <div class="card-body pagination  mb-2">
-                    {% if page_obj.has_previous %}
-                        <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">«
-                            Previous
-                            page</a>
-                        {% if page_obj.number > 3 %}
-                            <a class="text-pagination" href="?page=1">1</a>
-                            {% if page_obj.number > 4 %}
-                                <span class="text-pagination">...</span>
-                            {% endif %}
-                        {% endif %}
-                    {% endif %}
-                    {% for num in page_obj.paginator.page_range %}
-                        {% if page_obj.number == num %}
-                            <a class="text-pagination-here" href="?page={{ num }}">{{ num }}</a>
-                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                            <a class="text-pagination" href="?page={{ num }}">{{ num }}</a>
-                        {% endif %}
-                    {% endfor %}
-                    {% if page_obj.has_next %}
-                        {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
-                            <span>...</span>
-                            <a class="text-pagination"
-                               href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
-                        {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
-                            <a class="text-pagination"
-                               href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
-                        {% endif %}
-                        <a class="text-pagination" href="?page={{ page_obj.next_page_number }}">Next Page
-                            »</a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+        {#        <div class="pagination-circle text-center  my-4">#}
+        {#            <div class="card shadow-none h-25 mb-2">#}
+        {#                <div class="card-body pagination  mb-2">#}
+        {#                    {% if page_obj.has_previous %}#}
+        {#                        <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">«#}
+        {#                            Previous#}
+        {#                            page</a>#}
+        {#                        {% if page_obj.number > 3 %}#}
+        {#                            <a class="text-pagination" href="?page=1">1</a>#}
+        {#                            {% if page_obj.number > 4 %}#}
+        {#                                <span class="text-pagination">...</span>#}
+        {#                            {% endif %}#}
+        {#                        {% endif %}#}
+        {#                    {% endif %}#}
+        {#                    {% for num in page_obj.paginator.page_range %}#}
+        {#                        {% if page_obj.number == num %}#}
+        {#                            <a class="text-pagination-here" href="?page={{ num }}">{{ num }}</a>#}
+        {#                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}#}
+        {#                            <a class="text-pagination" href="?page={{ num }}">{{ num }}</a>#}
+        {#                        {% endif %}#}
+        {#                    {% endfor %}#}
+        {#                    {% if page_obj.has_next %}#}
+        {#                        {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}#}
+        {#                            <span>...</span>#}
+        {#                            <a class="text-pagination"#}
+        {#                               href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>#}
+        {#                        {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}#}
+        {#                            <a class="text-pagination"#}
+        {#                               href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>#}
+        {#                        {% endif %}#}
+        {#                        <a class="text-pagination" href="?page={{ page_obj.next_page_number }}">Next Page#}
+        {#                            »</a>#}
+        {#                    {% endif %}#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
+        <div class="row my-5"></div>
     </div>
 {% endblock %}

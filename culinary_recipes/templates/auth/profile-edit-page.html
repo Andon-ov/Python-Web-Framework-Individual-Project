@@ -1,58 +1,30 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    <!-- container -->
-    <div class="container h-75">
-        <!-- item container -->
-        <div class="items-container">
-            <!-- item -->
-            <div class="item">
-                <!-- h1 -->
-                <div class="form-h1">
-                    <h1>Edit Profile</h1>
-                </div>
+    <div class="container h-auto">
+        <div class="row mb-3">
+            <div class="col-lg-1 col-sm-1"></div>
+            <div class="col-lg-10 col-sm-2">
+                {# ot tuk#}
                 <form action="{% url 'edit user' pk=request.user.pk %}" method="post" enctype="multipart/form-data">
+                    <div class="form-h1 text-black my-4">
+                        <h1>Edit Profile</h1>
+                    </div>
                     <hr class="my-4"/>
+
                     {{ form }}
                     {% csrf_token %}
-                   <div class="buttons mb-5">
+                    <div class="buttons mb-5">
                         <button type="submit" class="btn btn-dark btn-block">Edit</button>
-                        <a class="btn btn-outline-black btn-block" href="{% url 'change password' %}">Change
+                        <a class="btn btn-danger btn-block" href="{% url 'change password' %}">Change
                             Password</a>
                         <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
                             Back</a>
                     </div>
                 </form>
+                {# do tuk#}
             </div>
+            <div class="col-lg-1 col-sm-1"></div>
         </div>
     </div>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-{#                    {% for field in form %}#}
-{#                        <p>#}
-{#                            {{ field.label_tag }}#}
-{#                            {{ field }}#}
-{#                            {% for error in field.errors %}#}
-{#                                <p style="color: red">{{ error }}</p>#}
-{#                            {% endfor %}#}
-{#                        </p>#}
-{#                    {% endfor %}#}
-
-
-{#                        <div class="col d-flex justify-content-center">#}
-{#                            <!-- Checkbox -->#}
-{#                            <div class="form-check">#}
-{#                                <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked/>#}
-{#                                <label class="form-check-label" for="form1Example3"> Remember me </label>#}
-{#                            </div>#}
-{#                        </div>#}
-
 

@@ -11,7 +11,7 @@ from django.views import generic as view
 
 # show all categories
 class AllCategoryListView(view.ListView):
-    paginate_by = 4
+    # paginate_by = 4
     template_name = 'recipes/show-all-categories.html'
     model = Category
 
@@ -32,8 +32,9 @@ class BaseRecipeListView(auth_mixin.LoginRequiredMixin, view.ListView):
 
     # for waiter
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('index')
         if request.user.profile.job_title == 'waiter':
-            print(request)
             return redirect('index')
         return super().dispatch(request, *args, **kwargs)
 
@@ -44,14 +45,14 @@ def recipes_in_category(request, pk):
     category = Category.objects.filter(pk=pk).get()
     recipes = Recipe.objects.filter(category=category)
 
-    paginator = Paginator(recipes, 4)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    # paginator = Paginator(recipes, 4)
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
 
     context = {
         'category': category,
         'recipes': recipes,
-        'page_obj': page_obj
+        # 'page_obj': page_obj
     }
     return render(request, 'recipes/show-category-details.html', context)
 

@@ -3,18 +3,28 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from culinary_recipes.common.forms import RecipeCommentForm, RecipeCommentDeleteForm, RecipeCommentEditForm
-from culinary_recipes.common.models import RecipeComment
+from culinary_recipes.common.models import RecipeComment, HomePage
 from culinary_recipes.recipes_app.models import Menu, Category, Recipe
 
 UserModel = get_user_model()
 
 
+# def index(request):
+#     menus = Menu.objects.all()
+#     categories = Category.objects.all()
+#     context = {
+#         'menus': menus,
+#         'categories': categories,
+#     }
+#     return render(request, 'index.html', context)
+
+
 def index(request):
-    menus = Menu.objects.all()
-    categories = Category.objects.all()
+    home_page = HomePage.objects.all()
+
     context = {
-        'menus': menus,
-        'categories': categories,
+        'home_page': home_page,
+
     }
     return render(request, 'index.html', context)
 

@@ -1,12 +1,6 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-    {#                <div class="container-fluid">#}
-    {#                    <h1 class="title">menu-categories-list.html</h1>#}
-    {#                    <h3>http://127.0.0.1:8001/menu/1/</h3>#}
-    {#                    <h3>path('menu/pk', menu_list_view, name='menu list'),</h3>#}
-    {#                </div>#}
-    <!-- main container -->
 
     <div class="container">
         <!-- card block title -->
@@ -17,14 +11,13 @@
         <section class="section-menu-details">
             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-3 mb-10">
                 <!-- For category-->
-
                 {% for category in categories %}
 {#                {% for category in page_obj.object_list.all %}#}
-                    <div class="col  mb-0">
+                    <div class="col mb-0 g-5">
                         <!-- card start -->
                         <div class="card hover-shadow mb-0 h-100">
-                            <img class="rounded-circle" src="{{ category.image_category.image.url }}" alt="...">
-                            <div class="card-body mb-0">
+                            <img class="rounded-circle my-4" src="{{ category.image_category.image.url }}" alt="...">
+                            <div class="card-body">
                                 {% if category.note %}
                                     <p class="card-text text-center"><i>{{ category.note }}</i></p>
                                 {% endif %}
@@ -33,6 +26,10 @@
                                 <h5 class="card-title text-center">{{ category.name }}</h5>
                             </div>
                             <div class="card-footer mb-0 text-center">
+                                <a href="{% url 'category detail'  pk=category.pk %}"
+                                   class="btn btn-outline-dark">Details</a>
+                            </div>
+                        <div class="card-footer mb-0 text-center">
                                 <a href="{% url 'category detail'  pk=category.pk %}"
                                    class="btn btn-outline-dark">Details</a>
                             </div>

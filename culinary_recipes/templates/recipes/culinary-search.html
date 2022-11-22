@@ -1,66 +1,73 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-{#    <div class="container-fluid">#}
-{#        <h1 class="title">culinary-search.html</h1>#}
-{#        <h3 class="title">http://127.0.0.1:8000/recipes/search/?pattern=%D0%AF%D0%93%D0%9E%D0%94%D0%9E%D0%92</h3>#}
-{#        <h3 class="title"> path("search/", SearchResultsView.as_view(), name="search")</h3>#}
-{#    </div>#}
 
-    {% if not object_list %}
-        <!-- main container -->
-        <div class="container">
+    <!-- main container -->
+    <div class="container">
+        {% if not object_list %}
+
             <!-- card block title -->
-            <div class="card h-75 mb-4">
-                <div class="card-body">
-                    <h1 class="card-title">Няма намерен резултат</h1>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-outline-dark  position-relative " href="{% url 'index' %}">Home</a>
-                    <button class="btn btn-outline-dark float-end" onclick="history.back()">Go Back</button>
-                </div>
-            </div>
-            {% else %}
-            <!-- main container -->
-            <div class="container">
-                <!-- card block title -->
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h1 class="card-title">Резултати</h1>
-                    </div>
-                </div>
-                <!-- Cards row -->
-                <div class="row row-cols-2 row-cols-md-4 g-4">
-                    <!-- For Recipes-->
-                    {% for search in object_list %}
-                        <!-- Cards col -->
-                        <div class="col">
-                            <!-- card start -->
-                            <div class="card mb-0 h-100" style="max-width: 19.5rem;">
-                                <h5 class="card-title text-center  mb-0">{{ search.title }}</h5>
-                                <img class="rounded-circle" src="{{ search.image_recipe.image.url }}"
-                                     alt="...">
-                                <div class="card-body">
-                                    <p class="card-text">{{ search.food_type }}</p>
-                                </div>
-                                <!-- card footer -->
-                                <div class="card-footer text-center">
-                                    <a href="{% url 'recipe detail' pk=search.pk %}"
-                                       class="btn btn-outline-dark">Details</a>
-                                </div>
-                            </div>
-                            <!-- card end -->
+            <div class="card shadow-none">
+                <div class="card-body text-black menu">
+                    <h1 class="card-title my-4">Няма намерен резултат</h1>
+                    <div class="row">
+                        <div class="col-5"></div>
+                        <div class="col-2 text-center">
+                            <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
                         </div>
-                    {% endfor %}
-                    <!-- back button-->
-                </div>
-                <div class="card mb-4 my-3">
-                    <div class="card-body">
-                        <a class="btn btn-outline-dark  position-relative " href="{% url 'index' %}">Home</a>
-                        <button class="btn btn-outline-dark float-end" onclick="history.back()">Go Back</button>
+                        <div class="col-5"></div>
                     </div>
                 </div>
+                <section class="section-all-base">
+                </section>
             </div>
-        </div>
-    {% endif %}
+
+        {% else %}
+            <!-- main container -->
+            <!-- card block title -->
+            <div class="card mb-4 shadow-none">
+                <div class="card-body text-black menu shadow-none">
+                    <h1 class="card-title">Резултати</h1>
+                </div>
+            </div>
+
+            <section class="section-all-base">
+                <div class="container">
+
+                    <!-- Cards row -->
+                    <div class="row row-cols-2 row-cols-md-4 g-4">
+                        <!-- For Recipes-->
+                        {% for search in object_list %}
+                            <!-- Cards col -->
+                            <div class="col">
+                                <!-- card start -->
+                                <div class="card mb-0 h-100 hover-shadow">
+
+                                    <img class="rounded-circle" src="{{ search.image_recipe.image.url }}"
+                                         alt="...">
+                                    <h5 class="card-title text-center  mb-0">{{ search.title }}</h5>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ search.food_type }}</p>
+                                    </div>
+                                    <!-- card footer -->
+                                    <div class="card-footer text-center">
+                                        <a href="{% url 'recipe detail' pk=search.pk %}"
+                                           class="btn btn-outline-dark">Details</a>
+                                    </div>
+                                </div>
+                                <!-- card end -->
+                            </div>
+                        {% endfor %}
+                        <!-- back button-->
+                    </div>
+                    <div class="card mb-4 my-3"></div>
+
+                </div>
+            </section>
+            <div class="card-body text-center my-3">
+                <a class="btn btn-outline-dark text-center" href="{% url 'index' %}">Home</a>
+                <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

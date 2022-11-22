@@ -13,7 +13,7 @@
                 {% for base in object_list %}
                     <div class="col shadow-none mb-2 g-2">
                         <!-- card start -->
-                        <div class="card mb-2 h-100 shadow-6-strong hover-shadow" style="max-width: 19.5rem;">
+                        <div class="card mb-2 h-100 hover-shadow" style="max-width: 19.5rem;">
                             <div class="card-body">
                                 <h5 class="card-title text-success text-center">{{ base.title.upper }}</h5>
                                 {% if base.base_type %}
@@ -23,7 +23,7 @@
                                 <div class="fixed-bottom">
                                 </div>
                             </div>
-                            <div class="card-footer text-center">
+                            <div class="card-body text-center">
                                 <a href="{% url 'base_recipe detail' pk=base.pk %}"
                                    class="btn btn-outline-dark">Details</a>
                             </div>
@@ -34,8 +34,8 @@
             </div>
         </section>
         <div class="pagination-circle text-center">
-            <div class="card shadow-none mb-2">
-                <div class="card-body pagination mb-2">
+            <div class="card shadow-none">
+                <div class="card-body shadow-none pagination mb-2">
                     {% if page_obj.has_previous %}
                         <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous
                             page</a>

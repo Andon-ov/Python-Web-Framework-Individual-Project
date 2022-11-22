@@ -28,6 +28,9 @@
             <ul class="navbar-nav col-lg-3 col-md-3 mb-lg-0">
 
                 {% if not request.user.is_authenticated %}
+                    <li>
+                        <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{% url 'sign in' %}">Sign in</a>
                     </li>
@@ -36,16 +39,21 @@
                     </li>
                 {% else %}
                     <li>
+                        <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li>
                         <a class="nav-link text-white"
                            href="{% url 'details user' pk=request.user.pk %}">Profile</a>
                     </li>
+                    {% if not request.user.profile.job_title == 'waiter' %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'base recipe' %}">Bases</a>
+                        </li>
+                    {% endif %}
 
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{% url 'base recipe' %}">Bases</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href="{% url 'index' %}">Home</a>
-                    </li>
+
+
+
                     <li>
                         <!-- Navbar brand -->
                         {#                        <a class="navbar-brand mt-2 mt-lg-0" href="https://www.pizza-romance.com/"> <i#}

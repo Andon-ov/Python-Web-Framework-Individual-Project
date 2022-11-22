@@ -1,9 +1,7 @@
 from django.urls import path, include
 
-from culinary_recipes.recipes_app.views import create_recipe_view, CreateIngredientView, \
-    RecipeDetailsView, BaseRecipeDetailsView, CategoriesInMenuListView, \
-    BaseRecipeListView, SearchResultsView, RecipeDetailsWaitersView, \
-    AllCategoryListView, recipes_in_category
+from culinary_recipes.recipes_app.views import RecipeDetailsView, BaseRecipeDetailsView, CategoriesInMenuListView, \
+    BaseRecipeListView, SearchResultsView, RecipeDetailsWaitersView, AllCategoryListView, recipes_in_category
 
 urlpatterns = (
     path('menu/<int:pk>/', CategoriesInMenuListView.as_view(), name='menu list'),  # Show categories in selected menu
@@ -24,8 +22,9 @@ urlpatterns = (
 
     path("search/", SearchResultsView.as_view(), name="search"),  # Search
 
-    path('create/', include(
-        [path('recipe/', create_recipe_view, name='create recipe'),
-         # path('ingredient/', create_ingredient_view, name='create ingredient'),
-         path('ingredient/', CreateIngredientView.as_view(), name='create ingredient'),
-         ])))
+    # path('create/', include(
+    #     [path('recipe/', create_recipe_view, name='create recipe'),
+    #      # path('ingredient/', create_ingredient_view, name='create ingredient'),
+    #      path('ingredient/', CreateIngredientView.as_view(), name='create ingredient'),
+    #      ]))
+)

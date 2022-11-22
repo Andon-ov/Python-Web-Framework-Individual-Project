@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.views.generic.edit import FormMixin
 
 from culinary_recipes.common.forms import RecipeCommentForm
-from culinary_recipes.recipes_app.forms import RecipeCreateForm, IngredientCreateForm
+
 from culinary_recipes.recipes_app.models import Recipe, BaseRecipe, Category, Menu, Ingredient, PreparationMethod
 from django.contrib.auth import mixins as auth_mixin
 from django.shortcuts import render, redirect
@@ -113,28 +113,28 @@ class CategoriesInMenuListView(view.DetailView):
 #     return render(request, 'recipes/show-category-details.html', context)
 
 
-def create_recipe_view(request):
-    if request.method == 'POST':
-        form = RecipeCreateForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-    else:
-        form = RecipeCreateForm()
-        context = {
-            'form': form
-        }
-        return render(request, 'recipes/create-recipe.html', context)
+# def create_recipe_view(request):
+#     if request.method == 'POST':
+#         form = RecipeCreateForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('index')
+#     else:
+#         form = RecipeCreateForm()
+#         context = {
+#             'form': form
+#         }
+#         return render(request, 'recipes/create-recipe.html', context)
 
 
-class CreateIngredientView(view.FormView):
-    template_name = 'recipes/create-ingredient.html'
-    form_class = IngredientCreateForm
-    success_url = '/create/ingredient/'
-
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+# class CreateIngredientView(view.FormView):
+#     template_name = 'recipes/create-ingredient.html'
+#     form_class = IngredientCreateForm
+#     success_url = '/create/ingredient/'
+#
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)
 
 
 class RecipeDetailsWaitersView(auth_mixin.LoginRequiredMixin, view.DetailView):

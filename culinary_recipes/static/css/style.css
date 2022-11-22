@@ -73,10 +73,19 @@ div.buttons {
 
 }
 
+.btn:hover {
+      background-color: #629262 !important;
+        color: cornsilk !important;
+      transition: 0.7s;
+  }
+/*.btn-primary:hover {*/
+/*    background-color: red !important;*/
+/*}*/
+
 /*Button Text not to be uppercase*/
-.btn {
-    text-transform: unset !important;
-}
+/*.btn {*/
+/*    text-transform: unset !important;*/
+/*}*/
 
 #id_job_title {
     width: 100%;
@@ -97,7 +106,7 @@ form {
     height: auto;
 }
 
-.form-h1 h1 {
+    .form-h1 h1 {
     /*margin-top: 20px;*/
     font-family: FuturaPT, helvetica, sans-serif;
     /*font-size: 8vw;*/

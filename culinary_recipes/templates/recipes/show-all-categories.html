@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load tags %}
 {% block page_content %}
     <!-- Work title -->
     {#    <div class="container-fluid">#}
@@ -11,20 +12,25 @@
     <div class="container">
         <!-- card block title -->
         <div class="menu my-3 mb-8 text-black">
-            <h1 class="card-title text-black ">всички категории</h1>
+
+            {% for menu in menus %}
+                <h1 class="card-title text-black ">{{ menu }}</h1>
+            {% endfor %}
+
+
         </div>
-        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-3 mb-10">
+        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-5 mb-10">
 
             <!-- For Recipes-->
             {% for category in category_list %}
                 <!-- Cards col -->
-                <div class="col mb-0">
+                <div class="col mb-0 g-5">
                     <!-- card start -->
                     <div class="card hover-shadow mb-0 h-100">
-                        <img class="rounded-circle" src="{{ category.image_category.image.url }}"
+                        <img class="rounded-circle my-4" src="{{ category.image_category.image.url }}"
                              alt="...">
                         <div class="card-body">
-                            <h5 class="card-title text-center">{{ category.name }}</h5>
+                            {#                            <h5 class="card-title text-center">{{ category.name }}</h5>#}
                             <p class="card-text text-center">{{ category.menu|upper }}</p>
 
                             {% if category.note %}
@@ -35,9 +41,9 @@
                         <div class="card-footer mb-0 text-center">
                             <h5 class="card-title text-center">{{ category.name }}</h5>
                         </div>
-                        <div class="card-footer text-center">
+                        <div class="card-footer text-center mb-4">
                             <a href="{% url 'category detail'  pk=category.pk %}"
-                               class="btn btn-outline-dark">Details</a>
+                               class="btn btn-outline-dark ">Details</a>
                         </div>
                     </div>
                 </div>

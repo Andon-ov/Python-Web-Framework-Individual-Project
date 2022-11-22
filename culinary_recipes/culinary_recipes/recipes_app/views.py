@@ -1,5 +1,4 @@
 from django.core.paginator import Paginator
-from django.urls import reverse
 from django.views.generic.edit import FormMixin
 
 from culinary_recipes.common.forms import RecipeCommentForm
@@ -15,6 +14,12 @@ class AllCategoryListView(view.ListView):
     paginate_by = 4
     template_name = 'recipes/show-all-categories.html'
     model = Category
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menus'] = Menu.objects.all()
+
+        return context
 
 
 # show all base recipe
@@ -34,29 +39,40 @@ class BaseRecipeListView(auth_mixin.LoginRequiredMixin, view.ListView):
 
 
 # show menu -> categories
-class CategoryListView(view.ListView):
+
+def recipes_in_category(request, pk):
+    category = Category.objects.filter(pk=pk).get()
+    recipes = Recipe.objects.filter(category=category)
+
+    paginator = Paginator(recipes, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'category': category,
+        'recipes': recipes,
+        'page_obj': page_obj
+    }
+    return render(request, 'recipes/show-category-details.html', context)
+
+
+class CategoriesInMenuListView(view.DetailView):
     model = Category
     template_name = 'recipes/menu-categories-list.html'
-    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = Menu.objects.filter(category=self.kwargs['pk'])
+        context['menu'] = Menu.objects.filter(id=self.kwargs['pk']).get()
+        context['categories'] = Category.objects.filter(menu=self.kwargs['pk'])
 
         return context
-
-
-#         context['form'] = RecipeCommentForm(initial={'post': self.object})
-#         context['recipe_ingredients'] = Ingredient.objects.filter(recipe=self.kwargs['pk'])
 
 # def menu_list_view(request, pk):
 #     menu = Menu.objects.filter(pk=pk).get()
 #     categories = Category.objects.filter(menu_id=menu)
-#     print(categories)
 #
 #     paginator = Paginator(categories, 4)
 #     page_number = request.GET.get('page')
-#
 #     page_obj = paginator.get_page(page_number)
 #
 #     context = {
@@ -79,22 +95,21 @@ class CategoryListView(view.ListView):
 #         return context
 
 
-def category_list_view(request, pk):
-    category = Category.objects.filter(pk=pk).get()
-    recipes = Recipe.objects.filter(category_id=category)
-    print(recipes)
-
-    paginator = Paginator(recipes, 4)
-    page_number = request.GET.get('page')
-
-    page_obj = paginator.get_page(page_number)
-
-    context = {
-        'category': category,
-        'recipes': recipes,
-        'page_obj': page_obj
-    }
-    return render(request, 'recipes/show-category-details.html', context)
+# def category_list_view(request, pk):
+#     category = Category.objects.filter(pk=pk).get()
+#     recipes = Recipe.objects.filter(category_id=category)
+#
+#     paginator = Paginator(recipes, 4)
+#     page_number = request.GET.get('page')
+#
+#     page_obj = paginator.get_page(page_number)
+#
+#     context = {
+#         'category': category,
+#         'recipes': recipes,
+#         'page_obj': page_obj
+#     }
+#     return render(request, 'recipes/show-category-details.html', context)
 
 
 def create_recipe_view(request):

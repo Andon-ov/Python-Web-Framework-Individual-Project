@@ -11,12 +11,15 @@
     <div class="container">
         <!-- card block title -->
         <div class="menu my-3 mb-8 text-black">
-            <h1>{{ menu.get }}</h1>
+            <h1>{{ menu }}</h1>
+
         </div>
         <section class="section-menu-details">
             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-3 mb-10">
                 <!-- For category-->
-                {% for category in category_list %}
+
+                {% for category in categories %}
+{#                {% for category in page_obj.object_list.all %}#}
                     <div class="col  mb-0">
                         <!-- card start -->
                         <div class="card hover-shadow mb-0 h-100">
@@ -43,32 +46,32 @@
             {#        <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>#}
         </section>
         <div class="card-body pagination mb-2">
-            {% if page_obj.has_previous %}
-                <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous page</a>
-                {% if page_obj.number > 3 %}
+            {% if categories.has_previous %}
+                <a class="text-pagination" href="?page={{ categories.previous_page_number }}">« Previous page</a>
+                {% if categories.number > 3 %}
                     <a class="text-pagination" href="?page=1">1</a>
-                    {% if page_obj.number > 4 %}
+                    {% if categories.number > 4 %}
                         <span class="text-pagination">...</span>
                     {% endif %}
                 {% endif %}
             {% endif %}
-            {% for num in page_obj.paginator.page_range %}
-                {% if page_obj.number == num %}
+            {% for num in categories.paginator.page_range %}
+                {% if categories.number == num %}
                     <a class="text-pagination-here" href="?page={{ num }}">{{ num }}</a>
-                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                {% elif num > categories.number|add:'-3' and num < categories.number|add:'3' %}
                     <a class="text-pagination" href="?page={{ num }}">{{ num }}</a>
                 {% endif %}
             {% endfor %}
-            {% if page_obj.has_next %}
-                {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+            {% if categories.has_next %}
+                {% if categories.number < categories.paginator.num_pages|add:'-3' %}
                     <span>...</span>
                     <a class="text-pagination"
-                       href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
-                {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %}
+                       href="?page={{ categories.paginator.num_pages }}">{{ categories.paginator.num_pages }}</a>
+                {% elif categories.number < categories.paginator.num_pages|add:'-2' %}
                     <a class="text-pagination"
-                       href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                       href="?page={{ categories.paginator.num_pages }}">{{ categories.paginator.num_pages }}</a>
                 {% endif %}
-                <a class="text-pagination" href="?page={{ page_obj.next_page_number }}">Next Page »</a>
+                <a class="text-pagination" href="?page={{ categories.next_page_number }}">Next Page »</a>
             {% endif %}
         </div>
     </div>

@@ -1,51 +1,97 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <!-- container -->
-    <div class="container h-75">
-        <!-- item container -->
-        <div class="items-container">
-            <!-- item -->
-            <div class="item">
-                <!-- h1 -->
-                <div class="form-h1">
-                    <h1 class="text">Profile Info</h1>
-                </div>
+    {#    <!-- container -->#}
+    {#    <div class="container h-75">#}
+    {#        <!-- item container -->#}
+    {#        <div class="items-container">#}
+    {#            <!-- item -->#}
+    {#            <div class="item">#}
+    {#                <!-- h1 -->#}
+    {#                <div class="form-h1">#}
+    {#                    <h1 class="text">Profile Info</h1>#}
+    {#                </div>#}
+    {##}
+    {#                <div class="col-6 info">#}
+    {#                    <hr class="my-4 "/>#}
+    {##}
+    {##}
+    {#                    Email: {{ object.email }}<br>#}
+    {#                    Last Login: {{ object.last_login }}<br>#}
+    {#                    Full Name: {{ object.profile.full_name }}<br>#}
+    {#                    Job Title: {{ object.profile.job_title }}<br>#}
+    {##}
+    {#    <div class="buttons mb-5">#}
+    {#    <br>#}
+    {#    <a class="btn btn-black btn-block" href="{% url 'edit user' pk=request.user.pk %}">Profile#}
+    {#        edit</a>#}
+    {##}
+    {#    <a class="btn btn-danger btn-block" href="{% url 'delete user' pk=request.user.pk %}">Profile#}
+    {#        delete</a>#}
+    {#    <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go#}
+    {#        Back</a>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
 
-                <div class="col-6 info">
-                    <hr class="my-4 "/>
 
-
-                    Email: {{ object.email }}<br>
-                    Last Login: {{ object.last_login }}<br>
-                    Full Name: {{ object.profile.full_name }}<br>
-                    Job Title: {{ object.profile.job_title }}<br>
-
-                    <div class="buttons mb-5">
-                        {#                        <br>#}
-                        <a class="btn btn-black btn-block" href="{% url 'edit user' pk=request.user.pk %}">Profile
-                            edit</a>
-
-                        <a class="btn btn-danger btn-block" href="{% url 'delete user' pk=request.user.pk %}">Profile
-                            delete</a>
-                        <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
-                            Back</a>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <!-- card block title -->
+        <div class="form-h1 my-3 my-5 text-black">
+            <h1>My Account</h1>
         </div>
+        <section class="section-menu-details col-12  min-vh-75">
+            <div class="row">
+                <div class="col-sm-4"></div>
+
+
+                <!-- card start -->
+                <div class="card hover-shadow col-sm-4 mb-12">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title text-center">{{ object.profile.full_name.upper }}</h5>
+
+                    </div>
+
+                    <div class="card-footer text-center">
+
+                        <p class="card-text text-center"><i>You are logged in as <b>{{ object.email }}</b>
+                            <br><a class="text-danger " href="{% url 'sign out' %}">Sign out</a></i></p>
+
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-center"> Job Title: {{ object.profile.job_title.upper }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <p class="card-text text-center"> Last Login: <br>{{ object.last_login.date }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <div class="buttons mb-5">
+                            <br>
+                            <a class="btn btn-black btn-block" href="{% url 'edit user' pk=request.user.pk %}">Profile
+                                edit</a>
+
+                            <a class="btn btn-danger btn-block" href="{% url 'delete user' pk=request.user.pk %}">Profile
+                                delete</a>
+                            <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
+                                Back</a>
+                        </div>
+                    </div>
+
+                    <!-- card end -->
+                    <div class="col-sm-4"></div>
+                </div>
+
+            </div>
+        </section>
     </div>
+    <!-- back button-->
+    {#        <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>#}
+
 {% endblock %}
 
 
-
-{#<div class="position-relative position-relative-example m-2 ">#}
-{#    <div class="position-absolute top-50 start-50 translate-middle">#}
-{#        <a class="btn btn-primary text-danger  btn-floating m-0" style="background-color: #ffffff"#}
-{#           href="{% url 'delete user' pk=request.user.pk %}"#}
-{#           role="button"><i class="fas fa-trash"></i></a>#}
-{#        <a class="btn btn-primary text-danger btn-floating m-0" style="background-color: #ffffff"#}
-{#           href="{% url 'edit user' pk=request.user.pk %}"#}
-{#           role="button"><i class="fas fa-user-edit"></i></a>#}
-{#    </div>#}
-{#</div>#}

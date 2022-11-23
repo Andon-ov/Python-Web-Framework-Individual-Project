@@ -123,10 +123,13 @@ form label {
     font-size: 16px;
     font-weight: 400;
     color: #000;
+
+}
+input:focus,textarea:focus{
+    outline:solid 1px black;
 }
 
-form input,
-textarea {
+form input,textarea{
     font-size: 12px;
     font-family: Dosis, FuturaPT, helvetica, sans-serif;
     padding: 6px;

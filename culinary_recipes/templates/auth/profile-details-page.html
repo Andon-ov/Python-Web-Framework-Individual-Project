@@ -10,23 +10,16 @@
         <section class="section-menu-details col-12  min-vh-75">
             <div class="row">
                 <div class="col-sm-4"></div>
-
-
                 <!-- card start -->
                 <div class="card hover-shadow col-sm-4 mb-12">
 
                     <div class="card-body">
 
                         <h5 class="card-title text-center">{{ object.profile.full_name.upper }}</h5>
-
                     </div>
-
                     <div class="card-footer text-center">
-
                         <p class="card-text text-center"><i>You are logged in as <b>{{ object.email }}</b>
                             <br><a class="text-danger " href="{% url 'sign out' %}">Sign out</a></i></p>
-
-
                     </div>
                     <div class="card-footer text-center">
                         <p class="card-text text-center"> Job Title: {{ object.profile.job_title.upper }}</p>
@@ -46,7 +39,6 @@
                                 Back</a>
                         </div>
                     </div>
-
                     <!-- card end -->
                     <div class="col-sm-4"></div>
                 </div>

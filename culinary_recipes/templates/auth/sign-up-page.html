@@ -8,8 +8,6 @@
         <div class="row mb-3">
             <div class="col-lg-1 col-sm-1"></div>
             <div class="col-lg-10 col-sm-2">
-                {# ot tuk#}
-
                 <form action="{% url 'sign up' %}" method="post" enctype="multipart/form-data">
                     <div class="form-h1 text-black my-4">
                         <h1>Sign Up</h1>
@@ -50,60 +48,10 @@
                         </div>
                     </div>
                 </form>
-                {# do tuk#}
+
             </div>
             <div class="col-lg-1 col-sm-1"></div>
         </div>
     </div>
 
 {% endblock %}
-{#    <!-- container -->#}
-{#    <div class="container h-75">#}
-{#    <!-- item container -->#}
-{#        <div class="items-container">#}
-{#        <!-- item -->#}
-{#            <div class="item">#}
-{#            <!-- h1 -->#}
-{#                <div class="form-h1">#}
-{#                    <h1>Create an account</h1>#}
-{#                </div>#}
-{#                <form action="{% url 'sign up' %}" method="post" enctype="multipart/form-data">#}
-{#                    <hr class="my-4"/>#}
-{#                    <label for="email">Email</label>#}
-{#                    {{ form.email|placeholder:'Enter your email' }}#}
-{#                    <label for="password1">Password</label>#}
-{#                    {{ form.password1|placeholder:'Password' }}#}
-{#                    <label for="password2">Password</label>#}
-{#                    {{ form.password2|placeholder:'Confirm your password' }}#}
-{#                    <label for="first_name">First Name</label>#}
-{#                    {{ form.first_name|placeholder:'Enter your first name' }}#}
-{#                    <label for="last_name">Last Name</label>#}
-{#                    {{ form.last_name|placeholder:'Enter your last name' }}#}
-{#                    <label for="job_title">Job</label>#}
-{#                    {{ form.job_title }}#}
-{##}
-{#                    {% if form.errors %}#}
-{#                        {% for field in form %}#}
-{#                            {% for error in field.errors %}#}
-{#                                <div class="alert alert-danger">#}
-{#                                    <strong>{{ error|escape }}</strong>#}
-{#                                </div>#}
-{#                            {% endfor %}#}
-{#                        {% endfor %}#}
-{#                        {% for error in form.non_field_errors %}#}
-{#                            <div class="alert alert-danger">#}
-{#                                <strong>{{ error|escape }}</strong>#}
-{#                            </div>#}
-{#                        {% endfor %}#}
-{#                    {% endif %}#}
-{#                    {% csrf_token %}#}
-{#                   <div class="buttons mb-5">#}
-{#                        <button type="submit" class="btn btn-black btn-block">Sign in</button>#}
-{#                        <div class="second-option">#}
-{#                            <p>Have an account? <a class="text-danger" href="{% url 'sign in' %}">Log in</a></p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </form>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}

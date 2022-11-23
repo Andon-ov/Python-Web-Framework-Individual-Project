@@ -78,25 +78,12 @@
                                 <p>Готово количество: {{ object.base_yield }}</p>
                             {% endif %}
                         </div>
-
-                        {#                        <!-- allergen -->#}
-                        {#                        {% if object.allergen.exists %}#}
-                        {#                            <div>#}
-                        {#                                <h6>Алергени:</h6>#}
-                        {#                                {% for allergen in object.allergen.all %}#}
-                        {#                                    {{ allergen }}<br>#}
-                        {##}
-                        {#                                {% endfor %}#}
-                        {#                            </div>#}
-                        {#                        {% endif %}#}
                         <div class="card-footer my-3 ">
                             <a type="button" class="btn btn-outline-dark float-end"
                                href="{% url 'index' %}">Home</a>
                             <button class="btn btn-outline-dark float-none" onclick="history.back()">Back
                             </button>
                         </div>
-
-
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-1"></div>
@@ -104,85 +91,3 @@
         </section>
     </div>
 {% endblock %}
-
-{#content#}
-{#<div class="items-container">#}
-{#    <!-- recipe info container -->#}
-{#    <div class="item bg-light ">#}
-{#        <!-- category link -->#}
-{#        <a href="{% url 'base recipe' %}"#}
-{#           class="link-danger">#}
-{#            <h5>Всички базови рецепти</h5></a>#}
-{#        <!-- title -->#}
-{#        <h3>{{ object.title }}</h3>#}
-{#        <!-- type -->#}
-{#        {% if object.base_type %}#}
-{#            <p>Тип: {{ object.base_type }}</p>#}
-{#        {% endif %}#}
-{#        <!-- ingredient -->#}
-{#        {% if object.baseingredient_set %}#}
-{#            <!-- table ingredient -->#}
-{#            <table class="table table-striped">#}
-{#                <thead>#}
-{#                <tr>#}
-{#                    <th scope="col">Съставки:</th>#}
-{#                </tr>#}
-{#                </thead>#}
-{#                <tbody>#}
-{#                {% for ingredient in object.baseingredient_set.all %}#}
-{#                    <tr>#}
-{#                        <td>{{ ingredient.food }}#}
-{#                            - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>#}
-{#                        {% if ingredient.preparation_method %}#}
-{#                            <td>{{ ingredient.preparation_method }}</td>#}
-{#                        {% endif %}#}
-{#                    </tr>#}
-{##}
-{#                {% endfor %}#}
-{#                </tbody>#}
-{#            </table>#}
-{#            <!-- table ingredient end  -->#}
-{#        {% endif %}#}
-{#        <div>#}
-{#            <div>#}
-{#                <!-- preparation method -->#}
-{#                {% if prep_method %}#}
-{#                    {% for method in prep_method %}#}
-{#                        <p>{{ method }}</p>#}
-{#                    {% endfor %}#}
-{#                {% endif %}#}
-{#            </div>#}
-{#            <!-- portions -->#}
-{#            {% if  object.base_recipe_portions %}#}
-{#                <p>Порций: {{ object.base_recipe_portions }} </p>#}
-{#            {% endif %}#}
-{#            <!-- note -->#}
-{#            {% if object.note %}#}
-{#                <p>Бележка: {{ object.note }}</p>#}
-{#            {% endif %}#}
-{#            <!-- preparation -->#}
-{#            {% if object.preparation %}#}
-{#                <p class="text-center">Приготвяне: <i>{{ object.preparation }}</i></p>#}
-{#            {% endif %}#}
-{#            <!-- yield -->#}
-{#            {% if object.base_yield %}#}
-{#                <p>Готово количество: {{ object.base_yield }}</p>#}
-{#            {% endif %}#}
-{#            <!-- allergen -->#}
-{#            {% if object.allergen.exists %}#}
-{#                <div>#}
-{#                    <h6>Алергени:</h6>#}
-{#                    {% for allergen in object.allergen.all %}#}
-{#                        {{ allergen }}<br>#}
-{##}
-{#                    {% endfor %}#}
-{#                </div>#}
-{#            {% endif %}#}
-{##}
-{#            <!-- buttons -->#}
-{#            <a type="button" class="btn btn-outline-dark float-end" href="{% url 'index' %}">Home</a>#}
-{#            <button class="btn btn-outline-dark float-none" onclick="history.back()">Go Back</button>#}
-{##}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}

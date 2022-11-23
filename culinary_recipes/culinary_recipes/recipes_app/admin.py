@@ -20,7 +20,7 @@ class PhotoAdmin(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category',)  # 'get_ingredients',
+    list_display = ('title', 'category',)
     list_filter = ('title',)
     search_fields = ('title',)
     fieldsets = (

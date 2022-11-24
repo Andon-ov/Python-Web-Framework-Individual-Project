@@ -4,17 +4,18 @@ from django.shortcuts import render, redirect
 
 from culinary_recipes.common.forms import RecipeCommentForm, RecipeCommentDeleteForm, RecipeCommentEditForm
 from culinary_recipes.common.models import RecipeComment, HomePage
-from culinary_recipes.recipes_app.models import Menu, Category, Recipe
+from culinary_recipes.recipes_app.models import Recipe
 
 UserModel = get_user_model()
 
 
 def index(request):
-    home_page = HomePage.objects.all()
-
+    home_page = HomePage.objects.first()
     context = {
-        'home_page': home_page,
-
+        'first_title': home_page.first_title,
+        'second_title': home_page.second_title,
+        'content_title': home_page.content_title,
+        'content_paragraph': home_page.content_paragraph
     }
     return render(request, 'index.html', context)
 

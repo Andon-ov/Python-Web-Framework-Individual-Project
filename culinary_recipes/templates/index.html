@@ -38,9 +38,11 @@
                     <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                         <div class="d-flex justify-content-center align-items-center h-100">
                             <div class="text-center text-white menu">
-                                <h1 class="mb-4 ">{{ home_page.get.first_title.upper }}</h1>
-                                {% if not request.user.is_authenticated %}
-                                    <h1 class="mb-4 ">{{ home_page.get.second_title.upper }}</h1>
+                                {% if first_title and second_title %}
+                                    <h1 class="mb-4 ">{{ first_title.upper }}</h1>
+                                    {% if not request.user.is_authenticated %}
+                                        <h1 class="mb-4 ">{{ second_title.upper }}</h1>
+                                    {% endif %}
                                 {% endif %}
 
 
@@ -56,9 +58,11 @@
                     <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                         <div class="d-flex justify-content-center align-items-center h-100">
                             <div class="text-center text-white menu">
-                                <h1 class="mb-4 ">{{ home_page.get.first_title.upper }}</h1>
-                                {% if not request.user.is_authenticated %}
-                                    <h1 class="mb-4 ">{{ home_page.get.second_title.upper }}</h1>
+                                {% if first_title and second_title %}
+                                    <h1 class="mb-4 ">{{ first_title.upper }}</h1>
+                                    {% if not request.user.is_authenticated %}
+                                        <h1 class="mb-4 ">{{ second_title.upper }}</h1>
+                                    {% endif %}
                                 {% endif %}
 
                                 <a href="{% url 'all category' %}"
@@ -73,9 +77,11 @@
                     <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                         <div class="d-flex justify-content-center align-items-center h-100">
                             <div class="text-center text-white menu">
-                                <h1 class="mb-4 ">{{ home_page.get.first_title.upper }}</h1>
-                                {% if not request.user.is_authenticated %}
-                                    <h1 class="mb-4 ">{{ home_page.get.second_title.upper }}</h1>
+                                {% if first_title and second_title %}
+                                    <h1 class="mb-4 ">{{ first_title.upper }}</h1>
+                                    {% if not request.user.is_authenticated %}
+                                        <h1 class="mb-4 ">{{ second_title.upper }}</h1>
+                                    {% endif %}
                                 {% endif %}
 
                                 <a href="{% url 'all category' %}"
@@ -116,11 +122,11 @@
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <h3>{{ home_page.get.content_title.upper }}</h3>
-                        <br>
-
-
-                        <p>{{ home_page.get.content_paragraph }}</p>
+                        {% if home_page.exists %}
+                            <h3>{{ content_title.upper }}</h3>
+                            <br>
+                            <p>{{ content_paragraph }}</p>
+                        {% endif %}
                     </div>
                 </div>
                 {#                <hr class="my-5"/>#}

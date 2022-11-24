@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+  web:
+    image: bloodtaint/culinary_recipes
+    builds: ./culinary_recipes
+    command: gunicorn culinary_recipes.wagi:application --build 0.0.0.0:8000
+    volumes: 
+      - ./staticfile:/tmp/culinary_recipes/staticfile
+    ports:
+      - 8000:8000
+    env_file:
+      - ./culinary_recipes/envs/.env.prod
+    depends_on: 
+      - postgres
+  postgres:    
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 1123QwER
+      POSTGRES_USER: postgres
+      POSTGRES_DB: recipes_db
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.0.5
+    restart: always
+    container_name: redis
+    ports:
+      - "6379:6379"
+  nginx:
+    image: nginx
+    ports:
+      - 81:80
+      - 443:443
+    depends_on:
+      - web
+   volumes:
+      - ./staticfiles:/home/app/web/staticfiles
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro
+    depends_on:
+      - web

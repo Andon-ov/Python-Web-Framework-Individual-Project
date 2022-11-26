@@ -105,6 +105,7 @@ celerybeat.pid
 .env
 .venv
 env/
+/envs/
 venv/
 ENV/
 env.bak/
@@ -127,3 +128,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# My
+postgresql/
+docker-compose.prod.yml
+culinary-recipes.pem
+/envs/.env.prod
+culinary_recipes/envs/.env.prod
+
+

@@ -1,28 +1,31 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    <div class="container h-auto">
-        <div class="row mb-3">
-            <div class="col-lg-1 col-sm-1"></div>
-            <div class="col-lg-10 col-sm-2">
-                <form action="{% url 'edit user' pk=request.user.pk %}" method="post" enctype="multipart/form-data">
-                    <div class="form-h1 text-black my-4">
-                        <h1>Edit Profile</h1>
-                    </div>
-                    <hr class="my-4"/>
-
-                    {{ form }}
-                    {% csrf_token %}
-                    <div class="buttons mb-5">
-                        <button type="submit" class="btn btn-dark btn-block">Edit</button>
-                        <a class="btn btn-danger btn-block" href="{% url 'change password' %}">Change
-                            Password</a>
-                        <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
-                            Back</a>
-                    </div>
-                </form>
-            </div>
-            <div class="col-lg-1 col-sm-1"></div>
+    <div class="container">
+        <div class="form-h1 my-3 my-5 text-black">
+            <h1>Edit Profile</h1>
         </div>
+        <section class="section-menu-details col-12  min-vh-75">
+            <div class="row mb-3">
+                <div class="col-sm-4"></div>
+                <div class="card hover-shadow col-sm-4 mb-12">
+                    <form action="{% url 'edit user' pk=request.user.pk %}" method="post" enctype="multipart/form-data">
+
+                        <hr class="my-4"/>
+
+                        {{ form }}
+                        {% csrf_token %}
+                        <div class="buttons mb-5 my-3">
+                            <button type="submit" class="btn btn-dark btn-block">Edit</button>
+                            <a class="btn btn-danger btn-block" href="{% url 'change password' %}">Change
+                                Password</a>
+                            <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
+                                Back</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </section>
     </div>
 {% endblock %}
 

@@ -39,23 +39,3 @@ class RecipeComment(models.Model):
     class Meta:
         ordering = ('-id',)
 
-
-class HomePage(models.Model):
-    first_title = models.CharField(
-        max_length=300,
-        null=False,
-        blank=False,
-
-    )
-    second_title = models.CharField(
-        max_length=300,
-        null=True,
-        blank=True,
-        help_text='hide when user logs in'
-    )
-    content_title = models.CharField(
-        max_length=300,
-        null=False,
-        blank=False
-    )
-    content_paragraph = models.TextField()

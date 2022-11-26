@@ -3,19 +3,15 @@ from pathlib import Path
 
 from django.urls import reverse_lazy
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRETY_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
+
+CSRF_TRUSTED_ORIGINS = [f'https://{x}' for x in ALLOWED_HOSTS]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -64,6 +60,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'culinary_recipes.wsgi.application'
 
+# for docker run
+
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('DB_ENGINE'),
@@ -75,6 +73,8 @@ DATABASES = {
     }
 }
 
+
+# for pycharm run
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -113,9 +113,6 @@ else:
         },
     ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -123,9 +120,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
 
@@ -136,24 +130,18 @@ STATIC_URL = '/static/'
 # )
 
 STATICFILES_DIRS = (
-        BASE_DIR/ 'staticfiles',
+    BASE_DIR / 'staticfiles',
 )
 
-
 STATIC_ROOT = '/tmp/culinary_recipes/staticfiles'
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(
     BASE_DIR, 'media'
 )
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# from here
 LOGIN_URL = reverse_lazy('sign in')
 LOGIN_REDIRECT_URL = reverse_lazy('index')
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
@@ -181,5 +169,3 @@ LOGGING = {
         }
     }
 }
-
-# SESSION_EXPIRE_AT_BROWSER_CLOSE = True

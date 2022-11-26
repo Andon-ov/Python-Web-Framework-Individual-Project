@@ -101,9 +101,9 @@ div.buttons {
 form {
     margin-block: 10%;
     padding: 10px;
-    margin-left: 25%;
-    margin-right: 25%;
-    width: 50%;
+    /*margin-left: 25%;*/
+    /*margin-right: 25%;*/
+    /*width: 50%;*/
     height: auto;
 }
 
@@ -226,15 +226,16 @@ footer {
 
 }
 
-.section-category-details {
-    min-height: 400px;
-    /*background-color: red;*/
-    /*height: 500px;*/
-    /*background-color: red;*/
-}
+/*.section-category-details {*/
+/*    min-height: 400px;*/
+/*    !*background-color: red;*!*/
+/*    !*height: 500px;*!*/
+/*    !*background-color: red;*!*/
+/*}*/
 
 .section-menu-details {
     min-height: 400px;
+    /*630px*/
     /*background-color: red;*/
     /*height: 500px;*/
     /*background-color: red;*/
@@ -246,3 +247,10 @@ footer {
     /*background-color: red;*/
 }
 
+.section-all-recipes {
+    min-height: 630px;
+
+    /*background-color: red;*/
+    /*height: 500px;*/
+    /*background-color: red;*/
+}

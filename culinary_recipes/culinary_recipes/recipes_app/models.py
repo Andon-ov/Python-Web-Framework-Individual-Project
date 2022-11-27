@@ -1,6 +1,6 @@
+from cloudinary import models as cloudinary_models
 from django.db import models
 from embed_video.fields import EmbedVideoField
-from cloudinary import models as cloudinary_models
 
 
 class Menu(models.Model):

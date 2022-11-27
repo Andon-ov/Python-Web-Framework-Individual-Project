@@ -1,7 +1,8 @@
 from enum import Enum
 
 from django.contrib.auth import models as auth_models
-from django.contrib.auth.models import AbstractBaseUser
+
+from django.contrib.auth.models import Group as BaseGroup
 from django.core.validators import MinLengthValidator
 from django.db import models
 
@@ -72,9 +73,10 @@ class Profile(models.Model):
 
 
 class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
+    EMAIL_MAX_LENGTH = 255
     email = models.EmailField(
         verbose_name='email address',
-        max_length=255,
+        max_length=EMAIL_MAX_LENGTH,
         unique=True,
     )
 
@@ -84,6 +86,12 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     is_admin = models.BooleanField(
         default=False
     )
+    is_staff = models.BooleanField(
+        default=False
+    )
+    date_joined = models.DateTimeField(
+        auto_now_add=True,
+    )
 
     objects = AppUserManager()
 
@@ -91,19 +99,3 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     def __str__(self):
         return self.email
-
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    @property
-    def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin

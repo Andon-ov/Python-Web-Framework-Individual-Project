@@ -1,8 +1,7 @@
-from django.contrib.auth import forms as auth_forms, get_user_model
 from django import forms
-
-from django.core.exceptions import ValidationError
+from django.contrib.auth import forms as auth_forms
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 
 from culinary_recipes.auth_app.models import Profile, JobTitle
 
@@ -30,7 +29,14 @@ class SignUpForm(auth_forms.UserCreationForm):
 
     class Meta:
         model = UserModel
-        fields = (UserModel.USERNAME_FIELD, 'password1', 'password2', 'first_name', 'last_name', 'job_title')
+        fields = (
+            UserModel.USERNAME_FIELD,
+            'password1',
+            'password2',
+            'first_name',
+            'last_name',
+            'job_title'
+        )
 
     def save(self, commit=True):
         user = super().save(commit=commit)
@@ -48,8 +54,14 @@ class SignUpForm(auth_forms.UserCreationForm):
 
 
 class UserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput
+    )
+    password2 = forms.CharField(
+        label='Password confirmation',
+        widget=forms.PasswordInput
+    )
 
     class Meta:
         model = UserModel
@@ -77,4 +89,9 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = UserModel
-        fields = ('email', 'password', 'is_active', 'is_admin')
+        fields = (
+            'email',
+            'password',
+            'is_active',
+            'is_admin'
+        )

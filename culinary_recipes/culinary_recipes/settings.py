@@ -8,9 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRETY_KEY')
 
+
 DEBUG = bool(os.environ.get('DEBUG'))
+# DEBUG = int(os.environ.get('DEBUG', 1))
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
+
 
 CSRF_TRUSTED_ORIGINS = [f'https://{x}' for x in ALLOWED_HOSTS]
 
@@ -64,29 +67,30 @@ WSGI_APPLICATION = 'culinary_recipes.wsgi.application'
 
 # for docker run
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': os.environ.get('DB_ENGINE'),
-#         'NAME': os.environ.get('DB_NAME'),
-#         'USER': os.environ.get('DB_USER'),
-#         'PASSWORD': os.environ.get('DB_PASSWORD'),
-#         'HOST': os.environ.get('DB_HOST'),
-#         'PORT': os.environ.get('DB_PORT'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+    }
+}
 
 
 # for pycharm run
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'recipes_db',
-        'USER': 'postgres',
-        'PASSWORD': '1123QwER',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'recipes_db',
+#         'USER': 'postgres',
+#         'PASSWORD': '1123QwER',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
 CACHES = {
     'default': {

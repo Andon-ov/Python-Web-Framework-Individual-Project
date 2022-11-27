@@ -1,6 +1,7 @@
+from django.contrib import admin
+
 from culinary_recipes.recipes_app.models import Category, PreparationMethod, Photo, Recipe, Ingredient, BaseRecipe, \
     Allergen, Menu, FoodPlate, Video, Food, Unit, BaseIngredient
-from django.contrib import admin
 
 
 @admin.register(Category)
@@ -58,12 +59,12 @@ class IngredientAdmin(admin.ModelAdmin):
         'last_order_index')
     readonly_fields = ('last_order_index', 'last_recipe_edit')
 
-    @staticmethod
+    @staticmethod  # do i need it?
     def last_order_index(obj):
         latest_object = Ingredient.objects.values('order_index').last().get('order_index')
         return latest_object
 
-    @staticmethod
+    @staticmethod  # do i need it?
     def last_recipe_edit(obj):
         latest_object = Ingredient.objects.values('recipe__title').last().get('recipe__title')
         return latest_object
@@ -128,14 +129,12 @@ class BaseIngredientAdmin(admin.ModelAdmin):
         'last_order_index')
     readonly_fields = ('last_order_index', 'last_base_edit',)
 
-    @staticmethod
+    @staticmethod  # do i need it?
     def last_order_index(obj):
         latest_object = BaseIngredient.objects.values('order_index').last().get('order_index')
         return latest_object
 
-    @staticmethod
+    @staticmethod  # do i need it?
     def last_base_edit(obj):
-        # latest_object = BaseIngredient.objects.values('base__base').last()
         latest_object = BaseIngredient.objects.last()
-        # latest_object = BaseIngredient.objects.prefetch_related().last()
         return latest_object

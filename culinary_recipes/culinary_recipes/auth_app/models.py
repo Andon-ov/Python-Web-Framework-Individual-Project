@@ -78,8 +78,12 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         unique=True,
     )
 
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(
+        default=True
+    )
+    is_admin = models.BooleanField(
+        default=False
+    )
 
     objects = AppUserManager()
 

@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import cloudinary as cloudinary
 from django.urls import reverse_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,6 +26,7 @@ INSTALLED_APPS = [
     'culinary_recipes.auth_app',
     'culinary_recipes.common',
 
+    'cloudinary',
     'embed_video',
 
 ]
@@ -62,30 +64,29 @@ WSGI_APPLICATION = 'culinary_recipes.wsgi.application'
 
 # for docker run
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get('DB_ENGINE'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-    }
-}
-
-
-# for pycharm run
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'recipes_db',
-#         'USER': 'postgres',
-#         'PASSWORD': '1123QwER',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
+#         'ENGINE': os.environ.get('DB_ENGINE'),
+#         'NAME': os.environ.get('DB_NAME'),
+#         'USER': os.environ.get('DB_USER'),
+#         'PASSWORD': os.environ.get('DB_PASSWORD'),
+#         'HOST': os.environ.get('DB_HOST'),
+#         'PORT': os.environ.get('DB_PORT'),
 #     }
 # }
 
+
+# for pycharm run
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'recipes_db',
+        'USER': 'postgres',
+        'PASSWORD': '1123QwER',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
 
 CACHES = {
     'default': {
@@ -123,11 +124,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = (
-#     os.path.join(
-#         BASE_DIR, 'staticfiles'
-#     ),
-# )
 
 STATICFILES_DIRS = (
     BASE_DIR / 'staticfiles',
@@ -135,10 +131,19 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = '/tmp/culinary_recipes/staticfiles'
 
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(
-    BASE_DIR, 'media'
+# MEDIA_ROOT = os.path.join(
+#     BASE_DIR, 'media'
+# )
+
+cloudinary.config(
+    cloud_name="dsla98vyk",
+    api_key="587566495847865",
+    api_secret="sJLzQzouizKo51b9Mv0bI8a5pCI",
+    secure=True
 )
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

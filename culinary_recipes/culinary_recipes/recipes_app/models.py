@@ -1,5 +1,6 @@
 from django.db import models
 from embed_video.fields import EmbedVideoField
+from cloudinary import models as cloudinary_models
 
 
 class Menu(models.Model):
@@ -58,7 +59,7 @@ class Category(models.Model):
     image_category = models.ForeignKey(
         to='Photo',
         related_name='image_category',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.RESTRICT,
         null=True,
         blank=True
     )
@@ -175,7 +176,7 @@ class Recipe(models.Model):
     image_recipe = models.ForeignKey(
         to='Photo',
         related_name='image_recipe',
-        on_delete=models.DO_NOTHING
+        on_delete=models.RESTRICT
     )
 
     allergen = models.ManyToManyField(
@@ -261,13 +262,10 @@ class Photo(models.Model):
         blank=False,
         null=False,
     )
-    image = models.ImageField(
-        upload_to='images',
+    image = cloudinary_models.CloudinaryField(
         blank=False,
         null=False,
     )
-
-    # image = models.URLField()
 
     def __str__(self):
         return self.name

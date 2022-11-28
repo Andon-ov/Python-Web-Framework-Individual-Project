@@ -49,9 +49,15 @@ def recipes_in_category(request, pk):
     return render(request, 'recipes/show-category-details.html', context)
 
 
-class RecipeDetailsWaitersView(auth_mixin.LoginRequiredMixin, view.DetailView):
+class RecipeDetailsWaitersView(auth_mixin.LoginRequiredMixin, view.DetailView, FormMixin):
     template_name = 'recipes/recipe-details-waiters.html'
     model = Recipe
+    form_class = RecipeCommentForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = RecipeCommentForm(initial={'post': self.object})
+        return context
 
 
 # show recipes

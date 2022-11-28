@@ -10,7 +10,8 @@ SECRET_KEY = os.environ.get('SECRETY_KEY')
 
 
 DEBUG = bool(os.environ.get('DEBUG'))
-# DEBUG = int(os.environ.get('DEBUG', 1))
+# DEBUG = int(os.environ.get('DEBUG',1))
+
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
@@ -178,3 +179,5 @@ LOGGING = {
         }
     }
 }
+
+

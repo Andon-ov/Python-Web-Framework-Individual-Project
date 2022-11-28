@@ -1,77 +1,118 @@
 {% extends 'base/base.html' %}
-{% load embed_video_tags %}
-{% load tags %}
 {% load static %}
 {% block page_content %}
     <div class="container">
-        <div class="items-container">
-            <div class="item bg-light">
-                <!-- category -->
-                <a href="{% url 'category detail' pk=recipe.category.pk %}" class="link-danger text-center">
-                    <h3>{{ recipe.category }}</h3></a>
-                <!-- title -->
-                <h2><b>{{ recipe.title }}</b></h2>
-                <!-- image -->
-                <img class="rounded-circle" src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">
-                <!-- release time -->
-                <div class="time">
-                    <p>Време за реализация: </p>
-                    <img src="{% static 'images/clock.svg' %}" alt="clock.png">
-                    <p>{{ recipe.release_time }} Мин.</p>
-                </div>
-                <div>
-                    <div class="container text-center">
+        <div class="menu my-3 mb-8 text-black">
+            <!-- category -->
+            <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-center link-danger">
+                <h5>Back to {{ recipe.category }}</h5></a>
+            <!-- title -->
+            <h1 class="card-title text-black ">{{ recipe.title }}</h1>
+        </div>
+        <div class="row mb-10">
+            <div class="col-lg-3 col-sm-1"></div>
+            <div class="col-lg-6 col-sm-2">
+                <div class="card hover-shadow ">
+                    <!-- image -->
+                    <img class="rounded-circle my-2" src="{{ recipe.image_recipe.image.url }}"
+                         alt="{{ recipe.title }}">
+                    <div class="card-body col-12">
+                        <!-- release time -->
+                        <div class="text-center">
+                            <p>Време за реализация: <br>
+                                <img src="{% static 'images/clock.svg' %}" alt="clock.png">
+                                <b>{{ recipe.release_time }}</b> Мин.</p>
+                        </div>
+                        <!-- ingredients -->
                         <div class="row">
-
-                            <div class="col">
-                                <h3>Съставки</h3>
-                                <ul>
-                                    <!-- ingredients -->
-
+                            <div class="container text-center col-6">
+                                <h5>Съставки</h5>
+                                <dl>
                                     {% for ingredient in object.ingredient_set.all %}
-                                        <!-- base -->
-                                        <li>{{ ingredient }}</li>
+                                        <dt>{{ ingredient }}</dt>
                                     {% endfor %}
-                                </ul>
-
+                                </dl>
                             </div>
-                            <div class="col">
-                                <!-- food plate -->
-                                <p><i>Издаваме в: {{ recipe.food_plate }}</i></p>
-                                <!-- finish -->
-                                {% if recipe.finish %}
-                                    <p><i>Завършваме: {{ recipe.finish }}</i></p>
-                                {% endif %}
-                                <!-- serving value -->
-                                <h6><i>Общо количество: {{ recipe.serving_value }} гр.</i></h6>
-                            </div>
+                            <!-- end ingredients -->
+                            <!-- allergens -->
+                            {% if object.allergen %}
+                                <div class="container text-center col-6">
+                                    <h5>Алергени</h5>
+                                    <dl>
+                                        {% for name in object.allergen.all %}
+                                            <dt><i>{{ name }}</i></dt>
+                                        {% endfor %}
+                                    </dl>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="container-sm text-center col-12">
+                            <!-- finish -->
+                            {% if recipe.finish %}
+                                <h6><i>Завършваме: </i><b class="text-danger">{{ recipe.finish }}</b></h6>
+                            {% endif %}
+                            <!-- serving value -->
+                            <h6><i>Общо количество: </i><b class="text-danger">{{ recipe.serving_value }} гр.</b></h6>
+                            <!-- food plate -->
+                            <h6><i>Издаваме в: </i><b class="text-danger">{{ recipe.food_plate }}</b></h6>
+                        </div>
+                        <div class=" col-12 text-center">
+                            <!-- summary -->
+                            {% if recipe.summary %}
+                                <h3>Summary</h3>
+                                <p>{{ recipe.summary }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="card-body text-center">
+                            <!-- buttons -->
+                            <button class="btn btn-outline-dark  my-2" onclick="history.back()">Back</button>
+                            {#                            <a class="btn btn-outline-dark  float-end my-2" href="{% url 'index' %}">Home</a>#}
                         </div>
                     </div>
                 </div>
-                <div class="container text-center">
-                    <!-- summary -->
-                    {% if recipe.summary %}
-                        <h3>Summary</h3>
-                        <p>{{ recipe.summary }}</p>
-                    {% endif %}
-                </div>
-                <!-- allergens -->
-                {% if object.allergen %}
-                    <div class="container text-center">
-                        <h3>Алергени</h3>
-                        <ul>
-                            {% for name in object.allergen.all %}
-                                <li><i>{{ name }}</i></li>
-                            {% endfor %}
-                        </ul>
+                <!-- comments -->
+                <div class="card my-5" style="background-color: #f0f2f5;">
+                    <div class="comments card-body p-4">
+                        <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post"
+                              class="comment-form">
+                            {{ form }}
+                            {% csrf_token %}
+                            <div class="text-center my-4">
+                                <button class="btn comment-button btn-outline-dark">Comment</button>
+                            </div>
+                        </form>
+                        {% for comment in  recipe.recipecomment_set.all %}
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <p>{{ comment }}</p>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <p class="small mb-0 ms-2">{{ comment.user.profile.full_name }}</p>
+                                            <p class="small mb-0 ms-2">{{ comment.publication_date_and_time }}</p>
+                                        </div>
+
+                                        <div class="text-center">
+                                            {% if request.user == comment.user %}
+                                                <a class="btn btn-primary text-danger  btn-floating m-0"
+                                                   style="background-color: #ffffff"
+                                                   href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
+                                                   role="button"><i class="fas fa-trash"></i></a>
+                                                <a class="btn btn-primary text-danger btn-floating m-0"
+                                                   style="background-color: #ffffff"
+                                                   href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}"
+                                                   role="button"><i class="fas fa-edit"></i></a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endif %}
-                <!-- buttons -->
-                <div class="buttons-container text-center ">
-                    <button class="btn btn-outline-dark left" onclick="history.back()">Go Back</button>
-                    <a class="btn btn-outline-dark  position-relative " href="{% url 'index' %}">Home</a>
                 </div>
+                <!-- end comments -->
             </div>
+            <div class="col-lg-3 col-sm-1"></div>
         </div>
     </div>
+
 {% endblock %}

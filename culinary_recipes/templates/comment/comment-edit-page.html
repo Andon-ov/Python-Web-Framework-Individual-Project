@@ -1,32 +1,39 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    <!-- container -->
-    <div class="container h-75 mb-4">
-        <!-- item container -->
-        <div class="items-container ">
-            <!-- item -->
-            <div class="item ">
-                <!-- h1 -->
-                <div class="form-h1">
-                    <h1>Edit Comment</h1>
-                    <br>
-                </div>
-                <div class="text-center">
-
-                </div>
-                <form action="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}" method="post"
-                      enctype="multipart/form-data" class="comment-form">
-                    <hr class="my-3"/>
-                    {{ form }}
-                    {% csrf_token %}
-                    <div class="buttons">
-                        <button type="submit" class="btn btn-dark text-center btn-block">Edit</button>
-                    </div>
-                </form>
-                <br class="my-1">
-            </div>
+    <div class="container">
+        <div class="form-h1 my-3 my-5 text-black">
+            <h1>Edit Comment</h1>
         </div>
-    </div>
-{% endblock %}
+        <section class="section-menu-details col-12  min-vh-100">
+            <div class="row mb-3">
+                <div class="col-sm-4"></div>
+                <div class="card hover-shadow col-sm-4 mb-12">
+                    <!-- comments -->
+                    <div class="card my-5" style="background-color: #f0f2f5;">
+                        <div class="comments card-body p-4">
+                            <form action="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}" method="post"
+                                  enctype="multipart/form-data" class="comment-form">
+                                {{ form }}
+                                {% csrf_token %}
+                                <div class="text-center my-4">
+                                    <button class="btn comment-button btn-outline-dark">Edit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end comments -->
 
+                    <div class="buttons mb-6">
+
+                        <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
+                            Back</a>
+                    </div>
+
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
 

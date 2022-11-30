@@ -7,11 +7,10 @@
     <div class="container">
         <div class="menu my-3 text-black">
             <!-- category -->
-            <a href="{% url 'base recipe' %}"
-               class="link-danger text-center">
-                <h5>Back to всички базови рецепти</h5></a>
+
+
             <!-- title -->
-            <h1 class="card-title text-black ">{{ object.title }}</h1>
+            <h1 class="card-title text-black my-5 mb-5">{{ object.title }}</h1>
             <div class="card-body text-center ">
                 <!-- type -->
                 {% if object.base_type %}
@@ -79,10 +78,12 @@
                             {% endif %}
                         </div>
                         <div class="card-footer my-3 ">
-                            <a type="button" class="btn btn-outline-dark float-end"
-                               href="{% url 'index' %}">Home</a>
-                            <button class="btn btn-outline-dark float-none" onclick="history.back()">Back
-                            </button>
+                            <a href="{% url 'base recipe' %}" class="link-danger"><h5>БАЗОВИ РЕЦЕПТИ <i
+                    class="fas fa-hand-point-left"></i></h5></a>
+{#                            <a type="button" class="btn btn-outline-dark float-end"#}
+{#                               href="{% url 'index' %}">Home</a>#}
+{#                            <button class="btn btn-outline-dark float-none" onclick="history.back()">Back#}
+{#                            </button>#}
                         </div>
                     </div>
                 </div>

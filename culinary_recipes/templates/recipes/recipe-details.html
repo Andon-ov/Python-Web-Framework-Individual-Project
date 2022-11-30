@@ -6,19 +6,22 @@
 
     <div class="container">
 
-        <div class="menu my-3 mb-8 text-black">
+        <div class="card shadow-none text-black">
+            <div class="card-body menu">
+                <h1 class="card-title text-black my-5">{{ recipe.title }}</h1>
+            </div>
             <!-- category -->
-            <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-center link-danger">
-                <h5>Back to {{ recipe.category }}</h5></a>
+            {#            <a href="{% url 'category detail' pk=recipe.category.pk %}" class="link-danger">#}
+            {#                <h5>{{ recipe.category.name.upper }} <i class="fas fa-hand-point-left"></i></h5></a>#}
             <!-- title -->
-            <h1 class="card-title text-black ">{{ recipe.title }}</h1>
+
         </div>
         <div class="row">
-            <div class="col-lg-3 col-sm-1"></div>
-            <div class="col-lg-6 col-sm-2">
-                <div class="card hover-shadow ">
-                <img class="rounded-circle my-2" src="{{ recipe.image_recipe.image.url }}"
-                             alt="{{ recipe.title }}">
+            <div class="col-sm- col-md-2 col-lg-3"></div>
+            <div class="col-sm-10 col-md-8 col-lg-6">
+                <div class="card hover-zoom ">
+                    <img class="rounded-circle my-2" src="{{ recipe.image_recipe.image.url }}"
+                         alt="{{ recipe.title }}">
                     <div class="card-body col-12">
                         <!-- image -->
 
@@ -30,99 +33,102 @@
                         <!-- release time -->
                         <!-- ingredients -->
 
-                            <div class="container badge-secondary col-12">
-                                <h4 class="col-6">Съставки:</h4>
-                                {% for ingredient in recipe_ingredients %}
-                                    {% if not ingredient.base %}
-                                        <div class="row">
-                                            <div class="col col-8-sm-4">
-                                                <dl>
-                                                    <dt>{{ ingredient.food }}
-                                                        - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }} </dt>
-                                                </dl>
-                                            </div>
-                                            {% if ingredient.preparation_method %}
-                                                <div class="col col-4-sm-1">
-                                                    <i class="float-end">{{ ingredient.preparation_method }}</i>
-                                                </div>
-                                            {% endif %}
+                        <div class="container col-12">
+                            <h4 class="col-6">Съставки:</h4>
+                            {% for ingredient in recipe_ingredients %}
+                                {% if not ingredient.base %}
+                                    <div class="row">
+                                        <div class="col col-8-sm-4 text-black">
+                                            <dl>
+                                                <dd>{{ ingredient.food }}
+                                                    - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }} </dd>
+                                            </dl>
                                         </div>
-                                    {% else %}
-                                        <!-- base -->
-                                        <div class="row">
-                                            <div class="col col-12-sm-4">
-                                                <dl>
-                                                    <dt><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
-                                                           class="link-danger">{{ ingredient.food }}
-                                                        - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</a>
-                                                    </dt>
-                                                </dl>
+                                        {% if ingredient.preparation_method %}
+                                            <div class="col col-4-sm-1">
+                                                <i class="float-end">{{ ingredient.preparation_method }}</i>
                                             </div>
-                                            {% if ingredient.preparation_method %}
-                                                <div class="col col-4-sm-1">
-                                                    <i class="float-end">{{ ingredient.preparation_method }}</i>
-                                                </div>
-                                            {% endif %}
+                                        {% endif %}
+                                    </div>
+                                {% else %}
+                                    <!-- base -->
+                                    <div class="row">
+                                        <div class="col col-12-sm-4">
+                                            <dl>
+                                                <dd><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
+                                                       class="text-black">{{ ingredient.food }}
+                                                    - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}<i
+                                                            class="fas fa-info-circle text-danger"></i></a>
+                                                </dd>
+                                            </dl>
                                         </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-
-
-                            <div class="container-sm badge-success col-12">
-                                <!-- finish -->
-                                {% if recipe.finish %}
-                                    <h6><i>Завършваме:</i> <b class="float-end">{{ recipe.finish }}</b></h6>
+                                        {% if ingredient.preparation_method %}
+                                            <div class="col col-4-sm-1">
+                                                <i class="float-end">{{ ingredient.preparation_method }}</i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
                                 {% endif %}
-                                <!-- serving value -->
-                                <h6><i>Общо количество:</i> <b class="float-end">{{ recipe.serving_value }} гр.</b></h6>
-                                <!-- food plate -->
-                                <h6><i>Издаваме в:</i> <b class="float-end">{{ recipe.food_plate }}</b></h6>
+                            {% endfor %}
+                        </div>
 
-                                <!-- preparation method -->
-                                {% if recipe.preparation_method %}
-                                    <h6><i>Обработка:</i> <b class="float-end ">{{ recipe.preparation_method }}</b></h6>
-                                {% endif %}
-                            </div>
 
+                        <div class="container-sm col-12">
+                            <!-- finish -->
+                            {% if recipe.finish %}
+                                <h6><i class="text-success">Завършваме : </i>{{ recipe.finish }}</h6>
+                            {% endif %}
+                            <!-- serving value -->
+                            <h6><i class="text-success">Общо количество : </i>{{ recipe.serving_value }} гр.</h6>
+                            <!-- food plate -->
+                            <h6><i class="text-success">Издаваме в : </i>{{ recipe.food_plate }}</h6>
+
+                            <!-- preparation method -->
+                            {% if recipe.preparation_method %}
+                                <h6><i class="text-success">Обработка : </i>{{ recipe.preparation_method }}</h6>
+                            {% endif %}
+                        </div>
+                        <br>
                         <!-- description -->
 
-                            <div class="badge-danger col-12">
-                                {% if recipe.description %}
-                                    <h2>Приготвяне</h2>
+                        <div class="col-12">
+                            {% if recipe.description %}
+                                <h2>Приготвяне</h2>
 
-                                    <p>{{ recipe.description }}</p>
+                                <p>{{ recipe.description }}</p>
 
-                                {% endif %}
-                            </div>
+                            {% endif %}
+                        </div>
 
 
-                            <div class="col-12">
-                                <!-- video -->
-                                {% if recipe.video_recipe %}
-                                    <h2>Видео</h2>
-                                    {% video recipe.video_recipe.video as my_video %}
+                        <div class="col-12">
+                            <!-- video -->
+                            {% if recipe.video_recipe %}
+                                <h2>Видео</h2>
+                                {% video recipe.video_recipe.video as my_video %}
 
-                                        <a href="{{ my_video.url }}"><img class="rounded-circle img-thumbnail"
-                                                                          src="{{ my_video.thumbnail }}"
-                                                                          alt="{{ my_video.url }}"></a>
-                                    {% endvideo %}
-                                {% endif %}
-                            </div>
+                                    <a href="{{ my_video.url }}"><img class="rounded-circle img-thumbnail"
+                                                                      src="{{ my_video.thumbnail }}"
+                                                                      alt="{{ my_video.url }}"></a>
+                                {% endvideo %}
+                            {% endif %}
+                        </div>
 
                         <div class="card-body ">
+                            <a href="{% url 'category detail' pk=recipe.category.pk %}" class="link-danger">
+                                <h5>{{ recipe.category.name.upper }} <i class="fas fa-hand-point-left"></i></h5></a>
                             <!-- buttons -->
-                            <button class="btn btn-outline-dark my-2" onclick="history.back()">Back</button>
-                            <a class="btn btn-outline-dark  float-end my-2" href="{% url 'index' %}">Home</a>
+                            {#                            <button class="btn btn-outline-dark my-2" onclick="history.back()">Back</button>#}
+                            {#                            <a class="btn btn-outline-dark  float-end my-2" href="{% url 'index' %}">Home</a>#}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3  col-sm-1"></div>
+            <div class="col-sm-1 col-md-2 col-lg-3"></div>
         </div>
         <div class="row">
-            <div class="col-lg-3  col-sm-1"></div>
-            <div class="col-lg-6  col-sm-2">
+            <div class="col-sm-1 col-md-2 col-lg-3"></div>
+            <div class="col-sm-10 col-md-8 col-lg-6">
                 <!-- comments -->
                 <div class="card my-5" style="background-color: #f0f2f5;">
                     <div class="comments card-body p-4">
@@ -164,7 +170,7 @@
                 </div>
                 <!-- end comments -->
             </div>
-            <div class="col-lg-3  col-sm-1"></div>
+            <div class="col-sm-1 col-md-2 col-lg-3"></div>
         </div>
     </div>
 

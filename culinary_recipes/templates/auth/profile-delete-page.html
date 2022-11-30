@@ -7,17 +7,17 @@
         <div class="form-h1 my-3 my-5 text-black">
             <h1>Delete Profile</h1>
         </div>
-        <section class="section-menu-details col-12  min-vh-75">
+        <section class="section-profile col-12 ">
             <div class="row">
                 <div class="col-sm-4"></div>
                 <!-- card start -->
-                <div class="card hover-shadow col-sm-4 mb-12">
+                <div class="card hover-shadow col-sm-4 ">
                     <div class="card-body">
                         <h1>{{ object.profile.full_name }} <br> you sure want to delete your profile?</h1>
                     </div>
                     <div class="card-footer text-center">
                         <p class="card-text text-center"><i>You are logged in as <b>{{ object.email }}</b>
-                            <br><a class="text-danger " href="{% url 'sign out' %}">Sign out</a></i></p>
+                            <br><a class="text-danger " href="{% url 'sign out' %}">Logout</a></i></p>
                     </div>
                     <div class="card-footer text-center">
                         <form method="post" action="{% url 'delete user' pk=request.user.pk %}"
@@ -25,7 +25,7 @@
 
                             {{ form }}
                             {% csrf_token %}
-                            <div class="buttons mb-5 my-3">
+                            <div class="buttons my-3">
                                 <br>
                                 <button type="submit" class="btn btn-danger btn-block">Yes</button>
                                 <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go

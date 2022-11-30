@@ -15,6 +15,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+
 @login_required
 def comment_recipe(request, recipe_id):
     recipe = Recipe.objects.filter(pk=recipe_id).get()

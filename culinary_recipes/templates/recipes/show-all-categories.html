@@ -4,37 +4,45 @@
     <!-- main container -->
     <div class="container">
         <!-- card block title -->
-        <div class="menu my-3 mb-8 text-black">
-            <h1 class="card-title text-black ">АКТУАЛНО МЕНЮ</h1>
+        <div class="card shadow-none">
+            <div class="card-body menu my-5">
+                <h1 class="card-title text-black">МЕНЮ</h1>
+            </div>
         </div>
-        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-5 mb-10">
+        {#        <div class="menu my-3 mb-8 text-black">#}
+        {#            <h1 class="card-title text-black ">АКТУАЛНО МЕНЮ</h1>#}
+        {#        </div>#}
+        <section class="section-all-category">
+            <div class="row row-cols-lg-6 row-cols-md-3 row-cols-sm-2 g-5 mb-10">
 
-            <!-- For Recipes-->
-            {% for category in category_list %}
-                <!-- Cards col -->
-                <div class="col mb-0 g-5">
-                    <!-- card start -->
-                    <div class="card hover-shadow mb-0 h-100">
-                        <img class="rounded-circle my-4" src="{{ category.image_category.image.url }}"
-                             alt="...">
-                        <div class="card-body">
-                            {% if category.note %}
-                                <p class="card-text text-center"><i>{{ category.note }}</i></p>
-                            {% endif %}
-                        </div>
-                        <div class="card-footer mb-0 text-center">
-                            <p class="card-text text-center">{{ category.menu|lower }}</p>
-                            <h5 class="card-title text-center">{{ category.name }}</h5>
-                        </div>
-                        <div class="card-footer text-center mb-4">
-                            <a href="{% url 'category detail'  pk=category.pk %}"
-                               class="btn btn-outline-dark ">Details</a>
+                <!-- For Recipes-->
+                {% for category in category_list %}
+                    <!-- Cards col -->
+                    <div class="col mb-0 g-5">
+                        <!-- card start -->
+                        <div class="card hover-shadow mb-0 h-100" STYLE="background-color: #edf4ec; ">
+                            <img class="rounded-circle my-4" src="{{ category.image_category.image.url }}"
+                                 alt="...">
+                            <div class="card-body">
+                                {% if category.note %}
+                                    <p class="card-text text-center"><i>{{ category.note }}</i></p>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer text-center">
+                                <p class="card-text text-center">{{ category.menu|lower }}</p>
+                                <h5 class="card-title text-center">{{ category.name }}</h5>
+                            </div>
+                            <div class="card-footer text-center mb-4">
+                                <a href="{% url 'category detail'  pk=category.pk %}"
+                                   class="btn btn-outline-dark ">Details</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- card end -->
-            {% endfor %}
-        </div>
+                    <!-- card end -->
+                {% endfor %}
+            </div>
+        </section>
+        <div class="row my-5"></div>
     </div>
 {% endblock %}
 

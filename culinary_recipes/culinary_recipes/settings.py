@@ -8,13 +8,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRETY_KEY')
 
-
-DEBUG = bool(os.environ.get('DEBUG'))
+DEBUG = True
+# DEBUG = bool(os.environ.get('DEBUG'))
+# DEBUG = int(os.environ.get('DEBUG'))
 # DEBUG = int(os.environ.get('DEBUG',1))
 
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
-
 
 CSRF_TRUSTED_ORIGINS = [f'https://{x}' for x in ALLOWED_HOSTS]
 
@@ -79,7 +79,6 @@ DATABASES = {
     }
 }
 
-
 # for pycharm run
 
 # DATABASES = {
@@ -129,13 +128,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 STATICFILES_DIRS = (
     BASE_DIR / 'staticfiles',
 )
 
 STATIC_ROOT = '/tmp/culinary_recipes/staticfiles'
-
 
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(
@@ -149,7 +146,6 @@ cloudinary.config(
     secure=True
 )
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = reverse_lazy('sign in')
@@ -158,26 +154,56 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 AUTH_USER_MODEL = 'auth_app.AppUser'
 
+LOGS_DIR = BASE_DIR / 'Logs'
+
+try:
+    os.mkdir(LOGS_DIR)
+except:
+    pass
+
+# Local -> DEBUG
+# Dev/test server -> Info
+# Prod -> Warning/Error
+
 LOGGING = {
     'version': 1,
+    'disable_existing_loggers': False,
     'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        }
+        'require_debug_true': {'()': 'django.utils.log.RequireDebugTrue', },
+        'require_debug_false': {'()': 'django.utils.log.RequireDebugFalse', }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} [{levelname}] {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
     },
     'handlers': {
         'console': {
+            'formatter': 'verbose',
             'level': 'DEBUG',
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
-        }
+        },
+        'file': {
+            'level': 'WARNING',
+            'filters': ['require_debug_false'],
+            'class': 'logging.FileHandler',
+            'filename': LOGS_DIR / 'Log.txt',
+            'formatter': 'verbose',
+            # clear log file after restart - remove for prod
+            'mode': 'w',
+        },
     },
     'loggers': {
         'django.db.backends': {
             'level': 'DEBUG',
             'handlers': ['console'],
-        }
-    }
+            'propagate':True,
+        },
+        'root': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+    },
 }
-
-

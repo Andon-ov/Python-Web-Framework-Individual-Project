@@ -4,25 +4,29 @@
     <!-- main container -->
     <div class="container">
         <!-- card block title -->
-        <div class="card shadow-none ">
+        <div class="card shadow-none">
             <div class="card-body menu">
-                <h1 class="card-title text-black">{{ category.name.upper }}</h1>
+                <div class="fixed"><a href="{% url 'all category' %}" class="text-black"><h5>МЕНЮ <i
+                        class="fas fa-hand-point-left"></i></h5></a>
+                </div>
+
+                <h1 class="card-title  my-5 text-black">{{ category.name.upper }}</h1>
             </div>
         </div>
         <!-- section -->
-        <section class="section-all-recipes">
+        <section class="section-all-base-last">
             <!-- Cards row -->
-            <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-5 mb-10">
+            <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-5 ">
                 <!-- For Recipes-->
                 {% for recipe in recipes %}
                     <!-- Cards col -->
-                    <div class="col mb-0 g-5">
+                    <div class="col g-5">
                         <!-- card start -->
-                        <div class="card hover-shadow mb-0 h-100">
-                            <img class="rounded-circle my-4" src="{{ recipe.image_recipe.image.url }}"
+                        <div class="card hover-zoom border-success h-50" style="background-color: #f0f2f5; ">
+                            <img class="rounded-circle" src="{{ recipe.image_recipe.image.url }}"
                                  alt="...">
-                            <div class="card-body">
-                            </div>
+                            {#                            <div class="card-body">#}
+                            {#                            </div>#}
                             <div class="card-footer text-center">
                                 <h5 class="card-title text-center">{{ recipe.title }}</h5>
                             </div>
@@ -35,6 +39,7 @@
                     <!-- card end -->
                 {% endfor %}
                 <!-- back button-->
+
             </div>
         </section>
         <div class="row my-5"></div>

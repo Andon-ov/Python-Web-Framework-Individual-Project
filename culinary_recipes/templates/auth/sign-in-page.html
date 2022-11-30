@@ -5,12 +5,12 @@
     <!-- container -->
     <div class="container">
         <div class="form-h1 my-3 my-5 text-black">
-            <h1>Sign In</h1>
+            <h1>Login</h1>
         </div>
-        <section class="section-menu-details col-12  min-vh-75">
+        <section class="section-profile col-12">
             <div class="row">
                 <div class="col-sm-4"></div>
-                <div class="card hover-shadow col-sm-4 mb-12">
+                <div class="card hover-shadow col-sm-4 ">
                     <form action="{% url 'sign in' %}" method="post" enctype="multipart/form-data">
 
                         <hr class="my-4"/>
@@ -34,8 +34,8 @@
                                 </div>
                             {% endfor %}
                         {% endif %}
-                        <div class="buttons mb-5 my-3">
-                            <button type="submit" class="btn btn-black btn-block">Sign in</button>
+                        <div class="buttons my-3">
+                            <button type="submit" class="btn btn-black btn-block">Login</button>
                             <p>Don't have account? <a href="{% url 'sign up' %}" class="text-danger">Create an
                                 account</a></p>
                             {# <a class="text-danger" href="#!">Forgot password?</a> #}

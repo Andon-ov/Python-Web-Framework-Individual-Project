@@ -1,73 +1,55 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-
-
     <!-- main container -->
-    <div class="container">
+    <main class="container">
         {% if not object_list %}
-
             <!-- card block title -->
-            <div class="card shadow-none">
-                <div class="card-body text-black menu">
-                    <h1 class="card-title my-4">Няма намерен резултат</h1>
-                    <div class="row">
-                        <div class="col-5"></div>
-                        <div class="col-2 text-center">
-                            <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
-                        </div>
-                        <div class="col-5"></div>
-                    </div>
-                </div>
-                <section class="section-all-base">
-                </section>
-            </div>
+            <h1 class="text-black my-5">Няма намерен резултат</h1>
+            <section class="text-center" style="min-height: 69vh;">
+                <button class="btn btn-outline-dark mb-12" onclick="history.back()">Go Back</button>
+            </section>
 
         {% else %}
-            <!-- main container -->
+            <h1 class="my-5 text-black">Резултати</h1>
             <!-- card block title -->
-            <div class="card mb-4 shadow-none">
-                <div class="card-body text-black menu shadow-none">
-                    <h1 class="card-title">Резултати</h1>
-                </div>
-            </div>
 
-            <section class="section-all-base">
-                <div class="container">
+            <section class="" style="min-height: 75vh;">
+                <!-- Cards row -->
+                <div class="row  row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 g-5 justify-content-center mb-5">
 
-                    <!-- Cards row -->
-                    <div class="row row-cols-2 row-cols-md-4 g-4">
-                        <!-- For Recipes-->
-                        {% for search in object_list %}
-                            <!-- Cards col -->
-                            <div class="col">
-                                <!-- card start -->
-                                <div class="card mb-0 h-100 hover-shadow">
+                    <!-- For Recipes-->
+                    {% for search in object_list %}
+                        <!-- Cards col -->
+                        <div class="col g-5">
+                            <!-- card start -->
 
-                                    <img class="rounded-circle" src="{{ search.image_recipe.image.url }}"
-                                         alt="...">
+                            <div class="card hover-zoom h-100" style="background-color: #ddf0e4;">
+                                <a href="{% url 'category detail' search.category.pk %}"><p
+                                        class="card-text text-center text-danger"
+                                        style="margin-top: 10px; margin-bottom: 10px">{{ search.category.name|upper }}</p>
+                                </a>
+
+                                <img class="rounded-circle" src="{{ search.image_recipe.image.url }}"
+                                     alt="...">
+
+                                <div class="card-body text-center">
+
+
                                     <h5 class="card-title text-center  mb-0">{{ search.title }}</h5>
-                                    <div class="card-body">
-                                        <p class="card-text">{{ search.food_type }}</p>
-                                    </div>
-                                    <!-- card footer -->
-                                    <div class="card-footer text-center">
-                                        <a href="{% url 'recipe detail' pk=search.pk %}"
-                                           class="btn btn-outline-dark">Details</a>
-                                    </div>
                                 </div>
-                                <!-- card end -->
+                                <div class="card-footer text-center">
+                                    <a href="{% url 'recipe detail' pk=search.pk %}"
+                                       class="btn btn-outline-dark">Details</a>
+                                </div>
                             </div>
-                        {% endfor %}
-                        <!-- back button-->
-                    </div>
-                    <div class="card mb-4 my-3"></div>
-
+                            <!-- card end -->
+                        </div>
+                    {% endfor %}
+                    <!-- back button-->
                 </div>
+                <div class="card mb-4 my-3"></div>
             </section>
-            <div class="card-body text-center my-3">
-                <a class="btn btn-outline-dark text-center" href="{% url 'index' %}">Home</a>
-                <button class="btn btn-outline-dark" onclick="history.back()">Go Back</button>
-            </div>
         {% endif %}
-    </div>
+    </main>
 {% endblock %}
+

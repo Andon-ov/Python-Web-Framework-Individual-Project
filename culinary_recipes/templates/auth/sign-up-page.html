@@ -4,57 +4,57 @@
 {% block page_content %}
 
     <!-- container -->
-    <div class="container">
-    <div class="form-h1 my-3 text-black">
+    <main class="container" style="min-height: 80.3vh">
+        <div class="form-h1 my-3 text-black">
             <h1>Register</h1>
         </div>
-    <section class="section-profile-register col-12 ">
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="card hover-shadow col-sm-4">
-                <form action="{% url 'sign up' %}" method="post" enctype="multipart/form-data">
+        <section class="section-profile-register col-12 ">
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="card hover-shadow col-sm-4">
+                    <form action="{% url 'sign up' %}" method="post" enctype="multipart/form-data">
 
-                    <hr class="my-1"/>
-                    <label for="email">Email</label>
-                    {{ form.email|placeholder:'Enter your email' }}
-                    <label for="password1">Password</label>
-                    {{ form.password1|placeholder:'Password' }}
-                    <label for="password2">Password</label>
-                    {{ form.password2|placeholder:'Confirm your password' }}
-                    <label for="first_name">First Name</label>
-                    {{ form.first_name|placeholder:'Enter your first name' }}
-                    <label for="last_name">Last Name</label>
-                    {{ form.last_name|placeholder:'Enter your last name' }}
-                    <label for="job_title">Job</label>
-                    {{ form.job_title }}
+                        <hr class="my-1"/>
+                        <label for="email">Email</label>
+                        {{ form.email|placeholder:'Enter your email' }}
+                        <label for="password1">Password</label>
+                        {{ form.password1|placeholder:'Password' }}
+                        <label for="password2">Password</label>
+                        {{ form.password2|placeholder:'Confirm your password' }}
+                        <label for="first_name">First Name</label>
+                        {{ form.first_name|placeholder:'Enter your first name' }}
+                        <label for="last_name">Last Name</label>
+                        {{ form.last_name|placeholder:'Enter your last name' }}
+                        <label for="job_title">Job</label>
+                        {{ form.job_title }}
 
-                    {% if form.errors %}
-                        {% for field in form %}
-                            {% for error in field.errors %}
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
                                 <div class="alert alert-danger">
                                     <strong>{{ error|escape }}</strong>
                                 </div>
                             {% endfor %}
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
+                        {% endif %}
+                        {% csrf_token %}
+                        <div class="buttons my-3">
+                            <button type="submit" class="btn btn-black btn-block">Register</button>
+                            <div class="second-option">
+                                <p>Have an account? <a class="text-danger" href="{% url 'sign in' %}">Login</a></p>
                             </div>
-                        {% endfor %}
-                    {% endif %}
-                    {% csrf_token %}
-                    <div class="buttons my-3">
-                        <button type="submit" class="btn btn-black btn-block">Register</button>
-                        <div class="second-option">
-                            <p>Have an account? <a class="text-danger" href="{% url 'sign in' %}">Login</a></p>
                         </div>
-                    </div>
-                </form>
+                    </form>
 
+                </div>
+                <div class="col-sm-4"></div>
             </div>
-            <div class="col-sm-4"></div>
-        </div>
-     </section>
-    </div>
+        </section>
+    </main>
 
 {% endblock %}

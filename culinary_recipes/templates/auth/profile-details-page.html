@@ -2,16 +2,17 @@
 {% load static %}
 {% block page_content %}
 
-    <div class="container">
+    <main class="container" style="min-height: 80.3vh">
         <!-- card block title -->
-        <div class="form-h1 my-3 my-5 text-black">
+        <div class="form-h1 my-5 text-black">
             <h1>My Account</h1>
         </div>
-        <section class="section-profile col-12">
+        <section class="col-12">
             <div class="row">
-                <div class="col-sm-4"></div>
+                <div class="col-1 col-sm-2 col-lg-3 col-xl-4"></div>
                 <!-- card start -->
-                <div class="card hover-shadow col-sm-4 ">
+                <div class="card hover-shadow
+                col-10 col-sm-8 col-lg-6 col-xl-4 ">
 
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ object.profile.full_name.upper }}</h5>
@@ -41,10 +42,10 @@
                     <!-- card end -->
 
                 </div>
-                <div class="col-sm-4"></div>
+                <div class="col-1 col-sm-2 col-lg-3 col-xl-4"></div>
             </div>
         </section>
-    </div>
+    </main>
 {% endblock %}
 
 

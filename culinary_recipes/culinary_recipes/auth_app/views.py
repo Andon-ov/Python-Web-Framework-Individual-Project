@@ -60,6 +60,7 @@ class UserDeleteView(auth_mixin.LoginRequiredMixin, views.DeleteView):
 class ChangeUserPasswordView(auth_mixin.LoginRequiredMixin, auth_views.PasswordChangeView):
     template_name = 'auth/password-change.html'
 
+
 # @login_required
 # def change_password(request):
 #     if request.method == 'POST':

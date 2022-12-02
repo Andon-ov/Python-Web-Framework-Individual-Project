@@ -2,26 +2,19 @@
 {% load tags %}
 {% block page_content %}
     <!-- main container -->
-    <div class="container">
+    <main class="container" style=" min-height: 80.3%">
         <!-- card block title -->
-        <div class="card shadow-none">
-            <div class="card-body menu my-5">
-                <h1 class="card-title text-black">МЕНЮ</h1>
-            </div>
-        </div>
-        {#        <div class="menu my-3 mb-8 text-black">#}
-        {#            <h1 class="card-title text-black ">АКТУАЛНО МЕНЮ</h1>#}
-        {#        </div>#}
+        <h1 class="text-black my-5">МЕНЮ</h1>
         <section class="section-all-category">
-            <div class="row row-cols-lg-6 row-cols-md-3 row-cols-sm-2 g-5 mb-10">
-
+            <div class="row  row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 row-cols-1 g-5 justify-content-center">
                 <!-- For Recipes-->
                 {% for category in category_list %}
                     <!-- Cards col -->
-                    <div class="col mb-0 g-5">
+                    <div class="col g-5">
                         <!-- card start -->
-                        <div class="card hover-shadow mb-0 h-100" STYLE="background-color: #edf4ec; ">
-                            <img class="rounded-circle my-4" src="{{ category.image_category.image.url }}"
+                        <div class="card hover-shadow mb-0 h-100" STYLE="background-color: #ddf0e4; ">
+
+                            <img class="card-img-top rounded-circle" src="{{ category.image_category.image.url }}"
                                  alt="...">
                             <div class="card-body">
                                 {% if category.note %}
@@ -30,9 +23,9 @@
                             </div>
                             <div class="card-footer text-center">
                                 <p class="card-text text-center">{{ category.menu|lower }}</p>
-                                <h5 class="card-title text-center">{{ category.name }}</h5>
+                                <h4 class="card-title text-center">{{ category.name }}</h4>
                             </div>
-                            <div class="card-footer text-center mb-4">
+                            <div class="card-footer text-center">
                                 <a href="{% url 'category detail'  pk=category.pk %}"
                                    class="btn btn-outline-dark ">Details</a>
                             </div>
@@ -42,7 +35,7 @@
                 {% endfor %}
             </div>
         </section>
-        <div class="row my-5"></div>
-    </div>
+        <div class="row my-4"></div>
+    </main>
 {% endblock %}
 

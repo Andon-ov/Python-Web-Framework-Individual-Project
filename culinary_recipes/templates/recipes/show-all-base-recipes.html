@@ -1,27 +1,20 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
-    <div class="container">
-        <div class="card shadow-none text-black">
-            <div class="card-body">
-                <h1 class="card-title" style="margin-top: 45px;">БАЗОВИ РЕЦЕПТИ</h1>
-            </div>
-        </div>
-        <section class="section-all-base-last">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
+    <main class="container">
+        <h1 class="text-black my-5" >БАЗОВИ РЕЦЕПТИ</h1>
+        <section class="" style="min-height: 60vh;">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 justify-content-center">
                 <!-- For Recipes-->
                 {% for base in object_list %}
                     <div class="col shadow-non g-3">
                         <!-- card start -->
                         <div class="card h-100 hover-shadow" style="background-color: #f0f2f5;">
                             <div class="card-body">
-                                <h5 class="card-title text-success text-center">{{ base.title.upper }}</h5>
+                                <h4 class="card-title text-success text-center">{{ base.title.upper }}</h4>
                                 {% if base.base_type %}
                                     <p class="card-text">{{ base.base_type }}</p>
                                 {% endif %}
-
-                                <div class="fixed-bottom">
-                                </div>
                             </div>
                             <div class="card-footer text-center">
                                 <a href="{% url 'base_recipe detail' pk=base.pk %}"
@@ -37,8 +30,7 @@
             <div class="card shadow-none">
                 <div class="card-body shadow-none pagination mb-2">
                     {% if page_obj.has_previous %}
-                        <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">« Previous
-                            page</a>
+                        <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">«Previous</a>
                         {% if page_obj.number > 3 %}
                             <a class="text-pagination" href="?page=1">1</a>
                             {% if page_obj.number > 4 %}
@@ -62,10 +54,10 @@
                             <a class="text-pagination"
                                href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
                         {% endif %}
-                        <a class="text-pagination" href="?page={{ page_obj.next_page_number }}">Next Page »</a>
+                        <a class="text-pagination" href="?page={{ page_obj.next_page_number }}">Next»</a>
                     {% endif %}
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 {% endblock %}

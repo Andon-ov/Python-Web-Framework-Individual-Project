@@ -8,6 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRETY_KEY')
 
+# DEBUG = False
 DEBUG = True
 # DEBUG = bool(os.environ.get('DEBUG'))
 # DEBUG = int(os.environ.get('DEBUG'))

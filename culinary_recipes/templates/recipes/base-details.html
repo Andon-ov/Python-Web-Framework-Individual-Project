@@ -3,11 +3,8 @@
 {% load tags %}
 {% load static %}
 {% block page_content %}
-    <!-- main container -->
-    <main class="container">
+    <main class="container" style="min-height: 80.3vh">
         <div class="menu my-3 text-black">
-            <!-- category -->
-
             <!-- title -->
             <h1 class="card-title text-black my-5">{{ object.title }}</h1>
             <div class="card-body text-center">
@@ -17,14 +14,12 @@
                 {% endif %}
             </div>
         </div>
-        <section class="section my-5 mb-14">
-            {#от тук#}
+        <section class="section my-5">
             <div class="row">
                 <div class="col-lg-3 col-sm-1"></div>
                 <div class="col-lg-6 col-sm-2">
                     <div class="card shadow-6-strong col-12">
-
-                        <div class="card-body col-12 my-5 mb-10">
+                        <div class="card-body col-12 my-5 ">
                             <!-- ingredient -->
                             {% if object.baseingredient_set %}
                                 <!-- table ingredient -->
@@ -43,14 +38,12 @@
                                                 <td>{{ ingredient.preparation_method }}</td>
                                             {% endif %}
                                         </tr>
-
                                     {% endfor %}
                                     </tbody>
                                 </table>
                                 <!-- table ingredient end  -->
                             {% endif %}
                         </div>
-
                         <div class="card-body col-12">
                             <!-- preparation method -->
                             {% if prep_method %}
@@ -58,7 +51,6 @@
                                     <p>{{ method }}</p>
                                 {% endfor %}
                             {% endif %}
-
                             <!-- portions -->
                             {% if  object.base_recipe_portions %}
                                 <p>Порций: {{ object.base_recipe_portions }} </p>
@@ -77,8 +69,8 @@
                             {% endif %}
                         </div>
                         <div class="card-footer my-3 ">
-                            <a href="{% url 'base recipe' %}" class="link-danger"><h5>БАЗОВИ РЕЦЕПТИ <i
-                    class="fas fa-hand-point-left"></i></h5></a>
+                            <a href="{% url 'base recipe' %}" class="text-black-50"><h5><i
+                    class="fas fa-caret-left"></i> базови рецепти</h5></a>
                         </div>
                     </div>
                 </div>

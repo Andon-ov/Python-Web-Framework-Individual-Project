@@ -1,48 +1,31 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    <!-- main container -->
     <main class="container">
-        <!-- title -->
         <h1 class="my-5 text-black">{{ category.name.upper }}</h1>
-        <!-- section -->
-        <section class="" style="min-height: 64vh;">
+        <section style="min-height: 65.4vh;">
             <!-- Cards row -->
-            <div class="row  row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 g-5 justify-content-center">
-                {#            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-5 justify-content-center">#}
+            <div class="row  row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1
+             g-5 justify-content-center mb-5">
                 <!-- For Recipes-->
                 {% for recipe in recipes %}
-
                     <!-- Cards col -->
                     <div class="col g-5">
                         <!-- card start -->
-                        <div class="card hover-shadow mb-0 h-100" STYLE="background-color: #f4e9e4; ">
-{#                        <div class="card hover-zoom h-50" style="background-color: #ddf0e4; ">#}
-                            <img class="rounded-circle" src="{{ recipe.image_recipe.image.url }}"
-                                 alt="...">
-                            <div class="card-body">
-                                    <h4 class="card-title text-center">{{ recipe.title }}</h4>
-                            </div>
-
-                            <div class="card-footer text-center">
-                                <a href="{% url 'recipe detail' pk=recipe.pk %}"
-                                   class="btn btn-outline-dark">Details</a>
+                        <div class="card hover-zoom  h-100">
+                            <a href="{% url 'recipe detail' pk=recipe.pk %}"
+                               class="btn btn-img-details btn-outline-white " style="--mdb-btn-hover-bg: #f4e9e4!important; min-height: 21vh"><img
+                                    class="rounded-circle card-img-top" src="{{ recipe.image_recipe.image.url }}"
+                                    alt="..."></a>
+                            <div class="card-body text-center" style="background-color: #f4e9e4;">
+                                <h5>{{ recipe.title.upper }}</h5>
                             </div>
                         </div>
-
                     </div>
                     <!-- card end -->
-
                 {% endfor %}
-
-
-                {#                <!-- back button-->#}
-                <a href="{% url 'all category' %}" class="d-none d-xxl-block back-to text-black"><h4><i
-                        class="fas fa-hand-point-left"></i> МЕНЮ</h4></a>
+                <a href="{% url 'all category' %}" class="d-none d-xxl-block back-to text-black-50"><h4><i
+                        class="fas fa-caret-left"></i>  меню</h4></a>
             </div>
-
         </section>
-
-        <div class="row my-5"></div>
-
     </main>
 {% endblock %}

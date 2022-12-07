@@ -1,53 +1,40 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    <!-- main container -->
     <main class="container">
         {% if not object_list %}
-            <!-- card block title -->
             <h1 class="text-black my-5">Няма намерен резултат</h1>
-            <section class="text-center" style="min-height: 69vh;">
+            <section class="text-center" style="min-height: 70.4vh;">
                 <button class="btn btn-outline-dark mb-12" onclick="history.back()">Go Back</button>
             </section>
-
         {% else %}
             <h1 class="my-5 text-black">Резултати</h1>
-            <!-- card block title -->
-
-            <section class="" style="min-height: 75vh;">
-                <!-- Cards row -->
-                <div class="row  row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 g-5 justify-content-center mb-5">
-
-                    <!-- For Recipes-->
+            <section style="min-height: 75.3vh;">
+                <!-- cards row -->
+                <div class="row  row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1
+                g-5 justify-content-center mb-5">
+                    <!-- For search-->
                     {% for search in object_list %}
                         <!-- Cards col -->
                         <div class="col g-5">
                             <!-- card start -->
-
-                            <div class="card hover-zoom h-100" style="background-color: #ddf0e4;">
-                                <a href="{% url 'category detail' search.category.pk %}"><p
-                                        class="card-text text-center text-danger"
-                                        style="margin-top: 10px; margin-bottom: 10px">{{ search.category.name|upper }}</p>
-                                </a>
-
-                                <img class="rounded-circle" src="{{ search.image_recipe.image.url }}"
-                                     alt="...">
-
-                                <div class="card-body text-center">
-
-
-                                    <h5 class="card-title text-center  mb-0">{{ search.title }}</h5>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <a href="{% url 'recipe detail' pk=search.pk %}"
-                                       class="btn btn-outline-dark">Details</a>
+                            <div class="card hover-zoom h-100">
+                                <a href="{% url 'recipe detail' pk=search.pk %}"
+                                   class="btn btn-img btn-outline-white" style="min-height: 21vh"><img
+                                        class="rounded-circle card-img-top" src="{{ search.image_recipe.image.url }}"
+                                        alt="..."></a>
+                                <div class="card-body text-center" style="background-color: #ddf0e4;">
+                                    <h5 class="card-title text-center">{{ search.title.upper }}</h5>
+                                    <a href="{% url 'category detail' search.category.pk %}"><p
+                                            class="card-text text-center text-black-50"
+                                            style="margin-top: 10px; margin-bottom: 10px"><i
+                                            class="fas fa-caret-left"></i> {{ search.category.name|lower }}</p>
+                                    </a>
                                 </div>
                             </div>
                             <!-- card end -->
                         </div>
                     {% endfor %}
-                    <!-- back button-->
                 </div>
-                <div class="card mb-4 my-3"></div>
             </section>
         {% endif %}
     </main>

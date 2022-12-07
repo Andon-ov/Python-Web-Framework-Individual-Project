@@ -2,24 +2,24 @@
 {% load placeholders %}
 {% load static %}
 {% block page_content %}
-    <!-- container -->
+
     <main class="container" style="min-height: 80.3vh">
-        <div class="form-h1 my-3 my-5 text-black">
+        <div class="profile-h1 my-5 text-black">
             <h1>Login</h1>
         </div>
         <section class="section-profile col-12">
             <div class="row">
-                <div class="col-sm-4"></div>
-                <div class="card hover-shadow col-sm-4 ">
+                <div class="col-1 col-sm-1 col-md-2 col-lg-4 col-xl-4 col-xxl-4"></div>
+                <div class="card hover-shadow
+                            col-10 col-sm-8 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
                     <form action="{% url 'sign in' %}" method="post" enctype="multipart/form-data">
-
-                        <hr class="my-4"/>
                         <label for="email">Email</label>
                         {{ form.username|placeholder:'Enter your email' }}
                         <label for="password1">Password</label>
                         {{ form.password|placeholder:'Enter your password' }}
                         <input type="hidden" name="next" value="{{ next }}">
                         {% csrf_token %}
+
                         {% if form.errors %}
                             {% for field in form %}
                                 {% for error in field.errors %}
@@ -42,7 +42,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-4"></div>
+                <div class="col-1 col-sm-1 col-md-2 col-lg-4 col-xl-4 col-xxl-4"></div>
             </div>
         </section>
     </main>

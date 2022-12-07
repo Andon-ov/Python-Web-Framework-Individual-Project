@@ -1,17 +1,16 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
     <main class="container" style="height: 80.3%">
-        <!-- card block title -->
         <div class="my-3 my-5 text-black">
             <h1>Delete Comment</h1>
         </div>
         <section class="section-comment-delete col-12 mb-11">
             <div class="row">
-                <div class="col-sm-4"></div>
+                <div class="col-1 col-sm-1 col-md-2 col-lg-4 col-xl-4 col-xxl-4"></div>
                 <!-- card start -->
-                <div class="card hover-shadow col-sm-4">
+                <div class="card hover-shadow
+                             col-10 col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
                     <div class="card-body">
-                        <hr class="my-4"/>
                         <h4>{{ comment.user.profile.full_name }} <br>do you really want to delete your comment? <br>
                         </h4>
                     </div>
@@ -31,8 +30,9 @@
                         </form>
                     </div>
                     <!-- card end -->
-                    <div class="col-sm-4"></div>
+
                 </div>
+                <div class="col-1 col-sm-1 col-md-2 col-lg-4 col-xl-4 col-xxl-4"></div>
             </div>
         </section>
     </main>

@@ -1,15 +1,22 @@
+from django.contrib import messages
 from django.contrib.auth import mixins as auth_mixin
 from django.contrib.auth import views as auth_views, login, get_user_model
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views import generic as views
 
 from culinary_recipes.auth_app.forms import SignUpForm
 from culinary_recipes.auth_app.models import Profile
+from culinary_recipes.core.mixins import OwnerRequiredMixin
+
+UserModel = get_user_model()
 
 
-class SignUpView(views.CreateView):
+class SignUpView(SuccessMessageMixin, views.CreateView):
     template_name = 'auth/sign-up-page.html'
     form_class = SignUpForm
+    success_message = 'Вие се регистрирахте успешно в нашия саит!'
+
 
     success_url = reverse_lazy('index')
 
@@ -20,29 +27,27 @@ class SignUpView(views.CreateView):
         return result
 
 
-class SignInView(auth_views.LoginView):
+class SignInView(SuccessMessageMixin, auth_views.LoginView):
     template_name = 'auth/sign-in-page.html'
     success_url = reverse_lazy('index')
+    success_message = 'Здравейте и добре дошли!'
 
 
-class SignOutView(auth_mixin.LoginRequiredMixin, auth_views.LogoutView):
+class SignOutView(SuccessMessageMixin,auth_mixin.LoginRequiredMixin, auth_views.LogoutView):
     template_name = 'auth/sign-out-page.html'
-
-
-UserModel = get_user_model()
+    success_message = 'Вие се отписахте успешно'
 
 
 # Profile
-class UserDetailsView(auth_mixin.LoginRequiredMixin, views.DetailView):
+class UserDetailsView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views.DetailView):
     template_name = 'auth/profile-details-page.html'
     model = UserModel
 
 
 # @cache_page(60)
-class UserEditView(auth_mixin.LoginRequiredMixin, views.UpdateView):
+class UserEditView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views.UpdateView):
     template_name = 'auth/profile-edit-page.html'
     model = Profile
-
     fields = ('first_name', 'last_name', 'job_title')
 
     def get_success_url(self):
@@ -51,7 +56,7 @@ class UserEditView(auth_mixin.LoginRequiredMixin, views.UpdateView):
         })
 
 
-class UserDeleteView(auth_mixin.LoginRequiredMixin, views.DeleteView):
+class UserDeleteView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views.DeleteView):
     template_name = 'auth/profile-delete-page.html'
     model = UserModel
     success_url = reverse_lazy('index')
@@ -59,7 +64,6 @@ class UserDeleteView(auth_mixin.LoginRequiredMixin, views.DeleteView):
 
 class ChangeUserPasswordView(auth_mixin.LoginRequiredMixin, auth_views.PasswordChangeView):
     template_name = 'auth/password-change.html'
-
 
 # @login_required
 # def change_password(request):

@@ -3,6 +3,7 @@ from django.contrib.auth import forms as auth_forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
+
 from culinary_recipes.auth_app.models import Profile, JobTitle
 
 UserModel = get_user_model()

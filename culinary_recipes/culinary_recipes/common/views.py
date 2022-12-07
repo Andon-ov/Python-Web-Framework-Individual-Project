@@ -1,19 +1,24 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import render, redirect
 
 from culinary_recipes.common.forms import RecipeCommentForm, RecipeCommentDeleteForm, RecipeCommentEditForm
 from culinary_recipes.common.models import RecipeComment
+from culinary_recipes.core.utils import is_owner
 from culinary_recipes.recipes_app.models import Recipe
 
 UserModel = get_user_model()
 
-
 def index(request):
+    # if request.session.test_cookie_worked():
+    #     request.session.delete_test_cookie()
+    # else:
+    #     request.session.set_test_cookie()
+    #     messages.error(request, 'Please enable cookie')
     context = {
     }
     return render(request, 'index.html', context)
-
 
 
 @login_required
@@ -35,6 +40,9 @@ def comment_recipe(request, recipe_id):
 def comment_edite(request, pk, recipe_id):
     recipe = Recipe.objects.filter(pk=recipe_id).get()
     comment = RecipeComment.objects.filter(pk=pk).get()
+    if not is_owner(request, comment):
+        raise Http404
+
     if request.method == 'POST':
         form = RecipeCommentEditForm(request.POST, instance=comment)
         if form.is_valid():
@@ -53,6 +61,10 @@ def comment_edite(request, pk, recipe_id):
 def comment_delete(request, pk, recipe_id):
     recipe = Recipe.objects.filter(pk=recipe_id).get()
     comment = RecipeComment.objects.filter(pk=pk).get()
+
+    if not is_owner(request, comment):
+        raise Http404
+
     if request.method == 'POST':
         form = RecipeCommentDeleteForm(request.POST, instance=comment)
         if form.is_valid():

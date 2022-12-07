@@ -1,24 +1,23 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-
     <main class="container">
         <h1 class="text-black my-5" >БАЗОВИ РЕЦЕПТИ</h1>
-        <section class="" style="min-height: 60vh;">
+        <section class="" style="min-height: 61.3vh;">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 justify-content-center">
-                <!-- For Recipes-->
+                <!-- For base-->
                 {% for base in object_list %}
                     <div class="col shadow-non g-3">
                         <!-- card start -->
-                        <div class="card h-100 hover-shadow" style="background-color: #f0f2f5;">
+                        <div class="card h-100 hover-shadow" style="background-color: #ddf0e4;">
                             <div class="card-body">
-                                <h4 class="card-title text-success text-center">{{ base.title.upper }}</h4>
+                                <h4 class="card-title text-black text-center">{{ base.title.upper }}</h4>
                                 {% if base.base_type %}
                                     <p class="card-text">{{ base.base_type }}</p>
                                 {% endif %}
                             </div>
-                            <div class="card-footer text-center">
+                            <div class="card-footer text-center" style="background-color: #f4e9e4;">
                                 <a href="{% url 'base_recipe detail' pk=base.pk %}"
-                                   class="btn btn-outline-dark">Details</a>
+                                   class="btn btn-outline-light text-black">Details</a>
                             </div>
                         </div>
                         <!-- card end -->

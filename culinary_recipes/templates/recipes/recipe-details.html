@@ -12,13 +12,13 @@
             <div class="col-sm-0 col-md-1 col-lg-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-8">
 
-                <div class="card hover-zoom " style="-webkit-box-shadow: -3px 12px 49px 60px rgba(211,235,221,0.9);
-                                                      -moz-box-shadow: -3px 12px 49px 60px rgba(211,235,221,0.9);
-                                                       box-shadow: -3px 12px 49px 60px rgba(211,235,221,0.9);">
+                <div class="card hover-zoom " style="-webkit-box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);
+-moz-box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);
+box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
 
-                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black"
-                       style=" margin-left: 50px; margin-top:50px">
-                        <h6>{{ recipe.category.name.upper }} <i class="fas fa-hand-point-left"></i></h6></a>
+                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black-50"
+                       style=" margin-left: 30px; margin-top:30px">
+                        <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.lower }}</h6></a>
                     <img class="rounded-circle my-2" style="margin: 80px" src="{{ recipe.image_recipe.image.url }}"
                          alt="{{ recipe.title }}">
                     <div class="card-body col-12">
@@ -56,7 +56,7 @@
                                         <dd><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}"
                                                class="text-black">{{ ingredient.food }}
                                             - {{ ingredient.amount_number|floatformat|cut:'None' }} {{ ingredient.unit|cut:'None' }} {{ ingredient.quantity|cut:'None' }}
-                                            <i class="fas fa-search"></i></a>
+                                            <i class="fas fa-caret-left"></i></a>
 
 
                                         </dd>
@@ -72,16 +72,17 @@
                         </div>
                         {#                        <div class="container-sm col-12">#}
                         {#                            <div class="row">#}
-                        {#                                <div class="col-6">#}
+                        {#                                   <div class="col-6">#}
+                        <br>
                         <div class="text-center">
                             {% if recipe.finish %}
                                 <i class="text-success">Завършваме : </i><br>
-                                <b class="">{{ recipe.finish }}</b><br>
+                                <b>{{ recipe.finish }}</b><br>
                             {% endif %}
                             <i class="text-success ">Kоличество : </i><br>
-                            <b class="">{{ recipe.serving_value }} гр. </b><br>
+                            <b>{{ recipe.serving_value }} гр. </b><br>
                             <i class="text-success ">Издаваме в : </i><br>
-                            <b class="">{{ recipe.food_plate }}</b><br>
+                            <b>{{ recipe.food_plate }}</b><br>
                             {% if recipe.preparation_method %}
                                 <i class="text-success">Обработка : </i><br>
                                 <b class="">{{ recipe.preparation_method }}</b><br>
@@ -120,8 +121,8 @@
                         {% endif %}
                     </div>
                     <div class="card-body">
-                        <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black">
-                            <h6>{{ recipe.category.name.upper }} <i class="fas fa-hand-point-left"></i></h6></a>
+                        <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black-50">
+                            <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.lower }}</h6></a>
                     </div>
                 </div>
             </div>
@@ -132,7 +133,7 @@
             <div class="col-sm-0 col-md-1 col-lg-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-8">
                 <!-- comments -->
-                <div class="card my-5" style="background-color: #f0f2f5;">
+                <div class="card my-5" style="background-color: #ddf0e4">
                     <div class="comments card-body p-4">
                         <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post"
                               class="comment-form">

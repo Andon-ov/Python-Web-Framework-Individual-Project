@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'culinary_recipes.middlewares.handle_exception',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,16 +136,12 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = '/tmp/culinary_recipes/staticfiles'
 
-MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(
-#     BASE_DIR, 'media'
-# )
-
+# move to env
 cloudinary.config(
     cloud_name="dsla98vyk",
     api_key="587566495847865",
     api_secret="sJLzQzouizKo51b9Mv0bI8a5pCI",
-    secure=True
+    secure=True,
 )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -155,7 +152,7 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 AUTH_USER_MODEL = 'auth_app.AppUser'
 
-LOGS_DIR = BASE_DIR / 'Logs'
+LOGS_DIR = BASE_DIR / 'logs'
 
 try:
     os.mkdir(LOGS_DIR)
@@ -190,7 +187,7 @@ LOGGING = {
             'level': 'WARNING',
             'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
-            'filename': LOGS_DIR / 'Log.txt',
+            'filename': LOGS_DIR / 'log.txt',
             'formatter': 'verbose',
             # clear log file after restart - remove for prod
             'mode': 'w',
@@ -200,7 +197,7 @@ LOGGING = {
         'django.db.backends': {
             'level': 'DEBUG',
             'handlers': ['console'],
-            'propagate':True,
+            'propagate': True,
         },
         'root': {
             'handlers': ['console', 'file'],

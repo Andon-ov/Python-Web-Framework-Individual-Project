@@ -6,10 +6,11 @@
         </div>
         <section class="section-all-base col-12 mb-5">
             <div class="row">
-                <div class="col-sm-4"></div>
-                <div class="card hover-shadow col-sm-4 ">
+                <div class="col-1 col-sm-1 col-md-2 col-lg-4 col-xl-4 col-xxl-4"></div>
+                <div class="card hover-shadow
+                            col-10 col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
                     <!-- comments -->
-                    <div class="card my-5" style="background-color: #f0f2f5;">
+                    <div class="card my-5" style="background-color: #ddf0e4;">
                         <div class="comments card-body p-4">
                             <form action="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}" method="post"
                                   enctype="multipart/form-data" class="comment-form">
@@ -27,7 +28,7 @@
                             Back</a>
                     </div>
                 </div>
-                <div class="col-sm-4"></div>
+                <div class="col-1 col-sm-1 col-md-2 col-lg-4 col-xl-4 col-xxl-4"></div>
             </div>
         </section>
     </main>

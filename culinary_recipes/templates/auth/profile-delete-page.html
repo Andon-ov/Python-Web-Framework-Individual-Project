@@ -1,19 +1,17 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-
     <main class="container" style="min-height: 80.3vh">
-        <!-- card block title -->
-        <div class="form-h1 my-3 my-5 text-black">
+        <div class="profile-h1 my-5 text-black">
             <h1>Delete Profile</h1>
         </div>
         <section class="section-profile col-12 ">
             <div class="row">
-                <div class="col-sm-4"></div>
+                <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
                 <!-- card start -->
-                <div class="card hover-shadow col-sm-4 ">
+                <div class="card hover-shadow col-10 col-sm-8 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
                     <div class="card-body">
-                        <h1>{{ object.profile.full_name }} <br> you sure want to delete your profile?</h1>
+                        <h3>{{ object.profile.full_name }} <br> you sure want to delete your profile?</h3>
                     </div>
                     <div class="card-footer text-center">
                         <p class="card-text text-center"><i>You are logged in as <b>{{ object.email }}</b>
@@ -22,7 +20,6 @@
                     <div class="card-footer text-center">
                         <form method="post" action="{% url 'delete user' pk=request.user.pk %}"
                               enctype="multipart/form-data">
-
                             {{ form }}
                             {% csrf_token %}
                             <div class="buttons my-3">
@@ -34,8 +31,9 @@
                         </form>
                     </div>
                     <!-- card end -->
-                    <div class="col-sm-4"></div>
+
                 </div>
+                <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
             </div>
         </section>
     </main>

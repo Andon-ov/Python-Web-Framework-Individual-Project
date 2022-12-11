@@ -28,7 +28,7 @@ class RecipeComment(models.Model):
 
     user = models.ForeignKey(
         UserModel,
-        on_delete=models.RESTRICT,
+        on_delete=models.CASCADE,
         null=False,
         blank=True,
     )
@@ -38,4 +38,3 @@ class RecipeComment(models.Model):
 
     class Meta:
         ordering = ('-id',)
-

@@ -1,28 +1,18 @@
 from enum import Enum
 
 from django.contrib.auth import models as auth_models
-
 from django.contrib.auth.models import Group as BaseGroup
 from django.core.validators import MinLengthValidator
 from django.db import models
 
 from culinary_recipes.auth_app.managers import AppUserManager
-
-
-class ChoicesEnumMixin:
-    @classmethod
-    def choices(cls):
-        return [(x.name, x.value) for x in cls]
-
-    @classmethod
-    def max_len(cls):
-        return max(len(name) for name, _ in cls.choices())
+from culinary_recipes.core.mixins import ChoicesEnumMixin
 
 
 class JobTitle(ChoicesEnumMixin, Enum):
-    waiter = 'Waiter'
-    cook = 'Cook'
-    manager = 'Manager'
+    waiter = 'Сервитьор'
+    cook = 'Готвач'
+    manager = 'Мениджър'
 
 
 class Profile(models.Model):
@@ -55,7 +45,6 @@ class Profile(models.Model):
         choices=JobTitle.choices(),
         null=False,
         blank=False,
-
     )
 
     user = models.OneToOneField(
@@ -79,7 +68,6 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         max_length=EMAIL_MAX_LENGTH,
         unique=True,
     )
-
     is_active = models.BooleanField(
         default=True
     )

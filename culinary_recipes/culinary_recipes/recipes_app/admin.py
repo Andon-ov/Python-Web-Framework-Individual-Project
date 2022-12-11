@@ -40,7 +40,7 @@ class RecipeAdmin(admin.ModelAdmin):
             }
         ),
         (
-            'Last',
+            'Other',
             {
                 'fields': ('video_recipe', 'season',)
             }
@@ -59,12 +59,12 @@ class IngredientAdmin(admin.ModelAdmin):
         'last_order_index')
     readonly_fields = ('last_order_index', 'last_recipe_edit')
 
-    @staticmethod  # do i need it?
+    @staticmethod
     def last_order_index(obj):
         latest_object = Ingredient.objects.values('order_index').last().get('order_index')
         return latest_object
 
-    @staticmethod  # do i need it?
+    @staticmethod
     def last_recipe_edit(obj):
         latest_object = Ingredient.objects.values('recipe__title').last().get('recipe__title')
         return latest_object
@@ -75,13 +75,13 @@ class BaseRecipeAdmin(admin.ModelAdmin):
     list_display = ('title', 'base_type',)
     fieldsets = (
         (
-            'First',
+            'First section',
             {
                 'fields': ('title', 'base_type', 'base_yield')
             }
         ),
         (
-            'Second',
+            'Second section',
             {
                 'fields': ('note', 'preparation', 'preparation_method', 'allergen', 'base_recipe_portions')
             }
@@ -129,12 +129,12 @@ class BaseIngredientAdmin(admin.ModelAdmin):
         'last_order_index')
     readonly_fields = ('last_order_index', 'last_base_edit',)
 
-    @staticmethod  # do i need it?
+    @staticmethod
     def last_order_index(obj):
         latest_object = BaseIngredient.objects.values('order_index').last().get('order_index')
         return latest_object
 
-    @staticmethod  # do i need it?
+    @staticmethod
     def last_base_edit(obj):
         latest_object = BaseIngredient.objects.last()
         return latest_object

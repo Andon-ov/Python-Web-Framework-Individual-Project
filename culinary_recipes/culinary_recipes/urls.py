@@ -7,6 +7,3 @@ urlpatterns = [
     path('recipes/', include('culinary_recipes.recipes_app.urls')),
     path('', include('culinary_recipes.common.urls')),
 ]
-
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, )

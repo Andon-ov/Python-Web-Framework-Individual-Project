@@ -3,7 +3,6 @@ from django.contrib.auth import forms as auth_forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
-
 from culinary_recipes.auth_app.models import Profile, JobTitle
 
 UserModel = get_user_model()
@@ -22,7 +21,7 @@ class SignUpForm(auth_forms.UserCreationForm):
     )
     last_name = forms.CharField(
         min_length=LAST_NAME_MIN_LENGTH,
-        max_length=LAST_NAME_MAX_LENGTH
+        max_length=LAST_NAME_MAX_LENGTH,
     )
     job_title = forms.ChoiceField(
         choices=JobTitle.choices(),
@@ -69,7 +68,6 @@ class UserCreationForm(forms.ModelForm):
         fields = ('email',)
 
     def clean_password2(self):
-        # Check that the two password entries match
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
@@ -77,7 +75,6 @@ class UserCreationForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        # Save the provided password in hashed format
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:

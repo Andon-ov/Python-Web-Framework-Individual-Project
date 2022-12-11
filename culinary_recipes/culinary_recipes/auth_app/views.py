@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth import mixins as auth_mixin
 from django.contrib.auth import views as auth_views, login, get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
@@ -17,10 +16,8 @@ class SignUpView(SuccessMessageMixin, views.CreateView):
     form_class = SignUpForm
     success_message = 'Вие се регистрирахте успешно в нашия саит!'
 
-
     success_url = reverse_lazy('index')
 
-    # Signs the user in, after successful sign up
     def form_valid(self, form):
         result = super().form_valid(form)
         login(self.request, self.object)
@@ -33,7 +30,7 @@ class SignInView(SuccessMessageMixin, auth_views.LoginView):
     success_message = 'Здравейте и добре дошли!'
 
 
-class SignOutView(SuccessMessageMixin,auth_mixin.LoginRequiredMixin, auth_views.LogoutView):
+class SignOutView(SuccessMessageMixin, auth_mixin.LoginRequiredMixin, auth_views.LogoutView):
     template_name = 'auth/sign-out-page.html'
     success_message = 'Вие се отписахте успешно'
 
@@ -44,7 +41,6 @@ class UserDetailsView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views.D
     model = UserModel
 
 
-# @cache_page(60)
 class UserEditView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views.UpdateView):
     template_name = 'auth/profile-edit-page.html'
     model = Profile
@@ -56,32 +52,14 @@ class UserEditView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views.Upda
         })
 
 
-class UserDeleteView(OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views.DeleteView):
+class UserDeleteView(SuccessMessageMixin, OwnerRequiredMixin, auth_mixin.LoginRequiredMixin, views.DeleteView):
     template_name = 'auth/profile-delete-page.html'
+
     model = UserModel
     success_url = reverse_lazy('index')
+    success_message = 'Вашият профил беше изтрит'
 
 
-class ChangeUserPasswordView(auth_mixin.LoginRequiredMixin, auth_views.PasswordChangeView):
+class ChangeUserPasswordView(SuccessMessageMixin, auth_mixin.LoginRequiredMixin, auth_views.PasswordChangeView):
     template_name = 'auth/password-change.html'
-
-# @login_required
-# def change_password(request):
-#     if request.method == 'POST':
-#         form = auth_forms.PasswordChangeForm(request.user, request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             update_session_auth_hash(request, user)  # Important!
-#             messages.success(request, 'Your password was successfully updated!')
-#             return redirect('index')
-#         else:
-#             messages.error(request, 'Please correct the error below.')
-#     else:
-#         form = auth_forms.PasswordChangeForm(request.user)
-#     context = {
-#         'form': form,
-#     }
-#     return render(request, 'auth/password-change.html', context)
-
-
-# PasswordResetView
+    success_message = 'Вашата парола беше сменена'

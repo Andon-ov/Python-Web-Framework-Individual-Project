@@ -2,16 +2,16 @@
 {% block page_content %}
     <main class="container" style="height: 80.3%">
         <div class="my-3 my-5 text-black">
-            <h1>Delete Comment</h1>
+            <h1>Изтрий Коментара</h1>
         </div>
         <section class="section-comment-delete col-12 mb-11">
             <div class="row">
                 <div class="col-1 col-sm-1 col-md-2 col-lg-4 col-xl-4 col-xxl-4"></div>
                 <!-- card start -->
                 <div class="card hover-shadow
-                             col-10 col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
-                    <div class="card-body">
-                        <h4>{{ comment.user.profile.full_name }} <br>do you really want to delete your comment? <br>
+                             col-10 col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xxl-4" style="background-color: #f9f9f9">
+                    <div class="card-body" >
+                        <h4>{{ comment.user.profile.full_name }} <br>наистина ли искате да изтриете вашия коментар? <br>
                         </h4>
                     </div>
                     <div class="card-footer text-center">
@@ -23,9 +23,8 @@
                             {% csrf_token %}
                             <div class="buttons my-3">
                                 <br>
-                                <button type="submit" class="btn btn-danger btn-block">Yes</button>
-                                <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
-                                    Back</a>
+                                <button type="submit" class="btn btn-danger btn-block">Да</button>
+                                <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Върни се назад</a>
                             </div>
                         </form>
                     </div>

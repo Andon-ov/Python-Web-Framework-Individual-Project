@@ -41,9 +41,10 @@
 
 
                                 {% if messages %}
-                                    <dd class="messages" >
+                                    <dd class="messages">
                                         {% for message in messages %}
-                                            <dt style="font-size: 4vh; font-weight: 300" {% if message.tags %}
+                                            <dt style="font-size: 4vh; font-weight: 300; color: greenyellow"
+                                                    {% if message.tags %}
                                                 class="{{ message.tags }}"{% endif %}>{{ message }}</dt>
                                         {% endfor %}
                                     </dd>
@@ -52,11 +53,9 @@
 
                                 <h1 class="mb-4 ">Нашето актуално меню е <b>тук</b>!</h1>
                                 {% if not request.user.is_authenticated %}
-                                    <h1 class="mb-4 ">Моля регистрирайте се за повече информация!</h1>
+                                    <h2 class="mb-4 ">Моля регистрирайте се за повече информация!</h2>
                                 {% endif %}
 
-                                <a href="{% url 'all category' %}"
-                                   class="btn btn-outline-light btn" data-mdb-ripple-color="light">ВЛЕЗ</a>
                             </div>
                         </div>
                     </div>
@@ -69,12 +68,9 @@
                             <div class="text-center text-white menu">
                                 <h1 class="mb-4 ">Нашето актуално меню е <b>тук</b>!</h1>
                                 {% if not request.user.is_authenticated %}
-                                    <h1 class="mb-4 ">Моля регистрирайте се за повече информация!</h1>
+                                    <h2 class="mb-4 ">Моля регистрирайте се за повече информация!</h2>
                                 {% endif %}
 
-
-                                <a href="{% url 'all category' %}"
-                                   class="btn btn-outline-light btn" data-mdb-ripple-color="light">Enter</a>
                             </div>
                         </div>
                     </div>
@@ -87,11 +83,9 @@
                             <div class="text-center text-white menu">
                                 <h1 class="mb-4 ">Нашето актуално меню е <b>тук</b>!</h1>
                                 {% if not request.user.is_authenticated %}
-                                    <h1 class="mb-4 ">Моля регистрирайте се за повече информация!</h1>
+                                    <h2 class="mb-4 ">Моля регистрирайте се за повече информация!</h2>
                                 {% endif %}
 
-                                <a href="{% url 'all category' %}"
-                                   class="btn btn-outline-light btn" data-mdb-ripple-color="light">Enter</a>
                             </div>
                         </div>
                     </div>
@@ -127,29 +121,43 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5"
+                         style="text-space: 1px; color: #848486;font-size: 16px;font-weight: 400;margin-bottom: 25px;">
 
 
-                        <h3>Здравейте и добре дошли!</h3>
+                        <h3 class="text-black">Здравейте и добре дошли!</h3>
                         <br>
-                        <h6>На тази страница ще намерите нашето актуално меню, като спрямо вашата професия ще виждате
-                            нужните за вас неща. Моля регистрирайте за да може да виждате цялата ви нужна
-                            информация. </h6>
+                        <h6 class="text-center"><i>На тази страница ще намерите нашето актуално меню, в зависимост от
+                            вашата длъжност ще
+                            виждате нужната за вас информация. <br>
+                            Моля регистрирайте за да може да достъпите цялото съдържание.</i></h6>
                         <br>
-                        <p>Създадохме този сайт за по-лесно достигане на информацията до вас. Така винаги когато
-                            създадем ново меню ще може да го видите веднага. Информацията ще е винаги актуална. Освен
-                            категориите и рецептите към менюто има и добавен коментар в който всеки от вас може да
-                            напише има ли някакви проблеми с изпълнението на рецептата и дори да предложи идея за
-                            нейното подобряване. Когато започнем подготовката за промяна на менюто или нова сезонна
+                        <p>
+                            Създадохме този сайт за по-лесно достигане на информацията до вас.
+                            Така винаги когато
+                            създадем ново меню или променим основното вие ще може да видите промените веднага. Освен
+                            рецептите към менюто има и добавен коментар в който всеки от вас може да сподели проблем с
+                            рецептата или да предложи идея за нейното надграждане.
+                            Когато започнем подготовката за промяна на менюто или нова сезонна
                             категория ще отваряме празни позиции под които можете да пишете вашите предложения ако имате
                             такива. </p>
                         <br>
-                        <p class="text-center"> За повече информация моля обръщайте се към Андон Андон!</p>
-                        <br>
-
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <div class="text-black text-center">
+        <h2>За връзка с нас</h2>
+        <h4>Свържете се директно с нас, ако имате въпроси.</h4>
+        </p>
+    </div>
+
+    <form method="post" style="margin-left: 28%;margin-right: 25%; margin-top: 0px">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark btn-block">Изпрати</button>
+    </form>
+
 {% endblock %}

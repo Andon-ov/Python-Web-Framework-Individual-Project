@@ -3,23 +3,18 @@
 {% load tags %}
 {% load static %}
 {% block page_content %}
-
     <main class="container">
-
         <h1 class="text-black my-5">{{ recipe.title }}</h1>
-
         <div class="row">
             <div class="col-sm-0 col-md-1 col-lg-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-8">
 
-                <div class="card hover-zoom " style="-webkit-box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);
--moz-box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);
-box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
+                <div class="card" style="background-color: #f1eff4">
 
-                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black-50"
+                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black"
                        style=" margin-left: 30px; margin-top:30px">
-                        <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.lower }}</h6></a>
-                    <img class="rounded-circle my-2" style="margin: 80px" src="{{ recipe.image_recipe.image.url }}"
+                        <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.upper }}</h6></a>
+                    <img class="img-thumbnail my-2" style="margin: 80px" src="{{ recipe.image_recipe.image.url }}"
                          alt="{{ recipe.title }}">
                     <div class="card-body col-12">
                         <!-- image -->
@@ -68,11 +63,9 @@ box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
                             <b class="">{{ recipe.serving_value }} гр. </b><br>
                             <i class="text-success ">Издаваме в : </i><br>
                             <b class="">{{ recipe.food_plate }}</b><br>
-
                         </div>
                         <br>
                         <!-- description -->
-
                         <div class="col-12">
                             {% if recipe.summary %}
                                 <h2>Информация</h2>
@@ -80,8 +73,8 @@ box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
                             {% endif %}
                         </div>
                         <div class="card-body float-start">
-                            <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black-50">
-                                <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.lower }}</h6></a>
+                            <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black">
+                                <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.upper }}</h6></a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +92,7 @@ box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
                             {{ form }}
                             {% csrf_token %}
                             <div class="text-center my-4">
-                                <button class="btn comment-button btn-outline-dark">Comment</button>
+                                <button class="btn comment-button btn-light ">Коментирай</button>
                             </div>
                         </form>
                         {% for comment in  recipe.recipecomment_set.all %}

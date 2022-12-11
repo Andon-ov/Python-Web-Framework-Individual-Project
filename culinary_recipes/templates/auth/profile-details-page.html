@@ -3,38 +3,35 @@
 {% block page_content %}
     <main class="container" style="min-height: 80.3vh">
         <div class="profile-h1 my-5 text-black">
-            <h1>My Account</h1>
+            <h1>Профил</h1>
         </div>
         <section class="col-12">
             <div class="row">
                 <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
                 <!-- card start -->
-                <div class="card hover-shadow
+                <div style="background-color: #f9f9f9"  class="card hover-shadow
                            col-10 col-sm-8 col-md-8 col-lg-6 col-xl-4 col-xxl-4 ">
 
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ object.profile.full_name.upper }}</h5>
                     </div>
                     <div class="card-footer text-center">
-                        <p class="card-text text-center"><i>You are logged in as <b>{{ object.email }}</b>
-                            <br><a class="text-danger " href="{% url 'sign out' %}">Logout</a></i></p>
+                        <p class="card-text text-center"><i>Вие сте влезли с <b>{{ object.email }}</b>
+                            <br><a class="text-danger " href="{% url 'sign out' %}">Изход</a></i></p>
                     </div>
                     <div class="card-footer text-center">
-                        <p class="card-text text-center"> Job Title: {{ object.profile.job_title.upper }}</p>
+                        <p class="card-text text-center"> Длъжност: {{ object.profile.get_job_title_display }}</p>
                     </div>
                     <div class="card-footer text-center">
-                        <p class="card-text text-center"> Last Login: <br>{{ object.last_login.date }}</p>
+                        <p class="card-text text-center"> Последно влизане: <br>{{ object.last_login.date }}</p>
                     </div>
                     <div class="card-footer text-center">
                         <div class="buttons buttons my-3">
                             <br>
-                            <a class="btn btn-black btn-block" href="{% url 'edit user' pk=request.user.pk %}">Profile
-                                edit</a>
+                            <a class="btn btn-black btn-block" href="{% url 'edit user' pk=request.user.pk %}">Редактиране</a>
 
-                            <a class="btn btn-danger btn-block" href="{% url 'delete user' pk=request.user.pk %}">Profile
-                                delete</a>
-                            <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
-                                Back</a>
+                            <a class="btn btn-danger btn-block" href="{% url 'delete user' pk=request.user.pk %}">Изтриване</a>
+                            <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Върни се назад</a>
                         </div>
                     </div>
                     <!-- card end -->

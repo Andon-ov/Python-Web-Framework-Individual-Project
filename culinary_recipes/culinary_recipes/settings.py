@@ -8,11 +8,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRETY_KEY')
 
-# DEBUG = False
-DEBUG = True
-# DEBUG = bool(os.environ.get('DEBUG'))
 # DEBUG = int(os.environ.get('DEBUG'))
-# DEBUG = int(os.environ.get('DEBUG',1))
+DEBUG = int(os.environ.get('DEBUG',1))
 
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
@@ -33,6 +30,7 @@ INSTALLED_APPS = [
 
     'cloudinary',
     'embed_video',
+    'anymail',
 
 ]
 
@@ -82,7 +80,7 @@ DATABASES = {
 }
 
 # for pycharm run
-
+#
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -122,7 +120,7 @@ else:
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EET'
 
 USE_I18N = True
 
@@ -138,9 +136,9 @@ STATIC_ROOT = '/tmp/culinary_recipes/staticfiles'
 
 # move to env
 cloudinary.config(
-    cloud_name="dsla98vyk",
-    api_key="587566495847865",
-    api_secret="sJLzQzouizKo51b9Mv0bI8a5pCI",
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', None),
+    api_key=os.getenv('CLOUDINARY_API_KEY', None),
+    api_secret=os.getenv('CLOUDINARY_API_SECRET', None),
     secure=True,
 )
 
@@ -152,16 +150,19 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 AUTH_USER_MODEL = 'auth_app.AppUser'
 
-LOGS_DIR = BASE_DIR / 'logs'
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+
+ANYMAIL = {
+    "SENDINBLUE_API_KEY": os.getenv('API_KEY'),
+}
+DEFAULT_FROM_EMAIL = "<your email address>"
+
+LOGS_DIR = BASE_DIR / 'Logs'
 
 try:
     os.mkdir(LOGS_DIR)
 except:
     pass
-
-# Local -> DEBUG
-# Dev/test server -> Info
-# Prod -> Warning/Error
 
 LOGGING = {
     'version': 1,
@@ -187,7 +188,7 @@ LOGGING = {
             'level': 'WARNING',
             'filters': ['require_debug_false'],
             'class': 'logging.FileHandler',
-            'filename': LOGS_DIR / 'log.txt',
+            'filename': LOGS_DIR / 'Log.txt',
             'formatter': 'verbose',
             # clear log file after restart - remove for prod
             'mode': 'w',
@@ -199,9 +200,12 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': True,
         },
-        'root': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-        },
+        # 'root': {
+        #     'handlers': ['console', 'file'],
+        #     'level': 'INFO',
+        # },
     },
 }
+# Local -> DEBUG
+# Dev/test server -> Info
+# Prod -> Warning/Error

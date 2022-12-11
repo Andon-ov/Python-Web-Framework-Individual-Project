@@ -1,22 +1,46 @@
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.core.mail import send_mail
+from django.http import Http404, BadHeaderError, HttpResponse
 from django.shortcuts import render, redirect
 
-from culinary_recipes.common.forms import RecipeCommentForm, RecipeCommentDeleteForm, RecipeCommentEditForm
+from culinary_recipes.common.forms import RecipeCommentForm, RecipeCommentDeleteForm, RecipeCommentEditForm, ContactForm
 from culinary_recipes.common.models import RecipeComment
 from culinary_recipes.core.utils import is_owner
 from culinary_recipes.recipes_app.models import Recipe
 
 UserModel = get_user_model()
 
+
 def index(request):
-    # if request.session.test_cookie_worked():
-    #     request.session.delete_test_cookie()
-    # else:
-    #     request.session.set_test_cookie()
-    #     messages.error(request, 'Please enable cookie')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            body = {
+                'first_name': form.cleaned_data['first_name'],
+                'last_name': form.cleaned_data['last_name'],
+                'subject': form.cleaned_data['subject'],
+                'email': form.cleaned_data['email_address'],
+                'message': form.cleaned_data['message'],
+            }
+            messages.add_message(request, messages.INFO, 'Благодарим ви, че се свързахте с нас!')
+            message = f"Message form {body['first_name']} {body['last_name']}\n" \
+                      f"From {body['email']}\n" \
+                      f"Message: \n" \
+                      f"{body['message']}"
+
+            try:
+                send_mail(body['subject'], message, 'no.reply.our.recipes@gmail.com',
+                          ['no.reply.our.recipes@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('index')
+    else:
+        form = ContactForm()
     context = {
+        'form': form,
     }
     return render(request, 'index.html', context)
 

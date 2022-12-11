@@ -4,22 +4,13 @@ from django.views import generic as view
 from django.views.generic.edit import FormMixin
 
 from culinary_recipes.common.forms import RecipeCommentForm
-from culinary_recipes.recipes_app.models import Recipe, BaseRecipe, Category, Menu, Ingredient, PreparationMethod
+from culinary_recipes.recipes_app.models import Recipe, BaseRecipe, Category, Ingredient, PreparationMethod
 
 
-# show all categories
 class AllCategoryListView(view.ListView):
     template_name = 'recipes/show-all-categories.html'
     model = Category
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['menus'] = Menu.objects.all()
-
-        return context
-
-
-# show all base recipe
 
 class BaseRecipeListView(auth_mixin.LoginRequiredMixin, view.ListView):
     paginate_by = 6
@@ -36,8 +27,7 @@ class BaseRecipeListView(auth_mixin.LoginRequiredMixin, view.ListView):
         return super().dispatch(request, *args, **kwargs)
 
 
-# show menu -> categories
-
+# @cache_page(60*15)
 def recipes_in_category(request, pk):
     category = Category.objects.filter(pk=pk).get()
     recipes = Recipe.objects.filter(category=category)
@@ -58,9 +48,6 @@ class RecipeDetailsWaitersView(auth_mixin.LoginRequiredMixin, view.DetailView, F
         context = super().get_context_data(**kwargs)
         context['form'] = RecipeCommentForm(initial={'post': self.object})
         return context
-
-
-# show recipes
 
 
 class RecipeDetailsView(auth_mixin.LoginRequiredMixin, view.DetailView, FormMixin):
@@ -84,7 +71,6 @@ class RecipeDetailsView(auth_mixin.LoginRequiredMixin, view.DetailView, FormMixi
             return super().dispatch(request, *args, **kwargs)
 
 
-# show base recipe
 class BaseRecipeDetailsView(auth_mixin.LoginRequiredMixin, view.DetailView):
     template_name = 'recipes/base-details.html'
     model = BaseRecipe

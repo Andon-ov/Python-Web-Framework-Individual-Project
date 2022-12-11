@@ -17,49 +17,52 @@
             </button>
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav
-                col-sm-2 col-md-4 col-lg-5">
+                <ul class="navbar-nav col-sm-4 col-md-4 col-lg-5 ">
                     <li>
                         <a class="nav-link text-white" href="{% url 'index' %}"><h3>Our recipes</h3></a>
                     </li>
-
                 </ul>
                 <!-- Search form -->
                 <form class="d-md-flex input-group w-auto my-auto
-                col-sm-2 col-md-4 col-lg-3"
+                col-sm-4 col-md-4 col-lg-3"
                       action="{% url 'search' %}" method="get">
-                    <input name="pattern" id="search" class="form-control" type="search" placeholder="Search"
+                    <input name="pattern" id="search" class="form-control" type="search" placeholder="Търси тук"
                            aria-label="Search">
                 </form>
                 {% csrf_token %}
                 <!-- Left links -->
-                <div class="container text-center
-                col-sm-2 col-md-4 col-lg-1">
+                <div class="container
+                col-sm-4 col-md-4 col-lg-1">
                     <ul class="navbar-nav">
 
                         {% if not request.user.is_authenticated %}
                             <li>
-                                <a class="nav-link text-white" href="{% url 'index' %}"><h3>Home</h3></a>
+                                <a class="nav-link text-white"
+                                   href="{% url 'all category' %}"><h3>Меню</h3></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{% url 'sign in' %}"><h3>Login</h3></a>
+                                <a class="nav-link text-white " href="{% url 'sign in' %}"><h3>Вход</h3></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{% url 'sign up' %}"><h3>Register</h3></a>
+                                <a class="nav-link text-white" href="{% url 'sign up' %}"><h3>Регистрация</h3></a>
                             </li>
+
                         {% else %}
                             <li>
-                                <a class="nav-link text-white" href="{% url 'index' %}"><h3>Home</h3></a>
-                            </li>
-                            <li>
                                 <a class="nav-link text-white"
-                                   href="{% url 'details user' pk=request.user.pk %}"><h3>Profile</h3></a>
+                                   href="{% url 'all category' %}"><h3>Меню</h3></a>
                             </li>
-                            {% if not request.user.profile.job_title == 'waiter' %}
+                                {% if not request.user.profile.job_title == 'waiter' %}
                                 <li>
-                                    <a class="nav-link text-white" href="{% url 'base recipe' %}"><h3>Bases</h3></a>
+                                    <a class="nav-link text-white"
+                                       href="{% url 'base recipe' %}"><h3>Основи</h3></a>
                                 </li>
                             {% endif %}
+                            <li>
+                                <a class="nav-link text-white"
+                                   href="{% url 'details user' pk=request.user.pk %}"><h3>Профил</h3></a>
+                            </li>
+
                         {% endif %}
                     </ul>
                 </div>

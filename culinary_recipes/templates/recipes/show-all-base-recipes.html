@@ -1,21 +1,21 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
     <main class="container">
-        <h1 class="text-black my-5" >БАЗОВИ РЕЦЕПТИ</h1>
+        <h1 class="text-black my-5" >ОСНОВНИ РЕЦЕПТИ</h1>
         <section class="" style="min-height: 61.3vh;">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 justify-content-center">
                 <!-- For base-->
                 {% for base in object_list %}
                     <div class="col shadow-non g-3">
                         <!-- card start -->
-                        <div class="card h-100 hover-shadow" style="background-color: #ddf0e4;">
+                        <div class="card h-100 hover-shadow" style="background-color: #f1eff4;">
                             <div class="card-body">
                                 <h4 class="card-title text-black text-center">{{ base.title.upper }}</h4>
                                 {% if base.base_type %}
                                     <p class="card-text">{{ base.base_type }}</p>
                                 {% endif %}
                             </div>
-                            <div class="card-footer text-center" style="background-color: #f4e9e4;">
+                            <div class="card-footer text-center" style="background-color: #ddf0e4;">
                                 <a href="{% url 'base_recipe detail' pk=base.pk %}"
                                    class="btn btn-outline-light text-black">Details</a>
                             </div>
@@ -26,7 +26,7 @@
             </div>
         </section>
         <div class="pagination-circle text-center">
-            <div class="card shadow-none">
+            <div class="card shadow-none" style="background-color: white">
                 <div class="card-body shadow-none pagination mb-2">
                     {% if page_obj.has_previous %}
                         <a class="text-pagination" href="?page={{ page_obj.previous_page_number }}">«Previous</a>

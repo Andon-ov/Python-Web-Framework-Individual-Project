@@ -1,30 +1,33 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
     <main class="container">
-        <h1 class="my-5 text-black">{{ category.name.upper }}</h1>
-        <section style="min-height: 65.4vh;">
+        <h1 class="text-black" style="padding-top: 6vh">{{ category.name.upper }}</h1>
+        <section style="min-height: 73.4vh; padding-top: 8vh">
             <!-- Cards row -->
-            <div class="row  row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1
-             g-5 justify-content-center mb-5">
+            <div class="row  row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1
+             g-5 justify-content-center">
                 <!-- For Recipes-->
                 {% for recipe in recipes %}
                     <!-- Cards col -->
                     <div class="col g-5">
                         <!-- card start -->
-                        <div class="card hover-zoom  h-100">
-                            <a href="{% url 'recipe detail' pk=recipe.pk %}"
-                               class="btn btn-img-details btn-outline-white " style="--mdb-btn-hover-bg: #f4e9e4!important; min-height: 21vh"><img
-                                    class="rounded-circle card-img-top" src="{{ recipe.image_recipe.image.url }}"
-                                    alt="..."></a>
-                            <div class="card-body text-center" style="background-color: #f4e9e4;">
-                                <h5>{{ recipe.title.upper }}</h5>
+                        <div class="card  h-100">
+                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                <img src="{{ recipe.image_recipe.image.url }}" class="img-fluid"
+                                     alt="{{ recipe.image_recipe.image.name }}"/>
+                                <a href="{% url 'recipe detail' pk=recipe.pk %}">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.45);"></div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ recipe.title.upper }}</h5>
                             </div>
                         </div>
                     </div>
                     <!-- card end -->
                 {% endfor %}
-                <a href="{% url 'all category' %}" class="d-none d-xxl-block back-to text-black-50"><h4><i
-                        class="fas fa-caret-left"></i>  меню</h4></a>
+                <a href="{% url 'all category' %}" class="d-none d-xxl-block back-to text-black"><h4><i
+                        class="fas fa-caret-left"></i> МЕНЮ</h4></a>
             </div>
         </section>
     </main>

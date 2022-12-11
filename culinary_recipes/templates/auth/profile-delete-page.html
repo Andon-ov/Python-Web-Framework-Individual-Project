@@ -3,19 +3,20 @@
 {% block page_content %}
     <main class="container" style="min-height: 80.3vh">
         <div class="profile-h1 my-5 text-black">
-            <h1>Delete Profile</h1>
+            <h1>Изтриване на профил</h1>
         </div>
         <section class="section-profile col-12 ">
             <div class="row">
                 <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
                 <!-- card start -->
-                <div class="card hover-shadow col-10 col-sm-8 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
+                <div style="background-color: #f9f9f9"
+                     class="card hover-shadow  col-10 col-sm-8 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
                     <div class="card-body">
-                        <h3>{{ object.profile.full_name }} <br> you sure want to delete your profile?</h3>
+                        <h3>{{ object.profile.full_name }} <br> сигурни ли сте че искате да изтриете профилът си?</h3>
                     </div>
                     <div class="card-footer text-center">
-                        <p class="card-text text-center"><i>You are logged in as <b>{{ object.email }}</b>
-                            <br><a class="text-danger " href="{% url 'sign out' %}">Logout</a></i></p>
+                        <p class="card-text text-center"><i>Вие сте влезли с <b>{{ object.email }}</b>
+                            <br><a class="text-danger " href="{% url 'sign out' %}">Изход</a></i></p>
                     </div>
                     <div class="card-footer text-center">
                         <form method="post" action="{% url 'delete user' pk=request.user.pk %}"
@@ -24,9 +25,8 @@
                             {% csrf_token %}
                             <div class="buttons my-3">
                                 <br>
-                                <button type="submit" class="btn btn-danger btn-block">Yes</button>
-                                <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Go
-                                    Back</a>
+                                <button type="submit" class="btn btn-danger btn-block">Да</button>
+                                <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Върни се назад</a>
                             </div>
                         </form>
                     </div>

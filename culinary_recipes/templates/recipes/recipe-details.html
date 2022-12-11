@@ -3,23 +3,17 @@
 {% load tags %}
 {% load static %}
 {% block page_content %}
-
     <main class="container">
-
         <h1 class="text-black my-5">{{ recipe.title }}</h1>
-
         <div class="row">
             <div class="col-sm-0 col-md-1 col-lg-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-8">
+            <div class="card"  style="background-color: #f1eff4">
 
-                <div class="card hover-zoom " style="-webkit-box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);
--moz-box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);
-box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
-
-                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black-50"
+                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black"
                        style=" margin-left: 30px; margin-top:30px">
-                        <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.lower }}</h6></a>
-                    <img class="rounded-circle my-2" style="margin: 80px" src="{{ recipe.image_recipe.image.url }}"
+                        <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.upper }}</h6></a>
+                    <img class="img-thumbnail my-2" style="margin: 80px" src="{{ recipe.image_recipe.image.url }}"
                          alt="{{ recipe.title }}">
                     <div class="card-body col-12">
                         <!-- image -->
@@ -30,7 +24,6 @@ box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
                                 <img src="{% static 'images/clock.svg' %}" alt="clock.png">
                                 <b>{{ recipe.release_time }}</b> Мин.</p>
                         </div>
-
 
                         <!-- ingredients -->
                         <div class="container col-12">
@@ -70,9 +63,7 @@ box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
                                 {% endif %}
                             {% endfor %}
                         </div>
-                        {#                        <div class="container-sm col-12">#}
-                        {#                            <div class="row">#}
-                        {#                                   <div class="col-6">#}
+
                         <br>
                         <div class="text-center">
                             {% if recipe.finish %}
@@ -110,19 +101,15 @@ box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
                                     <div class="row">
                                         <div class="col-4"></div>
                                         <div class="col-4"></div>
-                                        {#                                        <div class="col-4 align-content-center shadow-none">#}
-                                        {#                                            <a href="{{ my_video.url }}"><img class="rounded-circle card-img"#}
-                                        {#                                                                              src="{{ my_video.thumbnail }}"#}
-                                        {#                                                                              alt="{{ my_video.url }}"></a>#}
-                                        {#                                        </div>#}
+
                                         <div class="col-4"></div>
                                     </div>
                                 {% endvideo %}
                         {% endif %}
                     </div>
                     <div class="card-body">
-                        <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black-50">
-                            <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.lower }}</h6></a>
+                        <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black">
+                            <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.upper }}</h6></a>
                     </div>
                 </div>
             </div>
@@ -140,10 +127,12 @@ box-shadow: -1px -1px 59px 10px rgba(221,240,228,1);">
                             {{ form }}
                             {% csrf_token %}
                             <div class="text-center my-4">
-                                <button class="btn comment-button btn-outline-dark">Comment</button>
+                                <button class="btn comment-button btn-light">Коментирай</button>
                             </div>
                         </form>
+
                         {% for comment in  recipe.recipecomment_set.all %}
+
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <p>{{ comment }}</p>

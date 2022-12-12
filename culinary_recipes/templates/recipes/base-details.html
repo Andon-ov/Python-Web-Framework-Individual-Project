@@ -3,10 +3,10 @@
 {% load tags %}
 {% load static %}
 {% block page_content %}
-    <main class="container" style="min-height: 80.3vh">
-        <div class="menu my-3 text-black">
+    <main class="container">
+        <div class="menu text-black">
             <!-- title -->
-            <h1 class="card-title text-black my-5">{{ object.title }}</h1>
+            <h1 class="card-title text-black" style="padding-top: 6vh">{{ object.title }}</h1>
             <div class="card-body text-center">
                 <!-- type -->
                 {% if object.base_type %}
@@ -14,68 +14,73 @@
                 {% endif %}
             </div>
         </div>
-        <section class="section my-5">
-            <div class="row">
-                <div class="col-lg-3 col-sm-1"></div>
-                <div class="col-lg-6 col-sm-2">
-                    <div class="card shadow-6-strong col-12" style="background-color: #f9f9f9">
-                        <div class="card-body col-12 my-5 ">
+        <section class="section" style="min-height: 74.3vh; padding-top: 8vh">
+            <div class="row mb-10">
+                <div class="col-sm-0 col-md-1 col-lg-2"></div>
+                <div class="col-sm-12 col-md-10 col-lg-8">
+                    {% if object.baseingredient_set.all %}
+                        <div class="card shadow-6-strong col-12  text-black" style="background-color: #f1eff4">
+                        <div class="card-body col-12">
                             <!-- ingredient -->
-                            {% if object.baseingredient_set %}
-                                <!-- table ingredient -->
-                                <table class="table">
-                                    <thead>
+
+                            <!-- table ingredient -->
+                            <table class="table table-striped text-black">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="text-black"><b>Съставки:</b></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for ingredient in object.baseingredient_set.all %}
                                     <tr>
-                                        <th scope="col">Съставки:</th>
+                                        <td class="text-black">{{ ingredient.food }}
+                                            - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
+                                        {% if ingredient.preparation_method %}
+                                            <td class="text-black">{{ ingredient.preparation_method }}</td>
+                                        {% endif %}
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for ingredient in object.baseingredient_set.all %}
-                                        <tr>
-                                            <td>{{ ingredient.food }}
-                                                - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
-                                            {% if ingredient.preparation_method %}
-                                                <td>{{ ingredient.preparation_method }}</td>
-                                            {% endif %}
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                                <!-- table ingredient end  -->
-                            {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- table ingredient end  -->
                         </div>
                         <div class="card-body col-12">
                             <!-- preparation method -->
                             {% if prep_method %}
                                 {% for method in prep_method %}
-                                    <p>{{ method }}</p>
+                                    <p class="text-danger text-center">{{ method }}</p>
                                 {% endfor %}
                             {% endif %}
-                            <!-- portions -->
-                            {% if  object.base_recipe_portions %}
-                                <p>Порций: {{ object.base_recipe_portions }} </p>
-                            {% endif %}
+
                             <!-- note -->
                             {% if object.note %}
-                                <p>Бележка: {{ object.note }}</p>
+                                <p><b>Бележка: </b><br> {{ object.note }}</p>
                             {% endif %}
                             <!-- preparation -->
                             {% if object.preparation %}
-                                <p class="text-center">Приготвяне: <i>{{ object.preparation }}</i></p>
+                                <p><b>Приготвяне: </b><br> <i>{{ object.preparation }}</i></p>
                             {% endif %}
                             <!-- yield -->
                             {% if object.base_yield %}
-                                <p>Готово количество: {{ object.base_yield }}</p>
+                                <p><b>Готово количество: </b>{{ object.base_yield }}</p>
+                            {% endif %}
+                            <!-- portions -->
+                            {% if  object.base_recipe_portions %}
+                                <p><b>Порций: </b>{{ object.base_recipe_portions }} </p>
                             {% endif %}
                         </div>
-                        <div class="card-footer my-3 ">
-                            <a href="{% url 'base recipe' %}" class="text-black"><h5><i
-                    class="fas fa-caret-left"></i> ОСНОВНИ РЕЦЕПТИ</h5></a>
-                        </div>
+                    {% endif %}
+                    <div class="card-footer my-4">
+                        <a href="{% url 'base recipe' %}" class="text-black float-end"><h5>ОСНОВИ <i
+                                class="fas fa-caret-right"></i></h5></a>
+                        <a href="javascript:history.back()" class="text-black "><h5><i
+                                class="fas fa-caret-left"></i> Върни се назад</h5></a>
+                    </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-1"></div>
+                <div class="col-sm-0 col-md-1 col-lg-2"></div>
             </div>
+
         </section>
     </main>
 {% endblock %}

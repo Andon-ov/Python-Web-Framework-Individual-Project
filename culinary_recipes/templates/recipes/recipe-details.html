@@ -8,9 +8,9 @@
         <div class="row">
             <div class="col-sm-0 col-md-1 col-lg-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-8">
-            <div class="card"  style="background-color: #f1eff4">
+                <div class="card" style="background-color: #f1eff4">
 
-                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black"
+                    <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black text-center"
                        style=" margin-left: 30px; margin-top:30px">
                         <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.upper }}</h6></a>
                     <img class="img-thumbnail my-2" style="margin: 80px" src="{{ recipe.image_recipe.image.url }}"
@@ -35,12 +35,12 @@
                                             - {{ ingredient.amount_number|floatformat|cut:'None' }} {{ ingredient.unit|cut:'None' }} {{ ingredient.quantity|cut:'None' }}
 
                                         </dd>
-                                        {% if ingredient.preparation_method %}
-                                            <i class="float-end"
-                                               style="margin-top: -15px">{{ ingredient.preparation_method }} </i>
-                                        {% endif %}
-                                        <dd>
 
+                                        <dd>
+                                            {% if ingredient.preparation_method %}
+                                                <i class="float-end"
+                                                   style="margin-top: -15px">{{ ingredient.preparation_method }} </i>
+                                            {% endif %}
                                         </dd>
                                     </dl>
                                 {% else %}
@@ -108,14 +108,14 @@
                         {% endif %}
                     </div>
                     <div class="card-body">
-                        <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black">
+                        <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black text-center">
                             <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.upper }}</h6></a>
                     </div>
                 </div>
             </div>
+            <div class="col-sm-0 col-md-0 col-lg-2"></div>
         </div>
-        <div class="col-sm-0 col-md-0 col-lg-2"></div>
-        </div>
+
         <div class="row">
             <div class="col-sm-0 col-md-1 col-lg-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-8">

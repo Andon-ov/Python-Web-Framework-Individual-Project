@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
-from django.test import TestCase
 from django.utils.datetime_safe import datetime
+
+from tests.base_test_case import BestTestCase
 
 UserModel = get_user_model()
 
 
-class UserModelProfileTests(TestCase):
+class UserModelProfileTests(BestTestCase):
     VALID_USER_DATA = {
         'email': 'test@mail.com',
         'password': 'pass',
@@ -14,15 +15,8 @@ class UserModelProfileTests(TestCase):
     }
 
     def test_create_app_user__expect_work_correctly(self):
-        user = UserModel.objects.create_user(
-            **self.VALID_USER_DATA
-        )
-        user.full_clean()
-        user.save()
-
-        self.assertEqual(
-            user.pk, 1
-        )
+        user = self.creat_and_login_user(**self.VALID_USER_DATA)
+        self.assertEqual(user.pk, 1)
 
     def test_create_superuser__expect_work_correctly(self):
         admin_user = UserModel.objects.create_superuser(

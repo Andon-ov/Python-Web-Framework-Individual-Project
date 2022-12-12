@@ -8,9 +8,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRETY_KEY')
 
-# DEBUG = int(os.environ.get('DEBUG'))
-DEBUG = int(os.environ.get('DEBUG',1))
 
+DEBUG = int(os.environ.get('DEBUG'))
+# DEBUG=True
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
@@ -66,8 +66,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'culinary_recipes.wsgi.application'
 
-# for docker run
-
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('DB_ENGINE'),
@@ -78,19 +76,6 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-
-# for pycharm run
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'recipes_db',
-#         'USER': 'postgres',
-#         'PASSWORD': '1123QwER',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
 
 CACHES = {
     'default': {
@@ -142,6 +127,7 @@ cloudinary.config(
     secure=True,
 )
 
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = reverse_lazy('sign in')
@@ -155,6 +141,7 @@ EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
 ANYMAIL = {
     "SENDINBLUE_API_KEY": os.getenv('API_KEY'),
 }
+
 DEFAULT_FROM_EMAIL = "<your email address>"
 
 LOGS_DIR = BASE_DIR / 'Logs'

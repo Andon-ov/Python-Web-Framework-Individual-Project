@@ -1,18 +1,10 @@
-from django.test import TestCase
 from django.urls import reverse
 
 from culinary_recipes.recipes_app.models import Category, Menu
+from tests.base_test_case import BestTestCase
 
 
-class BaseTestCase(TestCase):
-    def assertCollectionEmpty(self, collection, message=None):
-        return self.assertEqual(0, len(collection), message)
-
-    def assertCollectionNotEmpty(self, collection, message=None):
-        return self.assertEqual(1, len(collection), message)
-
-
-class AllCategoryListViewTests(BaseTestCase):
+class AllCategoryListViewTests(BestTestCase):
     def test_all_category_list_view__when_no_category__expect_empty_message(self):
         response = self.client.get(reverse('all category'))
 

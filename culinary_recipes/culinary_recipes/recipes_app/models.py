@@ -337,7 +337,7 @@ class Ingredient(models.Model):
     base = models.ForeignKey(
         to='BaseRecipe',
         related_name='base',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.PROTECT,
         null=True,
         default=None,
         blank=True
@@ -481,7 +481,7 @@ class BaseIngredient(models.Model):
     )
     base = models.ForeignKey(
         to='BaseRecipe',
-        on_delete=models.DO_NOTHING,
+        on_delete=models.RESTRICT,
         blank=False,
         null=False
     )

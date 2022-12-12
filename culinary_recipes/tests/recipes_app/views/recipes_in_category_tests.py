@@ -1,19 +1,10 @@
-from django.test import TestCase
+from tests.base_test_case import BestTestCase
 from django.urls import reverse_lazy, reverse
 
 from culinary_recipes.recipes_app.models import Recipe, Category, Menu, Photo, FoodPlate
 
 
-class BaseTestCase(TestCase):
-    def assertCollectionEmpty(self, collection, message=None):
-        return self.assertEqual(0, len(collection), message)
-
-    def assertCollectionNotEmpty(self, collection, message=None):
-        return self.assertEqual(1, len(collection), message)
-
-
-
-class recipes_in_category_view_tests(BaseTestCase):
+class recipes_in_category_view_tests(BestTestCase):
 
     def test_recipe_add_one_recipe__expect_len_of_one(self):
         menu = Menu.objects.create(

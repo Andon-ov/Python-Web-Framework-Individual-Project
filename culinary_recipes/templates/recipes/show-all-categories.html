@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load tags %}
 {% block page_content %}
-    <main class="container" >
+    <main class="container">
         <h1 class="text-black" style="padding-top: 6vh">МЕНЮ</h1>
         <section class="section-all-category" style="min-height: 73.4vh; padding-top: 8vh">
             <div class="row  row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-2 row-cols-1 g-5 justify-content-center mb-10">
@@ -11,21 +11,21 @@
                     <div class="col g-5">
                         <!-- card start -->
 
-                        <div class="card  h-100" style="background-color: #f1eff4">
+                        <div class="card  h-100" style="background-color: #f1eff4"><a
+                                href="{% url 'category detail'  pk=category.pk %}">
                             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                                 <img src="{{ category.image_category.image.url }}" class="img-fluid"
                                      alt="{{ category.image_category.image.name }}"/>
-                                <a href="{% url 'category detail'  pk=category.pk %}">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.45);"></div>
-                                </a>
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.45);"></div>
+
                             </div>
-                            <div class="card-body">
+                            <div class="card-body text-black">
                                 <h5 class="card-title">{{ category.name.upper }}</h5>
                                 <h5 class="card-title">{{ category.menu|capfirst }}</h5>
                                 {% if category.note %}
                                     <p class="card-text">{{ category.note }}</p>
                                 {% endif %}
-                            </div>
+                            </div></a>
                         </div>
                     </div>
                     <!-- card end -->

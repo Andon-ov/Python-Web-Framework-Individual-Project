@@ -6,7 +6,7 @@ from culinary_recipes.recipes_app.models import Category, PreparationMethod, Pho
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'order_index')
+    list_display = ('id','name', 'order_index')
 
 
 @admin.register(PreparationMethod)
@@ -22,7 +22,7 @@ class PhotoAdmin(admin.ModelAdmin):
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ('title', 'category',)
-    list_filter = ('title',)
+    list_filter = ('title','category','ingredient')
     search_fields = ('title',)
     fieldsets = (
         (
@@ -58,6 +58,7 @@ class IngredientAdmin(admin.ModelAdmin):
         'order_index',
         'last_order_index')
     readonly_fields = ('last_order_index', 'last_recipe_edit')
+    list_filter = ('recipe', 'food', )
 
     @staticmethod
     def last_order_index(obj):
@@ -73,6 +74,7 @@ class IngredientAdmin(admin.ModelAdmin):
 @admin.register(BaseRecipe)
 class BaseRecipeAdmin(admin.ModelAdmin):
     list_display = ('title', 'base_type',)
+    list_filter = ('baseingredient',)
     fieldsets = (
         (
             'First section',
@@ -112,6 +114,7 @@ class VideoAdmin(admin.ModelAdmin):
 @admin.register(Food)
 class FoodAdmin(admin.ModelAdmin):
     ordering = ('name',)
+    list_display = ('name',)
 
 
 @admin.register(Unit)

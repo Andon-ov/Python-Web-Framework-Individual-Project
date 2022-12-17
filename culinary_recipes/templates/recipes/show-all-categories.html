@@ -21,9 +21,9 @@
                             </div>
                             <div class="card-body text-black">
                                 <h5 class="card-title">{{ category.name.upper }}</h5>
-                                <h5 class="card-title">{{ category.menu|capfirst }}</h5>
+                                <h5 class="card-title text-success">{{ category.menu|capfirst }}</h5>
                                 {% if category.note %}
-                                    <p class="card-text">{{ category.note }}</p>
+                                    <p class="card-text text-danger">{{ category.note }}</p>
                                 {% endif %}
                             </div></a>
                         </div>

@@ -102,3 +102,7 @@ def comment_delete(request, pk, recipe_id):
         'recipe': recipe
     }
     return render(request, 'comment/comment-delete-page.html', context)
+
+
+def standard(request):
+    return render(request, 'standard.html')

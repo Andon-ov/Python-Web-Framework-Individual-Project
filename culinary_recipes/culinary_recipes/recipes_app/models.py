@@ -50,6 +50,11 @@ class Category(models.Model):
         null=True,
         blank=True
     )
+    is_activ = models.BooleanField(
+        default=True,
+        blank=False,
+        null=False
+    )
 
     # Many-to-one
     menu = models.ForeignKey(

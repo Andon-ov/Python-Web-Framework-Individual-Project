@@ -53,7 +53,7 @@
                                 <a class="nav-link text-white"
                                    href="{% url 'all category' %}"><h3>Меню</h3></a>
                             </li>
-                                {% if not request.user.profile.job_title == 'waiter' %}
+                            {% if not request.user.profile.job_title == 'waiter' %}
                                 <li>
                                     <a class="nav-link text-white"
                                        href="{% url 'base recipe' %}"><h3>Основи</h3></a>
@@ -63,6 +63,12 @@
                                 <a class="nav-link text-white"
                                    href="{% url 'details user' pk=request.user.pk %}"><h3>Профил</h3></a>
                             </li>
+                            {% if not request.user.profile.job_title == 'cook' %}
+                                <li>
+                                    <a class="nav-link text-white"
+                                       href="{% url 'standard' %}"><h3>Стандарт</h3></a>
+                                </li>
+                            {% endif %}
 
                         {% endif %}
                     </ul>

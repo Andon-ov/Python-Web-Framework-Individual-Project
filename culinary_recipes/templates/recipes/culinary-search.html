@@ -14,30 +14,36 @@
                 g-5 justify-content-center mb-10">
                     <!-- For search-->
                     {% for search in object_list %}
-                        <!-- Cards col -->
-                        <div class="col g-5">
-                            <!-- card start -->
-                            <div class="card  h-100" style="background-color: #f1eff4"><a href="{% url 'recipe detail' pk=search.pk %}">
-                                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                                    <img src="{{ search.image_recipe.image.url }}" class="img-fluid"
-                                         alt="{{ search.image_recipe.image.name }}"/>
+                        {% if search.category.is_activ %}
+
+
+                            <!-- Cards col -->
+                            <div class="col g-5">
+                                <!-- card start -->
+                                <div class="card  h-100" style="background-color: #f1eff4"><a
+                                        href="{% url 'recipe detail' pk=search.pk %}">
+                                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                        <img src="{{ search.image_recipe.image.url }}" class="img-fluid"
+                                             alt="{{ search.image_recipe.image.name }}"/>
 
                                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.45);"></div>
 
-                                </div>
-                                <div class="card-body text-black">
-                                    <h5 class="card-title">{{ search.title.upper }}</h5>
-                                    <h5 class="card-title">{{ category.menu|capfirst }}</h5>
+                                    </div>
+                                    <div class="card-body text-black">
+                                        <h5 class="card-title">{{ search.title.upper }}</h5>
+                                        <h5 class="card-title">{{ category.menu|capfirst }}</h5>
 
-                                </div></a>
-                                <div class="card-footer">
-                                     <a href="{% url 'category detail' search.category.pk %}"><p
-                                            class="card-text text-danger"><i
-                                            class="fas fa-caret-left"></i> {{ search.category.name|lower }}</p>
-                                    </a>
+                                    </div>
+                                </a>
+                                    <div class="card-footer">
+                                        <a href="{% url 'category detail' search.category.pk %}"><p
+                                                class="card-text text-danger"><i
+                                                class="fas fa-caret-left"></i> {{ search.category.name|lower }}</p>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </section>

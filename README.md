@@ -33,7 +33,7 @@ The project aims to facilitate and improve the work of the restaurant staff. All
 
 - [Andon Andonov](https://github.com/BigDo-programming)
 - [LinkedIn](https://www.linkedin.com/in/andon-andonov-bigdo/)
--[<b>Here you can see my certificate:</b>](https://softuni.bg/certificates/details/152946/d4a38a41)
+- [<b>Here you can see my certificate:</b>](https://softuni.bg/certificates/details/152946/d4a38a41)
 
 
 ## License

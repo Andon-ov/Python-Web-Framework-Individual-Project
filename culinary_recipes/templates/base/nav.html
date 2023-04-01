@@ -1,79 +1,143 @@
 {% load static %}
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-black col-lg-12">
-    <!-- Container wrapper -->
-    <div class="container-fluid">
-        <div class="container">
-            <!-- Toggle button -->
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarSupportedContent"
-                    aria-controls="#navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <i class="fas fa-bars text-white"></i>
-            </button>
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav col-sm-4 col-md-4 col-lg-5 ">
-                    <li>
-
-                        <a class="nav-link text-white" href="{% url 'index' %}"><h3>Our recipes</h3></a>
-                    </li>
-                </ul>
-                <!-- Search form -->
-                <form class="d-md-flex input-group w-auto my-auto
-                col-sm-4 col-md-4 col-lg-3"
-                      action="{% url 'search' %}" method="get">
-                    <input name="pattern" id="search" class="form-control" type="search" placeholder="Търси тук"
-                           aria-label="Search">
-                </form>
-                {% csrf_token %}
-                <!-- Left links -->
-                <div class="container
-                col-sm-4 col-md-4 col-lg-1">
-                    <ul class="navbar-nav">
-
-                        {% if not request.user.is_authenticated %}
-                            <li>
-                                <a class="nav-link text-white"
-                                   href="{% url 'all category' %}"><h3>Меню</h3></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white " href="{% url 'sign in' %}"><h3>Вход</h3></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{% url 'sign up' %}"><h3>Регистрация</h3></a>
-                            </li>
-
-                        {% else %}
-                            <li>
-                                <a class="nav-link text-white"
-                                   href="{% url 'all category' %}"><h3>Меню</h3></a>
-                            </li>
-                            {% if not request.user.profile.job_title == 'waiter' %}
-                                <li>
-                                    <a class="nav-link text-white"
-                                       href="{% url 'base recipe' %}"><h3>Основи</h3></a>
-                                </li>
-                            {% endif %}
-                            <li>
-                                <a class="nav-link text-white"
-                                   href="{% url 'details user' pk=request.user.pk %}"><h3>Профил</h3></a>
-                            </li>
-                            {% if not request.user.profile.job_title == 'cook' %}
-                                <li>
-                                    <a class="nav-link text-white"
-                                       href="{% url 'standard' %}"><h3>Стандарт</h3></a>
-                                </li>
-                            {% endif %}
-
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
+<nav class="navbar">
+    <div class="nav-wrapper">
+        <div class="logo-wrapper">
+            <a class="logo" href="{% url 'index' %}"><i class="fa-solid fa-pizza-slice fa-rotate-270"></i>Our&nbsp;recipes<i
+                    class="fa-solid fa-pizza-slice fa-flip-vertical"></i></a>
         </div>
+
+        <ul class="navbar-ul">
+            <li class="nav-item">
+
+                <a class="nav-link" href="{% url 'all category' %}">Menu</a>
+            </li>
+
+            {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sign in' %}">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sign up' %}">Sign Up</a>
+                </li>
+
+            {% else %}
+                {% if not request.user.profile.job_title == 'waiter' %}
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{% url 'base recipe' %}">Base</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'details user' pk=request.user.pk %}">Profile</a>
+                </li>
+                {% if not request.user.profile.job_title == 'cook' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'standard' %}">Standard</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sign out' %}">Sing Out</a>
+                </li>
+            {% endif %}
+
+        </ul>
+
+        <!-- Search form -->
+        <form class="search-form" action="{% url 'search' %}" method="get">
+            <div class="search-wrapper">
+                <i class="fa-solid search-icon fa-magnifying-glass"></i>
+                <input name="pattern"
+                       id="search"
+                       class="search__nav"
+                       type="search"
+                       placeholder="Търси тук"
+                       aria-label="Search">
+
+            </div>
+        </form>
+        {% csrf_token %}
     </div>
+
+
 </nav>
+
+
+{#{% load static %}#}
+{#<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-black col-lg-12">#}
+{#    <!-- Container wrapper -->#}
+{#    <div class="container-fluid">#}
+{#        <div class="container">#}
+{#            <!-- Toggle button -->#}
+{#            <button#}
+{#                    class="navbar-toggler"#}
+{#                    type="button"#}
+{#                    data-mdb-toggle="collapse"#}
+{#                    data-mdb-target="#navbarSupportedContent"#}
+{#                    aria-controls="#navbarSupportedContent"#}
+{#                    aria-expanded="false"#}
+{#                    aria-label="Toggle navigation"#}
+{#            >#}
+{#                <i class="fas fa-bars text-white"></i>#}
+{#            </button>#}
+{#            <!-- Collapsible wrapper -->#}
+{#            <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+{#                <ul class="navbar-nav col-sm-4 col-md-4 col-lg-5 ">#}
+{#                    <li>#}
+{##}
+{#                        <a class="nav-link text-white" href="{% url 'index' %}"><h3>Our recipes</h3></a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#                <!-- Search form -->#}
+{#                <form class="d-md-flex input-group w-auto my-auto#}
+{#                col-sm-4 col-md-4 col-lg-3"#}
+{#                      action="{% url 'search' %}" method="get">#}
+{#                    <input name="pattern" id="search" class="form-control" type="search" placeholder="Търси тук"#}
+{#                           aria-label="Search">#}
+{#                </form>#}
+{#                {% csrf_token %}#}
+{#                <!-- Left links -->#}
+{#                <div class="container#}
+{#                col-sm-4 col-md-4 col-lg-1">#}
+{#                    <ul class="navbar-nav">#}
+{##}
+{#                        {% if not request.user.is_authenticated %}#}
+{#                            <li>#}
+{#                                <a class="nav-link text-white"#}
+{#                                   href="{% url 'all category' %}"><h3>Меню</h3></a>#}
+{#                            </li>#}
+{#                            <li class="nav-item">#}
+{#                                <a class="nav-link text-white " href="{% url 'sign in' %}"><h3>Вход</h3></a>#}
+{#                            </li>#}
+{#                            <li class="nav-item">#}
+{#                                <a class="nav-link text-white" href="{% url 'sign up' %}"><h3>Регистрация</h3></a>#}
+{#                            </li>#}
+{##}
+{#                        {% else %}#}
+{#                            <li>#}
+{#                                <a class="nav-link text-white"#}
+{#                                   href="{% url 'all category' %}"><h3>Меню</h3></a>#}
+{#                            </li>#}
+{#                            {% if not request.user.profile.job_title == 'waiter' %}#}
+{#                                <li>#}
+{#                                    <a class="nav-link text-white"#}
+{#                                       href="{% url 'base recipe' %}"><h3>Основи</h3></a>#}
+{#                                </li>#}
+{#                            {% endif %}#}
+{#                            <li>#}
+{#                                <a class="nav-link text-white"#}
+{#                                   href="{% url 'details user' pk=request.user.pk %}"><h3>Профил</h3></a>#}
+{#                            </li>#}
+{#                            {% if not request.user.profile.job_title == 'cook' %}#}
+{#                                <li>#}
+{#                                    <a class="nav-link text-white"#}
+{#                                       href="{% url 'standard' %}"><h3>Стандарт</h3></a>#}
+{#                                </li>#}
+{#                            {% endif %}#}
+{##}
+{#                        {% endif %}#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</nav>#}

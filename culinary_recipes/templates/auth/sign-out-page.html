@@ -1,18 +1,15 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <main class="container" style="min-height: 80.3vh">
-        <div class="items-container">
-            <div class="item">
-                <div class="profile-h1 my-5">
-                    <h1>Log Out</h1>
-                </div>
-                <form method="post" action="{% url 'sign out' %}">
-                    {{ form }}
-                    <button>Logout</button>
-                    {% csrf_token %}
-                </form>
-            </div>
-        </div>
+    <main class="main">
+
+        <h1>Sign Out</h1>
+
+        <form method="post" action="{% url 'sign out' %}">
+            {{ form }}
+            <button>Sign Out</button>
+            {% csrf_token %}
+        </form>
+
     </main>
 {% endblock %}

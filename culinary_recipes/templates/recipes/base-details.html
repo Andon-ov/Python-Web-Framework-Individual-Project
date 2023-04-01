@@ -3,84 +3,127 @@
 {% load tags %}
 {% load static %}
 {% block page_content %}
-    <main class="container">
-        <div class="menu text-black">
-            <!-- title -->
-            <h1 class="card-title text-black" style="padding-top: 6vh">{{ object.title }}</h1>
-            <div class="card-body text-center">
-                <!-- type -->
-                {% if object.base_type %}
-                    <p>Тип: {{ object.base_type }}</p>
-                {% endif %}
-            </div>
-        </div>
-        <section class="section" style="min-height: 74.3vh; padding-top: 8vh">
-            <div class="row mb-10">
-                <div class="col-sm-0 col-md-1 col-lg-2"></div>
-                <div class="col-sm-12 col-md-10 col-lg-8">
-                    {% if object.baseingredient_set.all %}
-                        <div class="card shadow-6-strong col-12  text-black" style="background-color: #f1eff4">
-                        <div class="card-body col-12">
-                            <!-- ingredient -->
+    <main class="main">
 
-                            <!-- table ingredient -->
-                            <table class="table table-striped text-black">
-                                <thead>
-                                <tr>
-                                    <th scope="col" class="text-black"><b>Съставки:</b></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for ingredient in object.baseingredient_set.all %}
-                                    <tr>
-                                        <td class="text-black">{{ ingredient.food }}
-                                            - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
-                                        {% if ingredient.preparation_method %}
-                                            <td class="text-black">{{ ingredient.preparation_method }}</td>
-                                        {% endif %}
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                            <!-- table ingredient end  -->
-                        </div>
-                        <div class="card-body col-12">
-                            <!-- preparation method -->
-                            {% if prep_method %}
-                                {% for method in prep_method %}
-                                    <p class="text-danger text-center">{{ method }}</p>
-                                {% endfor %}
-                            {% endif %}
 
-                            <!-- note -->
-                            {% if object.note %}
-                                <p><b>Бележка: </b><br> {{ object.note }}</p>
-                            {% endif %}
-                            <!-- preparation -->
-                            {% if object.preparation %}
-                                <p><b>Приготвяне: </b><br> <i>{{ object.preparation }}</i></p>
-                            {% endif %}
-                            <!-- yield -->
-                            {% if object.base_yield %}
-                                <p><b>Готово количество: </b>{{ object.base_yield }}</p>
-                            {% endif %}
-                            <!-- portions -->
-                            {% if  object.base_recipe_portions %}
-                                <p><b>Порций: </b>{{ object.base_recipe_portions }} </p>
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                    <div class="card-footer my-4">
-                        <a href="{% url 'base recipe' %}" class="text-black float-end"><h5>ОСНОВИ <i
-                                class="fas fa-caret-right"></i></h5></a>
-                        <a href="javascript:history.back()" class="text-black "><h5><i
-                                class="fas fa-caret-left"></i> НАЗАД</h5></a>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-sm-0 col-md-1 col-lg-2"></div>
-            </div>
+        <h2>{{ object.title }}</h2>
 
-        </section>
+        {% if object.base_type %}
+            <p>Тип: {{ object.base_type }}</p>
+        {% endif %}
+
+        {% if object.baseingredient_set.all %}
+            <!-- table ingredient -->
+            <table>
+                <thead>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Amount</th>
+                    <th>Preparation Method</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ingredient in object.baseingredient_set.all %}
+                    <tr>
+                        <td>{{ ingredient.food }}</td>
+                        <td>{{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
+                        <td>{{ ingredient.preparation_method }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <!-- table ingredient end  -->
+
+            {% if prep_method %}
+                <!-- preparation method -->
+                {% for method in prep_method %}
+                    <p>{{ method }}</p>
+                {% endfor %}
+            {% endif %}
+
+            {% if object.note %}
+                <!-- note -->
+                <p>{{ object.note }}</p>
+            {% endif %}
+
+            {% if object.preparation %}
+                <!-- preparation -->
+                <p>{{ object.preparation }}</p>
+            {% endif %}
+
+            {% if object.base_yield %}
+                <!-- yield -->
+                <p>{{ object.base_yield }}</p>
+            {% endif %}
+
+            {% if  object.base_recipe_portions %}
+                <!-- portions -->
+                <p>{{ object.base_recipe_portions }} </p>
+            {% endif %}
+        {% endif %}
+
+        <a  class="btn" href="{% url 'base recipe' %}"><h5>Base <i class="fas fa-caret-right"></i></h5></a>
+        <a  class="btn" href="javascript:history.back()"><h5><i class="fas fa-caret-left"></i> Back</h5></a>
+
+
     </main>
 {% endblock %}
+{##}
+{#        <!-- title -->#}
+{#        {{ object.title }}#}
+{##}
+{#        <!-- type -->#}
+{#        {% if object.base_type %}#}
+{#            <p>Тип: {{ object.base_type }}</p>#}
+{#        {% endif %}#}
+{##}
+{##}
+{#        {% if object.baseingredient_set.all %}#}
+{##}
+{#            <!-- ingredient -->#}
+{##}
+{#            <!-- table ingredient -->#}
+{##}
+{#            {% for ingredient in object.baseingredient_set.all %}#}
+{##}
+{#                {{ ingredient.food }}#}
+{#                - {{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}#}
+{#                {% if ingredient.preparation_method %}#}
+{#                    {{ ingredient.preparation_method }}#}
+{#                {% endif %}#}
+{##}
+{#            {% endfor %}#}
+{##}
+{#            <!-- table ingredient end  -->#}
+{##}
+{##}
+{#            <!-- preparation method -->#}
+{#            {% if prep_method %}#}
+{#                {% for method in prep_method %}#}
+{#                    <p>{{ method }}</p>#}
+{#                {% endfor %}#}
+{#            {% endif %}#}
+{##}
+{#            <!-- note -->#}
+{#            {% if object.note %}#}
+{#                <p>{{ object.note }}</p>#}
+{#            {% endif %}#}
+{#            <!-- preparation -->#}
+{#            {% if object.preparation %}#}
+{#                <p>{{ object.preparation }}</p>#}
+{#            {% endif %}#}
+{#            <!-- yield -->#}
+{#            {% if object.base_yield %}#}
+{#                <p>{{ object.base_yield }}</p>#}
+{#            {% endif %}#}
+{#            <!-- portions -->#}
+{#            {% if  object.base_recipe_portions %}#}
+{#                <p>{{ object.base_recipe_portions }} </p>#}
+{#            {% endif %}#}
+{##}
+{#        {% endif %}#}
+{##}
+{#        <a href="{% url 'base recipe' %}" class="text-black float-end"><h5>ОСНОВИ <i#}
+{#                class="fas fa-caret-right"></i></h5></a>#}
+{#        <a href="javascript:history.back()" class="text-black "><h5><i#}
+{#                class="fas fa-caret-left"></i> НАЗАД</h5></a>#}

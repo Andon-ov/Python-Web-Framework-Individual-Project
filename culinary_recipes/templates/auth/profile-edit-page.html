@@ -1,34 +1,47 @@
 {% extends 'base/base.html' %}
 {% load placeholders %}
 {% block page_content %}
-    <main class="container" style="min-height: 80.3vh">
-        <div class="profile-h1 my-5 text-black">
-            <h1>Редактиране на обща информация</h1>
-        </div>
-        <section class="col-12">
-            <div class="row">
-                <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
-                <div style="background-color: #f1eff4"  class="card hover-shadow
-                            col-10 col-sm-8 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
-                    <form action="{% url 'edit user' pk=request.user.pk %}" method="post" enctype="multipart/form-data">
-                        <label for="first_name">Име</label>
-                        {{ form.first_name|placeholder:'Въведи името си' }}
-                        <label for="last_name">Фамилия</label>
-                        {{ form.last_name|placeholder:'Въведи фамилията си' }}
-                        <label for="job_title">Длъжност</label>
-                        {{ form.job_title }}
 
-                        {% csrf_token %}
-                        <div class="buttons  my-3">
-                            <button type="submit" class="btn btn-dark btn-block">Редактирай</button>
-                            <a class="btn btn-danger btn-block" href="{% url 'change password' %}">Смени паролата</a>
-                            <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Върни се назад</a>
-                        </div>
-                    </form>
+    <main class="main">
+        <article class="form-wrapper">
+
+            <h1>Edit Profile</h1>
+            <form class="form" action="{% url 'edit user' pk=request.user.pk %}" method="post"
+                  enctype="multipart/form-data">
+                <label for="first_name">First Name:</label>
+                {{ form.first_name|placeholder:'Enter your first name' }}
+
+                <label for="last_name">Last Name:</label>
+                {{ form.last_name|placeholder:'Enter your last name' }}
+
+                <label for="job_title">Job Title:</label>
+                {{ form.job_title }}
+
+                {% csrf_token %}
+                <div class="buttons">
+                    <button class="btn" type="submit">Save Changes</button>
+                    <a class="btn" href="{% url 'change password' %}">Change Password</a>
+                    <a class="btn" href="javascript:history.back()">Back</a>
                 </div>
-                <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
-            </div>
-        </section>
+            </form>
+        </article>
     </main>
 {% endblock %}
 
+{#    Edit Profile Form#}
+{##}
+{#    <form action="{% url 'edit user' pk=request.user.pk %}" method="post" enctype="multipart/form-data">#}
+{#        <label for="first_name">Име</label>#}
+{#        {{ form.first_name|placeholder:'Въведи името си' }}#}
+{#        <label for="last_name">Фамилия</label>#}
+{#        {{ form.last_name|placeholder:'Въведи фамилията си' }}#}
+{#        <label for="job_title">Длъжност</label>#}
+{#        {{ form.job_title }}#}
+{##}
+{#        {% csrf_token %}#}
+{##}
+{#        <button type="submit">Edit</button>#}
+{#        <a href="{% url 'change password' %}">Change password</a>#}
+{#        <a href="javascript:history.back()">Back</a>#}
+{##}
+{#    </form>#}

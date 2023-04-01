@@ -1,16 +1,16 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    <main class="container" style="min-height: 80.3vh">
-        <h1 class="display-1 fw-bold my-5">404</h1>
-        <section class="text-center">
-            <p class="fs-3"><span class="text-danger">Упс!</span> Страницата не е намерена.</p>
-            <p class="lead">
-                Тази страница, която търсите не съществува.
-            </p>
-            <div class="card-body text-center my-5">
-                <button class="btn btn-outline-dark my-5" onclick="history.back()">Върни се назад</button>
-            </div>
-        </section>
+    <main class="main">
+        <h1>404</h1>
+
+        <p class="fs-3"><span class="text-danger">Упс!</span> Страницата не е намерена.</p>
+        <p class="lead">
+            Тази страница, която търсите не съществува.
+        </p>
+
+        <button class="btn" onclick="history.back()">Back</button>
+
+
     </main>
 
 {% endblock %}

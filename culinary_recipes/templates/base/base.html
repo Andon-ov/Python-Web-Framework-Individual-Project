@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-          crossorigin="anonymous">
+    {#    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"#}
+    {#          rel="stylesheet"#}
+    {#          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"#}
+    {#          crossorigin="anonymous">#}
 
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" type="image/x-icon" href="{% static 'images/pizza-favicon.png' %}">
-    <title>Recipes</title>
+    <script src="{% static 'style/app.js' %}"></script>
+    <title>Our Recipes</title>
 </head>
 
 <body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
+{#<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"#}
+{#        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"#}
+{#        crossorigin="anonymous"></script>#}
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
-        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
-        crossorigin="anonymous"></script>
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"#}
+{#        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"#}
+{#        crossorigin="anonymous"></script>#}
 
 
 <!-- Font Awesome -->
@@ -29,61 +31,61 @@
         rel="stylesheet"
 />
 <!-- Google Fonts -->
-<link
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        rel="stylesheet"
-/>
+{#<link#}
+{#        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"#}
+{#        rel="stylesheet"#}
+{#/>#}
 <!-- MDB -->
-<link
-        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css"
-        rel="stylesheet"
-/>
+{#<link#}
+{#        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css"#}
+{#        rel="stylesheet"#}
+{#/>#}
 
 <!-- MDB -->
-<script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"
-></script>
+{#<script#}
+{#        type="text/javascript"#}
+{#        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"#}
+{#></script>#}
 
-<style>
-    #carouselBasicExample,
-    .carousel-inner,
-    .carousel-item,
-    .carousel-item.active {
-        height: 100vh;
-    }
-
-    .carousel-item:nth-child(1) {
-        background-image: url("https://cdn.pixabay.com/photo/2020/05/12/16/21/pizza-5163800_960_720.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-    }
-
-    .carousel-item:nth-child(2) {
-        background-image: url("https://cdn.pixabay.com/photo/2020/03/25/21/05/pizza-4968645_960_720.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-    }
-
-    .carousel-item:nth-child(3) {
-        background-image: url("https://cdn.pixabay.com/photo/2020/03/21/02/26/pizza-4952508_960_720.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-    }
-
-    #carouselBasicExample {
-        margin-top: -66.6px;
-    }
-
-    .navbar {
-        z-index: 100;
-    }
-
-
-</style>
+{#<style>#}
+{#    #carouselBasicExample,#}
+{#    .carousel-inner,#}
+{#    .carousel-item,#}
+{#    .carousel-item.active {#}
+{#        height: 100vh;#}
+{#    }#}
+{##}
+{#    .carousel-item:nth-child(1) {#}
+{#        background-image: url("https://cdn.pixabay.com/photo/2020/05/12/16/21/pizza-5163800_960_720.jpg");#}
+{#        background-repeat: no-repeat;#}
+{#        background-size: cover;#}
+{#        background-position: center center;#}
+{#    }#}
+{##}
+{#    .carousel-item:nth-child(2) {#}
+{#        background-image: url("https://cdn.pixabay.com/photo/2020/03/25/21/05/pizza-4968645_960_720.jpg");#}
+{#        background-repeat: no-repeat;#}
+{#        background-size: cover;#}
+{#        background-position: center center;#}
+{#    }#}
+{##}
+{#    .carousel-item:nth-child(3) {#}
+{#        background-image: url("https://cdn.pixabay.com/photo/2020/03/21/02/26/pizza-4952508_960_720.jpg");#}
+{#        background-repeat: no-repeat;#}
+{#        background-size: cover;#}
+{#        background-position: center center;#}
+{#    }#}
+{##}
+{#    #carouselBasicExample {#}
+{#        margin-top: -66.6px;#}
+{#    }#}
+{##}
+{#    .navbar {#}
+{#        z-index: 100;#}
+{#    }#}
+{##}
+{##}
+{#</style>#}
 
 
 <!-- Start Nav-->
@@ -105,3 +107,4 @@
 <script type="text/javascript"></script>
 </body>
 </html>
+

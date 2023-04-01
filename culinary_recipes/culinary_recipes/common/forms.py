@@ -78,7 +78,7 @@ class ContactForm(forms.Form):
         label='Съобщение',
         widget=forms.Textarea(
             attrs={
-                'placeholder': 'Въведи съобщението си тук ...'
+                # 'placeholder': 'Въведи съобщението си тук ...'
             }),
         max_length=MESSAGE_MAX_LENGTH,
     )

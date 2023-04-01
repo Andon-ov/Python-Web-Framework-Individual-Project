@@ -1,174 +1,211 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
+    {#    <main class="main">#}
+    <div class="btnConnectToUs">
+        <button class="hiddenContactFormBtn">Contact us</button>
+    </div>
+    <div class="hero-container">
+        <div class="hero-box">
+            <img src="https://scontent.fsof9-1.fna.fbcdn.net/v/t39.30808-6/332494520_150193734549951_7578377239362540640_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=KOTL4mqdHqgAX-IxuqP&_nc_ht=scontent.fsof9-1.fna&oh=00_AfCc-6mqcfSnfW5-B3bXTfz1inzskWPjJFdBaJluKVSBvw&oe=642AB9B1">
 
-    <!-- start -->
-    <header class="mb-5 bg-black">
-        <!-- Navbar -->
-
-        <!-- Carousel wrapper -->
-        <div id="carouselBasicExample" class="carousel slide carousel-fade shadow-5-strong" data-mdb-ride="carousel">
-            <!-- Indicators -->
-            <div class="carousel-indicators">
-                <button
-                        type="button"
-                        data-mdb-target="#carouselBasicExample"
-                        data-mdb-slide-to="0"
-                        class="active"
-                        aria-current="true"
-                        aria-label="Slide 1"
-                ></button>
-                <button
-                        type="button"
-                        data-mdb-target="#carouselBasicExample"
-                        data-mdb-slide-to="1"
-                        aria-label="Slide 2"
-                ></button>
-                <button
-                        type="button"
-                        data-mdb-target="#carouselBasicExample"
-                        data-mdb-slide-to="2"
-                        aria-label="Slide 3"
-                ></button>
-            </div>
-
-            <!-- Inner -->
-            <div class="carousel-inner">
-                <!-- Single item -->
-                <div class="carousel-item active">
-                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
-                        <div class="d-flex justify-content-center align-items-center h-100">
-                            <div class="text-center text-white menu">
-
-
-                                {% if messages %}
-                                    <dd class="messages">
-                                        {% for message in messages %}
-                                            <dt style="font-size: 4vh; font-weight: 600; color: lawngreen"
-                                                    {% if message.tags %}
-                                                class="{{ message.tags }}"{% endif %}>{{ message }}</dt>
-                                        {% endfor %}
-                                    </dd>
-                                {% endif %}
-
-
-                                <h1 class="mb-4 ">Нашето <b>
-                                    <a href="{% url 'all category' %}" class="btn-lg btn-outline-danger text-white">меню</a>
-                                </b> е тук!</h1>
-
-
-                                {% if not request.user.is_authenticated %}
-                                    <h2 class="mb-4 ">Моля регистрирайте се за повече информация!</h2>
-                                {% endif %}
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single item -->
-                <div class="carousel-item">
-                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
-                        <div class="d-flex justify-content-center align-items-center h-100">
-                            <div class="text-center text-white menu">
-                                <h1 class="mb-4 ">Нашето <b>
-                                    <a href="{% url 'all category' %}" class="btn-lg btn-outline-danger text-white">меню</a>
-                                </b> е тук!</h1>
-                                {% if not request.user.is_authenticated %}
-                                    <h2 class="mb-4 ">Моля регистрирайте се за повече информация!</h2>
-                                {% endif %}
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single item -->
-                <div class="carousel-item">
-                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
-                        <div class="d-flex justify-content-center align-items-center h-100">
-                            <div class="text-center text-white menu">
-                                <h1 class="mb-4 ">Нашето <b>
-                                    <a href="{% url 'all category' %}" class="btn-lg btn-outline-danger text-white">меню</a>
-                                </b> е тук!</h1>
-                                {% if not request.user.is_authenticated %}
-                                    <h2 class="mb-4 ">Моля регистрирайте се за повече информация!</h2>
-                                {% endif %}
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Inner -->
-
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample"
-                    data-mdb-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample"
-                    data-mdb-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <span class="hero-span">We</span>
         </div>
-        <!-- Carousel wrapper -->
-    </header>
-    <main class="mb-5">
-        <div class="container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7 mb-4">
-                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded-5"
-                             data-mdb-ripple-color="light">
-                            <img src="https://www.pizza-romance.com/template/style/images/Menu-r2.jpg" class="w-100"
-                                 alt="Louvre"/>
-                            <a href="https://www.pizza-romance.com/">
-                                <div class="mask" style="background-color: rgba(0, 0, 0, 0.2)"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-5"
-                         style="text-space: 1px; color: #848486;font-size: 16px;font-weight: 400;margin-bottom: 25px;">
+        <div class="hero-box">
+            <img src="https://scontent.fsof9-1.fna.fbcdn.net/v/t39.30808-6/316411753_5822771377743371_7839306105308103399_n.jpg?stp=cp6_dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=TuVBxO2wbVMAX_u6eSW&_nc_ht=scontent.fsof9-1.fna&oh=00_AfDVdpwuSwZeb1JbBziIfnxsMBEtpCkP-HVqtb4UCgnBdw&oe=6429E66C">
 
-
-                        <h3 class="text-black">Здравейте и добре дошли!</h3>
-                        <br>
-                        <h6 class="text-black"><i><b>На тази страница ще намерите нашето актуално меню,
-                            в зависимост от вашата длъжност ще виждате нужната за вас информация. <br>
-                            {% if not request.user.is_authenticated %}
-                            Моля регистрирайте за да може да достъпите цялото съдържание.
-                            {% endif %}
-                        </b></i></h6>
-                        <br>
-                        <p>
-                            Създадохме този сайт за по-лесно достигане на информацията до вас.
-                            Така винаги когато
-                            създадем ново меню или променим основното вие ще може да видите промените веднага. Освен
-                            рецептите към менюто има и добавен коментар в който всеки от вас може да сподели проблем с
-                            рецептата или да предложи идея за нейното надграждане.
-                            Когато започнем подготовката за промяна на основно меню или създаване на ново сезонно меню
-                            ще отваряме празни позиции под които можете да пишете вашите предложения ако имате
-                            такива. Ако имате въпроси или се колебаете за нещо свързано със тази страница моля свържете
-                            се с нас чрез намиращата се по долу контактна форма.</p>
-                        <br>
-                    </div>
-                </div>
-            </div>
+            <span class="hero-span">Are</span>
         </div>
-    </main>
+        <div class="hero-box">
+            <img src="https://scontent.fsof9-1.fna.fbcdn.net/v/t39.30808-6/337283238_624294459513809_3713951241260789161_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Aa38OF7_rnQAX9zgFIU&_nc_ht=scontent.fsof9-1.fna&oh=00_AfC3CKfR19-JIQ1HpQPh7QSkfZSCwZQeiA9kLvNXh6NeMA&oe=6429FE5A">
 
-    <div class="text-black text-center">
-        <h2>За връзка с нас</h2>
-        <h4>Свържете се директно с нас, ако имате въпроси.</h4>
-        </p>
+            <span class="hero-span">Love</span>
+        </div>
+        <div class="hero-box">
+            <img src="https://scontent.fsof9-1.fna.fbcdn.net/v/t39.30808-6/336915386_251461003881333_8149621046683194622_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=NdPFUthxupsAX8CnbWA&_nc_ht=scontent.fsof9-1.fna&oh=00_AfAyxd8mYzURtrbd5h-X_D6a7_2epf0-J5l_Dw80Vp-s0Q&oe=642B4985">
+
+            <span class="hero-span">Food!</span>
+        </div>
+    </div>
+    <div class="contactFormWrapper" data-id="hide">
+
+        <form method="post" class="contactForm">
+            <h2>За връзка с нас</h2>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="buttonWrapper">
+                <button type="submit" class="contactFormBtn">Изпрати</button>
+            </div>
+        </form>
     </div>
 
-    <form method="post" style="margin-left: 28%;margin-right: 25%; margin-top: 0px">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-dark btn-block">Изпрати</button>
-    </form>
-
+    {#  </main>#}
 {% endblock %}
+{#    <!-- start -->#}
+{#    <header class="mb-5 bg-black">#}
+{#        <!-- Navbar -->#}
+{##}
+{#        <!-- Carousel wrapper -->#}
+{#        <div id="carouselBasicExample" class="carousel slide carousel-fade shadow-5-strong" data-mdb-ride="carousel">#}
+{#            <!-- Indicators -->#}
+{#            <div class="carousel-indicators">#}
+{#                <button#}
+{#                        type="button"#}
+{#                        data-mdb-target="#carouselBasicExample"#}
+{#                        data-mdb-slide-to="0"#}
+{#                        class="active"#}
+{#                        aria-current="true"#}
+{#                        aria-label="Slide 1"#}
+{#                ></button>#}
+{#                <button#}
+{#                        type="button"#}
+{#                        data-mdb-target="#carouselBasicExample"#}
+{#                        data-mdb-slide-to="1"#}
+{#                        aria-label="Slide 2"#}
+{#                ></button>#}
+{#                <button#}
+{#                        type="button"#}
+{#                        data-mdb-target="#carouselBasicExample"#}
+{#                        data-mdb-slide-to="2"#}
+{#                        aria-label="Slide 3"#}
+{#                ></button>#}
+{#            </div>#}
+{##}
+{#            <!-- Inner -->#}
+{#            <div class="carousel-inner">#}
+{#                <!-- Single item -->#}
+{#                <div class="carousel-item active">#}
+{#                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">#}
+{#                        <div class="d-flex justify-content-center align-items-center h-100">#}
+{#                            <div class="text-center text-white menu">#}
+{##}
+{##}
+{#                                {% if messages %}#}
+{#                                    <dd class="messages">#}
+{#                                        {% for message in messages %}#}
+{#                                            <dt style="font-size: 4vh; font-weight: 600; color: lawngreen"#}
+{#                                                    {% if message.tags %}#}
+{#                                                class="{{ message.tags }}"{% endif %}>{{ message }}</dt>#}
+{#                                        {% endfor %}#}
+{#                                    </dd>#}
+{#                                {% endif %}#}
+{##}
+{##}
+{#                                <h1 class="mb-4 ">Нашето <b>#}
+{#                                    <a href="{% url 'all category' %}" class="btn-lg btn-outline-danger text-white">меню</a>#}
+{#                                </b> е тук!</h1>#}
+{##}
+{##}
+{#                                {% if not request.user.is_authenticated %}#}
+{#                                    <h2 class="mb-4 ">Моля регистрирайте се за повече информация!</h2>#}
+{#                                {% endif %}#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <!-- Single item -->#}
+{#                <div class="carousel-item">#}
+{#                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">#}
+{#                        <div class="d-flex justify-content-center align-items-center h-100">#}
+{#                            <div class="text-center text-white menu">#}
+{#                                <h1 class="mb-4 ">Нашето <b>#}
+{#                                    <a href="{% url 'all category' %}" class="btn-lg btn-outline-danger text-white">меню</a>#}
+{#                                </b> е тук!</h1>#}
+{#                                {% if not request.user.is_authenticated %}#}
+{#                                    <h2 class="mb-4 ">Моля регистрирайте се за повече информация!</h2>#}
+{#                                {% endif %}#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <!-- Single item -->#}
+{#                <div class="carousel-item">#}
+{#                    <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">#}
+{#                        <div class="d-flex justify-content-center align-items-center h-100">#}
+{#                            <div class="text-center text-white menu">#}
+{#                                <h1 class="mb-4 ">Нашето <b>#}
+{#                                    <a href="{% url 'all category' %}" class="btn-lg btn-outline-danger text-white">меню</a>#}
+{#                                </b> е тук!</h1>#}
+{#                                {% if not request.user.is_authenticated %}#}
+{#                                    <h2 class="mb-4 ">Моля регистрирайте се за повече информация!</h2>#}
+{#                                {% endif %}#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <!-- Inner -->#}
+{##}
+{#            <!-- Controls -->#}
+{#            <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample"#}
+{#                    data-mdb-slide="prev">#}
+{#                <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+{#                <span class="visually-hidden">Previous</span>#}
+{#            </button>#}
+{#            <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample"#}
+{#                    data-mdb-slide="next">#}
+{#                <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+{#                <span class="visually-hidden">Next</span>#}
+{#            </button>#}
+{#        </div>#}
+{#        <!-- Carousel wrapper -->#}
+{#    </header>#}
+{#    <main class="mb-5">#}
+{#        <div class="container">#}
+{#            <div class="container">#}
+{#                <div class="row">#}
+{#                    <div class="col-md-7 mb-4">#}
+{#                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded-5"#}
+{#                             data-mdb-ripple-color="light">#}
+{#                            <img src="https://www.pizza-romance.com/template/style/images/Menu-r2.jpg" class="w-100"#}
+{#                                 alt="Louvre"/>#}
+{#                            <a href="https://www.pizza-romance.com/">#}
+{#                                <div class="mask" style="background-color: rgba(0, 0, 0, 0.2)"></div>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-5"#}
+{#                         style="text-space: 1px; color: #848486;font-size: 16px;font-weight: 400;margin-bottom: 25px;">#}
+{##}
+{##}
+{#                        <h3 class="text-black">Здравейте и добре дошли!</h3>#}
+{#                        <br>#}
+{#                        <h6 class="text-black"><i><b>На тази страница ще намерите нашето актуално меню,#}
+{#                            в зависимост от вашата длъжност ще виждате нужната за вас информация. <br>#}
+{#                            {% if not request.user.is_authenticated %}#}
+{#                            Моля регистрирайте за да може да достъпите цялото съдържание.#}
+{#                            {% endif %}#}
+{#                        </b></i></h6>#}
+{#                        <br>#}
+{#                        <p>#}
+{#                            Създадохме този сайт за по-лесно достигане на информацията до вас.#}
+{#                            Така винаги когато#}
+{#                            създадем ново меню или променим основното вие ще може да видите промените веднага. Освен#}
+{#                            рецептите към менюто има и добавен коментар в който всеки от вас може да сподели проблем с#}
+{#                            рецептата или да предложи идея за нейното надграждане.#}
+{#                            Когато започнем подготовката за промяна на основно меню или създаване на ново сезонно меню#}
+{#                            ще отваряме празни позиции под които можете да пишете вашите предложения ако имате#}
+{#                            такива. Ако имате въпроси или се колебаете за нещо свързано със тази страница моля свържете#}
+{#                            се с нас чрез намиращата се по долу контактна форма.</p>#}
+{#                        <br>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </main>#}
+
+{#    <div class="text-black text-center">#}
+{#        <h2>За връзка с нас</h2>#}
+{#        <h4>Свържете се директно с нас, ако имате въпроси.</h4>#}
+{#        </p>#}
+{#    </div>#}
+{##}
+{#    <form method="post" style="margin-left: 28%;margin-right: 25%; margin-top: 0px">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit" class="btn btn-dark btn-block">Изпрати</button>#}
+{#    </form>#}

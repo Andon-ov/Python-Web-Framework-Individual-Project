@@ -1,45 +1,71 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <main class="container" style="min-height: 80.3vh">
-        <div class="profile-h1 my-5 text-black">
-            <h1>Профил</h1>
-        </div>
-        <section class="col-12">
-            <div class="row">
-                <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
-                <!-- card start -->
-                <div style="background-color: #f1eff4"  class="card hover-shadow
-                           col-10 col-sm-8 col-md-8 col-lg-6 col-xl-4 col-xxl-4 ">
 
-                    <div class="card-body">
-                        <h5 class="card-title text-center">{{ object.profile.full_name.upper }}</h5>
-                    </div>
-                    <div class="card-footer text-center">
-                        <p class="card-text text-center"><i>Вие сте влезли с <b>{{ object.email }}</b>
-                            <br><a class="text-danger " href="{% url 'sign out' %}">Изход</a></i></p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <p class="card-text text-center"> Длъжност: {{ object.profile.get_job_title_display }}</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <p class="card-text text-center"> Последно влизане: <br>{{ object.last_login.date }}</p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <div class="buttons buttons my-3">
-                            <br>
-                            <a class="btn btn-black btn-block" href="{% url 'edit user' pk=request.user.pk %}">Редактиране</a>
+    <main class="main">
 
-                            <a class="btn btn-danger btn-block" href="{% url 'delete user' pk=request.user.pk %}">Изтриване</a>
-                            <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Върни се назад</a>
+        <article class="profile-info">
+            <h1>Profile info</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>User Details</th>
+                    <th>Info</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>{{ object.profile.full_name.upper }}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ object.email }}</td>
+                </tr>
+                <tr>
+                    <td>Job Title</td>
+                    <td>{{ object.profile.get_job_title_display }}</td>
+                </tr>
+
+                <tr>
+                    <td>Last Login Date</td>
+                    <td>{{ object.last_login.date }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="buttons">
+                            <a class="btn" href="{% url 'edit user' pk=request.user.pk %}">Edit</a>
+                            <a class="btn" href="{% url 'delete user' pk=request.user.pk %}">Delete</a>
+                            <a class="btn" href="javascript:history.back()">Back</a>
                         </div>
-                    </div>
-                    <!-- card end -->
-                </div>
-                <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
-            </div>
-        </section>
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </article>
     </main>
 {% endblock %}
 
+
+
+
+
+{#    {{ object.profile.full_name.upper }}#}
+{##}
+{#    {{ object.email }}#}
+{#    <a class="text-danger " href="{% url 'sign out' %}">SingOut</a>#}
+{##}
+{#    {{ object.profile.get_job_title_display }}#}
+{##}
+{#    {{ object.last_login.date }}#}
+{##}
+{#    <a href="{% url 'edit user' pk=request.user.pk %}">Edit</a>#}
+{##}
+{#    <a href="{% url 'delete user' pk=request.user.pk %}">Delete</a>#}
+{#    <a href="javascript:history.back()">Back</a>#}
+{##}
 

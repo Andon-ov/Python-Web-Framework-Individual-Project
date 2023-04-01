@@ -1,35 +1,22 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    <main class="container" style="height: 80.3%">
-        <div class="my-3 my-5 text-black">
-            <h1>Редактиране на коментар</h1>
-        </div>
-        <section class="section-all-base col-12 mb-5">
-            <div class="row">
-                <div class="col-1 col-sm-1 col-md-2 col-lg-4 col-xl-4 col-xxl-4"></div>
-                <div class="card hover-shadow
-                            col-10 col-sm-10 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
-                    <!-- comments -->
-                    <div class="card my-5" style="background-color: #f1eff4;">
-                        <div class="comments card-body p-4">
-                            <form action="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}" method="post"
-                                  enctype="multipart/form-data" class="comment-form">
-                                {{ form }}
-                                {% csrf_token %}
-                                <div class="text-center my-4">
-                                    <button class="btn comment-button btn-light">Редактирай</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- end comments -->
-                    <div class="buttons mb-6">
-                        <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Върни се назад</a>
-                    </div>
+    <main class="main">
+        <article class="form-wrapper">
+            <h1>Comment Edit</h1>
+
+            <form action="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}" method="post"
+                  enctype="multipart/form-data" class="comment-form">
+                {{ form }}
+                {% csrf_token %}
+                <div class="buttons">
+                    <button class="btn">Edit</button>
+                    <a class="btn" href="javascript:history.back()">Back</a>
                 </div>
-                <div class="col-1 col-sm-1 col-md-2 col-lg-4 col-xl-4 col-xxl-4"></div>
-            </div>
-        </section>
+
+
+            </form>
+        </article>
+
     </main>
 {% endblock %}
 

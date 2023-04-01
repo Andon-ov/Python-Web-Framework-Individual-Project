@@ -1,42 +1,39 @@
 {% extends 'base/base.html' %}
 {% load tags %}
 {% block page_content %}
-    <main class="container">
-        <h1 class="text-black" style="padding-top: 6vh">МЕНЮ</h1>
-        <section class="section-all-category" style="min-height: 73.4vh; padding-top: 8vh">
-            <div class="row  row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-2 row-cols-1 g-5 justify-content-center mb-10">
-                <!-- For Category-->
-                {% for category in category_list %}
-                    {% if category.is_activ %}
+    <main class="main">
 
+        <h1 class="text-black">MENU CATEGORIES</h1>
+        <article class="grid-6">
 
-                        <!-- Cards col -->
-                        <div class="col g-5">
-                            <!-- card start -->
+            <!-- For Category-->
+            {% for category in category_list %}
+                {% if category.is_activ %}
 
-                            <div class="card  h-100" style="background-color: #f1eff4"><a
-                                    href="{% url 'category detail'  pk=category.pk %}">
-                                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                                    <img src="{{ category.image_category.image.url }}" class="img-fluid"
-                                         alt="{{ category.image_category.image.name }}"/>
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.45);"></div>
+                    <!-- card start -->
 
-                                </div>
-                                <div class="card-body text-black">
-                                    <h5 class="card-title">{{ category.name.upper }}</h5>
-                                    <h5 class="card-title text-success">{{ category.menu|capfirst }}</h5>
-                                    {% if category.note %}
-                                        <p class="card-text text-danger">{{ category.note }}</p>
-                                    {% endif %}
-                                </div>
-                            </a>
-                            </div>
+                    <div class="card"><a href="{% url 'category detail'  pk=category.pk %}">
+                        <div class="card-img">
+                            <img src="{{ category.image_category.image.url }}" class="grow-img"
+                                 alt="{{ category.image_category.image.name }}"/>
+
                         </div>
-                        <!-- card end -->
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </section>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ category.name.upper }}</h5>
+                            <h5 class="card-subtitle">{{ category.menu|capfirst }}</h5>
+                            {% if category.note %}
+                                <p class="card-category">{{ category.note }}</p>
+                            {% endif %}
+                        </div>
+                    </a>
+                    </div>
+
+                    <!-- card end -->
+                {% endif %}
+            {% endfor %}
+
+        </article>
+
     </main>
 {% endblock %}
 

@@ -1,36 +1,31 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    <main class="container">
-        <h1 class="text-black" style="padding-top: 6vh">{{ category.name.upper }}</h1>
-        <section style="min-height: 73.4vh; padding-top: 8vh">
-            <!-- Cards row -->
-            <div class="row  row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1
-             g-5 justify-content-center mb-10">
-                <!-- For Recipes-->
-                {% for recipe in recipes %}
-                    <!-- Cards col -->
-                    <div class="col g-5">
-                        <!-- card start -->
-                        <div class="card  h-100" style="background-color: #f1eff4"><a
-                                href="{% url 'recipe detail' pk=recipe.pk %}">
-                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                                <img src="{{ recipe.image_recipe.image.url }}" class="img-fluid"
-                                     alt="{{ recipe.image_recipe.image.name }}"/>
+    <main class="main">
 
-                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.45);"></div>
+        <h1 class="">{{ category.name.upper }}</h1>
+        <article class="grid-9">
 
-                            </div>
-                            <div class="card-body text-black">
-                                <h5 class="card-title">{{ recipe.title.upper }}</h5>
-                            </div>
-                        </a>
-                        </div>
+            <!-- For Recipes-->
+            {% for recipe in recipes %}
+
+                <!-- card start -->
+                <div class="card"><a
+                        href="{% url 'recipe detail' pk=recipe.pk %}">
+                    <div class="card-img">
+                        <img src="{{ recipe.image_recipe.image.url }}" class="grow-img"
+                             alt="{{ recipe.image_recipe.image.name }}"/>
                     </div>
-                    <!-- card end -->
-                {% endfor %}
-                <a href="{% url 'all category' %}" class="d-none d-xxl-block back-to text-black"><h4><i
-                        class="fas fa-caret-left"></i> МЕНЮ</h4></a>
-            </div>
-        </section>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recipe.title.upper }}</h5>
+                    </div>
+                </a>
+                </div>
+
+                <!-- card end -->
+            {% endfor %}
+            {#            <a href="{% url 'all category' %}" class=""><h4><i#}
+            {#                    class="fas fa-caret-left"></i> МЕНЮ</h4></a>#}
+        </article>
     </main>
 {% endblock %}

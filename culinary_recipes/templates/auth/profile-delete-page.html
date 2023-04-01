@@ -1,40 +1,24 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <main class="container" style="min-height: 80.3vh">
-        <div class="profile-h1 my-5 text-black">
-            <h1>Изтриване на профил</h1>
-        </div>
-        <section class="section-profile col-12 ">
-            <div class="row">
-                <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
-                <!-- card start -->
-                <div style="background-color: #f1eff4"
-                     class="card hover-shadow  col-10 col-sm-8 col-md-8 col-lg-6 col-xl-4 col-xxl-4">
-                    <div class="card-body">
-                        <h3>{{ object.profile.full_name }} <br> сигурни ли сте че искате да изтриете профилът си?</h3>
-                    </div>
-                    <div class="card-footer text-center">
-                        <p class="card-text text-center"><i>Вие сте влезли с <b>{{ object.email }}</b>
-                            <br><a class="text-danger " href="{% url 'sign out' %}">Изход</a></i></p>
-                    </div>
-                    <div class="card-footer text-center">
-                        <form method="post" action="{% url 'delete user' pk=request.user.pk %}"
-                              enctype="multipart/form-data">
-                            {{ form }}
-                            {% csrf_token %}
-                            <div class="buttons my-3">
-                                <br>
-                                <button type="submit" class="btn btn-danger btn-block">Да</button>
-                                <a class="btn btn-outline-black btn-block" href="javascript:history.back()">Върни се назад</a>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- card end -->
 
+    <main class="main">
+        <article class="form-wrapper">
+            <h1>Delete Profile</h1>
+
+            <p>{{ object.profile.full_name }} Are you sure you want to delete your account?</p>
+            <p>Email: {{ object.email }}</p>
+            <a href="{% url 'sign out' %}"></a>
+
+            <form class="form" method="post" action="{% url 'delete user' pk=request.user.pk %}"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <div class="buttons">
+                    <button class="btn" type="submit">Yes</button>
+                    <a class="btn" href="javascript:history.back()">Back</a>
                 </div>
-                <div class="col-1 col-sm-2 col-md-2 col-lg-3 col-xl-4 col-xxl-4"></div>
-            </div>
-        </section>
+            </form>
+        </article>
     </main>
 {% endblock %}

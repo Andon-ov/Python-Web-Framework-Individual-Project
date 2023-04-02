@@ -5,46 +5,36 @@
     <main class="main">
 
         <article class="profile-info">
-            <h1>Profile info</h1>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>User Details</th>
-                    <th>Info</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Name</td>
-                    <td>{{ object.profile.full_name.upper }}</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>{{ object.email }}</td>
-                </tr>
-                <tr>
-                    <td>Job Title</td>
-                    <td>{{ object.profile.get_job_title_display }}</td>
-                </tr>
 
-                <tr>
-                    <td>Last Login Date</td>
-                    <td>{{ object.last_login.date }}</td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <div class="buttons">
-                            <a class="btn" href="{% url 'edit user' pk=request.user.pk %}">Edit</a>
-                            <a class="btn" href="{% url 'delete user' pk=request.user.pk %}">Delete</a>
-                            <a class="btn" href="javascript:history.back()">Back</a>
-                        </div>
-                    </td>
+            <h1 class="title">Profile info</h1>
+            <br>
+            <div class="info">
+                <ul>
+                    <li>
+                        <b>Name:</b> <br>
+                        <i>{{ object.profile.full_name.upper }}</i>
+                    </li>
+                    <li>
+                        <b>Email:</b> <br>
+                        <i>{{ object.email }}</i>
+                    </li>
+                    <li>
+                        <b>Job Title:</b> <br>
+                        <i>{{ object.profile.get_job_title_display }}</i>
+                    </li>
+                    <li>
+                        <b>Last Login Date:</b> <br>
+                        <i>{{ object.last_login.date }}</i>
+                    </li>
+                </ul>
 
-                </tr>
-
-                </tbody>
-
-            </table>
+            </div>
+            <br>
+            <div class="buttons">
+                <a class="btn" href="{% url 'edit user' pk=request.user.pk %}">Edit</a>
+                <a class="btn" href="{% url 'delete user' pk=request.user.pk %}">Delete</a>
+                <a class="btn" href="javascript:history.back()">Back</a>
+            </div>
 
         </article>
     </main>

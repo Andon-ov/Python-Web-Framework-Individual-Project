@@ -13,7 +13,7 @@ class AllCategoryListView(view.ListView):
 
 
 class BaseRecipeListView(auth_mixin.LoginRequiredMixin, view.ListView):
-    paginate_by = 6
+    paginate_by = 12
 
     template_name = 'recipes/show-all-base-recipes.html'
     model = BaseRecipe

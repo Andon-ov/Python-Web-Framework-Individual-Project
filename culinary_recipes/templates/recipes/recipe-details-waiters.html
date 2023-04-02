@@ -4,184 +4,174 @@
 {% load static %}
 {% block page_content %}
 
-    {#    <main class="main">#}
 
-    <div class="recipe-container">
-        <h1>{{ recipe.title }}</h1>
-        <a href="{% url 'category detail' pk=recipe.category.pk %}">
-            <h2>{{ recipe.category.name|upper }}</h2>
-        </a>
-
-        <div class="image-container">
-            <img src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">
-        </div>
-
-        <div class="time-container">
-            <p>Време за реализация:</p>
-            <img src="{% static 'images/clock.svg' %}" alt="clock.png">
-            <b>{{ recipe.release_time }}</b> Мин.
-        </div>
-
-        <div class="ingredients-container">
-            <h4>Съставки:</h4>
-            {% for ingredient in recipe.ingredient_set.all %}
-                <p>{{ ingredient.food }}</p>
-            {% endfor %}
-
-            {% if recipe.allergen.all %}
-                <h4>Алергени:</h4>
-                {% for name in recipe.allergen.all %}
-                    <p>{{ name }}</p>
-                {% endfor %}
-            {% endif %}
-        </div>
-
+    <main class="long-main">
         <div class="recipe-details">
-            {% if recipe.finish %}
-                <p>Завършваме: {{ recipe.finish }}</p>
-            {% endif %}
-            <p>Kоличество: {{ recipe.serving_value }} гр.</p>
-            <p>Издаваме в: {{ recipe.food_plate }}</p>
-        </div>
-
-        {% if recipe.summary %}
-            <div class="info-container">
-                <h2>Информация</h2>
-                <p>{{ recipe.summary }}</p>
+            <h1 class="title">{{ recipe.title }}</h1>
+            <div class="back-to">
+                <a href="{% url 'category detail' pk=recipe.category.pk %}"><i
+                        class="fa-solid fa-backward-step"></i>&nbsp;{{ recipe.category.name.upper }}</a>
             </div>
-        {% endif %}
 
-        <div class="category-container">
-            <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black">
-                <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name|upper }}</h6>
-            </a>
+            <div class="details-wrapper" >
+                <div class="img-wrapper">
+                    <img src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">
+                </div>
+                <div class="single-ingredients">
+
+                    <h3><i class="fa-solid fa-clipboard-list"></i>Ingredients</h3>
+                    <table class="ingredients-table">
+                        {% for ingredient in recipe.ingredient_set.all %}
+                            <tbody>
+                            <tr>
+                                <td class="ingredient-name">{{ ingredient.food }}</td>
+                            </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                    <br>
+
+                    {% if recipe.allergen.all %}
+                        <h3><i class="fa-solid fa-hand-dots"></i>Allergen</h3>
+                        <table class="ingredients-table">
+                            {% for name in recipe.allergen.all %}
+                                <tbody>
+                                <tr>
+                                    <td class="ingredient-name">{{ name }}</td>
+                                </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+                    <br>
+
+                    <h3><i class="fa-solid fa-circle-info"></i>Info</h3>
+                    <table class="ingredients-table">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <p>Време за реализация:</p>
+                            </td>
+                            <td>
+                                <b>{{ recipe.release_time }}</b> Мин.
+                            </td>
+                        </tr>
+                        {% if recipe.finish %}
+                            <tr>
+                                <td>
+                                    <p>Завършваме:</p>
+                                </td>
+                                <td>
+                                    <b>{{ recipe.finish }}</b>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <td>
+                                <p>Kоличество:</p>
+                            </td>
+                            <td>
+                                <b>{{ recipe.serving_value }} гр.</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>Издаваме в:</p>
+                            </td>
+                            <td>
+                                <b>{{ recipe.food_plate }}</b>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+
+                    {% if recipe.summary %}
+                        <h3><i class="fa-solid fa-circle-info"></i>Summary</h3>
+                        <table class="ingredients-table">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <p>{{ recipe.summary }}</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endif %}
+
+
+                </div>
+            </div>
+
+            <section class="comments-wrapper">
+                <div class="comment-form-holder">
+                    <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post" class="comment-form">
+                        {{ form }}
+                        {% csrf_token %}
+                        <div class="buttons">
+                            <button class="btn">Коментирай</button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="comment-posts">
+                    {% for comment in  recipe.recipecomment_set.all %}
+
+                        <div class="comment-details">
+                            <span class="comment-author"><b>{{ comment.user.profile.full_name }}:</b></span>
+                            <p>{{ comment }}</p>
+                            <br>
+
+                            <span class="comment-date"><b>&nbsp;Publication&nbsp;date:</b>{{ comment.publication_date_and_time }}</span>
+
+                            {% if request.user == comment.user %}
+                                <br>
+                                <div class="buttons">
+                                    <a class="btn" href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
+                                       role="button">Delete</a>
+                                    <a class="btn" href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}"
+                                       role="button">Edit</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
         </div>
 
         <!-- comments -->
-        <div class="comment-section">
-            <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post"
-                  class="comment-form">
-                {% csrf_token %}
-                {{ form }}
-                <button class="btn comment-button btn-light">Коментирай</button>
-            </form>
+        {#        <div class="comment-section">#}
+        {##}
+        {#            <div class="comment-form-holder" >#}
+        {#                <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post"#}
+        {#                      class="comment-form">#}
+        {#                    {% csrf_token %}#}
+        {#                    {{ form }}#}
+        {#                    <button class="btn">Коментирай</button>#}
+        {#                </form>#}
+        {#            </div>#}
+        {##}
+        {#            {% for comment in  recipe.recipecomment_set.all %}#}
+        {#                <div class="comments">#}
+        {#                    <p>{{ comment }}</p>#}
+        {#                    <p>{{ comment.user.profile.full_name }}</p>#}
+        {#                    <p>{{ comment.publication_date_and_time }}</p>#}
+        {#                    {% if request.user == comment.user %}#}
+        {#                        <div class="comment-actions">#}
+        {#                            <a href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"#}
+        {#                               role="button"><i class="fas fa-trash"></i></a>#}
+        {#                            <a href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}"#}
+        {#                               role="button"><i class="fas fa-edit"></i></a>#}
+        {#                        </div>#}
+        {#                    {% endif %}#}
+        {#                </div>#}
+        {#            {% endfor %}#}
+        {#        </div>#}
 
-            {% for comment in  recipe.recipecomment_set.all %}
-                <div class="card mb-4">
-                    <p>{{ comment }}</p>
-                    <p>{{ comment.user.profile.full_name }}</p>
-                    <p>{{ comment.publication_date_and_time }}</p>
-                    {% if request.user == comment.user %}
-                        <div class="comment-actions">
-                            <a href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
-                               role="button"><i class="fas fa-trash"></i></a>
-                            <a href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}"
-                               role="button"><i class="fas fa-edit"></i></a>
-                        </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
+
         <!-- end comments -->
-    </div>
 
-
-    {#    </main>#}
+    </main>
 
 {% endblock %}
 
-
-{#<h1>{{ recipe.title }}</h1>#}
-{##}
-{##}
-{#<a href="{% url 'category detail' pk=recipe.category.pk %}">#}
-{#    {{ recipe.category.name.upper }}#}
-{#    <!-- image -->#}
-{#    <img src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">#}
-{##}
-{##}
-{#    <!-- release time -->#}
-{#    <p>Време за реализация: <br>#}
-{#        <img src="{% static 'images/clock.svg' %}" alt="clock.png">#}
-{#        <b>{{ recipe.release_time }}</b> Мин.</p>#}
-{##}
-{##}
-{#    <!-- ingredients -->#}
-{##}
-{#    <h4>Съставки:</h4>#}
-{#    {% for ingredient in recipe.ingredient_set.all %}#}
-{##}
-{#        {{ ingredient.food }}#}
-{##}
-{#    {% endfor %}#}
-{##}
-{#    {% if recipe.allergen.all %}#}
-{##}
-{##}
-{#        <h4>Алергени:</h4>#}
-{#        {% for name in recipe.allergen.all %}#}
-{##}
-{#            {{ name }}#}
-{##}
-{#        {% endfor %}#}
-{##}
-{#    {% endif %}#}
-{##}
-{##}
-{#    {% if recipe.finish %}#}
-{#        Завършваме :#}
-{#        {{ recipe.finish }}#}
-{#    {% endif %}#}
-{#    Kоличество :#}
-{#    {{ recipe.serving_value }} гр.#}
-{#    Издаваме в :#}
-{#    {{ recipe.food_plate }}#}
-{##}
-{#    <!-- description -->#}
-{##}
-{#    {% if recipe.summary %}#}
-{#        <h2>Информация</h2>#}
-{#        <p>{{ recipe.summary }}</p>#}
-{#    {% endif %}#}
-{##}
-{#    <div>#}
-{#        <a href="{% url 'category detail' pk=recipe.category.pk %}" class="text-black">#}
-{#            <h6><i class="fas fa-caret-left"></i> {{ recipe.category.name.upper }}</h6></a>#}
-{##}
-{##}
-{#        <!-- comments -->#}
-{##}
-{##}
-{#        <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post"#}
-{#              class="comment-form">#}
-{#            {{ form }}#}
-{#            {% csrf_token %}#}
-{##}
-{#            <button class="btn comment-button btn-light ">Коментирай</button>#}
-{##}
-{#        </form>#}
-{#        {% for comment in  recipe.recipecomment_set.all %}#}
-{#            <div class="card mb-4">#}
-{##}
-{#                <p>{{ comment }}</p>#}
-{##}
-{#                <p>{{ comment.user.profile.full_name }}</p>#}
-{#                <p>{{ comment.publication_date_and_time }}</p>#}
-{##}
-{#                <div class="text-center">#}
-{#                    {% if request.user == comment.user %}#}
-{#                        <a class="btn btn-primary text-danger  btn-floating m-0"#}
-{#                           style="background-color: #ffffff"#}
-{#                           href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"#}
-{#                           role="button"><i class="fas fa-trash"></i></a>#}
-{#                        <a class="btn btn-primary text-danger btn-floating m-0"#}
-{#                           style="background-color: #ffffff"#}
-{#                           href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}"#}
-{#                           role="button"><i class="fas fa-edit"></i></a>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#            </div>#}
-{##}
-{#        {% endfor %}#}
-{##}
-{#        <!-- end comments -->#}

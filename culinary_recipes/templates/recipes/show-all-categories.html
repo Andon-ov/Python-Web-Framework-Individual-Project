@@ -3,20 +3,16 @@
 {% block page_content %}
     <main class="main">
 
-        <h1 class="text-black">MENU CATEGORIES</h1>
+        <h1 class="title">MENU CATEGORIES</h1>
         <article class="grid-6">
-
             <!-- For Category-->
             {% for category in category_list %}
                 {% if category.is_activ %}
-
                     <!-- card start -->
-
                     <div class="card"><a href="{% url 'category detail'  pk=category.pk %}">
                         <div class="card-img">
                             <img src="{{ category.image_category.image.url }}" class="grow-img"
                                  alt="{{ category.image_category.image.name }}"/>
-
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ category.name.upper }}</h5>
@@ -27,11 +23,9 @@
                         </div>
                     </a>
                     </div>
-
                     <!-- card end -->
                 {% endif %}
             {% endfor %}
-
         </article>
 
     </main>

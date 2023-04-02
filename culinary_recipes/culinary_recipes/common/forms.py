@@ -41,28 +41,28 @@ class ContactForm(forms.Form):
 
     first_name = forms.CharField(
         max_length=FIRST_NAME_MAX_LENGTH,
-        label='Име',
+        label='First Name',
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'Въведи името си'
+                # 'placeholder': 'Въведи името си'
             }),
 
     )
     last_name = forms.CharField(
         max_length=LAST_NAME_MAX_LENGTH,
-        label='Фамилия',
+        label='Last Name',
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'Въведи фамилията си'
+                # 'placeholder': 'Въведи фамилията си'
             }),
 
     )
     subject = forms.CharField(
         max_length=SUBJECT_MAX_LENGTH,
-        label='Заглавие',
+        label='Title',
         widget=forms.TextInput(
             attrs={
-                'placeholder': 'Въведи заглавие'
+                # 'placeholder': 'Въведи заглавие'
             }),
 
     )
@@ -70,12 +70,12 @@ class ContactForm(forms.Form):
         label='Email',
         widget=forms.EmailInput(
             attrs={
-                'placeholder': 'Въведи email'
+                'placeholder': 'example@example.com'
             }),
 
     )
     message = forms.CharField(
-        label='Съобщение',
+        label='Message',
         widget=forms.Textarea(
             attrs={
                 # 'placeholder': 'Въведи съобщението си тук ...'

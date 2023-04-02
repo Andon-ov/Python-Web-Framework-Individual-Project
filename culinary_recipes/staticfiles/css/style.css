@@ -1,214 +1,148 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rampart+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css');
-
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rampart+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /*font-family: 'Great Vibes', cursive;*/
 /*font-family: 'Montserrat', sans-serif;*/
+/*font-family: 'Radley', serif;*/
 /*font-family: 'Rampart One', cursive;*/
 /*font-family: 'Roboto', sans-serif;*/
 :root {
     --mainGreenColore: #00C9A7;
     --mainOrangeColore: #FF9671;
     --mainPurpleColore: #D65DB1;
-    /*--shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);*/
+
     --shadow: 0 20px 30px rgba(0, 0, 0, .1);;
+
+    --ditailsClrOne: #faf5f1;
+    --ditailsClrTwo: #e5f3eb;
+    --ditailsClrThree: #ecf2f6;
+    --ditailsClrFore: #DBFEEA;
+    --ditailsClrFive: #daebf6;
+
+    --footerClr: #e68b5e;
 
 }
 
 html * {
-    font-family: Montserrat, helvetica, sans-serif;
+    /*font-family: Montserrat, helvetica, sans-serif;*/
+    font-family: 'Radley', serif;
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
-/*body {*/
-/*    background-color: white !important;*/
-/*}*/
+h1 {
+    text-align: center;
+    font-family: 'Radley', serif;
+}
 
-/*h1, h2, h3, h4 {*/
-/*    text-align: center;*/
-/*    !*text-shadow: 4px 4px #a9a9a9;*!*/
-/*    display: block;*/
-/*    margin-block-start: 0.67em;*/
-/*    margin-block-end: 0.67em;*/
-/*    font-size: 1.1rem;*/
-/*    font-weight: 300;*/
-/*}*/
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Radley', serif;
+}
 
-/*a {*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*div.buttons {*/
-/*    padding-top: 18px;*/
-/*}*/
-
-/*.btn:hover {*/
-/*    background-color: #629262 !important;*/
-/*    color: cornsilk !important;*/
-/*    transition: 0.7s;*/
-/*}*/
-
-/*#id_job_title {*/
-/*    width: 100%;*/
-/*    text-align: center;*/
-/*    align-self: center;*/
-/*}*/
-
-/*!*FORM*!*/
-/*form {*/
-/*    margin-block: 10%;*/
-/*    padding: 10px;*/
-/*    height: auto;*/
-/*}*/
-
-/*form label {*/
-/*    margin: 20px;*/
-/*    line-height: 0.2em;*/
-/*    font-size: 16px;*/
-/*    font-weight: 400;*/
-/*    color: #000;*/
-/*}*/
-
-/*input:focus, textarea:focus {*/
-/*    outline: solid 1px black;*/
-/*}*/
-
-/*form input, textarea {*/
-/*    font-size: 12px;*/
-/*    padding: 6px;*/
-/*    width: 100%;*/
-/*    border: 1px solid #f1f1e8;*/
-/*}*/
-
-/*!*PAGINATION*!*/
-
-/*.pagination {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    height: 80px;*/
-/*}*/
-
-/*a.text-pagination {*/
-/*    font-weight: bold;*/
-/*    margin: 10px;*/
-/*    color: #000000;*/
-/*}*/
-
-/*a.text-pagination-here {*/
-/*    border-radius: 50%;*/
-/*    width: 36px;*/
-/*    height: 36px;*/
-/*    padding: 4px;*/
-/*    background: #ffffff;*/
-
-/*    border: 2px solid #f30b0b;*/
-/*    color: #000000;*/
-/*    text-align: center;*/
-/*}*/
-
-/*a.text-pagination:hover {*/
-/*    color: #f30b0b;*/
-/*}*/
-
-/*!*for profile details *!*/
-/*.info {*/
-/*    margin-left: 25%;*/
-/*    margin-right: 25%;*/
-/*    width: 50%;*/
-/*    height: auto;*/
-/*}*/
-
-/*.comments textarea {*/
-/*    height: 60px;*/
-/*    margin-right: 50px;*/
-/*}*/
-
-/*.comment-form label {*/
-/*    font-size: 0;*/
-/*}*/
-
-/*.comment-form {*/
-/*    width: 100%;*/
-/*    align-items: center;*/
-/*    display: flex;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    position: relative;*/
-/*    vertical-align: baseline;*/
-/*}*/
-
-/*nav search*/
-/*search input*/
-#search {
-    border: none;
-    width: 300px;
-    align-items: center;
-    margin: auto;
-    padding: 8px 40px;
+/*buttons*/
+.btn {
+    padding: 10px 40px;
+    background-color: transparent;
     border-radius: 12px;
-}
-
-#search:focus {
-    border: 1px solid var(--mainPurpleColore);
-    outline: none;
-}
-
-.search__icon {
-    position: absolute;
-    left: 10px;
-    bottom: 12px;
-    color: var(--mainOrangeColore);
-}
-
-.search__wrapper {
-    position: relative;
-    border-radius: 12px;
-    box-shadow: var(--shadow)
-}
-
-
-#search::placeholder {
-    color: black;
-    font-size: 18px;
+    box-shadow: var(--shadow);
+    text-transform: capitalize;
+    font-style: italic;
     font-weight: 600;
-    opacity: 1;
 }
 
-/* nav logo*/
-.logo {
-    font-family: 'Rampart One', cursive;
-    font-size: 48px;
-    color: black;
-
+.btn:hover {
+    background-color: black;
+    color: white;
 }
 
-.logoWrapper {
-    height: 10vh;
+.buttons {
+    padding-top: 20px;
     display: flex;
-    align-content: stretch;
+    gap: 10px;
+    justify-content: flex-start;
 }
 
-.logo:hover {
-    color: var(--mainPurpleColore);
+.sign-in-up {
+    color: red;
 }
 
+.sign-in-up:hover {
+    text-decoration: underline;
+}
 
-/*.back-to {*/
-/*    position: fixed;*/
-/*    top: 88px;*/
-/*    left: -200px;*/
+/*Table*/
+
+table {
+    width: 600px;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+tbody tr td:first-child {
+    font-style: italic;
+}
+
+tbody tr td:last-child {
+    /*font-weight: 600;*/
+}
+
+th, td {
+    padding: 15px;
+    color: black;
+}
+
+th {
+    text-align: left;
+}
+
+thead th {
+}
+
+.back-to a {
+    font-size: 18px;
+    font-weight: 400;
+    color: black;
+    letter-spacing: 1px
+
+}
+
+.back-to a:hover {
+    text-decoration: underline;
+}
+
+#id_job_title {
+    border: none;
+    background-color: white;
+
+}
+
+#id_job_title:hover {
+    background-color: black;
+    color: white;
+}
+
+/*input:hover {*/
+/*    background-color: black;*/
+/*    color: white;*/
 /*}*/
 
-/* navbar */
+.alert-danger {
+    color: red;
+}
+
+
+/*navbar*/
+
 .navbar {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 10vh;
+    box-shadow: var(--shadow);
 }
 
-.navbar .nav__container {
+.navbar .nav-wrapper {
     gap: 30px;
     padding: 0 10px;
     background-color: #ffffff;
@@ -218,46 +152,111 @@ html * {
     width: 80vw;
 }
 
-.navbar__ul {
+.navbar .nav-wrapper .logo-wrapper {
+    height: 10vh;
+    display: flex;
+    align-content: stretch;
+}
+
+.navbar .nav-wrapper .logo-wrapper .logo {
+    font-family: 'Rampart One', cursive;
+    font-size: 48px;
+    color: black;
+}
+
+.navbar .nav-wrapper .logo:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out 0.1s;
+}
+
+.navbar .nav-wrapper .navbar-ul {
     display: flex;
     align-items: center;
     align-content: center;
     justify-content: center;
-    gap: 10px;
+    gap: 30px;
 }
 
-.navbar__ul a {
-    text-decoration: none;
+.navbar .nav-wrapper .navbar-ul .nav-item .nav-link {
+    text-decoration: unset;
+    text-transform: uppercase;
+    color: black;
+    font-size: 24px;
+    font-weight: 600;
 }
 
-.nav-link {
-    background-color: var(--mainOrangeColore);
-    color: white;
-    font-size: 18px;
-    font-weight: 400;
-    border: 1px solid var(--mainOrangeColore);
-    padding: 5px 20px;
+.navbar .nav-wrapper .navbar-ul .nav-item .nav-link:hover {
+    text-decoration: underline;
+
+}
+
+.navbar .nav-wrapper .search-form .search-wrapper #search {
+    border: none;
+    width: 300px;
+    align-items: center;
+    margin: auto;
+    padding: 8px 40px;
+
+}
+
+.navbar .nav-wrapper .search-form .search-wrapper {
+    position: relative;
     border-radius: 12px;
-    box-shadow: var(--shadow)
+
 }
 
-.nav-link:hover {
-    background-color: var(--mainPurpleColore);
-    border: 1px solid var(--mainPurpleColore);
-    color: white;
+.navbar .nav-wrapper .search-form .search-wrapper .search-icon {
+    position: absolute;
+    left: 10px;
+    bottom: 12px;
+    color: black;
 }
+
+.navbar .nav-wrapper .search-form .search-wrapper #search:focus {
+
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+.navbar .nav-wrapper .search-form .search-wrapper #search::placeholder {
+    color: #958e8e;
+    font-size: 18px;
+    font-weight: 200;
+    opacity: 1;
+}
+
 
 /* hero */
-.container {
+.btnConnectToUs {
+    position: absolute;
+    top: 110px;
+    left: 210px;
+    cursor: pointer;
+    text-transform: uppercase;
+
+}
+
+.btnConnectToUs .hiddenContactFormBtn {
+    all: unset;
+    font-size: 22px;
+
+}
+
+.btnConnectToUs .hiddenContactFormBtn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+
+}
+
+.hero-container {
     display: flex;
     width: 100%;
     padding: 4% 2%;
-    box-sizing: border-box;
     height: 85vh;
     overflow: hidden;
 }
 
-.box {
+.hero-container .hero-box {
     flex: 1;
     overflow: hidden;
     transition: .5s;
@@ -266,14 +265,14 @@ html * {
     line-height: 0;
 }
 
-.box > img {
+.hero-container .hero-box > img {
     width: 200%;
     height: calc(100% - 10vh);
     object-fit: cover;
     transition: .5s;
 }
 
-.box > span {
+.hero-container .hero-box > span {
     font-size: 3.8vh;
     display: block;
     text-align: center;
@@ -281,108 +280,121 @@ html * {
     line-height: 2.6;
 }
 
-.box:hover {
-    flex: 1 1 50%;
+.hero-container .hero-box:hover {
+    flex: 1 1 20%;
 }
 
-.box:hover > img {
+.hero-container .hero-box:hover > img {
     width: 100%;
     height: 100%;
 }
 
-.hero__span {
+.hero-container .hero-box .hero-span {
     font-family: 'Rampart One', cursive;
 }
 
 
 /* hidden contact form*/
+
 .contactFormWrapper {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 7%, rgba(246, 199, 175, 1) 100%);
     width: 100%;
     display: grid;
-    align-items: center;
     justify-items: center;
+
 }
 
-.contactForm {
-    width: 12%;
+.contactFormWrapper .form-wrapper {
+    width: 92%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+
+    background-image: linear-gradient(266deg, rgba(255, 255, 255, 1) 10%, rgba(0, 0, 0, 0.04)), url("https://www.pizza-romance.com/template/style/images/Menu-r2.webp");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    margin-bottom: 50px;
+    box-shadow: var(--shadow);
+}
+
+.contactFormWrapper .form-wrapper .contactForm .title {
+    text-align: center;
+    width: 100%;
+    font-size: 26px;
+    font-weight: 200;
+    text-transform: uppercase;
+}
+
+.contactFormWrapper .form-wrapper .contactForm {
+    width: 100%;
     display: flex;
     gap: 15px;
     flex-direction: column;
     align-items: flex-start;
-    overflow: hidden;
     margin: 50px 0;
+    padding: 50px 300px;
+
+    /*border: 1px solid black;*/
 }
 
-.contactForm p label {
+.contactFormWrapper .form-wrapper .contactForm p label {
     width: 100%;
     display: block;
+    font-size: 22px;
 }
 
-
-.contactForm p input {
+.contactFormWrapper .form-wrapper .contactForm p input {
     width: 100%;
     border: none;
     background-color: transparent;
 }
 
-.hiddenContactFormBtn {
-    all: unset;
-    font-family: 'Great Vibes', cursive;
-    font-size: 32px;
-    /*background-color: var(--mainOrangeColore);*/
-    /*color: white;*/
-    /*font-size: 18px;*/
-    /*font-weight: 400;*/
-    /*border: 1px solid var(--mainOrangeColore);*/
-    /*padding: 2px 20px;*/
-    /*border-radius: 12px;*/
-    /*box-shadow: var(--shadow)*/
-}
-
-.hiddenContactFormBtn:hover {
-    cursor: pointer;
-    /*background-color: var(--mainPurpleColore);*/
-    /*border: 1px solid var(--mainPurpleColore);*/
-    /*color: white;*/
-}
-
-.contactForm p input:focus {
-    border: 1px solid var(--mainPurpleColore);
+.contactFormWrapper .form-wrapper .contactForm p input:focus {
+    border-bottom: 1px solid black;
     outline: none;
     padding-left: 10px;
 }
 
-/* hidden contact form textarea */
-#id_message {
+/*hidden contact form textarea */
+.contactFormWrapper .form-wrapper .contactForm #id_message {
     width: 100%;
+    height: 50px;
     border: none;
     background-color: transparent;
+
 }
 
-#id_message:focus {
-    outline: none;
+.contactFormWrapper .form-wrapper .contactForm #id_message:focus {
+    /*outline: none;*/
 }
 
-.buttonWrapper {
+.contactFormWrapper .form-wrapper .contactForm .buttonWrapper {
     width: 100%;
     display: grid;
-    align-items: center;
-    justify-items: center;
 }
 
-/* hidden contact form submit btn wrapper */
-.button_connectToAs {
-    position: absolute;
-    left: 280px;
+.contactFormWrapper .form-wrapper .contactForm .buttonWrapper .contactFormBtn {
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 10px 50px;
+    justify-self: center;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
+.contactFormWrapper .form-wrapper .contactForm .buttonWrapper .contactFormBtn:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
 
-/* menu and category */
-/* main */
+/* !Main! */
+
 .main {
+    position: relative;
     display: grid;
     align-items: baseline;
     justify-items: center;
@@ -392,86 +404,513 @@ html * {
     justify-content: space-evenly;
 }
 
+.main .title {
+    text-transform: uppercase;
+    margin-top: 50px;
+    font-size: 28px;
+}
 
-/* cards  grid 6 */
-.grid-6 {
+/*show-all-categories*/
+
+.main .grid-6 {
+    padding: 50px;
     width: 80%;
     height: 75vh;
     display: grid;
-    gap: 10px;
+    gap: 20px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
 }
 
-/* cards  grid 9 */
-.grid-9 {
+.main .grid-6 .card {
+    overflow: hidden;
+    position: relative;
+    border-radius: 25px;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.main .grid-6 .card:hover {
+    transform: scale(0.95);
+    box-shadow: var(--shadow);
+}
+
+.main .grid-6 .card .card-img {
+    /*overflow: hidden;*/
+}
+
+.main .grid-6 .card .grow-img {
+    width: 600px;
+    height: 400px;
+    object-position: center center;
+    object-fit: cover;
+}
+
+.main .grid-6 .card .card-body {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    z-index: 10;
+    color: white;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+
+}
+
+.main .grid-6 .card .card-body .card-title {
+    font-size: 22px;
+
+}
+
+.main .grid-6 .card .card-body .card-subtitle {
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+
+/*show-category-details*/
+
+.main .grid-9 {
+    padding: 50px;
     width: 80%;
     height: 75vh;
     display: grid;
-    gap: 10px;
+    gap: 20px;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
 }
 
-/* card */
-
-.card {
+.main .grid-9 .card {
     position: relative;
     overflow: hidden;
     border-radius: 25px;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
 }
 
-.img {
-    width: 600px;
-    height: 250px;
-    object-position: center center;
-    opacity: 0.7;
-    object-fit: cover;
+.main .grid-9 .card:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow);
 }
 
-.card:after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 0;
-    top: 0;
-}
-
-.img-category {
-    position: relative;
-    width: 100%;
-    display: block;
-    object-fit: contain;
-    opacity: 0.7;
-}
-
-.card__img {
+.main .grid-9 .card .card-img {
     overflow: hidden;
 }
 
-
-/* card img grow hover effect */
-.grow {
-    transition: all .2s ease-in-out;
+.main .grid-9 .card .card-img .grow-img {
+    width: 600px;
+    height: 250px;
+    object-position: center center;
+    object-fit: cover;
 }
 
-.grow:hover {
-    transform: scale(1.1);
-
-}
-
-.card__body {
+.main .grid-9 .card .card-body {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);
     position: absolute;
     width: 100%;
     height: 100%;
-    left: 50px;
-    top: 50px;
-    color: white;
+    left: 50%;
+    top: 50%;
     z-index: 10;
+    color: white;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+}
 
+.main .grid-9 .card .card-body .card-title {
+    font-size: 22px;
+}
+
+
+/*search*/
+.long-main .card-grid {
+
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-self: center;
+    padding: 60px
+}
+
+.long-main .card-grid .card {
+    overflow: hidden;
+    position: relative;
+    border-radius: 25px;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.long-main .card-grid .card:hover {
+    transform: scale(1.05);
+    animation-duration: 3s;
+    box-shadow: var(--shadow);
+}
+
+.long-main .card-grid .card .card-img {
+    overflow: hidden;
+}
+
+.long-main .card-grid .card .card-img .grow-img {
+    width: 600px;
+    height: 250px;
+    object-position: center center;
+    object-fit: cover;
+}
+
+.long-main .card-grid .card .card-body {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    z-index: 10;
+    color: white;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.long-main .card-grid .card .card-body .card-title {
+    font-size: 22px;
+}
+
+
+/* !Details! */
+.long-main {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.long-main .recipe-details {
+    max-width: 80%;
+    place-self: center;
+}
+
+/*.long-main .recipe-details .title {*/
+.long-main .title {
+    text-transform: uppercase;
+    margin-top: 50px;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.long-main .recipe-details .details-wrapper {
+    overflow: hidden;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    /*grid-template-columns: 500px 1200px;*/
+    /*grid-template-rows: repeat(2, 1fr);*/
+
+
+}
+
+.long-main .recipe-details .details-wrapper .img-wrapper {
+    width: inherit;
+    height: auto;
+    /*width: 600px;*/
+    /*height: 400px;*/
+    box-shadow: var(--shadow);
+}
+
+.long-main .recipe-details .details-wrapper .img-wrapper .img {
+    width: 0;
+    height: 0;
+    min-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+
+}
+
+.long-main .recipe-details .details-wrapper .single-ingredients {
+    background-color: var(--ditailsClrOne);
+    padding: 20px 40px;
+    border-radius: 6px;
+     box-shadow: var(--shadow);
+}
+
+.long-main .recipe-details .details-wrapper .single-ingredients h3 {
+    font-size: 26px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.long-main .recipe-details .details-wrapper .single-ingredients h3 i {
+    margin-right: 25px;
+    font-size: 30px;
+}
+
+.long-main .recipe-details .details-wrapper .single-ingredients table.ingredients-table {
+
+    width: 100%;
+}
+
+.long-main .recipe-details .details-wrapper .single-ingredients table.ingredients-table td {
+    border-bottom: 1px solid #efe0d3;
+    padding: 10px 10px;
+    /*font-size: 16px;*/
+    /*font-family: 'Yanone Kaffeesatz', sans-serif;*/
+    /*font-weight: 400;*/
+}
+
+.long-main .recipe-details .details-wrapper .single-ingredients table.ingredients-table td a {
+    color: red;
+    font-weight: bold;
+}
+
+.long-main .recipe-details .details-wrapper .single-ingredients table.ingredients-table td a:hover {
+    text-decoration: underline;
+}
+
+.long-main .recipe-details .details-wrapper .recipe-info {
+    background-color: var(--ditailsClrTwo);
+    padding: 40px 60px;
+    margin-bottom: 40px;
+    border-radius: 6px;
+     box-shadow: var(--shadow);
+}
+
+.long-main .recipe-details .details-wrapper .recipe-info h3 {
+    font-size: 26px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.long-main .recipe-details .details-wrapper .recipe-info i {
+    margin-right: 25px;
+    font-size: 30px;
+}
+
+.long-main .recipe-details .details-wrapper .description {
+    background-color: var(--ditailsClrThree);
+    padding: 40px 60px;
+    margin-bottom: 40px;
+    border-radius: 6px;
+     box-shadow: var(--shadow);
+}
+
+.long-main .recipe-details .details-wrapper .description h3 {
+    font-size: 26px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.long-main .recipe-details .details-wrapper .description i {
+    margin-right: 25px;
+    font-size: 30px;
+}
+
+.long-main .recipe-details .comments-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 40px 60px;
+    margin-bottom: 40px;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+}
+
+.long-main .recipe-details .comments-wrapper .comment-details {
+    padding: 40px 60px;
+    margin-bottom: 40px;
+    border-radius: 6px;
+}
+
+/*!*FORM*!*/
+.main .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 50px;
+    width: 500px;
+    /*text-align: center;*/
+}
+
+.main .form-wrapper .form {
+    display: flex;
+    max-width: 100%;
+    flex-direction: column;
+    padding: 10px;
+    height: auto;
+}
+
+.main .form-wrapper .form label {
+    margin: 20px;
+    line-height: 0.2em;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+}
+
+.main .form-wrapper .form input, textarea {
+    font-size: 12px;
+    padding: 6px;
+    width: 100%;
+    border: none;
+}
+
+.main .form-wrapper .form input:focus, textarea:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+}
+
+/*profile info*/
+.main .profile-info {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*profile delete*/
+
+.main .profile-delete {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: baseline;
+}
+
+/*all base recipes*/
+
+.main .base-cards {
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.main .base-cards .card {
+    border: 1px solid black;
+    width: 300px;
+    height: 150px;
+    box-shadow: var(--shadow);
+
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*color: black;*/
+}
+
+.main .base-cards .card:hover {
+    background-color: var(--ditailsClrOne);
+}
+
+/*!*PAGINATION*!*/
+
+.main .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+}
+
+.main .pagination a.text-pagination {
+    font-weight: bold;
+    margin: 10px;
+    color: #000000;
+}
+
+.main .pagination a.text-pagination-here {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    background: #ffffff;
+
+    border: 2px solid #000000;
+    color: #000000;
+    text-align: center;
+}
+
+.main .pagination a.text-pagination:hover {
+    color: #f30b0b;
+}
+
+
+/*base recipe*/
+
+.main .wrapper {
+    width: 80%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.main .wrapper .single-ingredients {
+    background-color: var(--ditailsClrOne);
+    padding: 20px 40px;
+    border-radius: 6px;
+}
+
+.main .wrapper .single-ingredients h3 {
+    font-size: 26px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.main .wrapper .single-ingredients h3 i {
+    margin-right: 25px;
+    font-size: 30px;
+}
+
+.main .wrapper .recipe-info {
+    background-color: var(--ditailsClrTwo);
+    padding: 40px 60px;
+    border-radius: 6px;
+}
+
+.main .wrapper .recipe-info h3 {
+    font-size: 26px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.main .wrapper .recipe-info h3 i {
+    margin-right: 25px;
+    font-size: 30px;
+}
+
+.main .wrapper .single-ingredients table.ingredients-table td {
+    border-bottom: 1px solid #efe0d3;
+    padding: 10px 10px;
+    /*font-size: 16px;*/
+    /*font-family: 'Yanone Kaffeesatz', sans-serif;*/
+    /*font-weight: 400;*/
+}
+
+
+/*standard*/
+.long-main .standard-wrapper {
+    padding: 90px;
+}
+
+.long-main .standard-wrapper article{
+    margin-bottom: 30px;
+}
+.main .profile-info .info ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* footer */
@@ -483,9 +922,12 @@ html * {
     justify-items: center;
 }
 
-.foot__link {
+.footer .foot-wrapper .foot-link {
     font-size: 22px;
     color: black;
     font-family: 'Great Vibes', cursive;
 
 }
+
+
+

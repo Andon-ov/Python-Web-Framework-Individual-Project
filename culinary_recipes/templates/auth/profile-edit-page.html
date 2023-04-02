@@ -5,22 +5,23 @@
     <main class="main">
         <article class="form-wrapper">
 
-            <h1>Edit Profile</h1>
+            <h1 class="title">Edit Profile</h1>
             <form class="form" action="{% url 'edit user' pk=request.user.pk %}" method="post"
                   enctype="multipart/form-data">
-                <label for="first_name">First Name:</label>
+                <label for="first_name"><b>First&nbsp;Name:</b></label>
                 {{ form.first_name|placeholder:'Enter your first name' }}
 
-                <label for="last_name">Last Name:</label>
+                <label for="last_name"><b>Last&nbsp;Name:</b></label>
                 {{ form.last_name|placeholder:'Enter your last name' }}
 
-                <label for="job_title">Job Title:</label>
+                <label for="job_title"><b>Job&nbsp;Title:</b></label>
                 {{ form.job_title }}
 
                 {% csrf_token %}
+                <br>
                 <div class="buttons">
-                    <button class="btn" type="submit">Save Changes</button>
-                    <a class="btn" href="{% url 'change password' %}">Change Password</a>
+                    <button class="btn" type="submit">Save&nbsp;Changes</button>
+                    <a class="btn" href="{% url 'change password' %}">Change&nbsp;Password</a>
                     <a class="btn" href="javascript:history.back()">Back</a>
                 </div>
             </form>

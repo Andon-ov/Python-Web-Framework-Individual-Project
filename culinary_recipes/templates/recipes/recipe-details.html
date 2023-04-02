@@ -8,7 +8,10 @@
         <div class="recipe-details">
 
             <h1 class="title">{{ recipe.title }}</h1>
-            <a href="{% url 'category detail' pk=recipe.category.pk %}">{{ recipe.category.name.upper }}</a>
+            <div class="back-to">
+                <a href="{% url 'category detail' pk=recipe.category.pk %}"><i
+                        class="fa-solid fa-backward-step"></i>&nbsp;{{ recipe.category.name.upper }}</a>
+            </div>
 
             <div class="details-wrapper">
 
@@ -16,31 +19,31 @@
                     <img class="img" src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">
                 </div>
                 <!-- ingredients -->
+
                 <div class="single-ingredients">
                     <h3><i class="fa-solid fa-clipboard-list"></i>Ingredients</h3>
 
                     <table class="ingredients-table">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Amount</th>
-                            <th>Quantity</th>
-                            <th>Preparation</th>
-                        </tr>
-                        </thead>
+                        {#                        <thead>#}
+                        {#                        <tr>#}
+                        {#                            <th>Name</th>#}
+                        {#                            <th>Amount</th>#}
+                        {#                            <th>Quantity</th>#}
+                        {#                            <th>Preparation</th>#}
+                        {#                        </tr>#}
+                        {#                        </thead>#}
                         <tbody>
                         {% for ingredient in recipe_ingredients %}
                             {% if not ingredient.base %}
                                 <tr>
-                                    {#                            <td class="ingredient-action">#}
-                                    {#                                <span class="ingredient-mark-icon"><i class="fa-regular fa-circle"></i></span>#}
-                                    {#                            </td>#}
                                     <td class="ingredient-name">{{ ingredient.food }}</td>
                                     <td class="ingredient-amount">
                                         {{ ingredient.amount_number|floatformat|cut:'None' }}&nbsp;{{ ingredient.unit|cut:'None' }}</td>
                                     <td class="ingredient-quantity">{{ ingredient.quantity|cut:'None' }}</td>
                                     {% if ingredient.preparation_method %}
                                         <td class="ingredient-preparation">{{ ingredient.preparation_method }}</td>
+                                    {% else %}
+                                        <td class="ingredient-preparation">&nbsp;</td>
                                     {% endif %}
                                 </tr>
                             {% else %}
@@ -57,6 +60,8 @@
                                     <td class="ingredient-quantity">{{ ingredient.quantity|cut:'None' }}</td>
                                     {% if ingredient.preparation_method %}
                                         <td class="ingredient-preparation">{{ ingredient.preparation_method }}</td>
+                                    {% else %}
+                                        <td class="ingredient-preparation">&nbsp;</td>
                                     {% endif %}
 
                                 </tr>
@@ -75,7 +80,7 @@
                                 Release time:
                             </td>
                             <td>
-                                {{ recipe.release_time }} min.
+                                {{ recipe.release_time|cut:'None' }} min.
                             </td>
                         </tr>
 
@@ -93,7 +98,7 @@
 
                         <tr class="serving">
                             <td>Serving:</td>
-                            <td>{{ recipe.serving_value }} gr.</td>
+                            <td>{{ recipe.serving_value|cut:'None' }} gr.</td>
                         </tr>
                         <tr class="plate">
                             <td>Plate:</td>
@@ -127,27 +132,33 @@
                     </div>
                 {% endif %}
             </div>
-            <a href="{% url 'category detail' pk=recipe.category.pk %}">{{ recipe.category.name.upper }}</a>
+
+
             <!-- comments -->
 
-            <section class="comments-wrapper" style="display: none">
-                <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post" class="comment-form">
-                    {{ form }}
-                    {% csrf_token %}
+            <section class="comments-wrapper">
+                <div class="comment-form-holder" >
+                    <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post" class="comment-form">
+                        {{ form }}
+                        {% csrf_token %}
+                       <div class="buttons">
+                            <button class="btn">Коментирай</button>
+                       </div>
 
-                    <button class="btn">Коментирай</button>
-                </form>
-
-                {% for comment in  recipe.recipecomment_set.all %}
-
+                    </form>
+                </div>
+                <div class="comment-posts">
+                     {% for comment in  recipe.recipecomment_set.all %}
 
                     <div class="comment-details">
+                  <span class="comment-author"><b>{{ comment.user.profile.full_name }}:</b></span>
                         <p>{{ comment }}</p>
+                        <br>
 
-                        <span class="comment-author">{{ comment.user.profile.full_name }}</span>
-                        <span class="comment-date">{{ comment.publication_date_and_time }}</span>
+                        <span class="comment-date"><b>&nbsp;Publication&nbsp;date:</b>{{ comment.publication_date_and_time }}</span>
 
                         {% if request.user == comment.user %}
+                            <br>
                             <div class="buttons">
                                 <a class="btn" href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
                                    role="button">Delete</a>
@@ -157,175 +168,10 @@
                         {% endif %}
                     </div>
                 {% endfor %}
+                </div>
             </section>
             <!-- end comments -->
         </div>
     </main>
 
 {% endblock %}
-
-{#    <main class="main">#}
-{#        <div class="details__container">#}
-{#            <section class="imageAndTitle">#}
-{#                <h1 class="title">{{ recipe.title }}</h1>#}
-{#                <a href="{% url 'category detail' pk=recipe.category.pk %}">{{ recipe.category.name.upper }}</a>#}
-{#                <img class="details__img" src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">#}
-{#            </section>#}
-{##}
-{#            <section class="other">#}
-{#                <!-- release time -->#}
-{#                <ul class="ul__releaseTimeAndIngredients">#}
-{##}
-{#                    <li class="li__releaseTime">#}
-{#                        <p>Време за реализация:#}
-{#                          <img src="{% static 'images/clock.svg' %}" alt="clock.png"> #}
-{#                            {{ recipe.release_time }} Мин. </p>#}
-{#                    </li>#}
-{#                    <div class="table__container">#}
-{#                        <table>#}
-{#                            <thead>#}
-{#                            <tr>#}
-{#                                <th>ingredient</th>#}
-{#                                <th>amount_number</th>#}
-{#                                <th>quantity</th>#}
-{#                                <th>preparation_method</th>#}
-{#                                <th>see more</th>#}
-{#                            </tr>#}
-{#                            </thead>#}
-{#                            <tbody>#}
-{#                            <tr>#}
-{##}
-{#                                <!-- ingredients -->#}
-{#                                Съставки:#}
-{#                                {% for ingredient in recipe_ingredients %}#}
-{#                                    {% if not ingredient.base %}#}
-{##}
-{#                                        <td>#}
-{#                                            {{ ingredient.food }}#}
-{#                                        </td>#}
-{#                                        <td>#}
-{#                                            {{ ingredient.amount_number|floatformat|cut:'None' }}{{ ingredient.unit|cut:'None' }}#}
-{#                                        </td>#}
-{##}
-{#                                        <td>#}
-{#                                            {{ ingredient.quantity|cut:'None' }}#}
-{##}
-{#                                        </td>#}
-{#                                        {% if ingredient.preparation_method %}#}
-{#                                            <td>#}
-{##}
-{#                                                {{ ingredient.preparation_method }}#}
-{##}
-{#                                            </td>#}
-{#                                        {% endif %}#}
-{#                                        </tr>#}
-{##}
-{#                                    {% else %}#}
-{#                                        <tr>       <!-- base -->#}
-{#                                        <td>#}
-{#                                            {{ ingredient.food }}#}
-{#                                        </td>#}
-{#                                        <td>#}
-{#                                            {{ ingredient.amount_number|floatformat|cut:'None' }}{{ ingredient.unit|cut:'None' }}#}
-{#                                        </td>#}
-{##}
-{#                                        <td>#}
-{#                                            {{ ingredient.quantity|cut:'None' }}#}
-{#                                        </td>#}
-{#                                        {% if ingredient.preparation_method %}#}
-{#                                            <td>#}
-{#                                                {{ ingredient.preparation_method }}#}
-{#                                            </td>#}
-{#                                        {% endif %}#}
-{#                                        <td>#}
-{#                                            <a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}">see more</a>#}
-{#                                        </td>#}
-{##}
-{##}
-{#                                    {% endif %}#}
-{#                                    </tr>#}
-{#                                {% endfor %}#}
-{##}
-{##}
-{##}
-{#                            </tbody>#}
-{#                        </table>#}
-{#                    </div>#}
-{##}
-{#                    <ul class="ul__otherInfo">#}
-{#                        <li class="finish">#}
-{#                            {% if recipe.finish %}#}
-{#                                Завършваме :#}
-{#                                <b>{{ recipe.finish }}</b>#}
-{#                            {% endif %}#}
-{#                        </li>#}
-{#                        <li class="quantity">#}
-{#                            Kоличество :#}
-{#                            <b>{{ recipe.serving_value }} гр. </b>#}
-{#                        </li>#}
-{#                        <li class="plate">#}
-{#                            Издаваме в :#}
-{#                            <b>{{ recipe.food_plate }}</b>#}
-{#                        </li>#}
-{#                        <li class="preparation__method">#}
-{#                            {% if recipe.preparation_method %}#}
-{#                                <i class="text-success">Обработка : </i>#}
-{#                                {{ recipe.preparation_method }}#}
-{#                            {% endif %}#}
-{#                        </li>#}
-{#                        <!-- description -->#}
-{#                        <li class="description">#}
-{#                            {% if recipe.description %}#}
-{#                                Приготвяне#}
-{##}
-{#                                {{ recipe.description }}#}
-{#                            {% endif %}#}
-{#                        </li>#}
-{#                    </ul>#}
-{# hide and show button for video  #}
-{#                    <article class="video">#}
-{#                        <!-- video -->#}
-{#                        {% if recipe.video_recipe %}#}
-{#                            Видео#}
-{#                            {% video recipe.video_recipe.video as my_video %}#}
-{##}
-{#                            {% video my_video '100% x 100%' %}#}
-{##}
-{#                            {% endvideo %}#}
-{#                        {% endif %}#}
-{#                    </article>#}
-{#                    <a href="{% url 'category detail' pk=recipe.category.pk %}">{{ recipe.category.name.upper }}</a>#}
-{##}
-{#            </section>#}
-{# hide and show button for comment  #}
-{#            <section class="comments__wrapper">#}
-{#                <!-- comments -->#}
-{#                <div class="comments">#}
-{##}
-{#                    <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post"#}
-{#                          class="comment-form">#}
-{#                        {{ form }}#}
-{#                        {% csrf_token %}#}
-{##}
-{#                        <button>Коментирай</button>#}
-{##}
-{#                    </form>#}
-{##}
-{#                    {% for comment in  recipe.recipecomment_set.all %}#}
-{#                        <p>{{ comment }}</p>#}
-{##}
-{#                        {{ comment.user.profile.full_name }}#}
-{#                        {{ comment.publication_date_and_time }}#}
-{##}
-{#                        {% if request.user == comment.user %}#}
-{#                            <a href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}" role="button"></a>#}
-{#                            <a href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}" role="button"></a>#}
-{#                        {% endif %}#}
-{##}
-{#                    {% endfor %}#}
-{#                </div>#}
-{#                <!-- end comments -->#}
-{##}
-{#            </section>#}
-{#        </div>#}
-{#    </main>#}

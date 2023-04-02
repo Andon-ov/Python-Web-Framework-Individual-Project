@@ -2,8 +2,8 @@
 <nav class="navbar">
     <div class="nav-wrapper">
         <div class="logo-wrapper">
-            <a class="logo" href="{% url 'index' %}"><i class="fa-solid fa-pizza-slice fa-rotate-270"></i>Our&nbsp;recipes<i
-                    class="fa-solid fa-pizza-slice fa-flip-vertical"></i></a>
+            <a class="logo" href="{% url 'index' %}">Our&nbsp;recipes</a>
+            {#<i class="fa-solid fa-pizza-slice fa-flip-vertical"></i>#}
         </div>
 
         <ul class="navbar-ul">
@@ -14,10 +14,10 @@
 
             {% if not request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sign in' %}">Sign In</a>
+                    <a class="nav-link" href="{% url 'sign in' %}">Sign&nbsp;In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sign up' %}">Sign Up</a>
+                    <a class="nav-link" href="{% url 'sign up' %}">Sign&nbsp;Up</a>
                 </li>
 
             {% else %}
@@ -36,7 +36,7 @@
                     </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sign out' %}">Sing Out</a>
+                    <a class="nav-link" href="{% url 'sign out' %}">Sing&nbsp;Out</a>
                 </li>
             {% endif %}
 
@@ -50,7 +50,7 @@
                        id="search"
                        class="search__nav"
                        type="search"
-                       placeholder="Търси тук"
+                       placeholder="Search here..."
                        aria-label="Search">
 
             </div>

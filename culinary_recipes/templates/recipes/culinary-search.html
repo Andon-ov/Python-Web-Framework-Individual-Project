@@ -1,76 +1,33 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    {#    <main class="main">#}
+    <main class="long-main">
 
+        {% if not object_list %}
+            <main class="main">
+                <h1 class="title">Няма намерен резултат</h1>
+                <button class="btn" onclick="history.back()">Back</button>
+            </main>
+        {% else %}
+            <h1 class="title">Резултати</h1>
+            <div class="card-grid">
+                {% for search in object_list %}
+                    {% if search.category.is_activ %}
 
-    {% if not object_list %}
-        <h1>Няма намерен резултат</h1>
-        <button onclick="history.back()">Back</button>
-    {% else %}
-        <h1>Резултати</h1>
-        <div class="card-grid">
-            {% for search in object_list %}
-                {% if search.category.is_activ %}
-                    <div class="card">
-                        <a href="{% url 'recipe detail' pk=search.pk %}">
-                            <img src="{{ search.image_recipe.image.url }}"
-                                 alt="{{ search.image_recipe.image.name }}"/>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ search.title.upper }}</h5>
-                                <h5 class="card-title">{{ category.menu|capfirst }}</h5>
-                            </div>
-                        </a>
-                        <div class="card-footer">
-                            <a href="{% url 'category detail' search.category.pk %}">
-                                <p><i class="fas fa-caret-left"></i> {{ search.category.name|lower }}</p>
+                        <div class="card">
+                            <a href="{% url 'recipe detail' pk=search.pk %}">
+                                <div class="card-img"></div>
+                                <img class="grow-img" src="{{ search.image_recipe.image.url }}"
+                                     alt="{{ search.image_recipe.image.name }}"/>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ search.title.upper }}</h5>
+                                </div>
                             </a>
+{#                            <a href="{% url 'category detail' search.category.pk %}">{{ search.category }}</a>#}
                         </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% endif %}
-    {#    </main>#}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </main>
 {% endblock %}
-
-{#        {% if not object_list %}#}
-{#            <h1>Няма намерен резултат</h1>#}
-{##}
-{#            <button onclick="history.back()">Back</button>#}
-{##}
-{#        {% else %}#}
-{#            <h1>Резултати</h1>#}
-{##}
-{#            <!-- cards row -->#}
-{##}
-{#            <!-- For search-->#}
-{#            {% for search in object_list %}#}
-{#                {% if search.category.is_activ %}#}
-{##}
-{##}
-{##}
-{#                    <!-- card start -->#}
-{#                    <div class="card"><a#}
-{#                            href="{% url 'recipe detail' pk=search.pk %}">#}
-{##}
-{#                        <img src="{{ search.image_recipe.image.url }}"#}
-{#                             alt="{{ search.image_recipe.image.name }}"/>#}
-{##}
-{##}
-{#                        <div class="card-body">#}
-{#                            <h5 class="card-title">{{ search.title.upper }}</h5>#}
-{#                            <h5 class="card-title">{{ category.menu|capfirst }}</h5>#}
-{##}
-{#                        </div>#}
-{#                    </a>#}
-{#                        <div class="card-footer">#}
-{#                            <a href="{% url 'category detail' search.category.pk %}"><p><i#}
-{#                                    class="fas fa-caret-left"></i> {{ search.category.name|lower }}</p>#}
-{#                            </a>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                {% endif %}#}
-{#            {% endfor %}#}
-{##}
-{#        {% endif %}#}

@@ -4,36 +4,38 @@
 {% block page_content %}
 
     <main class="main">
-    <article class="form-wrapper">
-        <h1>Sign In</h1>
+        <article class="form-wrapper">
+            <h1 class="title">Sign&nbsp;In</h1>
 
-        <form class="form" action="{% url 'sign in' %}" method="post" enctype="multipart/form-data">
-            <label for="email">Email</label>
-            {{ form.username|placeholder:'Въведи имейла си' }}
-            <label for="password1">Парола</label>
-            {{ form.password|placeholder:'Въведи паролата си' }}
-            <input type="hidden" name="next" value="{{ next }}">
-            {% csrf_token %}
+            <form class="form" action="{% url 'sign in' %}" method="post" enctype="multipart/form-data">
+                <label for="email"><b>Email:</b></label>
+                {{ form.username|placeholder:'Въведи имейла си' }}
+                <label for="password1"><b>Парола:</b></label>
+                {{ form.password|placeholder:'Въведи паролата си' }}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% csrf_token %}
 
-            {% if form.errors %}
-                {% for field in form %}
-                    {% for error in field.errors %}
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
                         <div class="alert alert-danger">
                             <strong>{{ error|escape }}</strong>
                         </div>
                     {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        <strong>{{ error|escape }}</strong>
-                    </div>
-                {% endfor %}
-            {% endif %}
-            <div class="buttons">
-                <button type="submit" class="btn">Sign In</button>
-                <p>Все още нямате профил <a class="btn" href="{% url 'sign up' %}">Sign Up</a></p>
-            </div>
-        </form>
-</article>
+                {% endif %}
+                <div class="buttons">
+                    <button type="submit" class="btn">Sign&nbsp;In</button>
+                </div>
+
+            </form>
+                    <p>Все още нямате профил: <a class="sign-in-up" href="{% url 'sign up' %}"><b>Sign&nbsp;Up</b></a></p>
+
+        </article>
     </main>
 {% endblock %}

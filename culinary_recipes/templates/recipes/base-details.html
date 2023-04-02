@@ -4,68 +4,77 @@
 {% load static %}
 {% block page_content %}
     <main class="main">
-
-
-        <h2>{{ object.title }}</h2>
-
-        {% if object.base_type %}
-            <p>Тип: {{ object.base_type }}</p>
-        {% endif %}
-
-        {% if object.baseingredient_set.all %}
-            <!-- table ingredient -->
-            <table>
-                <thead>
-                <tr>
-                    <th>Ingredient</th>
-                    <th>Amount</th>
-                    <th>Preparation Method</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for ingredient in object.baseingredient_set.all %}
-                    <tr>
-                        <td>{{ ingredient.food }}</td>
-                        <td>{{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
-                        <td>{{ ingredient.preparation_method }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <!-- table ingredient end  -->
-
-            {% if prep_method %}
-                <!-- preparation method -->
-                {% for method in prep_method %}
-                    <p>{{ method }}</p>
-                {% endfor %}
+        <div class="heading">
+            <h1 class="title">{{ object.title }}</h1>
+            {% if object.base_type %}
+                <p>Тип: {{ object.base_type }}</p>
             {% endif %}
+        </div>
+        <article class="wrapper">
 
-            {% if object.note %}
-                <!-- note -->
-                <p>{{ object.note }}</p>
+            {% if object.baseingredient_set.all %}
+                <!-- table ingredient -->
+                <div class="single-ingredients">
+                    <h3><i class="fa-solid fa-clipboard-list"></i>Ingredients</h3>
+                    <table class="ingredients-table">
+{#                        <thead>#}
+{#                        <tr>#}
+{#                            <th>Ingredient</th>#}
+{#                            <th>Amount</th>#}
+{#                            <th>Preparation Method</th>#}
+{#                        </tr>#}
+{#                        </thead>#}
+                        <tbody>
+                        {% for ingredient in object.baseingredient_set.all %}
+                            <tr>
+                                <td>{{ ingredient.food }}</td>
+                                <td>{{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
+                                <td>{{ ingredient.preparation_method|cut:'None' }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- table ingredient end  -->
+                </div>
+
+
+                <div class="recipe-info">
+                 <h3><i class="fa-solid fa-circle-info"></i>More Info</h3>
+                {% if prep_method %}
+                    <!-- preparation method -->
+                    {% for method in prep_method %}
+                        <p><b>Preparation method:</b> <i>{{ method }}</i></p>
+                    {% endfor %}
+                {% endif %}
+
+                {% if object.note %}
+                    <!-- note -->
+                    <p><b>Note:</b> <i>{{ object.note }}</i></p>
+                {% endif %}
+
+                {% if object.preparation %}
+                    <!-- preparation -->
+                    <p><b>Preparation:</b> <br> <i>{{ object.preparation }}</i></p>
+                {% endif %}
+
+                {% if object.base_yield %}
+                    <!-- yield -->
+                    <p><b>Yield:</b> <i>{{ object.base_yield }}</i></p>
+                {% endif %}
+
+                {% if  object.base_recipe_portions %}
+                    <!-- portions -->
+                    <p><b>Portions:</b> <i>{{ object.base_recipe_portions }} </i></p>
+                {% endif %}
             {% endif %}
-
-            {% if object.preparation %}
-                <!-- preparation -->
-                <p>{{ object.preparation }}</p>
-            {% endif %}
-
-            {% if object.base_yield %}
-                <!-- yield -->
-                <p>{{ object.base_yield }}</p>
-            {% endif %}
-
-            {% if  object.base_recipe_portions %}
-                <!-- portions -->
-                <p>{{ object.base_recipe_portions }} </p>
-            {% endif %}
-        {% endif %}
-
-        <a  class="btn" href="{% url 'base recipe' %}"><h5>Base <i class="fas fa-caret-right"></i></h5></a>
-        <a  class="btn" href="javascript:history.back()"><h5><i class="fas fa-caret-left"></i> Back</h5></a>
+            </div>
 
 
+        </article>
+        <div class="buttons">
+            <a class="btn" href="javascript:history.back()"><h5><i class="fas fa-caret-left"></i> Back</h5></a>
+            <a class="btn" href="{% url 'base recipe' %}"><h5>Base <i class="fas fa-caret-right"></i></h5></a>
+        </div>
     </main>
 {% endblock %}
 {##}

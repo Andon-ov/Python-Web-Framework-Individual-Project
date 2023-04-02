@@ -4,21 +4,21 @@
 {% block page_content %}
     <main class="main">
         <article class="form-wrapper">
-            <h1>Sign Up</h1>
+            <h1 class="title">Sign Up</h1>
 
             <form class="form" action="{% url 'sign up' %}" method="post" enctype="multipart/form-data">
 
-                <label for="email">Email</label>
+                <label for="email"><b>Email: </b></label>
                 {{ form.email|placeholder:'Въведи email' }}
-                <label for="password1">Парола</label>
+                <label for="password1"><b>Парола: </b></label>
                 {{ form.password1|placeholder:'Въведи парола' }}
-                <label for="password2">Парола</label>
+                <label for="password2"><b>Парола: </b></label>
                 {{ form.password2|placeholder:'Въведи паролата повторно' }}
-                <label for="first_name">Име</label>
+                <label for="first_name"><b>Име: </b></label>
                 {{ form.first_name|placeholder:'Въведи името си' }}
-                <label for="last_name">Фамилия</label>
+                <label for="last_name"><b>Фамилия: </b></label>
                 {{ form.last_name|placeholder:'Въведи фамилията си' }}
-                <label for="job_title">Длъжност</label>
+                <label for="job_title"><b>Длъжност: </b></label>
                 {{ form.job_title }}
 
                 {% if form.errors %}
@@ -37,12 +37,13 @@
                 {% endif %}
                 {% csrf_token %}
                 <div class="buttons">
-                    <button type="submit" class="btn">Sign Up</button>
-                    <div class="second-option">
-                        <p>Вече имате регистрация <a class="btn" href="{% url 'sign in' %}">Sign In</a></p>
-                    </div>
+                    <button type="submit" class="btn">Sign&nbsp;Up</button>
+
+
                 </div>
             </form>
+                        <p>Вече имате регистрация: <a class="sign-in-up" href="{% url 'sign in' %}"><b>Sign&nbsp;In</b></a></p>
+
         </article>
     </main>
 

@@ -3,11 +3,13 @@
 {% block page_content %}
 
     <main class="main">
-        <article class="form-wrapper">
-            <h1>Delete Profile</h1>
+        <article class="profile-delete">
+            <h1 class="title">Delete Profile</h1>
 
-            <p>{{ object.profile.full_name }} Are you sure you want to delete your account?</p>
-            <p>Email: {{ object.email }}</p>
+            <p> <i>{{ object.profile.full_name }}</i> <br>
+               <b> Are you sure you want to delete your account?</b></p>
+            <p> <i>Email: </i><br>
+              <b>  {{ object.email }}</b></p>
             <a href="{% url 'sign out' %}"></a>
 
             <form class="form" method="post" action="{% url 'delete user' pk=request.user.pk %}"

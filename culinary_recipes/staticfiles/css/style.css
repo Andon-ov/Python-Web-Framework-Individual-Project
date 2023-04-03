@@ -1,11 +1,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rampart+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-/*font-family: 'Great Vibes', cursive;*/
-/*font-family: 'Montserrat', sans-serif;*/
-/*font-family: 'Radley', serif;*/
-/*font-family: 'Rampart One', cursive;*/
-/*font-family: 'Roboto', sans-serif;*/
+
 :root {
     --mainGreenColore: #00C9A7;
     --mainOrangeColore: #FF9671;
@@ -24,21 +20,21 @@
 }
 
 html * {
-    /*font-family: Montserrat, helvetica, sans-serif;*/
-    font-family: 'Radley', serif;
-    /*font-family: 'Roboto', sans-serif;*/
+    font-family: 'Montserrat', helvetica, sans-serif;
 }
 
 h1 {
     text-align: center;
-    font-family: 'Radley', serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Radley', serif;
 }
 
 /*buttons*/
+button {
+    all: unset;
+}
+
 .btn {
     padding: 10px 40px;
     background-color: transparent;
@@ -190,39 +186,28 @@ thead th {
 
 }
 
-.navbar .nav-wrapper .search-form .search-wrapper #search {
+.navbar .nav-wrapper .navbar-ul #myModal .modal-content .modal-body .search-form #search {
     border: none;
-    width: 300px;
+    width: 100%;
     align-items: center;
     margin: auto;
-    padding: 8px 40px;
+    padding: 8px 20px;
+    border-radius: 15px;
 
 }
 
-.navbar .nav-wrapper .search-form .search-wrapper {
-    position: relative;
-    border-radius: 12px;
 
-}
-
-.navbar .nav-wrapper .search-form .search-wrapper .search-icon {
-    position: absolute;
-    left: 10px;
-    bottom: 12px;
-    color: black;
-}
-
-.navbar .nav-wrapper .search-form .search-wrapper #search:focus {
-
+.navbar .nav-wrapper .navbar-ul #myModal .modal-content .modal-body .search-form #search:focus {
     border-bottom: 1px solid black;
     outline: none;
 }
 
-.navbar .nav-wrapper .search-form .search-wrapper #search::placeholder {
-    color: #958e8e;
+.navbar .nav-wrapper .navbar-ul #myModal .modal-content .modal-body .search-form #search::placeholder {
+    color: black;
     font-size: 18px;
     font-weight: 200;
     opacity: 1;
+    padding: 0 50px;
 }
 
 
@@ -239,12 +224,14 @@ thead th {
 .btnConnectToUs .hiddenContactFormBtn {
     all: unset;
     font-size: 22px;
+    font-weight: 200;
 
 }
 
 .btnConnectToUs .hiddenContactFormBtn:hover {
     cursor: pointer;
     text-decoration: underline;
+
 
 }
 
@@ -435,13 +422,12 @@ thead th {
     box-shadow: var(--shadow);
 }
 
-.main .grid-6 .card .card-img {
-    /*overflow: hidden;*/
-}
 
 .main .grid-6 .card .grow-img {
-    width: 600px;
-    height: 400px;
+    width: 100%;
+    height: 100%;
+    /*width: 600px;*/
+    /*height: 400px;*/
     object-position: center center;
     object-fit: cover;
 }
@@ -451,9 +437,9 @@ thead th {
     background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);
     position: absolute;
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     left: 50%;
-    top: 50%;
+    top: 80%;
     z-index: 10;
     color: white;
     padding: 20px;
@@ -513,9 +499,9 @@ thead th {
     background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);
     position: absolute;
     width: 100%;
-    height: 100%;
+    /*height: 80%;*/
     left: 50%;
-    top: 50%;
+    top: 80%;
     z-index: 10;
     color: white;
     padding: 20px;
@@ -523,11 +509,13 @@ thead th {
 }
 
 .main .grid-9 .card .card-body .card-title {
-    font-size: 22px;
+    font-size: 18px;
+    font-weight: 600
+;
 }
 
 
-/*search*/
+/*search grid*/
 .long-main .card-grid {
 
     width: 80%;
@@ -578,7 +566,7 @@ thead th {
 }
 
 .long-main .card-grid .card .card-body .card-title {
-    font-size: 22px;
+    font-size: 18px;
 }
 
 
@@ -635,7 +623,7 @@ thead th {
     background-color: var(--ditailsClrOne);
     padding: 20px 40px;
     border-radius: 6px;
-     box-shadow: var(--shadow);
+    box-shadow: var(--shadow);
 }
 
 .long-main .recipe-details .details-wrapper .single-ingredients h3 {
@@ -677,7 +665,7 @@ thead th {
     padding: 40px 60px;
     margin-bottom: 40px;
     border-radius: 6px;
-     box-shadow: var(--shadow);
+    box-shadow: var(--shadow);
 }
 
 .long-main .recipe-details .details-wrapper .recipe-info h3 {
@@ -697,7 +685,7 @@ thead th {
     padding: 40px 60px;
     margin-bottom: 40px;
     border-radius: 6px;
-     box-shadow: var(--shadow);
+    box-shadow: var(--shadow);
 }
 
 .long-main .recipe-details .details-wrapper .description h3 {
@@ -771,6 +759,22 @@ thead th {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.main .profile-info .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+}
+.main .profile-info .heading .sign-out{
+    color: black;
+       text-decoration: underline;
+}
+.main .profile-info .heading .sign-out:hover{
+    text-decoration: none;
+}
+.main .profile-info .heading > p{
+    color: gray;
 }
 
 /*profile delete*/
@@ -904,9 +908,10 @@ thead th {
     padding: 90px;
 }
 
-.long-main .standard-wrapper article{
+.long-main .standard-wrapper article {
     margin-bottom: 30px;
 }
+
 .main .profile-info .info ul {
     display: flex;
     flex-direction: column;
@@ -923,11 +928,116 @@ thead th {
 }
 
 .footer .foot-wrapper .foot-link {
-    font-size: 22px;
+    font-size: 14px;
     color: black;
-    font-family: 'Great Vibes', cursive;
+    font-style: italic;
 
 }
 
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background: rgba(0, 0, 0, .5);
+
+    margin: auto;
+    padding: 30px 40px;
+    border: 1px solid #888;
+    width: 40%;
+    box-shadow: var(--shadow);
+
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+
+
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: stretch;
+    flex-direction: column;
+
+    overflow: hidden;
+    border-radius: 35px;
+
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    right: 60px;
+    bottom: 72px;
+    color: red;
+    font-size: 14px;
+    /*font-weight: bold;*/
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*.modal-header {*/
+/*    text-align: center;*/
+/*    padding: 2px 16px;*/
+/*    !*background-color: black;*!*/
+/*    color: white;*/
+/*}*/
+
+/*.modal-body {*/
+/*    padding: 2px 16px;*/
+/*    display: flex;*/
+/*    gap: 30px;*/
+/*    flex-direction: row-reverse;*/
+/*    width: 100% ;*/
+/*}*/
+
+/*.modal-footer {*/
+/*    padding: 2px 16px;*/
+/*    !*background-color: #5cb85c;*!*/
+/*    color: white;*/
+/*}*/

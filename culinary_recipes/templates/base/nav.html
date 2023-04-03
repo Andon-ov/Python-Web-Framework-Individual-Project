@@ -35,109 +35,67 @@
                         <a class="nav-link" href="{% url 'standard' %}">Standard</a>
                     </li>
                 {% endif %}
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sign out' %}">Sing&nbsp;Out</a>
+                    <!-- Trigger/Open The Modal -->
+
+                    <button class="nav-link" id="myBtn">Search</button>
                 </li>
             {% endif %}
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+
+
+                    <div class="modal-body">
+                        <span class="Close">Close</span>
+                        <form class="search-form" action="{% url 'search' %}" method="get">
+                            {#                            <div class="search-wrapper">#}
+
+                            <input name="pattern"
+                                   id="search"
+                                   class="search__nav"
+                                   type="search"
+                                   placeholder="Enter food name..."
+                                   aria-label="Search">
+
+                            {#                            </div>#}
+{#                            <button class="btn" type="submit"><i class="fa-solid search-icon fa-magnifying-glass"></i>Search</button>#}
+                        </form>
+                        {% csrf_token %}
+
+                    </div>
+                    {#                    <div class="modal-footer">#}
+                    {#                        <h3>Modal Footer</h3>#}
+                    {#                    </div>#}
+                </div>
+
+            </div>
+
 
         </ul>
 
         <!-- Search form -->
-        <form class="search-form" action="{% url 'search' %}" method="get">
-            <div class="search-wrapper">
-                <i class="fa-solid search-icon fa-magnifying-glass"></i>
-                <input name="pattern"
-                       id="search"
-                       class="search__nav"
-                       type="search"
-                       placeholder="Search here..."
-                       aria-label="Search">
+        {#        <form class="search-form" action="{% url 'search' %}" method="get">#}
+        {#            <div class="search-wrapper">#}
+        {#                <i class="fa-solid search-icon fa-magnifying-glass"></i>#}
+        {#                <input name="pattern"#}
+        {#                       id="search"#}
+        {#                       class="search__nav"#}
+        {#                       type="search"#}
+        {#                       placeholder="Search here..."#}
+        {#                       aria-label="Search">#}
+        {##}
+        {#            </div>#}
+        {#        </form>#}
+        {#        {% csrf_token %}#}
 
-            </div>
-        </form>
-        {% csrf_token %}
+
     </div>
 
 
 </nav>
 
 
-{#{% load static %}#}
-{#<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-black col-lg-12">#}
-{#    <!-- Container wrapper -->#}
-{#    <div class="container-fluid">#}
-{#        <div class="container">#}
-{#            <!-- Toggle button -->#}
-{#            <button#}
-{#                    class="navbar-toggler"#}
-{#                    type="button"#}
-{#                    data-mdb-toggle="collapse"#}
-{#                    data-mdb-target="#navbarSupportedContent"#}
-{#                    aria-controls="#navbarSupportedContent"#}
-{#                    aria-expanded="false"#}
-{#                    aria-label="Toggle navigation"#}
-{#            >#}
-{#                <i class="fas fa-bars text-white"></i>#}
-{#            </button>#}
-{#            <!-- Collapsible wrapper -->#}
-{#            <div class="collapse navbar-collapse" id="navbarSupportedContent">#}
-{#                <ul class="navbar-nav col-sm-4 col-md-4 col-lg-5 ">#}
-{#                    <li>#}
-{##}
-{#                        <a class="nav-link text-white" href="{% url 'index' %}"><h3>Our recipes</h3></a>#}
-{#                    </li>#}
-{#                </ul>#}
-{#                <!-- Search form -->#}
-{#                <form class="d-md-flex input-group w-auto my-auto#}
-{#                col-sm-4 col-md-4 col-lg-3"#}
-{#                      action="{% url 'search' %}" method="get">#}
-{#                    <input name="pattern" id="search" class="form-control" type="search" placeholder="Търси тук"#}
-{#                           aria-label="Search">#}
-{#                </form>#}
-{#                {% csrf_token %}#}
-{#                <!-- Left links -->#}
-{#                <div class="container#}
-{#                col-sm-4 col-md-4 col-lg-1">#}
-{#                    <ul class="navbar-nav">#}
-{##}
-{#                        {% if not request.user.is_authenticated %}#}
-{#                            <li>#}
-{#                                <a class="nav-link text-white"#}
-{#                                   href="{% url 'all category' %}"><h3>Меню</h3></a>#}
-{#                            </li>#}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link text-white " href="{% url 'sign in' %}"><h3>Вход</h3></a>#}
-{#                            </li>#}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link text-white" href="{% url 'sign up' %}"><h3>Регистрация</h3></a>#}
-{#                            </li>#}
-{##}
-{#                        {% else %}#}
-{#                            <li>#}
-{#                                <a class="nav-link text-white"#}
-{#                                   href="{% url 'all category' %}"><h3>Меню</h3></a>#}
-{#                            </li>#}
-{#                            {% if not request.user.profile.job_title == 'waiter' %}#}
-{#                                <li>#}
-{#                                    <a class="nav-link text-white"#}
-{#                                       href="{% url 'base recipe' %}"><h3>Основи</h3></a>#}
-{#                                </li>#}
-{#                            {% endif %}#}
-{#                            <li>#}
-{#                                <a class="nav-link text-white"#}
-{#                                   href="{% url 'details user' pk=request.user.pk %}"><h3>Профил</h3></a>#}
-{#                            </li>#}
-{#                            {% if not request.user.profile.job_title == 'cook' %}#}
-{#                                <li>#}
-{#                                    <a class="nav-link text-white"#}
-{#                                       href="{% url 'standard' %}"><h3>Стандарт</h3></a>#}
-{#                                </li>#}
-{#                            {% endif %}#}
-{##}
-{#                        {% endif %}#}
-{#                    </ul>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</nav>#}

@@ -5,18 +5,16 @@
     <main class="main">
 
         <article class="profile-info">
-
-            <h1 class="title">Profile info</h1>
-            <br>
+            <div class="heading">
+                <h1 class="title">My&nbsp;Account</h1>
+                <p>You are logged in as {{ object.email }}.</p>
+                <p><a class="sign-out" href="{% url 'sign out' %}">Sing&nbsp;out</a></p><br>
+            </div>
             <div class="info">
                 <ul>
                     <li>
                         <b>Name:</b> <br>
                         <i>{{ object.profile.full_name.upper }}</i>
-                    </li>
-                    <li>
-                        <b>Email:</b> <br>
-                        <i>{{ object.email }}</i>
                     </li>
                     <li>
                         <b>Job Title:</b> <br>
@@ -26,6 +24,7 @@
                         <b>Last Login Date:</b> <br>
                         <i>{{ object.last_login.date }}</i>
                     </li>
+
                 </ul>
 
             </div>

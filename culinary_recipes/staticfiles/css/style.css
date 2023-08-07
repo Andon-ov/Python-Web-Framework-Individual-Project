@@ -277,7 +277,9 @@ thead th {
 }
 
 .hero-container .hero-box .hero-span {
-    font-family: 'Rampart One', cursive;
+    /*font-family: 'Rampart One', cursive;*/
+    font-weight: 900;
+    color: gray;
 }
 
 
@@ -389,12 +391,19 @@ thead th {
     overflow: hidden;
     align-content: stretch;
     justify-content: space-evenly;
+    /*background-image: url('http://neptune.pinsupreme.com/wp-content/uploads/2015/09/pattern_06-500x5001.png');*/
+    /*background-repeat: repeat;*/
+
+
 }
 
 .main .title {
     text-transform: uppercase;
     margin-top: 50px;
     font-size: 28px;
+    /*color: white;*/
+    background-color: white;
+    padding: 10px;
 }
 
 /*show-all-categories*/
@@ -404,9 +413,10 @@ thead th {
     width: 80%;
     height: 75vh;
     display: grid;
-    gap: 20px;
+    gap: 30px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+
 }
 
 .main .grid-6 .card {
@@ -420,6 +430,7 @@ thead th {
 .main .grid-6 .card:hover {
     transform: scale(0.95);
     box-shadow: var(--shadow);
+
 }
 
 
@@ -432,20 +443,22 @@ thead th {
     object-fit: cover;
 }
 
-.main .grid-6 .card .card-body {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);
-    position: absolute;
-    width: 100%;
-    /*height: 100%;*/
-    left: 50%;
-    top: 80%;
-    z-index: 10;
-    color: white;
-    padding: 20px;
-    transform: translate(-50%, -50%);
+/*.main .grid-6 .card .card-body {*/
+/*    background: rgba(30,127,147,0.7);*/
 
-}
+/*    !*background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);*!*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    !*height: 100%;*!*/
+/*    left: 50%;*/
+/*    top: 80%;*/
+/*    z-index: 10;*/
+/*    color: white;*/
+/*    padding: 20px;*/
+/*    transform: translate(-50%, -50%);*/
+
+/*}*/
+
 
 .main .grid-6 .card .card-body .card-title {
     font-size: 22px;
@@ -494,24 +507,24 @@ thead th {
     object-fit: cover;
 }
 
-.main .grid-9 .card .card-body {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);
-    position: absolute;
-    width: 100%;
-    /*height: 80%;*/
-    left: 50%;
-    top: 80%;
-    z-index: 10;
-    color: white;
-    padding: 20px;
-    transform: translate(-50%, -50%);
-}
+/*.main .grid-9 .card .card-body {*/
+/*    background:rgba(30,127,147,0.7);*/
+/*    !*background: rgb(255, 255, 255);*!*/
+/*    !*background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);*!*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    !*height: 80%;*!*/
+/*    left: 50%;*/
+/*    top: 85%;*/
+/*    z-index: 10;*/
+/*    color: white;*/
+/*    padding: 20px;*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/
 
 .main .grid-9 .card .card-body .card-title {
     font-size: 18px;
-    font-weight: 600
-;
+    font-weight: 600;
 }
 
 
@@ -556,9 +569,9 @@ thead th {
     background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);
     position: absolute;
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     left: 50%;
-    top: 50%;
+    top: 90%;
     z-index: 10;
     color: white;
     padding: 20px;
@@ -722,6 +735,8 @@ thead th {
     gap: 20px;
     padding-top: 50px;
     width: 500px;
+
+
     /*text-align: center;*/
 }
 
@@ -760,20 +775,24 @@ thead th {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .main .profile-info .heading {
     display: flex;
     flex-direction: column;
     gap: 8px;
     text-align: center;
 }
-.main .profile-info .heading .sign-out{
+
+.main .profile-info .heading .sign-out {
     color: black;
-       text-decoration: underline;
+    text-decoration: underline;
 }
-.main .profile-info .heading .sign-out:hover{
+
+.main .profile-info .heading .sign-out:hover {
     text-decoration: none;
 }
-.main .profile-info .heading > p{
+
+.main .profile-info .heading > p {
     color: gray;
 }
 
@@ -839,7 +858,7 @@ thead th {
     padding: 4px;
     background: #ffffff;
 
-    border: 2px solid #000000;
+    border: 1px solid red;
     color: #000000;
     text-align: center;
 }
@@ -1041,3 +1060,34 @@ thead th {
 /*    !*background-color: #5cb85c;*!*/
 /*    color: white;*/
 /*}*/
+
+.card {
+    position: relative;
+}
+
+.card::after {
+    content: attr(data-title);
+    position: absolute;
+    width: 100%;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background-color: rgba(255, 255, 255, 0.8);*/
+    background: rgba(30, 127, 147, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    color: white;
+}
+
+.card:hover::after {
+    opacity: 0;
+}
+
+.card:hover h3 {
+    opacity: 1;
+}

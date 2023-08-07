@@ -4,7 +4,15 @@
 {% load static %}
 {% block page_content %}
 
-    <main class="long-main">
+    <main class="long-main"
+     style="  background-image:
+            {#linear-gradient(266deg, rgba(255,255,255,0.6811099439775911) 0%, rgba(0,0,0,0.35898109243697474) 0%),#}
+            url({{ recipe.image_recipe.image.url }});
+            background-repeat: no-repeat;
+            background-size: cover;
+            {#background-position: 25% 75%;#}
+            background-position: center;
+            ">
         <div class="recipe-details">
 
             <h1 class="title">{{ recipe.title }}</h1>

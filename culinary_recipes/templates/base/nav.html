@@ -23,6 +23,7 @@
             {% else %}
                 {% if not request.user.profile.job_title == 'waiter' %}
                     <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link"
                            href="{% url 'base recipe' %}">Base</a>
                     </li>
@@ -30,11 +31,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'details user' pk=request.user.pk %}">Profile</a>
                 </li>
-                {% if not request.user.profile.job_title == 'cook' %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'standard' %}">Standard</a>
-                    </li>
-                {% endif %}
+{#                {% if not request.user.profile.job_title == 'cook' %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url 'standard' %}">Standard</a>#}
+{#                    </li>#}
+{#                {% endif %}#}
 
                 <li class="nav-item">
                     <!-- Trigger/Open The Modal -->

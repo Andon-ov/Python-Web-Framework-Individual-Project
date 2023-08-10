@@ -1,15 +1,22 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
 import cloudinary as cloudinary
 from django.urls import reverse_lazy
+
+# I'm using this part because I'm using the folder, not just the .env file
+dotenv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'envs', '.env')
+
+load_dotenv(dotenv_path)
+# load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# DEBUG = int(os.environ.get('DEBUG'))
 DEBUG = bool(os.environ.get('DEBUG'))
+
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
 
@@ -65,26 +72,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'culinary_recipes.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': os.environ.get('DB_ENGINE'),
-#         'NAME': os.environ.get('DB_NAME'),
-#         'USER': os.environ.get('DB_USER'),
-#         'PASSWORD': os.environ.get('DB_PASSWORD'),
-#         'HOST': os.environ.get('DB_HOST'),
-#         'PORT': os.environ.get('DB_PORT'),
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'recipes_db',
-        'USER': 'postgres',
-        'PASSWORD': '1123QwER',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
+
 
 CACHES = {
     'default': {

@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRETY_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # DEBUG = int(os.environ.get('DEBUG'))
 DEBUG = bool(os.environ.get('DEBUG'))
@@ -76,14 +76,14 @@ WSGI_APPLICATION = 'culinary_recipes.wsgi.application'
 #     }
 # }
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'recipes_db',
-         'USER': 'postgres',
-         'PASSWORD': '1123QwER',
-         'HOST': '127.0.0.1',
-         'PORT': '5432',
-     }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'recipes_db',
+        'USER': 'postgres',
+        'PASSWORD': '1123QwER',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
 }
 
 CACHES = {

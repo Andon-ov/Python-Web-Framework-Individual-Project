@@ -31,18 +31,28 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'details user' pk=request.user.pk %}">Profile</a>
                 </li>
-{#                {% if not request.user.profile.job_title == 'cook' %}#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" href="{% url 'standard' %}">Standard</a>#}
-{#                    </li>#}
-{#                {% endif %}#}
+                {#                {% if not request.user.profile.job_title == 'cook' %}#}
+                {#                    <li class="nav-item">#}
+                {#                        <a class="nav-link" href="{% url 'standard' %}">Standard</a>#}
+                {#                    </li>#}
+                {#                {% endif %}#}
 
                 <li class="nav-item">
                     <!-- Trigger/Open The Modal -->
 
                     <button class="nav-link" id="myBtn">Search</button>
+
                 </li>
+                {# TODO - contact us - i need to add link to go   '/' and show section contact us#}
+                <li class="nav-item">
+
+                    <button class="nav-link" id="openContactForm">Contact&nbsp;Us</button>
+
+                </li>
+
             {% endif %}
+
+
             <!-- The Modal -->
             <div id="myModal" class="modal">
 
@@ -63,7 +73,7 @@
                                    aria-label="Search">
 
                             {#                            </div>#}
-{#                            <button class="btn" type="submit"><i class="fa-solid search-icon fa-magnifying-glass"></i>Search</button>#}
+                            {#                            <button class="btn" type="submit"><i class="fa-solid search-icon fa-magnifying-glass"></i>Search</button>#}
                         </form>
                         {% csrf_token %}
 

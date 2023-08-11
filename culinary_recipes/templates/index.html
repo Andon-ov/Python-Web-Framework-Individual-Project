@@ -1,9 +1,6 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    {#    <main class="main">#}
-    {#    <div class="btnConnectToUs">#}
-    {#        <button class="hiddenContactFormBtn">Contact us</button>#}
-    {#    </div>#}
+
     <div class="hero-container">
         <div class="hero-box">
             <img src="
@@ -28,47 +25,6 @@
             <span class="hero-span">Food!</span>
         </div>
     </div>
-
-
-    <div id="contactForm" class="modalForm">
-        <div class="form-wrapper">
-
-            <div class="form-wrapper-left-side">
-
-            </div>
-
-            <span class="close" id="closeContactForm"><i class="fa-regular fa-circle-xmark fa-beat"></i></span>
-            <form method="post" class="contactForm">
-                <h1 class="title">Contact&nbsp;us</h1>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div class="buttonWrapper">
-                    <button type="submit" class="contactFormBtn">Send</button>
-                </div>
-            </form>
-
-        </div>
-    </div>
-
-
-    <script>
-        // Open the modal when the "Contact Us" button is clicked
-        document.getElementById('openContactForm').addEventListener('click', function () {
-            document.getElementById('contactForm').style.display = 'block';
-        });
-
-        // Close the modal when the close button is clicked
-        document.getElementById('closeContactForm').addEventListener('click', function () {
-            document.getElementById('contactForm').style.display = 'none';
-        });
-
-        // Close the modal when the user clicks outside the modal content
-        window.addEventListener('click', function (event) {
-            if (event.target === document.getElementById('contactForm')) {
-                document.getElementById('contactForm').style.display = 'none';
-            }
-        });
-    </script>
 
 {% endblock %}
 

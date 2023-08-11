@@ -1,112 +1,112 @@
 {% load static %}
 <nav class="navbar">
-    <div class="nav-wrapper">
-        <div class="logo-wrapper">
-            <a class="logo" href="{% url 'index' %}">Our&nbsp;recipes</a>
-            {#<i class="fa-solid fa-pizza-slice fa-flip-vertical"></i>#}
-        </div>
-
-        <ul class="navbar-ul">
-            <li class="nav-item">
-
-                <a class="nav-link" href="{% url 'all category' %}">Menu</a>
-            </li>
-
-            {% if not request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sign in' %}">Sign&nbsp;In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sign up' %}">Sign&nbsp;Up</a>
-                </li>
-
-            {% else %}
-                {% if not request.user.profile.job_title == 'waiter' %}
-                    <li class="nav-item">
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{% url 'base recipe' %}">Base</a>
-                    </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'details user' pk=request.user.pk %}">Profile</a>
-                </li>
-                {#                {% if not request.user.profile.job_title == 'cook' %}#}
-                {#                    <li class="nav-item">#}
-                {#                        <a class="nav-link" href="{% url 'standard' %}">Standard</a>#}
-                {#                    </li>#}
-                {#                {% endif %}#}
-
-                <li class="nav-item">
-                    <!-- Trigger/Open The Modal -->
-
-                    <button class="nav-link" id="myBtn">Search</button>
-
-                </li>
-                {# TODO - contact us - i need to add link to go   '/' and show section contact us#}
-                <li class="nav-item">
-
-                    <button class="nav-link" id="openContactForm">Contact&nbsp;Us</button>
-
-                </li>
-
-            {% endif %}
-
-
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
-
-
-                    <div class="modal-body">
-                        <span class="Close">Close</span>
-                        <form class="search-form" action="{% url 'search' %}" method="get">
-                            {#                            <div class="search-wrapper">#}
-
-                            <input name="pattern"
-                                   id="search"
-                                   class="search__nav"
-                                   type="search"
-                                   placeholder="Enter food name..."
-                                   aria-label="Search">
-
-                            {#                            </div>#}
-                            {#                            <button class="btn" type="submit"><i class="fa-solid search-icon fa-magnifying-glass"></i>Search</button>#}
-                        </form>
-                        {% csrf_token %}
-
-                    </div>
-                    {#                    <div class="modal-footer">#}
-                    {#                        <h3>Modal Footer</h3>#}
-                    {#                    </div>#}
-                </div>
-
-            </div>
-
-
-        </ul>
-
-        <!-- Search form -->
-        {#        <form class="search-form" action="{% url 'search' %}" method="get">#}
-        {#            <div class="search-wrapper">#}
-        {#                <i class="fa-solid search-icon fa-magnifying-glass"></i>#}
-        {#                <input name="pattern"#}
-        {#                       id="search"#}
-        {#                       class="search__nav"#}
-        {#                       type="search"#}
-        {#                       placeholder="Search here..."#}
-        {#                       aria-label="Search">#}
-        {##}
-        {#            </div>#}
-        {#        </form>#}
-        {#        {% csrf_token %}#}
-
-
+  <div class="nav-wrapper">
+    <div class="logo-wrapper">
+      <a class="logo" href="{% url 'index' %}">Our&nbsp;recipes</a>
     </div>
 
+    <ul class="navbar-ul">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'all category' %}">Menu</a>
+      </li>
 
+      {% if not request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sign in' %}">Sign&nbsp;In</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sign up' %}">Sign&nbsp;Up</a>
+      </li>
+
+      {% else %} {% if not request.user.profile.job_title == 'waiter' %}
+      <li class="nav-item"></li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'base recipe' %}">Base</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'details user' pk=request.user.pk %}"
+          >Profile</a
+        >
+      </li>
+      {# {% if not request.user.profile.job_title == 'cook' %}#}
+      <li class="nav-item">
+        {# <a class="nav-link" href="{% url 'standard' %}">Standard</a>#}
+      </li>
+      {# {% endif %}#}
+
+      <li class="nav-item">
+        <!-- Trigger/Open The Modal -->
+
+        <button class="nav-link" id="myBtn">Search</button>
+      </li>
+
+      <li class="nav-item">
+        <button class="nav-link" id="openContactForm">Contact&nbsp;Us</button>
+      </li>
+
+      {% endif %}
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-body">
+            <span class="Close">Close</span>
+            <form class="search-form" action="{% url 'search' %}" method="get">
+              <input
+                name="pattern"
+                id="search"
+                class="search__nav"
+                type="search"
+                placeholder="Enter food name..."
+                aria-label="Search"
+              />
+            </form>
+            {% csrf_token %}
+          </div>
+        </div>
+      </div>
+
+      <div id="contactForm" class="modalForm">
+        <div class="form-wrapper">
+          <div class="form-wrapper-left-side"></div>
+
+          <span class="close" id="closeContactForm"
+            ><i class="fa-regular fa-circle-xmark fa-beat"></i
+          ></span>
+          <form method="post" class="contactForm">
+            <h1 class="title">Contact&nbsp;us</h1>
+            {% csrf_token %} {{ form.as_p }}
+            <div class="buttonWrapper">
+              <button type="submit" class="contactFormBtn">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ul>
+  </div>
 </nav>
 
+<script>
+  // Open the modal when the "Contact Us" button is clicked
+  document
+    .getElementById("openContactForm")
+    .addEventListener("click", function () {
+      document.getElementById("contactForm").style.display = "block";
+    });
 
+  // Close the modal when the close button is clicked
+  document
+    .getElementById("closeContactForm")
+    .addEventListener("click", function () {
+      document.getElementById("contactForm").style.display = "none";
+    });
+
+  // Close the modal when the user clicks outside the modal content
+  window.addEventListener("click", function (event) {
+    if (event.target === document.getElementById("contactForm")) {
+      document.getElementById("contactForm").style.display = "none";
+    }
+  });
+</script>

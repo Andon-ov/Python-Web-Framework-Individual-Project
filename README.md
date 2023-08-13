@@ -1,4 +1,4 @@
-# Python Web Framework Individual Project - Culinary Recipes
+# Culinary Recipes - Restaurant Menu Management System
 
 This guide outlines the steps to set up your individual project for managing culinary recipes using a Python web framework. The project involves cloning a GitHub repository, configuring a virtual environment, setting up a database, and creating a superuser.
 

@@ -1,59 +1,46 @@
-window.addEventListener("load", onLoad)
+// Wait for the DOM to fully load
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById("contactForm");
+    const contactFormModal = document.getElementById("openContactForm");
+    const closeContactForm = document.getElementById("closeContactForm");
+    const searchModal = document.getElementById("searchModal");
+    const searchBtn = document.getElementById("searchBtn");
+    const modalCloseBtn = searchModal.querySelector(".close");
 
-function onLoad() {
-    const btnConnectToUs = document.getElementsByClassName('hiddenContactFormBtn')[0]
-    const formWrapper = document.getElementsByClassName('form-wrapper')[0]
-    const connect = document.getElementsByClassName('contactFormWrapper')[0]
-    if (connect) {
-        connect.id = 'hide'
+    // Function to open contact form modal
+    contactFormModal.addEventListener("click", function () {
+        contactForm.style.display = "block";
+    });
 
-        const emptyDiv = document.createElement('div')
-        connect.replaceChildren(emptyDiv)
-        btnConnectToUs.addEventListener('click', connectToUs)
-    }
+    // Function to close contact form modal
+    closeContactForm.addEventListener("click", function () {
+        contactForm.style.display = "none";
+    });
 
-
-    function connectToUs() {
-        connect.replaceChildren(formWrapper)
-        if (connect.id === 'hide') {
-            connect.style.display = 'grid'
-            connect.id = 'show'
-
-        } else {
-            connect.style.display = 'none'
-            connect.id = 'hide'
+    // Function to close modals when clicking outside
+    window.addEventListener("click", function (event) {
+        if (event.target === contactForm) {
+            contactForm.style.display = "none";
         }
-    }
-
-// modal
-
-    let modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    let btn = document.getElementById("myBtn");
-    btn.addEventListener('click', openModal)
-
-
-    // Get the <span> element that closes the modal
-    let span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal
-    function openModal() {
-        modal.style.display = "block";
-        console.log('test')
-    }
-
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
+        if (event.target === searchModal) {
+            searchModal.style.display = "none";
         }
-    }
-}
+    });
 
+    // Function to open search modal
+    searchBtn.addEventListener("click", function () {
+        searchModal.style.display = "block";
+    });
+
+    // Function to close search modal
+    modalCloseBtn.addEventListener("click", function () {
+        searchModal.style.display = "none";
+    });
+
+    // Function to close search modal when clicking outside
+    window.addEventListener("click", function (event) {
+        if (event.target === searchModal) {
+            searchModal.style.display = "none";
+        }
+    });
+});

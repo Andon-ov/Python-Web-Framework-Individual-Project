@@ -186,7 +186,7 @@ thead th {
 
 }
 
-.navbar .nav-wrapper .navbar-ul #myModal .modal-content .modal-body .search-form #search {
+.navbar .nav-wrapper .navbar-ul #searchModal .modal-content .modal-body .search-form #search {
     border: none;
     width: 100%;
     align-items: center;
@@ -197,12 +197,12 @@ thead th {
 }
 
 
-.navbar .nav-wrapper .navbar-ul #myModal .modal-content .modal-body .search-form #search:focus {
+.navbar .nav-wrapper .navbar-ul #searchModal .modal-content .modal-body .search-form #search:focus {
     border-bottom: 1px solid black;
     outline: none;
 }
 
-.navbar .nav-wrapper .navbar-ul #myModal .modal-content .modal-body .search-form #search::placeholder {
+.navbar .nav-wrapper .navbar-ul #searchModal .modal-content .modal-body .search-form #search::placeholder {
     color: black;
     font-size: 18px;
     font-weight: 200;
@@ -297,7 +297,7 @@ thead th {
 }
 
 
-.form-wrapper {
+.modalForm .form-wrapper {
     /*background-color:white;*/
     margin: 6% auto;
     padding: 20px;
@@ -306,7 +306,7 @@ thead th {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.form-wrapper .close {
+.modalForm .form-wrapper .close {
     position: absolute;
     top: 150px;
     right: 125px;
@@ -328,7 +328,7 @@ thead th {
 }
 
 
-.form-wrapper {
+.modalForm .form-wrapper {
     width: 93%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -343,7 +343,7 @@ thead th {
     box-shadow: var(--shadow);
 }
 
-.form-wrapper .contactForm .title {
+.modalForm .form-wrapper .contactForm .title {
     text-align: center;
     width: 100%;
     font-size: 24px;
@@ -351,7 +351,7 @@ thead th {
     text-transform: uppercase;
 }
 
-.form-wrapper .contactForm {
+.modalForm .form-wrapper .contactForm {
     width: 100%;
     display: flex;
     gap: 15px;
@@ -363,26 +363,26 @@ thead th {
     /*border: 1px solid black;*/
 }
 
-.form-wrapper .contactForm p label {
+.modalForm .form-wrapper .contactForm p label {
     width: 100%;
     display: block;
     font-size: 22px;
 }
 
-.form-wrapper .contactForm p input {
+.modalForm .form-wrapper .contactForm p input {
     width: 100%;
     border: none;
     background-color: transparent;
 }
 
-.form-wrapper .contactForm p input:focus {
+.modalForm .form-wrapper .contactForm p input:focus {
     border-bottom: 1px solid black;
     outline: none;
     padding-left: 10px;
 }
 
 /*hidden contact form textarea */
-.form-wrapper .contactForm #id_message {
+.modalForm .form-wrapper .contactForm #id_message {
     width: 100%;
     height: 50px;
     border: none;
@@ -390,16 +390,16 @@ thead th {
 
 }
 
-.form-wrapper .contactForm #id_message:focus {
+.modalForm .form-wrapper .contactForm #id_message:focus {
     /*outline: none;*/
 }
 
-.form-wrapper .contactForm .buttonWrapper {
+.modalForm .form-wrapper .contactForm .buttonWrapper {
     width: 100%;
     display: grid;
 }
 
-.form-wrapper .contactForm .buttonWrapper .contactFormBtn {
+.modalForm .form-wrapper .contactForm .buttonWrapper .contactFormBtn {
     background-color: transparent;
     color: black;
     border: 1px solid black;
@@ -410,7 +410,7 @@ thead th {
     text-transform: uppercase;
 }
 
-.form-wrapper .contactForm .buttonWrapper .contactFormBtn:hover {
+.modalForm .form-wrapper .contactForm .buttonWrapper .contactFormBtn:hover {
     background-color: black;
     color: white;
     border: 1px solid white;
@@ -995,7 +995,7 @@ thead th {
 
 
 /* The Modal (background) */
-.modal {
+.searchModal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */

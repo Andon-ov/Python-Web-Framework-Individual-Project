@@ -36,19 +36,18 @@
       {# {% endif %}#}
 
       <li class="nav-item">
-        <!-- Trigger/Open The Modal -->
+        <!-- Trigger/Open The searchModal -->
 
-        <button class="nav-link" id="myBtn">Search</button>
+        <button class="nav-link" id="searchBtn">Search</button>
       </li>
 
       <li class="nav-item">
-        <button class="nav-link" id="openContactForm">Contact&nbsp;Us</button>
+        <button class="nav-link"  id="openContactForm">Contact&nbsp;Us</button>
       </li>
 
       {% endif %}
-
-      <!-- The Modal -->
-      <div id="myModal" class="modal">
+      
+      <div id="searchModal" class="searchModal">
         <!-- Modal content -->
         <div class="modal-content">
           <div class="modal-body">
@@ -77,36 +76,16 @@
           ></span>
           <form method="post" class="contactForm">
             <h1 class="title">Contact&nbsp;us</h1>
-            {% csrf_token %} {{ form.as_p }}
+            {% csrf_token %} 
+            {{ form.as_p }}
             <div class="buttonWrapper">
               <button type="submit" class="contactFormBtn">Send</button>
             </div>
           </form>
         </div>
       </div>
+
     </ul>
   </div>
 </nav>
 
-<script>
-  // Open the modal when the "Contact Us" button is clicked
-  document
-    .getElementById("openContactForm")
-    .addEventListener("click", function () {
-      document.getElementById("contactForm").style.display = "block";
-    });
-
-  // Close the modal when the close button is clicked
-  document
-    .getElementById("closeContactForm")
-    .addEventListener("click", function () {
-      document.getElementById("contactForm").style.display = "none";
-    });
-
-  // Close the modal when the user clicks outside the modal content
-  window.addEventListener("click", function (event) {
-    if (event.target === document.getElementById("contactForm")) {
-      document.getElementById("contactForm").style.display = "none";
-    }
-  });
-</script>

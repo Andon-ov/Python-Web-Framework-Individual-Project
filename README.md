@@ -5,13 +5,13 @@ This guide outlines the steps to set up your individual project for managing cul
 ## Cloning the Repository
 1. Clone the GitHub repository for your Python web framework project using the command:
 
-    git clone https://github.com/Andon-ov/Python-Web-Framework-Individual-Project.git
+    git clone https://github.com/Andon-ov/Culinary-Recipes.git
 
 
 ## Navigating to Project Folder
 2. Change the directory to the project folder using the command:
 
-    cd Python-Web-Framework-Individual-Project
+    cd Culinary-Recipes
 
 
 ## Setting up Virtual Environment

@@ -3,7 +3,9 @@ from django.shortcuts import render, redirect
 from django.views import generic as view
 from django.views.generic.edit import FormMixin
 
-from culinary_recipes.common.forms import RecipeCommentForm
+from culinary_recipes.common. forms import ContactForm, RecipeCommentForm
+from culinary_recipes.recipes_app.helpers import send_contact_email
+
 from culinary_recipes.recipes_app.models import Recipe, BaseRecipe, Category, Ingredient, PreparationMethod
 
 
@@ -95,3 +97,20 @@ class SearchResultsView(view.ListView):
     def __get_pattern(self):
         pattern = self.request.GET.get('pattern', None)
         return pattern.upper() if pattern else None
+
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            send_contact_email(request, form)
+           
+            return redirect('index')
+    else:
+        form = ContactForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'contact-to-us.html', context)

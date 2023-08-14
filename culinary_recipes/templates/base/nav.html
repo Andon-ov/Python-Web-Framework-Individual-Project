@@ -14,6 +14,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'sign in' %}">Sign&nbsp;In</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="{% url 'sign up' %}">Sign&nbsp;Up</a>
       </li>
@@ -29,11 +30,11 @@
           >Profile</a
         >
       </li>
-      {# {% if not request.user.profile.job_title == 'cook' %}#}
+      {% comment %} {% if not request.user.profile.job_title == 'cook' %}
       <li class="nav-item">
-        {# <a class="nav-link" href="{% url 'standard' %}">Standard</a>#}
+        <a class="nav-link" href="{% url 'standard' %}">Standard</a>
       </li>
-      {# {% endif %}#}
+      {% endif %} {% endcomment %}
 
       <li class="nav-item">
         <!-- Trigger/Open The searchModal -->
@@ -42,11 +43,11 @@
       </li>
 
       <li class="nav-item">
-        <button class="nav-link"  id="openContactForm">Contact&nbsp;Us</button>
+        <a class="nav-link" href="{% url 'contact_us' %}">Contact&nbsp;Us</a>
       </li>
 
       {% endif %}
-      
+
       <div id="searchModal" class="searchModal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -66,26 +67,6 @@
           </div>
         </div>
       </div>
-
-      <div id="contactForm" class="modalForm">
-        <div class="form-wrapper">
-          <div class="form-wrapper-left-side"></div>
-
-          <span class="close" id="closeContactForm"
-            ><i class="fa-regular fa-circle-xmark fa-beat"></i
-          ></span>
-          <form method="post" class="contactForm">
-            <h1 class="title">Contact&nbsp;us</h1>
-            {% csrf_token %} 
-            {{ form.as_p }}
-            <div class="buttonWrapper">
-              <button type="submit" class="contactFormBtn">Send</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
     </ul>
   </div>
 </nav>
-

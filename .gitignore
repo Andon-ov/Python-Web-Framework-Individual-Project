@@ -74,3 +74,8 @@ postgresql/
 
 # Ignore README file (if needed)
 # README.md
+
+.vscode/launch.json
+
+ culinary_recipes/envs/.env
+ culinary_recipes/envs/.env.prod

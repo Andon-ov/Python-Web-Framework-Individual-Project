@@ -1,32 +1,18 @@
-from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
 
-from culinary_recipes.common.forms import RecipeCommentForm, RecipeCommentDeleteForm, RecipeCommentEditForm, ContactForm
+from culinary_recipes.common.forms import RecipeCommentForm, RecipeCommentDeleteForm, RecipeCommentEditForm
 from culinary_recipes.common.models import RecipeComment
 from culinary_recipes.core.utils import is_owner
 from culinary_recipes.recipes_app.models import Recipe
-from culinary_recipes.common.helpers import send_contact_email
 
 UserModel = get_user_model()
 
 
 def index(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-
-        if form.is_valid():
-            send_contact_email(request, form)
-           
-            return redirect('index')
-    else:
-        form = ContactForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'index.html', context)
+    return render(request, 'index.html',)
 
 
 @login_required

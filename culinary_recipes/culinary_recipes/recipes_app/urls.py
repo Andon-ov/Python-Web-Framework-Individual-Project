@@ -1,7 +1,7 @@
 from django.urls import path
 
 from culinary_recipes.recipes_app.views import RecipeDetailsView, BaseRecipeDetailsView, BaseRecipeListView, \
-    SearchResultsView, RecipeDetailsWaitersView, AllCategoryListView, recipes_in_category
+    SearchResultsView, RecipeDetailsWaitersView, AllCategoryListView, contact, recipes_in_category
 
 urlpatterns = (
     # Show all categories
@@ -18,4 +18,7 @@ urlpatterns = (
     path('detail-waiters/<int:pk>/', RecipeDetailsWaitersView.as_view(), name='recipe detail waiters'),
     # Search
     path("search/", SearchResultsView.as_view(), name="search"),
+    # Contact to Us
+    path("contact-to-us/", contact, name="contact_us"),
+
 )

@@ -117,10 +117,6 @@ thead th {
     color: white;
 }
 
-/*input:hover {*/
-/*    background-color: black;*/
-/*    color: white;*/
-/*}*/
 
 .alert-danger {
     color: red;
@@ -183,7 +179,6 @@ thead th {
 
 .navbar .nav-wrapper .navbar-ul .nav-item .nav-link:hover {
     text-decoration: underline;
-
 }
 
 .navbar .nav-wrapper .navbar-ul #searchModal .modal-content .modal-body .search-form #search {
@@ -193,7 +188,6 @@ thead th {
     margin: auto;
     padding: 8px 20px;
     border-radius: 15px;
-
 }
 
 
@@ -218,7 +212,6 @@ thead th {
     left: 210px;
     cursor: pointer;
     text-transform: uppercase;
-
 }
 
 .btnConnectToUs .hiddenContactFormBtn {
@@ -231,8 +224,6 @@ thead th {
 .btnConnectToUs .hiddenContactFormBtn:hover {
     cursor: pointer;
     text-decoration: underline;
-
-
 }
 
 .hero-container {
@@ -277,61 +268,22 @@ thead th {
 }
 
 .hero-container .hero-box .hero-span {
-    /*font-family: 'Rampart One', cursive;*/
     font-weight: 900;
     color: gray;
 }
 
 
-/* hidden contact form*/
-#contactForm.modalForm {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-
-.modalForm .form-wrapper {
-    /*background-color:white;*/
-    margin: 6% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.modalForm .form-wrapper .close {
-    position: absolute;
-    top: 150px;
-    right: 125px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#closeContactForm:hover {
-    color: black;
-}
-
 .contactFormWrapper {
     width: 100%;
     display: grid;
     justify-items: center;
-
 }
 
 
-.modalForm .form-wrapper {
-    width: 93%;
+.contactForm .form-wrapper {
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     align-items: center;
     justify-items: center;
 
@@ -339,11 +291,14 @@ thead th {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 100%;
-    /*margin-bottom: 50px;*/
     box-shadow: var(--shadow);
+    margin: 30px 0 20px 0;
+
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.modalForm .form-wrapper .contactForm .title {
+.contactForm .form-wrapper .contactForm .title {
     text-align: center;
     width: 100%;
     font-size: 24px;
@@ -351,7 +306,7 @@ thead th {
     text-transform: uppercase;
 }
 
-.modalForm .form-wrapper .contactForm {
+.contactForm .form-wrapper .contactForm {
     width: 100%;
     display: flex;
     gap: 15px;
@@ -363,26 +318,26 @@ thead th {
     /*border: 1px solid black;*/
 }
 
-.modalForm .form-wrapper .contactForm p label {
+.contactForm .form-wrapper .contactForm p label {
     width: 100%;
     display: block;
     font-size: 22px;
 }
 
-.modalForm .form-wrapper .contactForm p input {
+.contactForm .form-wrapper .contactForm p input {
     width: 100%;
     border: none;
     background-color: transparent;
 }
 
-.modalForm .form-wrapper .contactForm p input:focus {
+.contactForm .form-wrapper .contactForm p input:focus {
     border-bottom: 1px solid black;
     outline: none;
     padding-left: 10px;
 }
 
 /*hidden contact form textarea */
-.modalForm .form-wrapper .contactForm #id_message {
+.contactForm .form-wrapper .contactForm #id_message {
     width: 100%;
     height: 50px;
     border: none;
@@ -390,16 +345,13 @@ thead th {
 
 }
 
-.modalForm .form-wrapper .contactForm #id_message:focus {
-    /*outline: none;*/
-}
 
-.modalForm .form-wrapper .contactForm .buttonWrapper {
+.contactForm .form-wrapper .contactForm .buttonWrapper {
     width: 100%;
     display: grid;
 }
 
-.modalForm .form-wrapper .contactForm .buttonWrapper .contactFormBtn {
+.contactForm .form-wrapper .contactForm .buttonWrapper .contactFormBtn {
     background-color: transparent;
     color: black;
     border: 1px solid black;
@@ -410,7 +362,7 @@ thead th {
     text-transform: uppercase;
 }
 
-.modalForm .form-wrapper .contactForm .buttonWrapper .contactFormBtn:hover {
+.contactForm .form-wrapper .contactForm .buttonWrapper .contactFormBtn:hover {
     background-color: black;
     color: white;
     border: 1px solid white;
@@ -431,17 +383,13 @@ thead th {
     overflow: hidden;
     align-content: stretch;
     justify-content: space-evenly;
-    /*background-image: url('http://neptune.pinsupreme.com/wp-content/uploads/2015/09/pattern_06-500x5001.png');*/
-    /*background-repeat: repeat;*/
-
-
 }
+
 
 .main .title {
     text-transform: uppercase;
     margin-top: 50px;
     font-size: 28px;
-    /*color: white;*/
     background-color: white;
     padding: 10px;
 }
@@ -456,7 +404,6 @@ thead th {
     gap: 30px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-
 }
 
 .main .grid-6 .card {
@@ -477,32 +424,13 @@ thead th {
 .main .grid-6 .card .grow-img {
     width: 100%;
     height: 100%;
-    /*width: 600px;*/
-    /*height: 400px;*/
     object-position: center center;
     object-fit: cover;
 }
 
-/*.main .grid-6 .card .card-body {*/
-/*    background: rgba(30,127,147,0.7);*/
-
-/*    !*background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);*!*/
-/*    position: absolute;*/
-/*    width: 100%;*/
-/*    !*height: 100%;*!*/
-/*    left: 50%;*/
-/*    top: 80%;*/
-/*    z-index: 10;*/
-/*    color: white;*/
-/*    padding: 20px;*/
-/*    transform: translate(-50%, -50%);*/
-
-/*}*/
-
 
 .main .grid-6 .card .card-body .card-title {
     font-size: 22px;
-
 }
 
 .main .grid-6 .card .card-body .card-subtitle {
@@ -512,7 +440,6 @@ thead th {
 
 
 /*show-category-details*/
-
 .main .grid-9 {
     padding: 50px;
     width: 80%;
@@ -547,20 +474,6 @@ thead th {
     object-fit: cover;
 }
 
-/*.main .grid-9 .card .card-body {*/
-/*    background:rgba(30,127,147,0.7);*/
-/*    !*background: rgb(255, 255, 255);*!*/
-/*    !*background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);*!*/
-/*    position: absolute;*/
-/*    width: 100%;*/
-/*    !*height: 80%;*!*/
-/*    left: 50%;*/
-/*    top: 85%;*/
-/*    z-index: 10;*/
-/*    color: white;*/
-/*    padding: 20px;*/
-/*    transform: translate(-50%, -50%);*/
-/*}*/
 
 .main .grid-9 .card .card-body .card-title {
     font-size: 18px;
@@ -609,7 +522,6 @@ thead th {
     background: linear-gradient(266deg, rgba(255, 255, 255, 0.6811099439775911) 0%, rgba(0, 0, 0, 0.29175420168067223) 0%);
     position: absolute;
     width: 100%;
-    /*height: 100%;*/
     left: 50%;
     top: 90%;
     z-index: 10;
@@ -649,17 +561,11 @@ thead th {
     display: grid;
     gap: 30px;
     grid-template-columns: repeat(2, 1fr);
-    /*grid-template-columns: 500px 1200px;*/
-    /*grid-template-rows: repeat(2, 1fr);*/
-
-
 }
 
 .long-main .recipe-details .details-wrapper .img-wrapper {
     width: inherit;
     height: auto;
-    /*width: 600px;*/
-    /*height: 400px;*/
     box-shadow: var(--shadow);
 }
 
@@ -669,7 +575,6 @@ thead th {
     min-height: 100%;
     min-width: 100%;
     object-fit: cover;
-
 }
 
 .long-main .recipe-details .details-wrapper .single-ingredients {
@@ -699,9 +604,6 @@ thead th {
 .long-main .recipe-details .details-wrapper .single-ingredients table.ingredients-table td {
     border-bottom: 1px solid #efe0d3;
     padding: 10px 10px;
-    /*font-size: 16px;*/
-    /*font-family: 'Yanone Kaffeesatz', sans-serif;*/
-    /*font-weight: 400;*/
 }
 
 .long-main .recipe-details .details-wrapper .single-ingredients table.ingredients-table td a {
@@ -775,9 +677,6 @@ thead th {
     gap: 20px;
     padding-top: 50px;
     width: 500px;
-
-
-    /*text-align: center;*/
 }
 
 .main .form-wrapper .form {
@@ -837,7 +736,6 @@ thead th {
 }
 
 /*profile delete*/
-
 .main .profile-delete {
     position: absolute;
     top: 30%;
@@ -851,7 +749,6 @@ thead th {
 }
 
 /*all base recipes*/
-
 .main .base-cards {
     gap: 20px;
     display: grid;
@@ -869,7 +766,6 @@ thead th {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /*color: black;*/
 }
 
 .main .base-cards .card:hover {
@@ -909,7 +805,6 @@ thead th {
 
 
 /*base recipe*/
-
 .main .wrapper {
     width: 80%;
     display: grid;
@@ -956,9 +851,6 @@ thead th {
 .main .wrapper .single-ingredients table.ingredients-table td {
     border-bottom: 1px solid #efe0d3;
     padding: 10px 10px;
-    /*font-size: 16px;*/
-    /*font-family: 'Yanone Kaffeesatz', sans-serif;*/
-    /*font-weight: 400;*/
 }
 
 
@@ -990,23 +882,22 @@ thead th {
     font-size: 14px;
     color: black;
     font-style: italic;
-
 }
 
 
 /* The Modal (background) */
 .searchModal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0, 0, 0); 
+    background-color: rgba(0, 0, 0, 0.4);
 
 }
 
@@ -1070,7 +961,6 @@ thead th {
     bottom: 72px;
     color: red;
     font-size: 14px;
-    /*font-weight: bold;*/
 }
 
 .close:hover,
@@ -1080,26 +970,6 @@ thead th {
     cursor: pointer;
 }
 
-/*.modal-header {*/
-/*    text-align: center;*/
-/*    padding: 2px 16px;*/
-/*    !*background-color: black;*!*/
-/*    color: white;*/
-/*}*/
-
-/*.modal-body {*/
-/*    padding: 2px 16px;*/
-/*    display: flex;*/
-/*    gap: 30px;*/
-/*    flex-direction: row-reverse;*/
-/*    width: 100% ;*/
-/*}*/
-
-/*.modal-footer {*/
-/*    padding: 2px 16px;*/
-/*    !*background-color: #5cb85c;*!*/
-/*    color: white;*/
-/*}*/
 
 .card {
     position: relative;
@@ -1112,7 +982,6 @@ thead th {
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /*background-color: rgba(255, 255, 255, 0.8);*/
     background: rgba(30, 127, 147, 0.7);
     padding: 10px;
     border-radius: 5px;

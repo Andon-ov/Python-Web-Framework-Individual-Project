@@ -1,20 +1,24 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
 
+    <main class="main">
+       
+   
+    <div id="contactForm" class="contactForm">
+        <p></p>
+        <div class="form-wrapper">
+            <div class="form-wrapper-left-side"></div>
 
-<div id="contactForm" class="contactForm">
-    <div class="form-wrapper">
-      <div class="form-wrapper-left-side"></div>
-
-      <form method="post" class="contactForm">
-        <h1 class="title">Contact&nbsp;us</h1>
-        {% csrf_token %} 
-        {{ form.as_p }}
-        <div class="buttonWrapper">
-          <button type="submit" class="contactFormBtn">Send</button>
+            <form method="post" class="contactForm">
+                <h2 class="title">Contact&nbsp;us</h2>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="buttonWrapper">
+                    <button type="submit" class="contactFormBtn">Send</button>
+                </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
-  
+</main>
+
 {% endblock %}

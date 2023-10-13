@@ -4,11 +4,11 @@
 
         {% if not object_list %}
             <main class="main">
-                <h1 class="title">Няма намерен резултат</h1>
+                <h2 class="title">Няма намерен резултат</h2>
                 <button class="btn" onclick="history.back()">Back</button>
             </main>
         {% else %}
-            <h1 class="title">Резултати</h1>
+            <h2 class="title">Резултати</h2>
             <div class="card-grid">
                 {% for search in object_list %}
                     {% if search.category.is_activ %}
@@ -23,7 +23,7 @@
                                     <h5 class="card-title">{{ search.title.upper }}</h5>
                                 </div>
                             </a>
-{#                            <a href="{% url 'category detail' search.category.pk %}">{{ search.category }}</a>#}
+                            {#                            <a href="{% url 'category detail' search.category.pk %}">{{ search.category }}</a>#}
                         </div>
                     {% endif %}
                 {% endfor %}

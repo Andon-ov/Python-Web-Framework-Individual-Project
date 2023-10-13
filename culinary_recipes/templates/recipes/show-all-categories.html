@@ -3,7 +3,7 @@
 {% block page_content %}
     <main class="main">
 
-        <h1 class="title">MENU CATEGORIES</h1>
+        <h2 class="title">MENU CATEGORIES</h2>
         <article class="grid-6">
             <!-- For Category-->
             {% for category in category_list %}
@@ -12,16 +12,16 @@
                     <div class="card" data-title="{{ category.name.upper }}">
                         <a href="{% url 'category detail' pk=category.pk %}">
                             <div class="card-img">
-                                <img src="{{ category.image_category.image.url }}" class="grow-img"
+                                <img src="{{ category.image_category.image.url }}" class="grow-img  round-image"
                                      alt="{{ category.image_category.image.name }}"/>
                             </div>
-                            <div class="card-body">
-                                <h3 class="card-title">{{ category.name.upper }}</h3>
-{#                                <h5 class="card-subtitle">{{ category.menu|capfirst }}</h5>#}
-{#                                {% if category.note %}#}
-{#                                    <p class="card-category">{{ category.note }}</p>#}
-{#                                {% endif %}#}
-                            </div>
+                            {% comment %} <div class="card-body">
+                                <h3 class="card-title">{{ category.name.upper }}</h3> {% endcomment %}
+                            {#                                <h5 class="card-subtitle">{{ category.menu|capfirst }}</h5>#}
+                            {#                                {% if category.note %}#}
+                            {#                                    <p class="card-category">{{ category.note }}</p>#}
+                            {#                                {% endif %}#}
+                            {% comment %} </div> {% endcomment %}
                         </a>
                     </div>
                     {#                    <div class="card "><a href="{% url 'category detail'  pk=category.pk %}">#}

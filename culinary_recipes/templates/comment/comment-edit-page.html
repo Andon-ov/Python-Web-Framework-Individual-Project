@@ -2,7 +2,7 @@
 {% block page_content %}
     <main class="main">
         <article class="form-wrapper">
-            <h1 class="title">Comment Edit</h1>
+            <h2 class="title">Comment Edit</h2>
 
             <form action="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}" method="post"
                   enctype="multipart/form-data" class="comment-form">

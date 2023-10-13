@@ -1,15 +1,16 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
-    <main class="main" style="  background-image:
+    <main class="main">
+        {% comment %} style="  background-image:
             {#linear-gradient(266deg, rgba(255,255,255,0.6811099439775911) 0%, rgba(0,0,0,0.35898109243697474) 0%),#}
             url({{ category.image_category.image.url }});
             background-repeat: no-repeat;
             background-size: cover;
             {#background-position: 25% 75%;#}
             background-position: center;
-            ">
+            "> {% endcomment %}
 
-        <h1 class="title">{{ category.name.upper }}</h1>
+        <h2 class="title">{{ category.name.upper }}</h2>
 
         <article class="grid-9">
 
@@ -24,9 +25,9 @@
                              alt="{{ recipe.image_recipe.image.name }}"/>
                     </div>
 
-                    <div class="card-body">
+                    {% comment %} <div class="card-body">
                         <h5 class="card-title">{{ recipe.title.upper }}</h5>
-                    </div>
+                    </div> {% endcomment %}
                 </a>
                 </div>
 

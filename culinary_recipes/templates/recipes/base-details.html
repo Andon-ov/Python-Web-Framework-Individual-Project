@@ -5,7 +5,7 @@
 {% block page_content %}
     <main class="main">
         <div class="heading">
-            <h1 class="title">{{ object.title }}</h1>
+            <h2 class="title">{{ object.title }}</h2>
             {% if object.base_type %}
                 <p>Тип: {{ object.base_type }}</p>
             {% endif %}
@@ -17,13 +17,13 @@
                 <div class="single-ingredients">
                     <h3><i class="fa-solid fa-clipboard-list"></i>Ingredients</h3>
                     <table class="ingredients-table">
-{#                        <thead>#}
-{#                        <tr>#}
-{#                            <th>Ingredient</th>#}
-{#                            <th>Amount</th>#}
-{#                            <th>Preparation Method</th>#}
-{#                        </tr>#}
-{#                        </thead>#}
+                        {#                        <thead>#}
+                        {#                        <tr>#}
+                        {#                            <th>Ingredient</th>#}
+                        {#                            <th>Amount</th>#}
+                        {#                            <th>Preparation Method</th>#}
+                        {#                        </tr>#}
+                        {#                        </thead>#}
                         <tbody>
                         {% for ingredient in object.baseingredient_set.all %}
                             <tr>
@@ -39,7 +39,7 @@
 
 
                 <div class="recipe-info">
-                 <h3><i class="fa-solid fa-circle-info"></i>More Info</h3>
+                <h3><i class="fa-solid fa-circle-info"></i>More Info</h3>
                 {% if prep_method %}
                     <!-- preparation method -->
                     {% for method in prep_method %}

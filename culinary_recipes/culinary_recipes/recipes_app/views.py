@@ -61,6 +61,7 @@ class RecipeDetailsView(auth_mixin.LoginRequiredMixin, view.DetailView, FormMixi
         context = super().get_context_data(**kwargs)
         context['form'] = RecipeCommentForm(initial={'post': self.object})
         context['recipe_ingredients'] = Ingredient.objects.filter(recipe=self.kwargs['pk'])
+        context['is_fixed_main'] = False
         return context
 
     def dispatch(self, request, *args, **kwargs):

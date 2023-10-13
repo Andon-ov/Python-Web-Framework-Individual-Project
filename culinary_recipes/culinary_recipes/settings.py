@@ -6,7 +6,8 @@ import cloudinary as cloudinary
 from django.urls import reverse_lazy
 
 # I'm using this part because I'm using the folder, not just the .env file
-dotenv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'envs', '.env')
+dotenv_path = os.path.join(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))), 'envs', '.env')
 
 load_dotenv(dotenv_path)
 # load_dotenv()
@@ -16,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = bool(os.environ.get('DEBUG'))
-
+DEBUG = True
 
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(' ')
@@ -57,8 +58,7 @@ ROOT_URLCONF = 'culinary_recipes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

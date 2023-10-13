@@ -4,12 +4,12 @@
 
     <main class="main">
         <article class="profile-delete">
-            <h1 class="title">Delete Profile</h1>
+            <h2 class="title">Delete Profile</h2>
 
-            <p> <i>{{ object.profile.full_name }}</i> <br>
-               <b> Are you sure you want to delete your account?</b></p>
-            <p> <i>Email: </i><br>
-              <b>  {{ object.email }}</b></p>
+            <p><i>{{ object.profile.full_name }}</i> <br>
+                <b> Are you sure you want to delete your account?</b></p>
+            <p><i>Email: </i><br>
+                <b>  {{ object.email }}</b></p>
             <a href="{% url 'sign out' %}"></a>
 
             <form class="form" method="post" action="{% url 'delete user' pk=request.user.pk %}"

@@ -1,60 +1,44 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-
     <main class="main">
-
         <article class="profile-info">
             <div class="heading">
-                <h1 class="title">My&nbsp;Account</h1>
+                <h2 class="title">My&nbsp;Account</h2>
                 <p>You are logged in as {{ object.email }}.</p>
-                <p><a class="sign-out" href="{% url 'sign out' %}">Sing&nbsp;out</a></p><br>
+                <p><a class="sign-out" href="{% url 'sign out' %}">Sing&nbsp;out</a></p>
+                <br/>
             </div>
             <div class="info">
                 <ul>
                     <li>
-                        <b>Name:</b> <br>
+                        <b>Name:</b> <br/>
                         <i>{{ object.profile.full_name.upper }}</i>
                     </li>
                     <li>
-                        <b>Job Title:</b> <br>
+                        <b>Job Title:</b> <br/>
                         <i>{{ object.profile.get_job_title_display }}</i>
                     </li>
                     <li>
-                        <b>Last Login Date:</b> <br>
+                        <b>Last Login Date:</b> <br/>
                         <i>{{ object.last_login.date }}</i>
                     </li>
-
                 </ul>
-
             </div>
-            <br>
+            <br/>
             <div class="buttons">
                 <a class="btn" href="{% url 'edit user' pk=request.user.pk %}">Edit</a>
-                <a class="btn" href="{% url 'delete user' pk=request.user.pk %}">Delete</a>
+                <a class="btn" href="{% url 'delete user' pk=request.user.pk %}"
+                >Delete</a
+                >
                 <a class="btn" href="javascript:history.back()">Back</a>
             </div>
-
         </article>
     </main>
 {% endblock %}
-
-
-
-
-
-{#    {{ object.profile.full_name.upper }}#}
+{# {{ object.profile.full_name.upper }}#} {##}
+{# {{ object.email}}#} {# <a class="text-danger" href="{% url 'sign out' %}">SingOut</a>#} {##}
+{#{{ object.profile.get_job_title_display }}#} {##} {# {{ object.last_login.date}}#} {##}
+{# <a href="{% url 'edit user' pk=request.user.pk %}">Edit</a>#} {##}
+{# <a href="{% url 'delete user' pk=request.user.pk %}">Delete</a>#} {#<a href="javascript:history.back()">Back</a>#}
 {##}
-{#    {{ object.email }}#}
-{#    <a class="text-danger " href="{% url 'sign out' %}">SingOut</a>#}
-{##}
-{#    {{ object.profile.get_job_title_display }}#}
-{##}
-{#    {{ object.last_login.date }}#}
-{##}
-{#    <a href="{% url 'edit user' pk=request.user.pk %}">Edit</a>#}
-{##}
-{#    <a href="{% url 'delete user' pk=request.user.pk %}">Delete</a>#}
-{#    <a href="javascript:history.back()">Back</a>#}
-{##}
-

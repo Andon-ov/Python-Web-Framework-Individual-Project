@@ -8,16 +8,18 @@
             {% for base in object_list %}
 
                 <!-- card start -->
-                <div class="card">
-                    <h4 class="card-title">{{ base.title.upper }}</h4>
+                <a href="{% url 'base_recipe detail' pk=base.pk %}"><div class="card" data-title="{{ base.title.upper }}">
+                    <div class="btn">Details</div>
+                    
+                    {% comment %} <h4 class="card-title">{{ base.title.upper}}</h4> {% endcomment %}
                     {% if base.base_type %}
                         <p class="card-text">{{ base.base_type }}</p>
                     {% endif %}
 
                     <div class="card-footer">
-                        <a href="{% url 'base_recipe detail' pk=base.pk %}" class="btn">Details</a>
+                        {% comment %} <a href="{% url 'base_recipe detail' pk=base.pk %}" class="btn">Details</a> {% endcomment %}
                     </div>
-                </div>
+                </div></a>
                 <!-- card end -->
 
             {% endfor %}

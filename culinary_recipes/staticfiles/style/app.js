@@ -21,4 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
             searchModal.style.display = "none";
         }
     });
+
+
 });
+
+

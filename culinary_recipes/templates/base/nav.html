@@ -1,76 +1,137 @@
-{% load static %}
+{% load static %} 
+{% comment %} Burger Menu {% endcomment %}
+
 <nav class="navbar">
-    <div class="nav-wrapper">
-        {% comment %}
-    <div>
-      {% endcomment %}
-        <a class="logo-wrapper" href="{% url 'index' %}">
-            <h1 class="logo">Our&nbsp;recipes</h1>
-        </a>
-        {% comment %}
-    </div>
-    {% endcomment %}
+  <div id="menuToggle">
+    <input class="burger-menu" type="checkbox" />
 
-        <ul class="navbar-ul">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'all category' %}">Menu</a>
-            </li>
+    <span></span>
+    <span></span>
+    <span></span>
 
-            {% if not request.user.is_authenticated %}
+    <ul id="menu">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'all category' %}">Menu</a>
+      </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sign in' %}">Sign&nbsp;In</a>
-                </li>
+      {% if not request.user.is_authenticated %}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'sign up' %}">Sign&nbsp;Up</a>
-                </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sign in' %}">Sign&nbsp;In</a>
+      </li>
 
-            {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sign up' %}">Sign&nbsp;Up</a>
+      </li>
 
-                {% if not request.user.profile.job_title == 'waiter' %}
-                    <li class="nav-item"></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'base recipe' %}">Base</a>
-                    </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'details user' pk=request.user.pk %}"
-                    >Profile</a
-                    >
-                </li>
+      {% else %} {% if not request.user.profile.job_title == 'waiter' %}
+      <li class="nav-item"></li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'base recipe' %}">Base</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'details user' pk=request.user.pk %}"
+          >Profile</a
+        >
+      </li>
 
-                <li class="nav-item">
-                    <!-- Trigger/Open The searchModal -->
+      <li class="nav-item">
+        <!-- Trigger/Open The searchModal -->
 
-                    <button class="nav-link" id="searchBtn">Search</button>
-                </li>
+        <button class="nav-link" id="searchBtn">Search</button>
+      </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'contact_us' %}">Contact&nbsp;Us</a>
-                </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact_us' %}">Contact&nbsp;Us</a>
+      </li>
 
-            {% endif %}
+      {% endif %}
 
-            <div id="searchModal" class="searchModal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <span class="Close">Close</span>
-                        <form class="search-form" action="{% url 'search' %}" method="get">
-                            <input
-                                    name="pattern"
-                                    id="search"
-                                    class="search__nav"
-                                    type="search"
-                                    placeholder="Enter food name..."
-                                    aria-label="Search"
-                            />
-                        </form>
-                        {% csrf_token %}
-                    </div>
-                </div>
-            </div>
-        </ul>
-    </div>
+      <div id="searchModal" class="searchModal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-body">
+            <span class="Close">Close</span>
+            <form class="search-form" action="{% url 'search' %}" method="get">
+              <input
+                name="pattern"
+                id="search"
+                class="search__nav"
+                type="search"
+                placeholder="Enter food name..."
+                aria-label="Search"
+              />
+            </form>
+            {% csrf_token %}
+          </div>
+        </div>
+      </div>
+    </ul>
+  </div>
+  <div class="nav-wrapper">
+    <a class="logo-wrapper" href="{% url 'index' %}">
+      <h1 class="logo">Our&nbsp;recipes</h1>
+    </a>
+
+    <ul class="navbar-ul">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'all category' %}">Menu</a>
+      </li>
+
+      {% if not request.user.is_authenticated %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sign in' %}">Sign&nbsp;In</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'sign up' %}">Sign&nbsp;Up</a>
+      </li>
+
+      {% else %} {% if not request.user.profile.job_title == 'waiter' %}
+      <li class="nav-item"></li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'base recipe' %}">Base</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'details user' pk=request.user.pk %}"
+          >Profile</a
+        >
+      </li>
+
+      <li class="nav-item">
+        <!-- Trigger/Open The searchModal -->
+
+        <button class="nav-link" id="searchBtn">Search</button>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact_us' %}">Contact&nbsp;Us</a>
+      </li>
+
+      {% endif %}
+
+      <div id="searchModal" class="searchModal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-body">
+            <span class="Close">Close</span>
+            <form class="search-form" action="{% url 'search' %}" method="get">
+              <input
+                name="pattern"
+                id="search"
+                class="search__nav"
+                type="search"
+                placeholder="Enter food name..."
+                aria-label="Search"
+              />
+            </form>
+            {% csrf_token %}
+          </div>
+        </div>
+      </div>
+    </ul>
+  </div>
 </nav>

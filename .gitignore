@@ -77,5 +77,6 @@ postgresql/
 
 .vscode/
 
- culinary_recipes/envs/.env
- culinary_recipes/envs/.env.prod
+culinary_recipes/envs/.env
+culinary_recipes/envs/.env.prod
+

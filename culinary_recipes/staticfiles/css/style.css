@@ -42,7 +42,7 @@ button {
     display: grid;
     max-width: 1440px;
     /* grid-template-rows: 1fr auto; */
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 .btn {
@@ -145,6 +145,15 @@ thead th {}
 /*navbar*/
 
 .navbar {
+
+    position: fixed;
+    top: 0;
+
+
+    /* left: 0; */
+    width: 100%;
+    z-index: 100;
+
     height: 13vh;
     /* width: 100%;
     display: flex;
@@ -160,7 +169,7 @@ thead th {}
     display: flex;
     /* align-items: center; */
     /* width: 80vw; */
-    width: 100%;
+    /* width: 100%; */
     max-width: 1440px;
     justify-content: space-evenly;
 
@@ -260,6 +269,7 @@ thead th {}
 }
 
 .hero-container {
+    margin-top: 13vh;
     display: flex;
     width: 100%;
     padding: 4% 2%;
@@ -431,8 +441,13 @@ thead th {}
 /* !Main! */
 
 .main {
+    overflow-y: auto;
+    /* padding: 13vh 0 7vh 0; */
+    padding: 15vh 0 10vh 0;
+
+
     max-width: 1440px;
-    height: 80vh;
+    /* height: 80vh; */
     display: grid;
     align-items: baseline;
     justify-items: center;
@@ -446,7 +461,7 @@ thead th {}
     text-transform: uppercase;
     /* margin-top: 50px; */
     background-color: white;
-    padding: 10px;
+    padding:20px 0 ;
 }
 
 /*show-all-categories*/
@@ -602,7 +617,10 @@ thead th {}
 
 /* !Details! */
 .long-main {
-    height: 80vh;
+    overflow-y: auto;
+    /* padding: 13vh 0 7vh 0; */
+    padding: 15vh 0 10vh 0;
+    /* height: 80vh; */
     width: 100%;
     display: grid;
     justify-content: center;
@@ -834,7 +852,7 @@ textarea:focus {
 }
 
 .main .base-cards .card {
-    /* border: 1px solid black;
+    /* border: 1px solid black; */
     width: 300px;
     height: 150px;
     box-shadow: var(--shadow);
@@ -842,20 +860,38 @@ textarea:focus {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; */
-    
-   color: white;
+    justify-content: space-between;
+
+    color: white;
     box-shadow: var(--shadow);
- 
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .main .base-cards .card:hover {
-    background-color: var(--ditailsClrOne);
+    /* background-color: var(--ditailsClrOne);
+    font-style: italic;
     color: red;
     text-align: center;
+
+    display: flex;
+   
+    justify-content: center;
+    align-items: center; */
+}
+
+.card_hover:hover{
+    /* background-color: var(--ditailsClrOne); */
+    font-style: italic;
+    color: red;
+    text-align: center;
+
+    display: flex;
+   
+    justify-content: center;
+    align-items: center;
 }
 
 /*!*PAGINATION*!*/
@@ -957,17 +993,25 @@ textarea:focus {
 
 /* footer */
 .footer {
-    border-top: 1px solid rgba(255, 0, 0, 1);
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    /* left: 0; */
     width: 100%;
+    max-width: 1440px;
+    z-index: 100;
+
+
+    border-top: 1px solid rgba(255, 0, 0, 1);
     height: 7vh;
     display: grid;
     align-items: center;
     justify-items: center;
 }
 
-.footer.unfixed {
+/* .footer.unfixed {
     position: static;
-}
+} */
 
 .footer .foot-wrapper .foot-link {
     /* font-size: 14px; */
@@ -987,7 +1031,7 @@ textarea:focus {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
+    /* background-color: rgb(0, 0, 0); */
     background-color: rgba(0, 0, 0, 0.4);
 
 }
@@ -1258,9 +1302,12 @@ textarea:focus {
     }
 
     .main {
+
+        overflow-y: auto;
+
         height: unset;
         margin-bottom: 50px;
-        padding: 0 40px;
+        /* padding: 0 40px; */
     }
 
 
@@ -1301,9 +1348,14 @@ textarea:focus {
     }
 
     .main {
+
+        overflow-y: auto;
+
+
+
         height: unset;
         margin-bottom: 50px;
-        padding: 0 40px;
+        /* padding: 0 40px; */
     }
 
 
@@ -1348,7 +1400,6 @@ textarea:focus {
 
     .main {
         height: unset;
-        margin-bottom: 50px;
     }
 
     .main .grid-6 {
@@ -1397,7 +1448,6 @@ textarea:focus {
     .main {
         display: inline;
         /* height: unset; */
-        padding: 0 40px;
     }
 
     .main .grid-9 {

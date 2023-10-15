@@ -1,5 +1,4 @@
-{% load static %} 
-{% comment %} Burger Menu {% endcomment %}
+{% load static %} {% comment %} Burger Menu {% endcomment %}
 
 <nav class="navbar">
   <div id="menuToggle">
@@ -36,11 +35,11 @@
         >
       </li>
 
-      <li class="nav-item">
-        <!-- Trigger/Open The searchModal -->
+      <!-- Trigger/Open The searchModal -->
+      {% comment %} <li class="nav-item">
 
         <button class="nav-link" id="searchBtn">Search</button>
-      </li>
+      </li> {% endcomment %}
 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'contact_us' %}">Contact&nbsp;Us</a>
@@ -48,7 +47,7 @@
 
       {% endif %}
 
-      <div id="searchModal" class="searchModal">
+      {% comment %} <div   id="searchModal" class="searchModal">
         <!-- Modal content -->
         <div class="modal-content">
           <div class="modal-body">
@@ -66,7 +65,7 @@
             {% csrf_token %}
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
     </ul>
   </div>
   <div class="nav-wrapper">

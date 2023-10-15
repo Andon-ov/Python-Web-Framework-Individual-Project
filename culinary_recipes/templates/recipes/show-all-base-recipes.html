@@ -9,7 +9,11 @@
 
                 <!-- card start -->
                 <a href="{% url 'base_recipe detail' pk=base.pk %}"><div class="card" data-title="{{ base.title.upper }}">
-                    <div class="btn">Details</div>
+                    <div class="card_hover" >
+                        <i class="fa-solid fa-kitchen-set fa-flip fa-2xl" style="color: #fa0000;"></i>
+                        Click here for more details
+
+                    </div>
                     
                     {% comment %} <h4 class="card-title">{{ base.title.upper}}</h4> {% endcomment %}
                     {% if base.base_type %}

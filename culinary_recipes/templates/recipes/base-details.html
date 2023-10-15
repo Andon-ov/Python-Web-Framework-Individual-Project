@@ -11,8 +11,8 @@
             {% endif %}
         </div>
         <article class="wrapper">
-
-            {% if object.baseingredient_set.all %}
+            
+            {% comment %} {% if object.baseingredient_set.all %} {% endcomment %}
                 <!-- table ingredient -->
                 <div class="single-ingredients">
                     <h3><i class="fa-solid fa-clipboard-list"></i>Ingredients</h3>
@@ -66,7 +66,7 @@
                     <!-- portions -->
                     <p><b>Portions:</b> <i>{{ object.base_recipe_portions }} </i></p>
                 {% endif %}
-            {% endif %}
+            {% comment %} {% endif %} {% endcomment %}
             </div>
 
 

@@ -461,7 +461,7 @@ thead th {}
     text-transform: uppercase;
     /* margin-top: 50px; */
     background-color: white;
-    padding:20px 0 ;
+    padding: 20px 0;
 }
 
 /*show-all-categories*/
@@ -628,7 +628,8 @@ thead th {}
 }
 
 .long-main.unfixed {
-    height: unset;
+    /* height: unset; */
+    display: block;
 }
 
 .long-main .recipe-details {
@@ -688,7 +689,7 @@ thead th {}
 }
 
 .long-main .recipe-details .details-wrapper .single-ingredients table.ingredients-table {
-
+    border-collapse: collapse;
     width: 100%;
 }
 
@@ -706,17 +707,37 @@ thead th {}
     text-decoration: underline;
 }
 
+
+
+
+
+.ingredients-table th,
+.ingredients-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.ingredients-table {
+    background-color: white;
+}
+
+.ingredients-table th {
+    background-color: #eee;
+    font-weight: bold;
+}
+
+
+
+
 .long-main .recipe-details .details-wrapper .recipe-info {
     background-color: var(--ditailsClrTwo);
-    padding: 40px 60px;
-    /* margin-bottom: 40px; */
+    padding: 20px 40px;
     border-radius: 6px;
     box-shadow: var(--shadow);
     overflow: hidden;
 }
 
 .long-main .recipe-details .details-wrapper .recipe-info h3 {
-    /* font-size: 26px; */
     padding-bottom: 20px;
     margin-bottom: 10px;
     border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
@@ -724,8 +745,23 @@ thead th {}
 
 .long-main .recipe-details .details-wrapper .recipe-info i {
     margin-right: 25px;
-    /* font-size: 30px; */
 }
+
+
+.recipe-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recipe-info th,
+.recipe-info td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #ffffff
+}
+
+
+
 
 .long-main .recipe-details .details-wrapper .description {
     background-color: var(--ditailsClrThree);
@@ -736,7 +772,6 @@ thead th {}
 }
 
 .long-main .recipe-details .details-wrapper .description h3 {
-    /* font-size: 26px; */
     padding-bottom: 20px;
     margin-bottom: 10px;
     border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
@@ -744,7 +779,6 @@ thead th {}
 
 .long-main .recipe-details .details-wrapper .description i {
     margin-right: 25px;
-    /* font-size: 30px; */
 }
 
 .long-main .recipe-details .comments-wrapper {
@@ -757,9 +791,24 @@ thead th {}
 }
 
 .long-main .recipe-details .comments-wrapper .comment-details {
-    padding: 40px 60px;
+    padding: 20px;
     margin-bottom: 40px;
     border-radius: 6px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+}
+.comment-form-holder .comment-form label {
+    display: none;
+}
+.comment-form-holder .comment-form textarea{
+
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    background-color: #f9f9f9;
 }
 
 /*!*FORM*!*/
@@ -882,14 +931,14 @@ textarea:focus {
     align-items: center; */
 }
 
-.card_hover:hover{
+.card_hover:hover {
     /* background-color: var(--ditailsClrOne); */
     font-style: italic;
     color: red;
     text-align: center;
 
     display: flex;
-   
+
     justify-content: center;
     align-items: center;
 }
@@ -1276,6 +1325,69 @@ textarea:focus {
 }
 
 
+/* test */
+
+
+
+.comments-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.comment-details {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.comment-author {
+    font-weight: bold;
+}
+
+.comment-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-date {
+    color: #777;
+}
+
+/* .comment-form-holder {
+    margin-bottom: 20px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-form textarea {
+    border: 1px solid #ddd;
+    padding: 5px;
+} */
+
+/* .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    text-decoration: none;
+    cursor: pointer;
+} */
+
+/* test */
+
+
 /* Styles for mobile devices*/
 @media (max-width: 480px) {
 
@@ -1474,3 +1586,38 @@ textarea:focus {
 
 
 }
+
+
+
+
+
+
+
+
+
+/* test */
+
+@media screen and (max-width: 768px) {
+    .recipe-info table {
+        width: auto;
+        overflow-x: scroll;
+    }
+
+    .recipe-info th,
+    .recipe-info td {
+        display: block;
+    }
+
+    .recipe-info th {
+        text-align: left;
+    }
+
+    .recipe-info td {
+        text-align: right;
+    }
+}
+
+
+
+
+/* test */

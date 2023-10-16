@@ -9,8 +9,11 @@ class RecipeCommentForm(forms.ModelForm):
         fields = ('text',)
         widgets = {
             'text': forms.Textarea(
-                attrs={
-                    'placeholder': 'Въведи коментар...'
+                 attrs={
+                    'cols': 40,  
+                    'rows': 4,  
+                    'placeholder': 'Въведи коментар...',
+                     'style':'resize:none;'
                 },
             ),
         }

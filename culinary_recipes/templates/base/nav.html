@@ -1,6 +1,7 @@
-{% load static %} {% comment %} Burger Menu {% endcomment %}
+{% comment %} {% load static %} 
 
 <nav class="navbar">
+
   <div id="menuToggle">
     <input class="burger-menu" type="checkbox" />
 
@@ -8,7 +9,10 @@
     <span></span>
     <span></span>
 
+
     <ul id="menu">
+
+
       <li class="nav-item">
         <a class="nav-link" href="{% url 'all category' %}">Menu</a>
       </li>
@@ -24,7 +28,6 @@
       </li>
 
       {% else %} {% if not request.user.profile.job_title == 'waiter' %}
-      <li class="nav-item"></li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'base recipe' %}">Base</a>
       </li>
@@ -35,43 +38,21 @@
         >
       </li>
 
-      <!-- Trigger/Open The searchModal -->
-      {% comment %} <li class="nav-item">
-
-        <button class="nav-link" id="searchBtn">Search</button>
-      </li> {% endcomment %}
-
       <li class="nav-item">
         <a class="nav-link" href="{% url 'contact_us' %}">Contact&nbsp;Us</a>
       </li>
 
-      {% endif %}
+      {% endif %} 
 
-      {% comment %} <div   id="searchModal" class="searchModal">
-        <!-- Modal content -->
-        <div class="modal-content">
-          <div class="modal-body">
-            <span class="Close">Close</span>
-            <form class="search-form" action="{% url 'search' %}" method="get">
-              <input
-                name="pattern"
-                id="search"
-                class="search__nav"
-                type="search"
-                placeholder="Enter food name..."
-                aria-label="Search"
-              />
-            </form>
-            {% csrf_token %}
-          </div>
-        </div>
-      </div> {% endcomment %}
     </ul>
   </div>
+
+
   <div class="nav-wrapper">
     <a class="logo-wrapper" href="{% url 'index' %}">
       <h1 class="logo">Our&nbsp;recipes</h1>
     </a>
+
 
     <ul class="navbar-ul">
       <li class="nav-item">
@@ -89,7 +70,6 @@
       </li>
 
       {% else %} {% if not request.user.profile.job_title == 'waiter' %}
-      <li class="nav-item"></li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'base recipe' %}">Base</a>
       </li>
@@ -101,7 +81,7 @@
       </li>
 
       <li class="nav-item">
-        <!-- Trigger/Open The searchModal -->
+ 
 
         <button class="nav-link" id="searchBtn">Search</button>
       </li>
@@ -113,7 +93,7 @@
       {% endif %}
 
       <div id="searchModal" class="searchModal">
-        <!-- Modal content -->
+   
         <div class="modal-content">
           <div class="modal-body">
             <span class="Close">Close</span>
@@ -132,5 +112,93 @@
         </div>
       </div>
     </ul>
+
+
+
   </div>
+</nav> {% endcomment %}
+
+
+
+{% load static %}
+
+
+<nav class="navbar">
+    <div id="menuToggle">
+        <input class="burger-menu" type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+        
+    </div>
+    <div class="nav-wrapper" id="nav-wrapper">
+        <a class="logo-wrapper" href="{% url 'index' %}">
+            <h1 class="logo">Our&nbsp;recipes</h1>
+        </a>
+    </div>
 </nav>
+
+
+<ul id="menu" class="navbar-ul">
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'all category' %}">Menu</a>
+    </li>
+    {% if not request.user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'sign in' %}">Sign&nbsp;In</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'sign up' %}">Sign&nbsp;Up</a>
+    </li>
+    {% else %} {% if not request.user.profile.job_title == 'waiter' %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'base recipe' %}">Base</a>
+    </li>
+    {% endif %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'details user' pk=request.user.pk %}">Profile</a>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" id="searchBtn">Search</button>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact_us' %}">Contact&nbsp;Us</a>
+    </li>
+    {% endif %}
+    <div id="searchModal" class="searchModal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <span class="Close">Close</span>
+                <form class="search-form" action="{% url 'search' %}" method="get">
+                    <input name="pattern" id="search" class="search__nav" type="search"
+                        placeholder="Enter food name..." aria-label="Search" />
+                </form>
+                {% csrf_token %}
+            </div>
+        </div>
+    </div>
+</ul>
+<script>
+  const menuToggle = document.getElementById("menuToggle"); // The hamburger menu button
+  const navWrapper = document.getElementById("nav-wrapper"); // The standard menu container
+  const navbarUl = document.querySelector(".navbar-ul"); // The menu list
+
+  function toggleMenu() {
+      if (window.innerWidth <= 480) {
+          // When the screen width is less than or equal to 760 pixels, move the menu to the hamburger menu container
+          menuToggle.appendChild(navbarUl);
+          navbarUl.setAttribute('id', 'menu'); // Set the ID to "menu"
+          menuToggle.style.display = 'block'; // Show the hamburger button
+      } else {
+          // When the screen width is greater than 760 pixels, move the menu to the standard menu container
+          navWrapper.appendChild(navbarUl);
+          menuToggle.style.display = 'none'; // Hide the hamburger button
+          navbarUl.removeAttribute('id'); // Remove the ID attribute
+      }
+  }
+
+  toggleMenu();
+
+  window.addEventListener("resize", toggleMenu);
+</script>
+

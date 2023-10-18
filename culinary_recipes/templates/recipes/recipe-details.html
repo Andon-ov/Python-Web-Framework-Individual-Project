@@ -4,19 +4,7 @@
 {% load static %}
 {% block page_content %}
 
-{#    <main class="long-main{% if not is_fixed_main %} unfixed{% endif %}">#}
     <main class="long-main">
-
-
-
-
-        {# style = "background-image: #}
-        {#linear-gradient(266deg, rgba(255,255,255,0.6811099439775911) 0%, rgba(0,0,0,0.35898109243697474) 0%),#}
-        {# url({{ recipe.image_recipe.image.url }}); #}
-        {# background-repeat: no-repeat; #}
-        {# background-size: cover; #}
-        {#background-position: 25% 75%;#}
-        {# background-position: center;" > #}
 
         <div class="recipe-details">
 
@@ -37,37 +25,40 @@
                     <h3><i class="fa-solid fa-clipboard-list"></i>Ingredients</h3>
 
                     <table class="ingredients-table">
-                        {#                        <thead>#}
-                        {#                        <tr>#}
-                        {#                            <th>Name</th>#}
-                        {#                            <th>Amount</th>#}
-                        {#                            <th>Quantity</th>#}
-                        {#                            <th>Preparation</th>#}
-                        {#                        </tr>#}
-                        {#                        </thead>#}
+                        {% comment %} <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Quantity</th>
+                            <th>Preparation</th>
+                        </tr>
+                        </thead> {% endcomment %}
                         <tbody>
                         {% for ingredient in recipe_ingredients %}
                             {% if not ingredient.base %}
-                                <tr>
-                                    <td class="ingredient-name">{{ ingredient.food }}</td>
-                                    <td class="ingredient-amount">{{ ingredient.amount_number|floatformat|cut:'None' }}&nbsp;{{ ingredient.unit|cut:'None' }}</td>
-                                    <td class="ingredient-quantity">{{ ingredient.quantity|cut:'None' }}</td>
-                                    {% if ingredient.preparation_method %}
-                                        <td class="ingredient-preparation">{{ ingredient.preparation_method }}</td>
-                                    {% else %}
-                                        <td class="ingredient-preparation">&nbsp;</td>
-                                    {% endif %}
-                                </tr>
+
+                            <tr>
+                                <td class="ingredient-name">{{ ingredient.food }}</td>
+                                <td class="ingredient-amount">{{ ingredient.amount_number|floatformat|cut:'None' }}&nbsp;{{ ingredient.unit|cut:'None' }}</td>
+                                {% if ingredient.quantity %}
+                                <td class="ingredient-quantity">{{ ingredient.quantity|cut:'None' }}</td>
+                                <td class="ingredient-preparation">{{ ingredient.preparation_method |cut:'None' }}</td>
+                                {% else %}
+                                    <td colspan="2" class="ingredient-preparation">{{ ingredient.preparation_method |cut:'None' }}</td>
+                                {% endif %}
+                            </tr>
+
                             {% else %}
                                 <!-- base -->
                                 <tr>
                                     <td class="ingredient-name"><a href="{% url 'base_recipe detail' pk=ingredient.base.pk %}">{{ ingredient.food }}</a></td>
+
                                     <td class="ingredient-amount">{{ ingredient.amount_number|floatformat|cut:'None' }}&nbsp;{{ ingredient.unit|cut:'None' }}</td>
+                                    {% if ingredient.quantity %}
                                     <td class="ingredient-quantity">{{ ingredient.quantity|cut:'None' }}</td>
-                                    {% if ingredient.preparation_method %}
-                                        <td class="ingredient-preparation">{{ ingredient.preparation_method }}</td>
+                                    <td class="ingredient-preparation">{{ ingredient.preparation_method |cut:'None' }}</td>
                                     {% else %}
-                                        <td class="ingredient-preparation">&nbsp;</td>
+                                        <td colspan="2" class="ingredient-preparation">{{ ingredient.preparation_method |cut:'None' }}</td>
                                     {% endif %}
 
                                 </tr>
@@ -82,7 +73,7 @@
                     <table >
                         <tbody>
                         <tr class="release-time">
-                            <td>
+                            <td class="info">
                                 Release time:
                             </td>
                             <td>
@@ -92,7 +83,7 @@
 
                         {% if recipe.finish %}
                             <tr class="finish">
-                                <td>
+                                <td class="info">
                                     Finish:
                                 </td>
                                 <td>
@@ -103,17 +94,17 @@
                         {% endif %}
 
                         <tr class="serving">
-                            <td>Serving:</td>
+                            <td class="info">Serving:</td>
                             <td>{{ recipe.serving_value|cut:'None' }} gr.</td>
                         </tr>
                         <tr class="plate">
-                            <td>Plate:</td>
+                            <td class="info">Plate:</td>
                             <td>{{ recipe.food_plate }}</td>
                         </tr>
 
                         {% if recipe.preparation_method %}
                             <tr class="preparation">
-                                <td>Preparation:</td>
+                                <td class="info">Preparation:</td>
                                 <td>{{ recipe.preparation_method }}</td>
                             </tr>
                         {% endif %}
@@ -125,7 +116,11 @@
                 {% if recipe.description %}
                     <div class="description">
                         <h3><i class="fa-regular fa-rectangle-list"></i>Description</h3>
-                        {{ recipe.description }}
+                        <p>
+                            {{ recipe.description }}
+                        </p>
+
+                        
                     </div>
                 {% endif %}
 
@@ -161,15 +156,15 @@
                             <p>{{ comment }}</p>
                             <br>
 
-                            <span class="comment-date"><b>&nbsp;Publication&nbsp;date:</b>{{ comment.publication_date_and_time }}</span>
+                            <span class="comment-date">{{ comment.publication_date_and_time }}</span>
 
                             {% if request.user == comment.user %}
                                 <br>
-                                <div class="buttons">
-                                    <a class="btn" href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
-                                       role="button">Delete</a>
-                                    <a class="btn" href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}"
-                                       role="button">Edit</a>
+                                <div class="icons">
+                                    <a  href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
+                                       role="button"><i class="fa-regular fa-trash-can" ></i></a>
+                                    <a  href="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}" 
+                                       role="button"><i class="fa-regular fa-pen-to-square" ></i></a>
                                 </div>
                             {% endif %}
                         </div>

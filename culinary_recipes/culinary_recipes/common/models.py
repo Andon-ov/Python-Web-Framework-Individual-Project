@@ -10,7 +10,7 @@ class RecipeComment(models.Model):
     text = models.TextField(
         null=False,
         blank=False,
-        verbose_name='Comment:'
+        verbose_name='Your comment'
     )
 
     publication_date_and_time = models.DateTimeField(

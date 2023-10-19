@@ -17,17 +17,17 @@
                 <div class="single-ingredients">
                     <h3><i class="fa-solid fa-clipboard-list"></i>Ingredients</h3>
                     <table class="ingredients-table">
-                        {#                        <thead>#}
-                        {#                        <tr>#}
-                        {#                            <th>Ingredient</th>#}
-                        {#                            <th>Amount</th>#}
-                        {#                            <th>Preparation Method</th>#}
-                        {#                        </tr>#}
-                        {#                        </thead>#}
+                    <thead>
+                    <tr>
+                        <th>Ingredient</th>
+                        <th>Amount</th>
+                        <th>Preparation Method</th>
+                    </tr>
+                    </thead>
                         <tbody>
                         {% for ingredient in object.baseingredient_set.all %}
                             <tr>
-                                <td>{{ ingredient.food }}</td>
+                                <td  class="ingredient-name" >{{ ingredient.food }}</td>
                                 <td>{{ ingredient.amount_number|floatformat }} {{ ingredient.unit }} {{ ingredient.quantity|cut:'None' }}</td>
                                 <td>{{ ingredient.preparation_method|cut:'None' }}</td>
                             </tr>
@@ -41,6 +41,7 @@
                 <div class="recipe-info">
                 <h3><i class="fa-solid fa-circle-info"></i>More Info</h3>
                 {% if prep_method %}
+                <br>
                     <!-- preparation method -->
                     {% for method in prep_method %}
                         <p><b>Preparation method:</b> <i>{{ method }}</i></p>
@@ -48,21 +49,25 @@
                 {% endif %}
 
                 {% if object.note %}
+                <br>
                     <!-- note -->
                     <p><b>Note:</b> <i>{{ object.note }}</i></p>
                 {% endif %}
 
                 {% if object.preparation %}
+                <br>
                     <!-- preparation -->
-                    <p><b>Preparation:</b> <br> <i>{{ object.preparation }}</i></p>
+                    <p><b>Preparation:</b> <br> <i class="white-space">{{ object.preparation }}</i></p>
                 {% endif %}
 
                 {% if object.base_yield %}
+                <br>
                     <!-- yield -->
                     <p><b>Yield:</b> <i>{{ object.base_yield }}</i></p>
                 {% endif %}
 
                 {% if  object.base_recipe_portions %}
+                <br>
                     <!-- portions -->
                     <p><b>Portions:</b> <i>{{ object.base_recipe_portions }} </i></p>
                 {% endif %}
@@ -71,10 +76,12 @@
 
 
         </article>
+        <br>
         <div class="buttons">
             <a class="btn" href="javascript:history.back()"><h5><i class="fas fa-caret-left"></i> Back</h5></a>
             <a class="btn" href="{% url 'base recipe' %}"><h5>Base <i class="fas fa-caret-right"></i></h5></a>
         </div>
+        <br>
     </main>
 {% endblock %}
 {##}

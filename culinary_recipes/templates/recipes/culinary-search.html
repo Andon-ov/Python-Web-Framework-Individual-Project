@@ -13,17 +13,17 @@
                 {% for search in object_list %}
                     {% if search.category.is_activ %}
 
-                        <div class="card">
+                        <div class="card"  data-title="{{ search.title.upper }}">
                             <a href="{% url 'recipe detail' pk=search.pk %}">
                                 <div class="card-img"></div>
                                 <img class="grow-img" src="{{ search.image_recipe.image.url }}"
                                      alt="{{ search.image_recipe.image.name }}"/>
 
-                                <div class="card-body">
+                                {% comment %} <div class="card-body">
                                     <h5 class="card-title">{{ search.title.upper }}</h5>
-                                </div>
+                                </div> {% endcomment %}
                             </a>
-                            {#                            <a href="{% url 'category detail' search.category.pk %}">{{ search.category }}</a>#}
+                            {% comment %} <a href="{% url 'category detail' search.category.pk %}">{{ search.category }}</a> {% endcomment %}
                         </div>
                     {% endif %}
                 {% endfor %}

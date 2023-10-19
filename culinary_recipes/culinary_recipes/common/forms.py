@@ -73,7 +73,7 @@ class ContactForm(forms.Form):
         label='Email',
         widget=forms.EmailInput(
             attrs={
-                'placeholder': 'example@example.com'
+                # 'placeholder': 'example@example.com'
             }),
 
     )

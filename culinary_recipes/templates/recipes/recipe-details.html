@@ -16,23 +16,23 @@
 
             <div class="details-wrapper">
 
-                <div class="img-wrapper">
+                <div class="img-wrapper cell">
                     <img class="img" src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">
                 </div>
                 <!-- ingredients -->
 
-                <div class="single-ingredients">
+                <div class="single-ingredients cell">
                     <h3><i class="fa-solid fa-clipboard-list"></i>Ingredients</h3>
 
                     <table class="ingredients-table">
-                        {% comment %} <thead>
+                       <thead>
                         <tr>
                             <th>Name</th>
                             <th>Amount</th>
-                            <th>Quantity</th>
                             <th>Preparation</th>
+                            <th>Quantity</th>
                         </tr>
-                        </thead> {% endcomment %}
+                        </thead> 
                         <tbody>
                         {% for ingredient in recipe_ingredients %}
                             {% if not ingredient.base %}
@@ -41,8 +41,8 @@
                                 <td class="ingredient-name">{{ ingredient.food }}</td>
                                 <td class="ingredient-amount">{{ ingredient.amount_number|floatformat|cut:'None' }}&nbsp;{{ ingredient.unit|cut:'None' }}</td>
                                 {% if ingredient.quantity %}
-                                <td class="ingredient-quantity">{{ ingredient.quantity|cut:'None' }}</td>
                                 <td class="ingredient-preparation">{{ ingredient.preparation_method |cut:'None' }}</td>
+                                <td class="ingredient-quantity">{{ ingredient.quantity|cut:'None' }}</td>
                                 {% else %}
                                     <td colspan="2" class="ingredient-preparation">{{ ingredient.preparation_method |cut:'None' }}</td>
                                 {% endif %}
@@ -64,81 +64,128 @@
                                 </tr>
                             {% endif %}
                         {% endfor %}
+                        
                         </tbody>
                     </table>
-                </div>
 
-                <div class="recipe-info">
+
+                    <br>
                     <h3><i class="fa-solid fa-circle-info"></i>More Info</h3>
                     <table >
+                       
                         <tbody>
                         <tr class="release-time">
-                            <td class="info">
-                                Release time:
-                            </td>
+                                <th class="info">Release time</th>
                             <td>
-                                {{ recipe.release_time|cut:'None' }} min.
+                                {{ recipe.release_time|cut:'None' }} <i>minutes</i>
                             </td>
                         </tr>
 
                         {% if recipe.finish %}
                             <tr class="finish">
-                                <td class="info">
-                                    Finish:
-                                </td>
+                                    <th class="info">Finish</th>
                                 <td>
-                                    {{ recipe.finish }}
+                                    <i> {{ recipe.finish }}</i>
                                 </td>
                             </tr>
 
                         {% endif %}
 
                         <tr class="serving">
-                            <td class="info">Serving:</td>
-                            <td>{{ recipe.serving_value|cut:'None' }} gr.</td>
+                            <th class="info">Serving</th>
+                            <td>{{ recipe.serving_value|cut:'None' }} <i>grams</i></td>
                         </tr>
                         <tr class="plate">
-                            <td class="info">Plate:</td>
-                            <td>{{ recipe.food_plate }}</td>
+                            <th class="info">Plate</th>
+                            
+                            <td><i>{{ recipe.food_plate }}</i></td>
                         </tr>
 
                         {% if recipe.preparation_method %}
                             <tr class="preparation">
-                                <td class="info">Preparation:</td>
-                                <td>{{ recipe.preparation_method }}</td>
+                                <th class="info">Preparation</th>
+                                <td><i>{{ recipe.preparation_method }}</i></td>
                             </tr>
                         {% endif %}
                         </tbody>
                     </table>
 
                 </div>
+
+
+                 <!-- video -->
+                 {% if recipe.video_recipe %}
+                 <div class="video-container cell">
+                     {% video recipe.video_recipe.video as my_video %}
+                     <div class="video-wrapper">
+                     {% video my_video '100% x 100%' %}
+                    </div>
+                     {% endvideo %}
+                 </div>
+                {% endif %}
+
+             
+                <!-- more info -->
+                {% comment %} <div class="recipe-info cell">
+                    <h3><i class="fa-solid fa-circle-info"></i>More Info</h3>
+                    <table >
+                       
+                        <tbody>
+                        <tr class="release-time">
+                                <th class="info">Release time</th>
+                            <td>
+                                {{ recipe.release_time|cut:'None' }} <i>minutes</i>
+                            </td>
+                        </tr>
+
+                        {% if recipe.finish %}
+                            <tr class="finish">
+                                    <th class="info">Finish</th>
+                                <td>
+                                    <i> {{ recipe.finish }}</i>
+                                </td>
+                            </tr>
+
+                        {% endif %}
+
+                        <tr class="serving">
+                            <th class="info">Serving</th>
+                            <td>{{ recipe.serving_value|cut:'None' }} <i>grams</i></td>
+                        </tr>
+                        <tr class="plate">
+                            <th class="info">Plate</th>
+                            
+                            <td><i>{{ recipe.food_plate }}</i></td>
+                        </tr>
+
+                        {% if recipe.preparation_method %}
+                            <tr class="preparation">
+                                <th class="info">Preparation</th>
+                                <td><i>{{ recipe.preparation_method }}</i></td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+
+                </div> {% endcomment %}
+
                 <!-- description -->
                 {% if recipe.description %}
-                    <div class="description">
+                    <div class="description cell">
                         <h3><i class="fa-regular fa-rectangle-list"></i>Description</h3>
-                        <p>
-                            {{ recipe.description }}
-                        </p>
-
-                        
+                        <p class="white-space">{{ recipe.description }}</p>
                     </div>
                 {% endif %}
 
-                <!-- video -->
-                {% if recipe.video_recipe %}
-                    <div class="video-container" style="display: none">
-                        {% video recipe.video_recipe.video as my_video %}
-                        {% video my_video '100% x 100%' %}
-                        {% endvideo %}
-                    </div>
-                {% endif %}
+               
+
             </div>
 
 
             <!-- comments -->
 
             <section class="comments-wrapper">
-                <div class="comment-form-holder">
+                <div class="comment-form-holder cell">
                     <form action="{% url 'comment recipe' recipe_id=recipe.pk %}" method="post" class="comment-form">
                         {{ form }}
                         {% csrf_token %}
@@ -148,18 +195,17 @@
 
                     </form>
                 </div>
-                <div class="comment-posts">
+                <div class="comment-posts cell">
                     {% for comment in  recipe.recipecomment_set.all %}
 
                         <div class="comment-details">
                             <span class="comment-author"><b>{{ comment.user.profile.full_name }}:</b></span>
-                            <p>{{ comment }}</p>
-                            <br>
+                            <p class="white-space">{{ comment }}</p>
 
+                            <div class="comment-date-icons-wrapper">
                             <span class="comment-date">{{ comment.publication_date_and_time }}</span>
 
                             {% if request.user == comment.user %}
-                                <br>
                                 <div class="icons">
                                     <a  href="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
                                        role="button"><i class="fa-regular fa-trash-can" ></i></a>
@@ -167,6 +213,10 @@
                                        role="button"><i class="fa-regular fa-pen-to-square" ></i></a>
                                 </div>
                             {% endif %}
+                            </div>
+
+
+
                         </div>
                     {% endfor %}
                 </div>

@@ -15,7 +15,7 @@
 
             <div class="details-wrapper">
                 <div class="img-wrapper">
-                    <img src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">
+                    <img class="img" src="{{ recipe.image_recipe.image.url }}" alt="{{ recipe.title }}">
                 </div>
                 <div class="single-ingredients">
 
@@ -53,7 +53,7 @@
                                 <p>Време за реализация:</p>
                             </td>
                             <td>
-                                <b>{{ recipe.release_time }}</b> Мин.
+                                <b>{{ recipe.release_time }} Мин.</b>
                             </td>
                         </tr>
                         {% if recipe.finish %}

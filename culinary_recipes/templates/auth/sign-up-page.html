@@ -5,46 +5,71 @@
     <main class="main">
         <article class="form-wrapper">
             <h2 class="title">Sign Up</h2>
-
             <form class="form" action="{% url 'sign up' %}" method="post" enctype="multipart/form-data">
-
-                <label for="email"><b>Email: </b></label>
-                {{ form.email|placeholder:'Въведи email' }}
-                <label for="password1"><b>Парола: </b></label>
-                {{ form.password1|placeholder:'Въведи парола' }}
-                <label for="password2"><b>Парола: </b></label>
-                {{ form.password2|placeholder:'Въведи паролата повторно' }}
-                <label for="first_name"><b>Име: </b></label>
-                {{ form.first_name|placeholder:'Въведи името си' }}
-                <label for="last_name"><b>Фамилия: </b></label>
-                {{ form.last_name|placeholder:'Въведи фамилията си' }}
-                <label for="job_title"><b>Длъжност: </b></label>
-                {{ form.job_title }}
-
-                {% if form.errors %}
-                    {% for field in form %}
-                        {% for error in field.errors %}
-                            <div class="alert alert-danger">
-                                <strong>{{ error|escape }}</strong>
-                            </div>
-                        {% endfor %}
-                    {% endfor %}
-                    {% for error in form.non_field_errors %}
-                        <div class="alert alert-danger">
-                            <strong>{{ error|escape }}</strong>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-                {% csrf_token %}
-                <div class="buttons">
-                    <button type="submit" class="btn">Sign&nbsp;Up</button>
-
-
-                </div>
-            </form>
+                
+               
+                                <label for="email"><b>Email: </b></label>
+                                {{ form.email}}
+                                <label for="password1"><b>Парола: </b></label>
+                                {{ form.password1 }}
+                                <label for="password2"><b>Парола: </b></label>
+                                {{ form.password2}}
+          
+                                <label for="first_name"><b>Име: </b></label>
+                                {{ form.first_name}}
+                                <label for="last_name"><b>Фамилия: </b></label>
+                                {{ form.last_name }}
+                                <label for="job_title"><b>Длъжност: </b></label>
+                                {{ form.job_title }}
+                
+                                {% if form.errors %}
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <div class="alert alert-danger">
+                                                <strong>{{ error|escape }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% for error in form.non_field_errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                {% csrf_token %}
+                               
+                               
+                                <div class="buttons">
+                                    <button type="submit" class="btn">Sign&nbsp;Up</button>
+                
+                
+                                </div>
+                            </form>
+                            
+            
             <p>Вече имате регистрация: <a class="sign-in-up" href="{% url 'sign in' %}"><b>Sign&nbsp;In</b></a></p>
 
         </article>
     </main>
 
 {% endblock %}
+
+
+{% comment %} 
+
+
+<label for="email"><b>Email: </b></label>
+{{ form.email|placeholder:'Въведи email' }}
+<label for="password1"><b>Парола: </b></label>
+{{ form.password1|placeholder:'Въведи парола' }}
+<label for="password2"><b>Парола: </b></label>
+{{ form.password2|placeholder:'Въведи паролата повторно' }}
+<label for="first_name"><b>Име: </b></label>
+{{ form.first_name|placeholder:'Въведи името си' }}
+<label for="last_name"><b>Фамилия: </b></label>
+{{ form.last_name|placeholder:'Въведи фамилията си' }}
+<label for="job_title"><b>Длъжност: </b></label>
+
+
+
+{% endcomment %}

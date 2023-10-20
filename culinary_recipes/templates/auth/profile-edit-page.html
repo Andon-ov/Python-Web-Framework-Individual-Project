@@ -6,6 +6,7 @@
         <article class="form-wrapper">
 
             <h2 class="title">Edit Profile</h2>
+            <br>
             <form class="form" action="{% url 'edit user' pk=request.user.pk %}" method="post"
                   enctype="multipart/form-data">
                 <label for="first_name"><b>First&nbsp;Name:</b></label>

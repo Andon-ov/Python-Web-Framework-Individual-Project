@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
+{% load static %}
     <main class="main">
 
         <h2 class="title">Base</h2>
@@ -10,8 +11,12 @@
                 <!-- card start -->
                 <a href="{% url 'base_recipe detail' pk=base.pk %}"><div class="card" data-title="{{ base.title.upper }}">
                     <div class="card_hover" >
-                        <i class="fa-solid fa-kitchen-set fa-flip fa-2xl" style="color: #fa0000;"></i>
-                        Click here for more details
+                        <img src="{% static 'images/chef.png' %}" alt="chef hat icon">
+
+
+
+                        {% comment %} <i class="fa-solid fa-kitchen-set fa-flip fa-2xl"></i>
+                        Click here for more details {% endcomment %}
 
                     </div>
                     
@@ -20,9 +25,9 @@
                         <p class="card-text">{{ base.base_type }}</p>
                     {% endif %}
 
-                    <div class="card-footer">
-                        {% comment %} <a href="{% url 'base_recipe detail' pk=base.pk %}" class="btn">Details</a> {% endcomment %}
-                    </div>
+                    {% comment %} <div class="card-footer">
+                        <a href="{% url 'base_recipe detail' pk=base.pk %}" class="btn">Details</a>
+                    </div> {% endcomment %}
                 </div></a>
                 <!-- card end -->
 

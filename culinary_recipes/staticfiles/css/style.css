@@ -8,8 +8,8 @@
 
     --shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
 
-    --detailsClrOne: rgba(226, 151, 160, 0.5);
-    --detailsClrTwo: rgba(247, 245, 221, 1);
+    --detailsClrOne: rgba(247, 245, 221, 1);
+    --detailsClrTwo: rgba(226, 151, 160, 0.5);
     --detailsClrThree: rgba(95, 186, 176, 0.5);
 
 }
@@ -33,13 +33,7 @@ button {
 
 
 .btn {
-    padding: 10px 40px;
-    background-color: transparent;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    text-transform: capitalize;
-    font-style: italic;
-    font-weight: 600;
+    
 }
 
 .btn:hover {
@@ -47,11 +41,32 @@ button {
     color: white;
 }
 
+
+
+.btn {
+    padding: 5px 20px;
+    box-shadow: var(--shadow);
+    text-transform: capitalize;
+    font-style: italic;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--mainRedColor);
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--mainGreenColor);
+}
+
 .buttons {
     padding-top: 20px;
     display: flex;
     gap: 10px;
-    /* justify-content: flex-start; */
     justify-content: center;
 
 }
@@ -72,8 +87,9 @@ button {
     justify-content: flex-end;
 }
 
-.fa-regular.fa-trash-can,
-.fa-regular.fa-pen-to-square {
+
+.fa-solid,
+.fa-regular {
 
     color: var(--mainRedColor);
 }
@@ -163,7 +179,12 @@ table.ingredients-table td a:hover {
 }
 
 #id_job_title:hover {
-    background-color: black;
+    background-color: var(--mainGreenColor);
+    color: white;
+}
+
+#id_job_title:focus-visible {
+    outline: unset;
     color: white;
 }
 
@@ -414,6 +435,8 @@ table.ingredients-table td a:hover {
 }
 
 .main .title {
+    font-size: 24px;
+    font-weight: bold;
     text-transform: uppercase;
     background-color: white;
     padding: 20px 0;
@@ -502,7 +525,8 @@ table.ingredients-table td a:hover {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     justify-self: center;
-    padding: 60px
+    padding: 60px;
+    margin: 0 auto;
 }
 
 .long-main .card-grid .card {
@@ -574,13 +598,13 @@ table.ingredients-table td a:hover {
 }
 
 .long-main .recipe-details .details-wrapper .cell:last-of-type {
-  grid-column: 2 / -1; 
+    grid-column: 2 / -1;
 }
 
 
 .long-main .recipe-details .comments-wrapper .cell:last-of-type {
-    grid-column: 2 / -1; 
-  }
+    grid-column: 2 / -1;
+}
 
 
 .long-main .recipe-details .details-wrapper .img-wrapper {
@@ -733,32 +757,52 @@ table.ingredients-table td a:hover {
 
 
 /*! FORM */
+
+.form input,
+.form select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    color: var(--mainGreenColor);
+    font-size: 16px;
+}
+
+.form input::placeholder {
+    color: white;
+    font-weight: 200;
+}
+
 .main .form-wrapper {
     display: flex;
     flex-direction: column;
-    width: 60%;
     margin: 0 auto;
+    /* .form-wrapper */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: var(--shadow);
+    border-radius: 6px;
+    padding: 20px;
+    place-self: center;
 }
 
 .main .form-wrapper .form {
     display: flex;
     max-width: 100%;
     flex-direction: column;
-    padding: 10px;
     height: auto;
 }
 
 .main .form-wrapper .form label {
-    margin: 20px;
+    font-weight: bold;
     line-height: 0.2em;
     font-weight: 400;
     color: #000;
 }
 
-.main .form-wrapper .form input,
 textarea {
-    padding: 6px;
-    width: 100%;
     border: none;
 }
 
@@ -774,6 +818,7 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
@@ -785,6 +830,47 @@ textarea:focus {
 .main .profile-info .heading .sign-out:hover {
     text-decoration: none;
 }
+
+/* new */
+
+.profile-info {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+    place-self: center;
+}
+
+.title {
+    color: var(--mainRedColor);
+}
+
+.sign-out {
+    font-weight: bold;
+}
+
+.info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info li {
+    margin-bottom: 10px;
+}
+
+b {
+    font-weight: bold;
+    color: var(--mainRedColor);
+}
+
+i {
+    color: var(--mainGreenColor);
+}
+
 
 /*! profile delete*/
 .main .profile-delete {
@@ -811,12 +897,14 @@ textarea:focus {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: white;
+    color: var(--mainRedColor);
+    border-radius: 6px;
+    background: linear-gradient(135deg, var(--mainGreenColor), var(--mainRedColor), var(--mainGrayColor));
 }
 
 .base-cards .card:hover {
     font-style: italic;
-    color: var(--mainRedColor);
+    color: white;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -861,24 +949,6 @@ textarea:focus {
     grid-template-columns: repeat(2, 1fr);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .main .wrapper .single-ingredients {
     background-color: var(--detailsClrOne);
     padding: 20px 40px;
@@ -896,8 +966,8 @@ textarea:focus {
 }
 
 .main .wrapper .recipe-info {
-    background-color: var(--detailsClrTwo);
-    padding: 40px 60px;
+    background-color: var(--detailsClrThree);
+    padding: 20px 40px;
     border-radius: 6px;
 }
 
@@ -909,6 +979,12 @@ textarea:focus {
 
 .main .wrapper .recipe-info h3 i {
     margin-right: 25px;
+}
+
+.main .wrapper .recipe-info .yield-portions {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
 }
 
 
@@ -1049,7 +1125,7 @@ textarea:focus {
     transform: translate(-50%, -50%);
     background: var(--mainGreenColor);
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: bold;
     font-size: 18px;
     text-align: center;
@@ -1174,6 +1250,7 @@ textarea:focus {
 #menuToggle input:checked~ul {
     transform: none;
 }
+
 
 
 

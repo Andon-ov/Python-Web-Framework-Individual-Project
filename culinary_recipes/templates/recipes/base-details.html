@@ -41,37 +41,41 @@
                 <div class="recipe-info">
                 <h3><i class="fa-solid fa-circle-info"></i>More Info</h3>
                 {% if prep_method %}
-                <br>
                     <!-- preparation method -->
                     {% for method in prep_method %}
-                        <p><b>Preparation method:</b> <i>{{ method }}</i></p>
+                        <p ><b>Preparation method:
+                            <br>
+                        </b>{{ method }}</p>
                     {% endfor %}
                 {% endif %}
 
                 {% if object.note %}
                 <br>
                     <!-- note -->
-                    <p><b>Note:</b> <i>{{ object.note }}</i></p>
+                    <p><b>Note:</b> 
+                        <br>
+                        {{ object.note }}</i></p>
                 {% endif %}
 
                 {% if object.preparation %}
                 <br>
                     <!-- preparation -->
-                    <p><b>Preparation:</b> <br> <i class="white-space">{{ object.preparation }}</i></p>
+                    <p><b>Preparation:</b> <br> <p class="white-space">{{ object.preparation }}</p></p>
                 {% endif %}
+                        <div class="yield-portions"> 
 
+
+                        
                 {% if object.base_yield %}
-                <br>
                     <!-- yield -->
-                    <p><b>Yield:</b> <i>{{ object.base_yield }}</i></p>
+                    <p><b>Yield:</b>  {{object.base_yield }}</i></p>
                 {% endif %}
 
                 {% if  object.base_recipe_portions %}
-                <br>
                     <!-- portions -->
-                    <p><b>Portions:</b> <i>{{ object.base_recipe_portions }} </i></p>
+                    <p><b>Portions:</b> {{ object.base_recipe_portions }} </i></p>
                 {% endif %}
-            {% comment %} {% endif %} {% endcomment %}
+            </div>
             </div>
 
 

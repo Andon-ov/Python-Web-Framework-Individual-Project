@@ -3,9 +3,9 @@
     <main class="main">
 
 
-        <article class="form-wrapper">
+        <article class="form-wrapper comments">
             <h2 class="title">Delete Comment</h2>
-            {{ comment.user.profile.full_name }} наистина ли искате да изтриете вашия коментар?
+           <b> {{ comment.user.profile.full_name }}</b> наистина ли искате да изтриете вашия коментар?
 
             <form class="form" method="post" action="{% url 'comment delete' pk=comment.pk recipe_id=recipe.pk %}"
                   enctype="multipart/form-data">

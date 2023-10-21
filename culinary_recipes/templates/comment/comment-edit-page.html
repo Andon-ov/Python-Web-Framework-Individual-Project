@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% block page_content %}
     <main class="main">
-        <article class="form-wrapper">
+        <article class="form-wrapper comments">
             <h2 class="title">Comment Edit</h2>
 
             <form action="{% url 'comment edit' pk=comment.pk recipe_id=recipe.pk %}" method="post"
